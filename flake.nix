@@ -10,7 +10,7 @@
     let
       pkgs = nixpkgs.legacyPackages.${system};
       tex = pkgs.texlive.combine {
-          inherit (pkgs.texlive) scheme-medium latex-bin latexmk
+          inherit (pkgs.texlive) scheme-small latex-bin latexmk
             koma-script # template
             upquote fontaxes fontspec
 # inputenc 
@@ -47,7 +47,7 @@ eso-pic;
             export PATH="${pkgs.lib.makeBinPath buildInputs}";
             mkdir -p .cache/texmf-var
             env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
-              latexmk -interaction=nonstopmode -pdf -lualatex \
+              latexmk -interaction=nonstopmode -pdf -pdflatex \
               tfg.tex
           '';
           installPhase = ''
