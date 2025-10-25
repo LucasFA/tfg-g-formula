@@ -44,6 +44,7 @@ eso-pic;
           buildInputs = [pkgs.coreutils tex ];
           phases = ["unpackPhase" "buildPhase" "installPhase"];
           buildPhase = ''
+            export NIX_LOG_FD=1
             export PATH="${pkgs.lib.makeBinPath buildInputs}";
             mkdir -p .cache/texmf-var
             env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
@@ -53,6 +54,7 @@ eso-pic;
           installPhase = ''
             mkdir -p $out
             cp tfg.pdf $out/
+            cp tfg.log $out/
           '';
       };
         };
