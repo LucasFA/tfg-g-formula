@@ -1,7 +1,7 @@
 % !TeX root = ../tfg.tex
 % !TeX encoding = utf8
 
-\begin{definicion}\label{def:ate}
+\begin{definicion}ATE estadístico \label{def:ate}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
 	Definimos el \textit{Average Treatment Effect} como
 	$$  E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
@@ -10,7 +10,36 @@
 \end{definicion}
 
 \begin{definicion} Diferencia de riesgo \label{def:riskdiff}
-	Dado un tratamiento y un gru
+	Dado un tratamiento
 	$$ RD = \frac{E_A}{E} - \frac{C_A}{C} $$
 	donde $E_A$ es el número de casos
 \end{definicion}
+
+\begin{definicion} Odds ratio
+\end{definicion}
+
+\begin{definicion} Independencial condicional
+	Sea $A$ una hipótesis, $B$ y $C$ observaciones. 
+
+	Se dice que $A$ y $B$ son condicionalmente independientes dado $C$, y se denota
+	$$ (A \perp B )| C $$, si
+	$$ P(A | B, C ) = P(A | C)$$
+\end{definicion}
+
+
+Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal.
+( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
+\begin{enumerate}
+	\item Consistencia contrafactual
+		$$ Y = A Y(1) + (1 - A)Y(0)
+	\item Intercambiabilidad condicional o independencia condicional
+		Independencia entre $Y(a)$ y $A$, bajo la distribución condicionada a $C$
+	\item Positividad
+		$$ P(A | C = c) > 0 \forall c / P(C = c) > 0$$
+\end{enumerate}
+
+Por el \ref{thm:probabilidad-total} tenemos que
+$$ P[Y(a) = 1 ] = \sum_c P[Y(a) = 1 | C = c]P[C=c] $$
+con lo que en las condiciones anteriores, podemos aplicar la intercambiabilidad condicional para igualar lo anterior a
+$$ \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
+
