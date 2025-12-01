@@ -5,7 +5,7 @@
 % https://alejandroschuler.github.io/mci/introduction-to-modern-causal-inference.html
 
 
-Contexto:
+\section{Preliminares}
 
 \begin{definicion}[Población]
   Una población de estudio es un conjunto de ejemplares a estudiar.
@@ -17,8 +17,7 @@ Contexto:
     \begin{enumerate}
       \item $\Omega$ es un conjunto no vacío
       \item $\mathcal{F}$ es una $\sigma$ álgebra sobre $2^\Omega = \{U | U \subseteq \Omega \}$
-      \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(Dom(P)) = 1$)
-      \item
+      \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\mathcal F) = 1$)
     \end{enumerate}
 \end{definicion}
 
@@ -37,7 +36,7 @@ Contexto:
   Alternativamente, es un subconjunto de la población $P$.
 \end{definicion}
 
-\begin{ejemplo}
+\begin{ejemplo} \newline
   \begin{enumerate}
     \item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
     \item Altura y peso de una persona, medidas en cm y kilogramos: $\{(175, 75)\}$.
