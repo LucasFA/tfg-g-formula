@@ -4,7 +4,7 @@
 
 \iffalse
 ################# ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
-1. Introducción a la inferencia causal, las asunciones de conditional mean independence, 
+1. Introducción a la inferencia causal, las asunciones de conditional mean independence,
 positivity y exchangeability o SUTVA, y las potential outcomes y el estimado de la diferencia de riesgos y del odds ratio (OR).
 positivity
 exchangeability o SUTVA
@@ -14,17 +14,28 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 
 \subsection{ATE}
+\begin{observacion}[La esperanza condicional]
+    $\mu_a(x) = E[Y| X = x, A = a]$ es el resultado medio que los pacientes con las covariantes $x$ que fueron
+    tratados con el tratamiento $a$.
+\end{observacion}
+
 \begin{definicion}[ATE(estadístico)] \label{def:ate}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
 	Definimos el \textit{Average Treatment Effect} como
-	$$  E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
-	Llamaremos a $X$ las covariantes, $A$ el tratamiento e $Y$ el resultado.
-	%TODO: check "covariantes" is a proper translation
+	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
+	Llamaremos a $X$ las covariantes, $A$ el tratamiento e $Y$ el resultado (outcome, en inglés).
+	También se puede escribir como
+	$$ \psi = E[\mu_1(x) - \mu_0(x)] $$
+
+	%TODO: check "covariantes" is a proper translation, and outcome thing
 \end{definicion}
+\begin{observacion}[Interpretación]
+    El ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes o comorbididades $x$.
+\end{observacion}
 
 
 \begin{definicion} Independencia condicional
-	Sea $A$ una hipótesis, $B$ y $C$ observaciones. 
+	Sea $A$ una hipótesis, $B$ y $C$ observaciones.
 
 	Se dice que $A$ y $B$ son condicionalmente independientes dado $C$, y se denota
 	$$ (A \perp B )| C $$, si
@@ -47,4 +58,3 @@ Por el \ref{thm:probabilidad-total} tenemos que
 $$ P[Y(a) = 1 ] = \sum_c P[Y(a) = 1 | C = c]P[C=c] $$
 con lo que en las condiciones anteriores, podemos aplicar la intercambiabilidad condicional para igualar lo anterior a
 $$ \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
-
