@@ -46,6 +46,34 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal.
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
+% https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
+% Los 3 primeros items son SUTVA TODO: write this out
+
+\begin{definicion}[Efecto causal a nivel de unidad]
+    Llamaremos efecto causal a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
+    representara una medida de el efecto del tratamiento sobre el resultado.
+\end{definicion}
+
+\begin{ejemplo}
+    \begin{enumerate}
+        \item Diferencia de riesgo: $Y_i(1) - Y_i(0)$
+        \item Riesgo relativo (RR): $Y_i(1) / Y_i(0)$
+        \item % TODO: does odd ratios fit here?
+    \end{enumerate}
+\end{ejemplo}
+
+\begin{observacion}
+    La interpretación de las siguientes condiciones reside en la necesidad de comparar los efectos causales
+    dentro de un mismo grupo, y no inter-grupos. Un ejemplo es presentado en % TODO: citar https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
+    es el siguiente:
+
+    \begin{verbatim}
+    One cannot compare medical compare medical costs for male
+    smokers with medical costs for female nonsmokers and claim
+    that this comparison is a causal effect of smoking.
+    \end{verbatim}
+
+\end{observacion}
 \begin{enumerate}
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
