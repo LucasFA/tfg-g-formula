@@ -51,13 +51,16 @@ Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE caus
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
 		Representa que el resultado observado coincide con el resultado en el modelo contrafactual. Eso es,
 		no existe elemento $i$ de la muestra tal que $A_i = 1$ y $Y_i \neq Y(1)$ ni tal quel $A_i = 0$ y $Y_i \neq Y(0)$.
-	\item Intercambiabilidad condicional o independencia condicional
-		Independencia entre $Y(a)$ y $A$ bajo la distribución condicionada a $C$
+	\item Adicionalmente a lo anterior, asumimos observaciones independientes y no error en la medida. % TODO: fix wording
+	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad % TODO; check understanding
+		Independencia entre $Y(a)$ y $A$ bajo la distribución condicionada a $C$ % TODO: check is correct interpretation (associatively)
+		No confundir con indepedencia entre $Y(a)$ y $A | C$
 	\item Positividad
 		$$ P(A | C = c) > 0 \; \forall c \text{tales que}  P(C = c) > 0$$
 \end{enumerate}
 
-Por el \ref{thm:probabilidad-total} tenemos que
+Bajo las condiciones anteriores, por el \ref{thm:probabilidad-total} tenemos que
 $$ P[Y(a) = 1 ] = \sum_c P[Y(a) = 1 | C = c]P[C=c] $$
-con lo que en las condiciones anteriores, podemos aplicar la intercambiabilidad condicional para igualar lo anterior a
-$$ \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
+Aplicamos la intercambiabilidad condicional, por la cual dentro de cada estrato $c$ de $C$ los predictores están
+equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
+$$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
