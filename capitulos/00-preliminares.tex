@@ -18,7 +18,7 @@ Contexto:
       \item $\Omega$ es un conjunto no vacío
       \item $\mathcal{F}$ es una $\sigma$ álgebra sobre $2^\Omega = \{U | U \subseteq \Omega \}$
       \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(Dom(P)) = 1$)
-      \item 
+      \item
     \end{enumerate}
 \end{definicion}
 
@@ -41,28 +41,28 @@ Contexto:
   \begin{enumerate}
     \item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
     \item Altura y peso de una persona, medidas en cm y kilogramos: $\{(175, 75)\}$.
-    \item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos: 
+    \item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
       $\{(175, 75), (168, 66)\}$.
   \end{enumerate}
 \end{ejemplo}
 
 
 \begin{definicion}[Muestra Aleatoria Simple (con reemplazamiento)]
-  Una muestra $M$ donde los elementos del vector son independientes: 
-  $(X_1, ..., X_n)$ tales que 
-   
+  Una muestra $M$ donde los elementos del vector son independientes:
+  $(X_1, ..., X_n)$ tales que
+
   $$ X_i \perp X_j \forall j \noteq i $$
-  
+
   donde el símbolo $\perp$ significa independencia.
-  
-  Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar 
-  con distribución uniforme sucesivamente y con reemplazamiento, 
+
+  Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
+  con distribución uniforme sucesivamente y con reemplazamiento,
   justificando el nombre.
 \end{definicion}
 
 \begin{definicion}[Muestra Aleatoria Simple (sin reemplazamiento)]
   Una muestra $M$ donde los elementos de la población se eligen de forma que
-  $$ \forall S_1, S_2 \in \{U \in 2^P | #(U) = k \}, P(S_1) = P(S_2), \forall k \leq n $$
+  $$ \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \}, P(S_1) = P(S_2), \forall k \leq n $$
   Esto es, la probabilidad de elegir cualquier subconjunto dado es la misma
   que la de cualquier otro.
 \end{definicion}
@@ -84,4 +84,3 @@ Contexto:
 
 \begin{definicion} Estimando
 \end{definicion}
-
