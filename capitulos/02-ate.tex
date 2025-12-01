@@ -29,10 +29,11 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 	%TODO: check "covariantes" is a proper translation, and outcome thing
 \end{definicion}
+% src: https://alejandroschuler.github.io/mci/7ae35a9031aa4b32b9e82cea3c32a96c.html
 \begin{observacion}[Interpretación]
-    El ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes o comorbididades $x$.
+    - El ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes dadas $x$.
+    - El ATE depende de la distribución conjunta de $(Y, X, A)$. Eso es, el ATE depende de la distribución de covariantes $X$.
 \end{observacion}
-
 
 \begin{definicion} Independencia condicional
 	Sea $A$ una hipótesis, $B$ y $C$ observaciones.
@@ -44,10 +45,12 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 
 Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal.
-( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
+% ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
 \begin{enumerate}
-	\item Consistencia contrafactual
+	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
+		Representa que el resultado observado coincide con el resultado en el modelo contrafactual. Eso es,
+		no existe elemento $i$ de la muestra tal que $A_i = 1$ y $Y_i \neq Y(1)$ ni tal quel $A_i = 0$ y $Y_i \neq Y(0)$.
 	\item Intercambiabilidad condicional o independencia condicional
 		Independencia entre $Y(a)$ y $A$ bajo la distribución condicionada a $C$
 	\item Positividad
