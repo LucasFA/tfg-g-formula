@@ -31,8 +31,8 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \end{definicion}
 % src: https://alejandroschuler.github.io/mci/7ae35a9031aa4b32b9e82cea3c32a96c.html
 \begin{observacion}[Interpretación]
-    - El ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes dadas $x$.
-    - El ATE depende de la distribución conjunta de $(Y, X, A)$. Eso es, el ATE depende de la distribución de covariantes $X$.
+    El ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes dadas $x$.
+    También depende de la distribución conjunta de $(Y, X, A)$. En particular, el ATE depende de la distribución de covariantes $X$.
 \end{observacion}
 
 \begin{definicion} Independencia condicional
@@ -72,8 +72,8 @@ Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE caus
     smokers with medical costs for female nonsmokers and claim
     that this comparison is a causal effect of smoking.
     \end{verbatim}
-
 \end{observacion}
+
 \begin{enumerate}
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
