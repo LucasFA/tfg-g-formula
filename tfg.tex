@@ -11,6 +11,8 @@
 % Cambiando la opción "print" por "tablet" generaremos un pdf adaptado para leerlo en tabletas de 9 pulgadas.
 
 \newcommand{\R}{\mathbb{R}}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{library.bib}
 
 % -------------------------------------------------------------------
 % INFORMACIÓN DEL TFG Y EL AUTOR
@@ -105,8 +107,9 @@
 
 \bibliographystyle{abbrv}
 % Otros estilos bibliográficos: alpha-es, amsalpha, plain
-\begin{small}
-  \bibliography{library.bib}
-\end{small}
+\printbibliography
+%\begin{small}
+  %\bibliography{library.bib}
+%\end{small}
 
 \end{document}
