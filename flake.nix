@@ -34,7 +34,6 @@ booktabs
 xcolor 
 # graphicx
 listings
-biblatex
 eso-pic;
       };
     in rec {
