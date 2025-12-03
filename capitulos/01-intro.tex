@@ -15,9 +15,61 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 % Intro a la inferencia causal
 \chapter{Introduccion a la inferencia causal}
 \section{Asunciones de conditional mean independence}
-\section{Positividad}
-\section{exchangeability o SUTVA}
+
 \section{Potential outcomes}
+Consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
+conjunta $P$. Este triplete es completamente observable: es posible tomar
+muestras de él, y diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
+
+Consideramos ahora $(X, A, Y(0), Y(1))$, que seguirá una distribución
+$P^*$, que diremos es un elemeneto del modelo causal $\mathcal{M}^*$ . Este vector no es directamente observable, pero veremos que $P^*$ determina $P$ en
+su totalidad:
+
+\begin{proposicion}
+	Si el modelo causal y el estadístico son consistentes:
+	$$ Y = A Y(1) + (1 - A)Y(0) $$
+	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
+	$$ P^*(X = x) = P(X = x) \forall x $$
+	$$ P^*(A = a | X = x) = P(A = a | X = x) \forall x, a$$
+
+	Entonces el modelo causal determina totalmente el estadístico:
+	$$ P(Y, A, X) = P(Y | A, X) P^*(A | X) P^*(X) $$
+\end{proposicion}
+
+\begin{proof} \cite{schuler21}
+Tenemos que:
+$$ P^*(X, A, Y(0), Y(1)) = P^*(Y(0), Y(1) | X, A) P^*(A | X) P^*(X)
+$$
+Tomando
+$$ P(Y = y | A, X) = P(AY(1) + (1-A)Y(0) = y | A, X) $$
+Entonces
+$$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
+\end{proof}
+
+Tabla de contigencia del modelo causal y estadístico, respectivamente:
+
+\begin{center}
+\begin{tabular}{ c c c c c }
+ i & X & A & Y_c == Y(0) & Y_t == Y(1) \\
+ 1 & 3 & 0 & 120 & 130 \\
+ 2 & 5 & 1 & 135 & 160 & \\
+ 3 & 2 & 0 & 95 & 110 \\
+ 4 & 4 & 1 & 110 & 120
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ c c c c }
+ i & X & A & Y \\
+ 1 & 3 & 0 & 120 \\
+ 2 & 5 & 1 & 160 \\
+ 3 & 2 & 0 & 95  \\
+ 4 & 4 & 1 & 120
+\end{tabular}
+\end{center}
+
+\subsection{El problema fundamental de la inferencia causal} % TODO: subsection or?
+
 \section{Estimadores}
 \subsection{Diferencia de riesgo}
 

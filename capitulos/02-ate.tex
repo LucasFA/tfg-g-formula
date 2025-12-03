@@ -100,6 +100,7 @@ $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 \begin{definicion}[SUTVA]
 	Stable Unit Treatment Value Assumption, por sus siglas en inglés, o Supuesto de Unidad de Valor de Tratamiento Estable (SUVTE).
 	Exigimos que el tratamiento en una unidad no afecte a otras unidades.
+	El efecto por el cual el tratamiento a unidad afecta a otras se le llama "spillover" en inglés, o "derrame" en castellano.
 \end{definicion}
 
 \begin{ejemplo}
@@ -107,9 +108,9 @@ $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 	de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africa.
 	Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
 	que también puede afectar a la localidad por el incremento en el consumo
-	de esta familia. A esto se le llaman "Spillover effects"
+	de esta familia.
 	Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
-	En \cite{Haushofer2016}, y posteriormente en \cite{Egger2022}
+	En \cite{Haushofer2016}, estudio posteriormente seguido por \cite{Egger2022},
 	dividen el grupo de control entre "Control puro", para familias no afectadas por
 	el efecto de spillover, y el grupo de "Control con spillover", que incluye familias
 	de la misma localidad que los recipientes.
