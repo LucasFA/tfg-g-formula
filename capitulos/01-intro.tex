@@ -19,10 +19,11 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \section{Potential outcomes}
 Consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
 conjunta $P$. Este triplete es completamente observable: es posible tomar
-muestras de él, y diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
+muestras de él. Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
 
 Consideramos ahora $(X, A, Y(0), Y(1))$, que seguirá una distribución
-$P^*$, que diremos es un elemeneto del modelo causal $\mathcal{M}^*$ . Este vector no es directamente observable, pero veremos que $P^*$ determina $P$ en
+$P^*$, que diremos es un elemento del modelo causal $\mathcal{M}^*$ . Este vector no
+es directamente observable, pero veremos que $P^*$ determina $P$ en
 su totalidad:
 
 \begin{proposicion}
@@ -80,3 +81,68 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 \end{definicion}
 
 \subsection{Odds ratio}
+
+Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
+
+\begin{center} %TODO: better wording
+\begin{tabular}{c | c c}
+                  & Intervencion (I) & Control (C)
+    Evento (E)    & IE               & CE
+    No-Evento (N) & IN               & CN
+\end{tabular}
+\end{center}
+% TODO: decide which to keep
+\begin{center}
+\begin{tabular}{c | c c}
+                 & Y = 0 (C) &            Y = 1 (I)
+    X = 0 (N)    & p_{00}               & p_{10}
+    X = 1 (E)    & p_{01}               & p_{11}
+\end{tabular}
+\end{center}
+
+La división entre Intervención y Control reside en el valor de la variable $A$,
+mientras la división entre Evento y No evento corresponde a la variable $Y$
+
+\begin{definicion}[Riesgo Relativo - Relative Risk] %TODO: find source
+Es el ratio entre afligidos por una condición condicionado si han sido expuestos
+al tratamiento o no.
+
+$$ RR = \dfrac{IE/(IE+IN)}{CE/(CE+CN)} = \dfrac{p_{11}/(p_{11} + p_{10})}{p_{01} / (p_{01} + p_{00}) } $$
+
+\end{definicion}
+
+\begin{observacion} % TODO: expand or delete
+	El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
+	suele ser posible
+\end{observacion}
+
+\begin{definicion}[Odds ratio]
+Es el ratio entre las probabilidades % TODO: check is this correct?
+$$
+    OR = \dfrac{IE/IN}{CE/CN} = \dfrac{p_{11} p_{00}}{p_{01} p_{10}}
+$$
+\end{definicion}
+
+\begin{observacion}
+	En condiciones de \textit{enfermedad rara}, por la cual la población
+	afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
+	es un buen estimador del riesgo relativo.
+	$$ OR \approx RR $$
+\end{observacion}
+
+\begin{observacion}
+	En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
+	de la población en su totalidad no es práctico, sino que uno se limita
+	a una considerar a los casos que expresan la enfermedad junto a una muestra
+	aleatoria de la población sana. En este caso, no tenemos el valor
+	de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
+	se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
+	con el $OR$.
+\end{observacion}
+
+\begin{ejemplo}
+	Caso A: riesgo asociado $99.9\%$
+	Caso B: riesgo asociado $99.0\%$
+	Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
+	Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
+\end{ejemplo}
