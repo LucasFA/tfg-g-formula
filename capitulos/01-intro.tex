@@ -50,7 +50,7 @@ $$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
 Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
 \begin{center}
-\begin{tabular}{ C C C | C C }
+\begin{tabular}{ C | C C | C C }
  i & X & A & Y(0) & Y(1) \\
  1 & 3 & 0 & 120 & 130 \\
  2 & 5 & 1 & 135 & 160 \\
@@ -60,7 +60,7 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 \end{center}
 
 \begin{center}
-\begin{tabular}{ C C C | C }
+\begin{tabular}{ C | C C | C }
  i & X & A & Y \\
  1 & 3 & 0 & 120 \\
  2 & 5 & 1 & 160 \\
@@ -147,7 +147,7 @@ $$
 	con el $OR$.
 \end{observacion}
 
-\begin{ejemplo}
+\begin{ejemplo} % TODO: check this makes sense. Why 99%? Shouldn't it be like 1%?
 	Caso A: riesgo asociado $99.9\%$
 	Caso B: riesgo asociado $99.0\%$
 	Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
