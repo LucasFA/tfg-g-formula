@@ -10,6 +10,11 @@
 % VERSIÓN ELECTRÓNICA PARA TABLETA
 % Cambiando la opción "print" por "tablet" generaremos un pdf adaptado para leerlo en tabletas de 9 pulgadas.
 
+\usepackage{amstext} % for \text macro
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+
 \newcommand{\R}{\mathbb{R}}
 % \newcommand{\P}{\mathbb{P}}
 

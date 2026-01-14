@@ -50,26 +50,22 @@ $$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
 Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
 \begin{center}
-\begin{tabular}{ c c c c c }
-$$
+\begin{tabular}{ C C C C C }
  i & X & A & Y_c == Y(0) & Y_t == Y(1) \\
  1 & 3 & 0 & 120 & 130 \\
  2 & 5 & 1 & 135 & 160 & \\
  3 & 2 & 0 & 95 & 110 \\
  4 & 4 & 1 & 110 & 120
- $$
 \end{tabular}
 \end{center}
 
 \begin{center}
-\begin{tabular}{ c c c c }
-$$
+\begin{tabular}{ C C C C }
  i & X & A & Y \\
  1 & 3 & 0 & 120 \\
  2 & 5 & 1 & 160 \\
  3 & 2 & 0 & 95  \\
  4 & 4 & 1 & 120
- $$
 \end{tabular}
 \end{center}
 
@@ -104,10 +100,10 @@ Consideramos la siguiente tabla de contingencia para las siguientes definiciones
 \end{center}
 % TODO: decide which to keep
 \begin{center}
-\begin{tabular}{c | c c}
-                 & Y = 0 (C) &            Y = 1 (I)
-    $X = 0$ (N)    & $p_{00}               & p_{10}$
-    $X = 1$ (E)    & $p_{01}               & p_{11}$
+\begin{tabular}{C | C C}
+                 & Y = 0 (C)            & Y = 1 (I)
+    X = 0 (N)    & p_{00}               & p_{10}
+    X = 1 (E)    & p_{01}               & p_{11}
 \end{tabular}
 \end{center}
 
