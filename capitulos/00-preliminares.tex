@@ -62,9 +62,15 @@
   con distribución uniforme sucesivamente y con reemplazamiento,
   justificando el nombre.
 \end{definicion}
+\begin{corolario}
+	Dada una \MAS $(x_1, ..., x_n)$, se da que:
+	$$
+	P(x_1, ..., x_n) = \prod_{i=1}^n P(x_i)
+	$$
+\end{corolario}
 
-% TODO: source
-\begin{definicion}[Muestra Aleatoria Simple (sin reemplazamiento)]
+% TODO: source, do I even include this?
+\begin{definicion}[Muestra Aleatoria sin reemplazamiento]
   Una muestra $M$ donde los elementos de la población se eligen de forma que
   $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
