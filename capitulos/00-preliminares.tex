@@ -44,6 +44,7 @@
 \end{ejemplo}
 
 
+% TODO: source
 \begin{definicion}[Muestra Aleatoria Simple (con reemplazamiento)]
   Una muestra $M$ donde los elementos del vector son independientes:
   $(X_1, ..., X_n)$ tales que
@@ -62,9 +63,10 @@
   justificando el nombre.
 \end{definicion}
 
+% TODO: source
 \begin{definicion}[Muestra Aleatoria Simple (sin reemplazamiento)]
   Una muestra $M$ donde los elementos de la población se eligen de forma que
-  $$ \forall k \leq n, P(S_1) = P(S_2),  \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
+  $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
   Donde $#$ denota la función que cuenta el número de elementos de un conjunto.
   Esto es, la probabilidad de elegir cualquier subconjunto dado es la misma
@@ -74,18 +76,19 @@
 \begin{corolario}
   Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
   no se puede elegir el mismo sujeto de la población dos veces.
-  Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
+  % Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
   % TODO: will we talk about it?
   % https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
 
-\begin{definicion} Estimador
-  % https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-  Un estimador es cualquier función de una muestra, pero típicamente intentará estimar un estimando, que definimos a continuación.
-  % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
-  En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución
-\end{definicion}
-
+% TODO: clear this up
 \begin{definicion} Estimando
     Un estimando es una cantidad deseada de ser estimada.
+\end{definicion}
+
+\begin{definicion} Estimador
+  % https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
+  Un estimador es cualquier función de una muestra.
+  % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
+  En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución
 \end{definicion}
