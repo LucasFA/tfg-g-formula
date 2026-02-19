@@ -14,10 +14,34 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 % Intro a la inferencia causal
 \chapter{Introduccion a la inferencia causal}
+\section{El experimento ideal}
+% TODO: fix citation cite
+El experimento ideal \cite{targetedLearning} section 1.1 consiste en considerar una población y, en condiciones idénticas,
+usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo, obteniendo por tanto el contrafactual.
+
+Este experimento es, naturalmente, imposible, pues son situaciones incompatibles.
+Nuestro trabajo es aproximar los resultados de este experimento.
+
+\begin{definicion}[Modelo estadístico]
+    Un modelo estadístico es una colección de asunciones respecto a la generación de una muestra.
+
+    Dada una muestra de una variable aleatoria $X$,
+    diremos que la familia de distribuciones de probabilidad posibles para $X$, denotada $\matchcal{M}$,
+    es un modelo estadístico de $X$.
+
+    Formalmente, un modelo es un par $(\mathcal{S}, \mathcal{P})$, donde $\mathcal{S}$ es el espacio muestral $\xi$
+
+\end{definicion}
+
+\begin{definicion}[Modelo causal]
+
+\end{definicion}
 \section{Asunciones de conditional mean independence}
 
 \section{Potential outcomes}
-Consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
+
+% TODO: fix citation
+Basándonos en \cite{targetedLearning} chapter 2, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
 conjunta $P$, observable en el sentido de que es posible tomar
 muestras de él. Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
 
