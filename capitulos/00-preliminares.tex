@@ -45,7 +45,7 @@
 
 
 % TODO: source
-\begin{definicion}[Muestra Aleatoria Simple (con reemplazamiento)]
+\begin{definicion}[Muestra Aleatoria Simple con reemplazamiento]
   Una muestra $M$ donde los elementos del vector son independientes:
   $(X_1, ..., X_n)$ tales que
 
@@ -71,13 +71,14 @@
 \end{corolario}
 
 % TODO: source, do I even include this?
-\begin{definicion}[Muestra Aleatoria sin reemplazamiento]
+\begin{definicion}[Muestra Aleatoria simple sin reemplazamiento]
+% TODO: source cite cita
   Una muestra $M$ donde los elementos de la población se eligen de forma que
   $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
   Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
-  Esto es, la probabilidad de elegir cualquier subconjunto dado es la misma
-  que la de cualquier otro.
+  Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
+  que la de cualquier otro subconjunto de $k$ elementos.
 \end{definicion}
 
 \begin{corolario}
