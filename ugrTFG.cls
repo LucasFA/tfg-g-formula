@@ -74,6 +74,7 @@
 
   \theoremstyle{remark}
   \addtheorem{observacion}{Observación}
+  \addtheorem{nota}{Nota}
 
 % \RequirePackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
 
