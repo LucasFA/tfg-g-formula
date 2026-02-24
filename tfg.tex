@@ -48,7 +48,53 @@
 
 \begin{document}
 
-¿
+\maketitle
+
+% -------------------------------------------------------------------
+% FRONTMATTER
+% -------------------------------------------------------------------
+\frontmatter % Desactiva la numeración de capítulos y usa numeración romana para las páginas
+
+\input{preliminares/declaracion-originalidad}
+\input{preliminares/dedicatoria}                % Opcional
+\input{preliminares/agradecimientos}            % Opcional
+
+\input{preliminares/summary}
+
+\input{preliminares/tablacontenidos}
+\input{preliminares/introduccion}
+
+% -------------------------------------------------------------------
+% MAINMATTER
+% -------------------------------------------------------------------
+\mainmatter % activa la numeración de capítulos, resetea la numeración de las páginas y usa números arábigos
+
+% \part{Primera parte} % Dividir un TFG en partes OPCIONAL
+
+% Información relevante para la elaboración del trabajo.
+% \input{capitulos/documentacion}
+% \input{capitulos/recomendaciones}
+
+% Añadir tantos capítulos como sea necesario
+
+% \cleardoublepage
+% \part{Segunda parte}
+% \input{capitulos/capitulo-ejemplo}
+% \newpage
+\input{capitulos/00-preliminares.tex}
+\input{capitulos/01-intro}
+\input{capitulos/02-ate}
+
+% -------------------------------------------------------------------
+% APPENDIX: Opcional
+% -------------------------------------------------------------------
+
+\appendix % Reinicia la numeración de los capítulos y usa letras para numerarlos
+\pdfbookmark[-1]{Apéndices}{appendix} % Alternativamente podemos agrupar los apéndices con un nuevo \part{Apéndices}
+
+\input{apendices/apendice-ejemplo}
+% Añadir tantos apéndices como sea necesario
+
 % -------------------------------------------------------------------
 % GLOSARIO: Opcional
 % -------------------------------------------------------------------
