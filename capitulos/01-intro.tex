@@ -17,10 +17,14 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \section{El experimento ideal}
 % TODO: fix citation cite
 El experimento ideal \cite{targetedLearning} section 1.1 consiste en considerar una población y, en condiciones idénticas,
-usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo, obteniendo por tanto el contrafactual.
+usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo, obteniendo por tanto el universo contrafactual:
+qué hubiera pasado si se hubiera intervenido o no. Esto nos permite responder preguntas del tipo "¿Qué hubiera pasado si...?" y
+por tanto, hacer conclusiones causales.
 
-Este experimento es, naturalmente, imposible, pues son situaciones incompatibles.
-Nuestro trabajo es aproximar los resultados de este experimento.
+Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el "problema fundamental de la inferencia
+causal"\cite[2.1]{mci}
+
+\subsection{El problema fundamental de la inferencia causal} % TODO: subsection or?
 
 \begin{definicion}[Modelo estadístico]\cite[1.2]{mci}
     % TODO: cite source
@@ -92,7 +96,6 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 \end{tabular}
 \end{center}
 
-\subsection{El problema fundamental de la inferencia causal} % TODO: subsection or?
 
 \section{Estimadores}
 \subsection{Diferencia de riesgo}
