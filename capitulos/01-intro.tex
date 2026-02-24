@@ -16,15 +16,13 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \chapter{Introduccion a la inferencia causal}
 \section{El experimento ideal}
 % TODO: fix citation cite
-El experimento ideal \cite{targetedLearning} section 1.1 consiste en considerar una población y, en condiciones idénticas,
+El experimento ideal \cite[sección 1.1]{targetedLearning} consiste en considerar una población y, en condiciones idénticas,
 usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo, obteniendo por tanto el universo contrafactual:
 qué hubiera pasado si se hubiera intervenido o no. Esto nos permite responder preguntas del tipo "¿Qué hubiera pasado si...?" y
 por tanto, hacer conclusiones causales.
 
 Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el "problema fundamental de la inferencia
 causal" \cite[sección 2.1]{mci}
-
-\subsection{El problema fundamental de la inferencia causal} % TODO: subsection or?
 
 \begin{definicion}[Modelo estadístico]\cite[1.2]{mci}
     % TODO: cite source
@@ -43,8 +41,7 @@ Con asunciones adicionales, construiremos un modelo causal a partir de un modelo
 
 \section{Potential outcomes}
 
-% TODO: fix citation
-Basándonos en \cite{targetedLearning} chapter 2, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
+Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
 conjunta $P$, observable en el sentido de que es posible tomar
 muestras de él. Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
 
