@@ -41,6 +41,14 @@ causal" \cite[sección 2.1]{mci}
 
 Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
+\section{Motivación}
+Para entender el razonamiento que lleva al desarrollo de los modelos causales tratados en este
+trabajo, explicaremos su origen.
+
+\subsection{RCT}
+Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que
+
+
 \section{Asunciones del potential outcomes framework}
 
 Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
@@ -96,6 +104,7 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 \end{center}
 
 
+
 \section{Estimadores}
 \subsection{Diferencia de riesgo}
 
@@ -113,7 +122,6 @@ donde $E$ denota exposición, $D$ presentación de la enfermedad, y $\neg$ denot
 \end{observacion}
 
 \subsection{Odds ratio}
-
 Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
 
 \begin{center} %TODO: better wording
