@@ -48,7 +48,7 @@ eso-pic;
             export PATH="${pkgs.lib.makeBinPath buildInputs}";
             mkdir -p .cache/texmf-var
             env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
-              latexmk -interaction=nonstopmode -pdf -pdflatex \
+              latexmk -interaction=nonstopmode -pdf -xelatex \
               tfg.tex
           '';
           installPhase = ''
