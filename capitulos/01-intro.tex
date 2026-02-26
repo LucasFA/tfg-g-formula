@@ -39,15 +39,22 @@ causal" \cite[sección 2.1]{mci}
 	Típicamente diremos que $\mathcal{P} \in \mathcal{M}$, obviando el espacio muestral.
 \end{nota}
 
-Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
+% Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
 \section{Motivación}
 Para entender el razonamiento que lleva al desarrollo de los modelos causales tratados en este
 trabajo, explicaremos su origen.
 
 \subsection{RCT}
-Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que
+Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que,
+dentro de la muestra elegida, se asigna a los miembros a los grupos de control o de tratamiento de forma aleatoria.
+Esta asignación aleatoria puede ser simple, siguiendo una distribución de Bernouilli, o más elaborada.
 
+En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no.
+Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
+otros factores confusores y covariantes, por los cuales se intenta ajustar para eliminar ese sesgo.
+
+En particular, elimina el sesgo de selección
 
 \section{Asunciones del potential outcomes framework}
 
