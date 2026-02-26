@@ -15,13 +15,13 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \fi
 
 
-\section{Asunciones}
-\begin{observacion}[La esperanza condicional]
+\chapter{Asunciones}
+\begin{notac}[Esperanza condicional]
     $\mu_a(x) = E[Y| X = x, A = a]$ es el resultado medio que los pacientes con las covariantes $x$ que fueron
     tratados con el tratamiento $a$.
-\end{observacion}
+\end{notac}
 
-\begin{definicion}[ATE(estadístico)] \label{def:ate}
+\begin{definicion}[ATE estadístico] \label{def:ate}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
 	Definimos el \textit{Average Treatment Effect} como
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
@@ -35,8 +35,9 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \end{definicion}
 % src: https://alejandroschuler.github.io/mci/7ae35a9031aa4b32b9e82cea3c32a96c.html
 \begin{observacion}[Interpretación]
- ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a las covariantes dadas $x$.
-    También depende de la distribución conjunta de $(Y, X, A)$. En particular, el ATE depende de la distribución de covariantes $X$.
+ ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a la distribución de covariantes dadas $X$.
+    También depende de la distribución conjunta de $(Y, X, A)$.
+    % En particular, el ATE depende de la distribución de covariantes $X$.
 \end{observacion}
 
 \begin{ejemplo}
