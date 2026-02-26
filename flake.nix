@@ -47,14 +47,16 @@ eso-pic;
             export NIX_LOG_FD=1
             export PATH="${pkgs.lib.makeBinPath buildInputs}";
             mkdir -p .cache/texmf-var
+            mkdir -p build
             env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
               latexmk -interaction=nonstopmode -pdf -xelatex \
+              -outdir=build
               tfg.tex
           '';
           installPhase = ''
             mkdir -p $out
-            cp tfg.pdf $out/
-            cp tfg.log $out/
+            cp build/tfg.pdf $out/
+            cp build/tfg.log $out/
           '';
       };
         };
