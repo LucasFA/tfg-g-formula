@@ -14,6 +14,28 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 % Intro a la inferencia causal
 \chapter{Introduccion a la inferencia causal}
+\section{Motivación - RCT}
+Para entender el razonamiento que lleva al desarrollo de los modelos causales, los compararemos
+con los más ubicuos RCT.
+
+Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que,
+dentro de la muestra elegida, se asigna a los miembros a los grupos de control o de tratamiento de forma aleatoria.
+Esta asignación aleatoria puede ser simple, siguiendo una distribución de Bernouilli, o más elaborada.
+En cualquier caso, conocemos la distribución de probabilidad de la variable aleatoria que representa si una unidad es tratada o no.
+
+En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no,
+incluso en el caso de que haya variables confusoras.
+Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
+
+Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
+otros factores confusores y covariantes, por los cuales se intenta ajustar para reducir ese sesgo.
+
+No siempre se pueden realizar estudios RCT por varios motivos, entre ellos la propia viabilidad, la ética o el coste
+de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
+
+En un estudio observacional, el investigador no puede controlar a qué unidades se le aplica el tratamiento,
+por lo que se debe tener en cuenta la distribución
+
 \section{El experimento ideal}
 % TODO: fix citation cite
 El experimento ideal \cite[sección 1.1]{targetedLearning} consiste en considerar una población y, en condiciones idénticas,
@@ -41,27 +63,6 @@ causal" \cite[sección 2.1]{mci}
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
-\section{Motivación - RCT}
-Para entender el razonamiento que lleva al desarrollo de los modelos causales, los compararemos
-con los más ubicuos RCT.
-
-Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que,
-dentro de la muestra elegida, se asigna a los miembros a los grupos de control o de tratamiento de forma aleatoria.
-Esta asignación aleatoria puede ser simple, siguiendo una distribución de Bernouilli, o más elaborada.
-En cualquier caso, conocemos la distribución de probabilidad de la variable aleatoria que representa si una unidad es tratada o no.
-
-En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no,
-incluso en el caso de que haya variables confusoras.
-Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
-
-Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
-otros factores confusores y covariantes, por los cuales se intenta ajustar para reducir ese sesgo.
-
-No siempre se pueden realizar estudios RCT por varios motivos, entre ellos la propia viabilidad, la ética o el coste
-de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
-
-En un estudio observacional, el investigador no puede controlar a qué unidades se le aplica el tratamiento,
-por lo que se debe tener en cuenta la distribución
 
 \section{Asunciones del potential outcomes framework}
 
