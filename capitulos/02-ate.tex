@@ -115,6 +115,60 @@ Aplicamos la intercambiabilidad condicional, por la cual dentro de cada estrato 
 equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
 $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 
+% TODO: massively trim this down, it's repeated
+\subsection{To-be-edited}
+Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
+conjunta $P$, observable en el sentido de que es posible tomar
+muestras de él. Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
+
+Consideramos ahora $(X, A, Y(0), Y(1))$, que seguirá una distribución
+$P^*$, que diremos es un elemento del modelo causal $\mathcal{M}^*$ . Este vector no
+es directamente observable, pero veremos que $P^*$ determina $P$ en
+su totalidad:
+
+\begin{proposicion}
+	Si el modelo causal y el estadístico son consistentes:
+	$$ Y = A Y(1) + (1 - A)Y(0) $$
+	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
+	$$ P^*(X = x) = P(X = x) \forall x $$
+	$$ P^*(A = a | X = x) = P(A = a | X = x) \forall x, a$$
+
+	Entonces el modelo causal determina totalmente el estadístico:
+	$$ P(Y, A, X) = P(Y | A, X) P^*(A | X) P^*(X) $$
+\end{proposicion}
+
+\begin{proof} \cite{mci}
+Tenemos que:
+$$ P^*(X, A, Y(0), Y(1)) = P^*(Y(0), Y(1) | X, A) P^*(A | X) P^*(X)
+$$
+Tomando
+$$ P(Y = y | A, X) = P(AY(1) + (1-A)Y(0) = y | A, X) $$
+Entonces
+$$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
+\end{proof}
+
+Tabla de contigencia del modelo causal y estadístico, respectivamente:
+
+\begin{center}
+\begin{tabular}{ C | C C | C C }
+ i & X & A & Y(0) & Y(1) \\
+ 1 & 3 & 0 & 120 & 130 \\
+ 2 & 5 & 1 & 135 & 160 \\
+ 3 & 2 & 0 & 95 & 110 \\
+ 4 & 4 & 1 & 110 & 120
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ C | C C | C }
+ i & X & A & Y \\
+ 1 & 3 & 0 & 120 \\
+ 2 & 5 & 1 & 160 \\
+ 3 & 2 & 0 & 95  \\
+ 4 & 4 & 1 & 120
+\end{tabular}
+\end{center}
+
 \subsubsection{Otras asunciones}
 
 \begin{definicion}[SUTVA]
