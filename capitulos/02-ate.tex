@@ -33,8 +33,8 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 
 	%TODO: check "covariantes" is a proper translation, and outcome thing
 \end{definicion}
-% src: https://alejandroschuler.github.io/mci/7ae35a9031aa4b32b9e82cea3c32a96c.html
-\begin{observacion}[Interpretación]
+
+\begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
  ATE mide la diferencia media entre los pacientes tratados y no tratados, sujeto a la distribución de covariantes dadas $X$.
     También depende de la distribución conjunta de $(Y, X, A)$.
     % En particular, el ATE depende de la distribución de covariantes $X$.
@@ -79,19 +79,20 @@ Consideramos la tabla de contingencia anterior y añadimos la diferencia:
     \begin{enumerate}
         \item Diferencia de riesgo: $Y_i(1) - Y_i(0)$
         \item Riesgo relativo (RR): $Y_i(1) / Y_i(0)$
-        \item % TODO: does odd ratios fit here?
+        % \item % TODO: does odd ratios fit here?
     \end{enumerate}
 \end{ejemplo}
 
 \begin{observacion}
     La interpretación de las siguientes condiciones reside en la necesidad de comparar los efectos causales
-    dentro de un mismo grupo, y no inter-grupos. Un ejemplo es presentado en % TODO: citar https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
+    dentro de un mismo grupo, y no inter-grupos. Un ejemplo es presentado en \cite[sección 2, párr. 6]{rubin2005}
     es el siguiente:
 
     \begin{verbatim}
     One cannot compare medical compare medical costs for male
     smokers with medical costs for female nonsmokers and claim
-    that this comparison is a causal effect of smoking.
+    that this comparison is a causal effect of smoking without
+    making heroic and unwarranted assumptions.
     \end{verbatim}
 \end{observacion}
 
