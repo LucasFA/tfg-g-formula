@@ -101,3 +101,26 @@
   % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
   En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución.
 \end{definicion}
+
+\begin{definicion}[Grafo]
+    Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
+    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
+    Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
+    Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
+\end{definicion}
+
+\begin{definicion}[Camino]
+    Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
+    $\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
+\end{definicion}
+
+\begin{definicion}[Ciclo]
+    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
+\end{definicion}
+
+\begin{definicion}[Grafo causal]
+\end{definicion}
+
+\begin{definicion}[Variable confusora]
+
+\end{definicion}
