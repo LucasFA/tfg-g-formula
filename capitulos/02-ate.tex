@@ -15,15 +15,16 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 \fi
 
 
-\chapter{Asunciones}
+\chapter{Framework de Potential Outcomes}
+
 \begin{notac}[Esperanza condicional]
     $\mu_a(x) = E[Y| X = x, A = a]$ es el resultado medio que los pacientes con las covariantes $x$ que fueron
     tratados con el tratamiento $a$.
 \end{notac}
 
-\begin{definicion}[ATE estadístico] \label{def:ate}
+\begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
-	Definimos el \textit{Average Treatment Effect} como
+	Definimos el \textit{Average Treatment Effect} (estadístico) como
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
 	Llamaremos a $X$ las covariantes, $A$ el tratamiento e $Y$ el resultado (outcome, en inglés).
 	También se puede escribir como
@@ -65,7 +66,7 @@ Consideramos la tabla de contingencia anterior y añadimos la diferencia:
 \end{definicion}
 
 
-\subsubsection{Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal}
+\section{Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal}
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
 % https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
 % Los 3 primeros items son SUTVA TODO: write this out
