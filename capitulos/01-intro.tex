@@ -49,25 +49,7 @@ causal" \cite[sección 2.1]{mci}
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
 
-
-
 \section{Estimadores}
-\subsection{Diferencia de riesgo}
-
-\begin{definicion}[Diferencia de riesgo] \label{def:riskdiff}
-	Dado un tratamiento, definimos la Diferencia de Riesgo como
-	$$ RD = \frac{E_A}{E} - \frac{C_A}{C} $$
-	donde $E_A$ es el número de casos
-\end{definicion}
-
-\begin{observacion}
-La interpretación bayesiana de la Diferencia de Riesgo es la siguiente:
-    $$ RD = P(D | E) - P(D | \neg E)$$
-
-donde $E$ denota exposición, $D$ presentación de la enfermedad, y $\neg$ denota la negación.
-\end{observacion}
-
-\subsection{Odds ratio}
 Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
 
 \begin{center} %TODO: better wording
@@ -77,23 +59,31 @@ Consideramos la siguiente tabla de contingencia para las siguientes definiciones
     No-Evento (N) & IN               & CN
 \end{tabular}
 \end{center}
-% TODO: decide which to keep
-\begin{center}
-\begin{tabular}{C | C C}
-                 & Y = 0 (C)            & Y = 1 (I)\\
-    X = 0 (N)    & p_{00}               & p_{10}\\
-    X = 1 (E)    & p_{01}               & p_{11}
-\end{tabular}
-\end{center}
+donde tenemos
+	\begin{itemize}
+	    \item $IE$ es el número de eventos o casos en la población intervenida,
+	    \item $CE$ es el número de eventos en la población de control,
+		\item $IN$ es el número de no-eventos en la población intervenida,
+		\item $CN$ es el número de no-eventos en la población de control,
+	    \item $I = IE + IN$ es la población intervenida total,
+	    \item $C = CE + CN$ es la población de control total.
+	\end{itemize}
 
-La división entre Intervención y Control reside en el valor de la variable $A$,
-mientras la división entre Evento y No evento corresponde a la variable $Y$
+La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
+mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
 
-\begin{definicion}[Riesgo Relativo - Relative Risk] %TODO: find source
+\begin{definicion}[Diferencia de riesgo o \textit{Risk difference}] \label{def:riskdiff}
+	Dado un tratamiento, definimos la Diferencia de Riesgo como
+	la diferencia de la incidencia entre los grupos tratados y de control:
+	$$ RD = \frac{IE}{I} - \frac{CE}{C} $$
+\end{definicion}
+
+\begin{definicion}[Riesgo Relativo o \textit{Relative Risk}] %TODO: find source
 Es el ratio entre afligidos por una condición condicionado si han sido expuestos
 al tratamiento o no.
 
-$$ RR = \dfrac{IE/(IE+IN)}{CE/(CE+CN)} = \dfrac{p_{11}/(p_{11} + p_{10})}{p_{01} / (p_{01} + p_{00}) } $$
+$$ RR = \dfrac{IE/I}{CE/C} $$
+% \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
 
 \end{definicion}
 
@@ -103,32 +93,32 @@ $$ RR = \dfrac{IE/(IE+IN)}{CE/(CE+CN)} = \dfrac{p_{11}/(p_{11} + p_{10})}{p_{01}
 \end{observacion}
 
 \begin{definicion}[Odds ratio]
-Es el ratio entre las probabilidades % TODO: check is this correct?
+Es el ratio % TODO
 $$
-    OR = \dfrac{IE/IN}{CE/CN} = \dfrac{p_{11} p_{00}}{p_{01} p_{10}}
+    OR = \dfrac{IE/IN}{CE/CN}
 $$
 \end{definicion}
 
-\begin{observacion}
-	En condiciones de \textit{enfermedad rara}, por la cual la población
-	afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
-	es un buen estimador del riesgo relativo.
-	$$ OR \approx RR $$
-\end{observacion}
+% \begin{observacion}
+	% En condiciones de \textit{enfermedad rara}, por la cual la población
+	% afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
+	% es un buen estimador del riesgo relativo.
+	% $$ OR \approx RR $$
+% \end{observacion}
 
-\begin{observacion}
-	En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
-	de la población en su totalidad no es práctico, sino que uno se limita
-	a una considerar a los casos que expresan la enfermedad junto a una muestra
-	aleatoria de la población sana. En este caso, no tenemos el valor
-	de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
-	se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
-	con el $OR$.
-\end{observacion}
+% \begin{observacion}
+	% En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
+	% de la población en su totalidad no es práctico, sino que uno se limita
+	% a una considerar a los casos que expresan la enfermedad junto a una muestra
+	% aleatoria de la población sana. En este caso, no tenemos el valor
+	% de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
+	% se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
+	% con el $OR$.
+% \end{observacion}
 
-\begin{ejemplo} % TODO: check this makes sense. Why 99%? Shouldn't it be like 1%?
-	Caso A: riesgo asociado $99.9\%$
-	Caso B: riesgo asociado $99.0\%$
-	Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
-	Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
-\end{ejemplo}
+% \begin{ejemplo} % TODO: check this makes sense. Why 99%? Shouldn't it be like 1%?
+	% Caso A: riesgo asociado $99.9\%$
+	% Caso B: riesgo asociado $99.0\%$
+	% Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
+	% Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
+% \end{ejemplo}
