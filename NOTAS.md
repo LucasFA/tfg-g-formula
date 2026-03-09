@@ -19,3 +19,5 @@ Usa por favor el material que te comparto aquí:
 2. https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9234 (Estimadores)
 3. https://github.com/migariane/TutorialComputationalCausalInferenceEstimators (material completo con código en R para replicar los estimadores)
 4. Para la simulación de Monte Carlo: https://github.com/migariane/HETMOR-Causal-Inference?tab=readme-ov-file
+
+commit test
