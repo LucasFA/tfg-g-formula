@@ -142,3 +142,16 @@
 \begin{definicion}[Variable confusora]
 
 \end{definicion}
+\begin{teorema}[La probabilidad total]\label{thm:probabilidad-total}
+Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
+con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
+Entonces,
+$$
+P(A) = \int_\R P(A | X = x)f_X(x)dx
+$$
+
+Si $X$ es discreta y $\{A_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
+$$
+P(A) = \sum_i P(A | A_i) P(A_i)
+$$
+\end{teorema}

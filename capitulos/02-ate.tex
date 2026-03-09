@@ -101,7 +101,7 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
         % \item % TODO: does odd ratios fit here?
 \end{ejemplo}
 
-Los supuestos que hacemos son los siguientes\cite[material suplementario S1]{luque2021}:
+Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{luque2021}:
 \begin{enumerate}
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
@@ -109,9 +109,8 @@ Los supuestos que hacemos son los siguientes\cite[material suplementario S1]{luq
 		Representa que el resultado observado coincide con el resultado en el modelo contrafactual.
 	Adicionalmente a lo anterior, asumimos observaciones independientes y no error en la medida.
 	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
-		Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
-		Formalmente:
 		$$ Y(a) \indep X | C $$
+		Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
 		No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
 		Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
 		tratamiento no aporta información adicional.
@@ -120,7 +119,7 @@ Los supuestos que hacemos son los siguientes\cite[material suplementario S1]{luq
 		$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
 
-Bajo las condiciones anteriores, por el \ref{thm:probabilidad-total} tenemos que
+Bajo las condiciones anteriores, por el Teorema de la probabilidad total (\ref{thm:probabilidad-total}) tenemos que
 $$ P[Y(a) = 1 ] = \sum_c P[Y(a) = 1 | C = c]P[C=c] $$
 Aplicamos la intercambiabilidad condicional, por la cual dentro de cada estrato $c$ de $C$ los predictores están
 equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
