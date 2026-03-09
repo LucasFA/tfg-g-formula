@@ -29,7 +29,7 @@ $P^*$, elemento del modelo causal $\mathcal{M}^*$ . Este vector no
 es directamente observable, pero veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
-A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}). % TODO: potentially remove outcome
+A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés). % TODO: potentially remove outcome
 
 \begin{ejemplo} % TODO: improve wording
 	Un estudio médico puede estudiar la efectividad de un tratamiento, representado como la variable binaria $A$ según si se aplica o no,
@@ -46,7 +46,7 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
 	Definimos el \textit{Average Treatment Effect} (estadístico) como
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
-	También se puede escribir como
+	También se puede escribir como:
 	$$ \psi = E[\mu_1(X) - \mu_0(X)] $$
 	% TODO: does applying this function of a real variable to a random variable make sense?
 
@@ -55,7 +55,7 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 \end{definicion}
 
 \begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
- El ATE mide la diferencia media entre los pacientes tratados y no tratados, ya ajustando o ponderando
+ El ATE mide la diferencia media entre los pacientes tratados y no tratados, ya ponderando
  por la distribución de las covariantes en la población, $X$.
     % También depende de la distribución conjunta de $(Y, X, A)$.
     % En particular, el ATE depende de la distribución de covariantes $X$.
@@ -77,23 +77,10 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 % https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
 % Los 3 primeros items son SUTVA TODO: write this out
 
-\begin{definicion}[Efecto a nivel de unidad]
-    Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
-    representara una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
-\end{definicion}
-
-\begin{ejemplo}
-\begin{enumerate}
-        \item Diferencia de riesgo: $Y_i(1) - Y_i(0)$
-        \item Riesgo relativo (RR): $Y_i(1) / Y_i(0)$
-        % \item % TODO: does odd ratios fit here?
-    \end{enumerate}
-\end{ejemplo}
 
 \begin{observacion}
     La interpretación de las siguientes condiciones reside en la necesidad de comparar los efectos causales
-    dentro de un mismo grupo, y no inter-grupos. Un ejemplo es presentado en \cite[sección 2, párr. 6]{rubin2005}
-    es el siguiente:
+    dentro de un mismo grupo homogéneo, y no inter-grupos. Un ejemplo de esta necesidad es presentado en \cite[sección 2, párr. 6]{rubin2005}:
 
     \begin{verbatim}
     One cannot compare medical compare medical costs for male
@@ -103,17 +90,34 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
     \end{verbatim}
 \end{observacion}
 
+\begin{definicion}[Efecto a nivel de unidad] % TODO:
+    Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
+    representará una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
+\end{definicion}
+
+\begin{ejemplo}
+         Diferencia de riesgo: $Y_i(1) - Y_i(0)$.
+         Riesgo relativo (RR): $Y_i(1) / Y_i(0)$
+        % \item % TODO: does odd ratios fit here?
+\end{ejemplo}
+
+Los supuestos que hacemos son los siguientes\cite[material suplementario S1]{luque2021}:
 \begin{enumerate}
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
-		Representa que el resultado observado coincide con el resultado en el modelo contrafactual. Eso es,
-		no existe elemento $i$ de la muestra tal que $A_i = 1$ y $Y_i \neq Y(1)$ ni tal quel $A_i = 0$ y $Y_i \neq Y(0)$.
-	\item Adicionalmente a lo anterior, asumimos observaciones independientes y no error en la medida. % TODO: fix wording
-	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad % TODO; check understanding
-		Independencia entre $Y(a)$ y $A$ bajo la distribución condicionada a $C$ % TODO: check is correct interpretation (associatively)
-		No confundir con indepedencia entre $Y(a)$ y $A | C$
+		Exige que la distribución del resultado coincida entre el modelo estadístico y el causal
+		Representa que el resultado observado coincide con el resultado en el modelo contrafactual.
+	Adicionalmente a lo anterior, asumimos observaciones independientes y no error en la medida.
+	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
+		Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
+		Formalmente:
+		$$ Y(a) \indep X | C $$
+		No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
+		Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
+		tratamiento no aporta información adicional.
+
 	\item Positividad
-		$$ P(A | C = c) > 0 \; \forall c \text{tales que}  P(C = c) > 0$$
+		$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
 
 Bajo las condiciones anteriores, por el \ref{thm:probabilidad-total} tenemos que
