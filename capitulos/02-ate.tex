@@ -18,8 +18,27 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 % TODO: find a better title?
 \chapter{Framework de Potential Outcomes}
 
+\section{Intro}
+Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
+conjunta $P$, observable en el sentido de que es posible tomar
+muestras de él.
+Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$.
+
+Consideramos ahora $(X, A, Y(0), Y(1))$, que seguirá una distribución
+$P^*$, elemento del modelo causal $\mathcal{M}^*$ . Este vector no
+es directamente observable, pero veremos que $P^*$ determina $P$ en
+su totalidad bajo ciertos supuestos.
+
+A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}). % TODO: potentially remove outcome
+
+\begin{ejemplo} % TODO: improve wording
+	Un estudio médico puede estudiar la efectividad de un tratamiento, representado como la variable binaria $A$ según si se aplica o no,
+	de pacientes de los cuales se registra la mortandad en un plazo determinado, medido en la variable binaria $Y$,
+	donde tenemos en cuenta una condición binaria $X$ como puede serlo si el paciente tiene presión arterial alta o no.
+\end{ejemplo}
+
 \begin{notac}[Esperanza condicional]
-    $\mu_a(x) = E[Y| X = x, A = a]$ es el resultado medio que los pacientes con las covariantes $x$ que fueron
+    Denotaremos $\mu_a(x) = E[Y| X = x, A = a]$, el resultado medio de los pacientes con las covariantes $x$ que fueron
     tratados con el tratamiento $a$.
 \end{notac}
 
@@ -27,7 +46,6 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
 	Definimos el \textit{Average Treatment Effect} (estadístico) como
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
-	Llamaremos a $X$ las covariantes, $A$ el tratamiento e $Y$ el resultado (outcome, en inglés).
 	También se puede escribir como
 	$$ \psi = E[\mu_1(X) - \mu_0(X)] $$
 	% TODO: does applying this function of a real variable to a random variable make sense?
@@ -54,7 +72,7 @@ estimado de la diferencia de riesgos y del odds ratio (OR)
 % \end{definicion}
 
 
-\section{Condiciones necesarias para la equivalencia entre el ATE estadístico y ATE causal}
+\section{Supuestos del Framework}
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
 % https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
 % Los 3 primeros items son SUTVA TODO: write this out
@@ -105,15 +123,6 @@ equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 
 $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 
 % TODO: massively trim this down, it's repeated
-\subsection{To-be-edited}
-Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ de variables aleatorias con distribución
-conjunta $P$, observable en el sentido de que es posible tomar
-muestras de él. Diremos que $P$ es un elemento del modelo estadístico $\mathcal{M}$
-
-Consideramos ahora $(X, A, Y(0), Y(1))$, que seguirá una distribución
-$P^*$, que diremos es un elemento del modelo causal $\mathcal{M}^*$ . Este vector no
-es directamente observable, pero veremos que $P^*$ determina $P$ en
-su totalidad:
 
 \begin{proposicion}
 	Si el modelo causal y el estadístico son consistentes:
@@ -194,3 +203,5 @@ El ATE empírico estimado puntualmente por la media muestral es 15.
 	de la misma localidad que los recipientes.
 	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
 \end{ejemplo}
+
+\subsection{ATE estadístico y causal}
