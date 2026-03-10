@@ -104,19 +104,44 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 \begin{enumerate}
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
-		Exige que la distribución del resultado coincida entre el modelo estadístico y el causal
-		Representa que el resultado observado coincide con el resultado en el modelo contrafactual.
-	Adicionalmente a lo anterior, asumimos observaciones independientes y no error en la medida.
+		Exige que la distribución del resultado coincida entre el modelo estadístico y el causal.
+	\item \textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA})
+	    El resultado potencial de un sujeto es independiente de la exposición o no de otro sujeto al tratamiento.
+		Asumimos las observaciones a nivel de unidad son independientes (no hay interferencia) y no error en la medida.
+		% TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
+	% TODO: important: "no unobserved confounding" interpretation of this:
 	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
-		$$ Y(a) \indep X | C $$
+		$$ Y(a) \indep A | X $$
 		Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
-		No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
+		% No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
 		Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
 		tratamiento no aporta información adicional.
+		También significa que no hay más variables confusoras además de las representadas por $X$.
 
 	\item Positividad
 		$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
+
+\begin{observacion}[Interpretación]
+    . \cite[material suplementario S1]{luque2021} En estudios se mantiene la intercambiabilidad condicional
+    trivialmente por la randomización de la asignación de los sujetos a
+    los grupos de control y de tratamiento. Esto no es así en estudios observacionales, pero
+\end{observacion}
+
+\begin{ejemplo}
+    El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{"spillover"} en inglés, o "derrame" en castellano.
+	Un posible ejemplo de experimento donde no se cumple SUTVA es el análisis % por RCT % TODO: really por RCT?
+	de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africana.
+	Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
+	que también puede afectar a la localidad por el incremento en el consumo
+	de esta familia.
+	Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
+	En \cite{Haushofer2016}, seguido posteriormente por \cite{Egger2022},
+	dividen el grupo de control entre "Control puro", para familias no afectadas por
+	el efecto de spillover, y el grupo de "Control con spillover", que incluye familias
+	de la misma localidad que los recipientes.
+	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
+\end{ejemplo}
 
 Bajo las condiciones anteriores, por el Teorema de la probabilidad total (\ref{thm:probabilidad-total}) tenemos que
 $$ P[Y(a) = 1 ] = \sum_c P[Y(a) = 1 | C = c]P[C=c] $$
@@ -171,7 +196,6 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
 \begin{ejemplo}[ATE]
 Consideramos la tabla de contingencia anterior y añadimos la diferencia:
-
 \begin{center}
 \begin{tabular}{ C | C C | C C | C}
  i & X & A & Y(0) & Y(1) & Y(1) - Y(0)\\
@@ -182,28 +206,6 @@ Consideramos la tabla de contingencia anterior y añadimos la diferencia:
 \end{tabular}
 \end{center}
 El ATE empírico estimado puntualmente por la media muestral es 15.
-
-\end{ejemplo}
-\subsubsection{Otras asunciones}
-
-\begin{definicion}[SUTVA]
-	Stable Unit Treatment Value Assumption, por sus siglas en inglés, o Supuesto de Unidad de Valor de Tratamiento Estable (SUVTE).
-	Exigimos que el tratamiento en una unidad no afecte a otras unidades.
-	El efecto por el cual el tratamiento a unidad afecta a otras se le llama "spillover" en inglés, o "derrame" en castellano.
-\end{definicion}
-
-\begin{ejemplo}
-	Un posible ejemplo de experimento donde no se cumple lo anterior es el análisis % por RCT % TODO: really por RCT?
-	de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africa.
-	Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
-	que también puede afectar a la localidad por el incremento en el consumo
-	de esta familia.
-	Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
-	En \cite{Haushofer2016}, estudio posteriormente seguido por \cite{Egger2022},
-	dividen el grupo de control entre "Control puro", para familias no afectadas por
-	el efecto de spillover, y el grupo de "Control con spillover", que incluye familias
-	de la misma localidad que los recipientes.
-	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
 \end{ejemplo}
 
 \subsection{ATE estadístico y causal}
