@@ -92,7 +92,7 @@
 
 % TODO: clear this up
 \begin{definicion}[Estimando]
-    Un estimando es una cantidad deseada de ser estimada.
+    Un estimando es una cantidad deseada de ser estimada. En modelos paramétricos, puede ser un parámetro de la distribución.
 \end{definicion}
 
 \begin{definicion}[Estimador]
@@ -100,6 +100,13 @@
   Un estimador lo definiremos como cualquier función de una muestra. Pretenderá aproximar un estimando.
   % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
   En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución.
+\end{definicion}
+
+\begin{definicion}[Consistencia]
+    Se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
+$$
+    lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
+$$
 \end{definicion}
 
 \begin{definicion}[Grafo]
