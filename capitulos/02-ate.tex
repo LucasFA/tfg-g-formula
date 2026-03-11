@@ -145,14 +145,61 @@ Ambas condiciones se satisfacen simultáneamente bajo muestreo iid.
 	de esta familia.
 	Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
 	En \cite{Haushofer2016}, seguido posteriormente por \cite{Egger2022},
-	dividen el grupo de control entre "Control puro", para familias no afectadas por
-	el efecto de spillover, y el grupo de "Control con spillover", que incluye familias
+	dividen el grupo de control entre \say{Control puro}, para familias no afectadas por
+	el efecto de spillover, y el grupo de \say{Control con spillover}, que incluye familias
 	de la misma localidad que los recipientes.
 	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
 
 	Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
 	de estudiantes de la misma clase)\cite{oxChapterCausal}.
 \end{ejemplo}
+
+
+\begin{proposicion}
+	Si el modelo causal y el estadístico son consistentes:
+	$$ Y = A Y(1) + (1 - A)Y(0) $$
+	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
+	$$ P^*(X = x) = P(X = x) \;\forall x $$
+	$$ P^*(A = a | X = x) = P(A = a | X = x) \;\forall x, a$$
+
+	Entonces el la distribución causal determina totalmente la distribución estadística por:
+	$$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
+\end{proposicion}
+
+\begin{proof} \cite[sección 2.1]{mci}
+Usando el teorema de la probablidad total:
+\begin{align*}
+    P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
+               &= P^*(X)P^*(A | X)P(Y | X, A)
+\end{align*}
+y
+\begin{equation*}
+    P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
+\end{equation*}
+
+Por consistencia, debe verificarse que
+\begin{equation*}
+    P(Y | A, X) = P^*(Y(0), Y(1), A, X)
+\end{equation*}
+
+\newpage
+
+
+Tenemos que:
+$$ P^*(X, A, Y(0), Y(1)) = P^*(Y(0), Y(1) | X, A) P^*(A | X) P^*(X)
+$$
+Usando que
+$$ P^*(X = x) = P(X = x) \;\forall x $$
+$$ P^*(A = a | X = x) = P(A = a | X = x) \;\forall x, a$$
+$$ P(Y, X, A) = P(X)P(A | X)P(Y | X, A) $$
+debe verificarse que
+$$ P( Y | X, A) = $$
+$$ P^*(AY(1) + (1-A)Y(0) = y | A, X) = P(Y = y | A, X)$$
+Tomando
+$$ P(Y = y | A, X) = P(AY(1) + (1-A)Y(0) = y | A, X) $$
+Entonces
+$$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
+\end{proof}
 
 \begin{proposicion}[G-formula]
 Bajo las condiciones anteriores, el ATE puede estimarse por:
@@ -175,26 +222,6 @@ $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 
 % TODO: massively trim this down, it's repeated
 
-\begin{proposicion}
-	Si el modelo causal y el estadístico son consistentes:
-	$$ Y = A Y(1) + (1 - A)Y(0) $$
-	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
-	$$ P^*(X = x) = P(X = x) \forall x $$
-	$$ P^*(A = a | X = x) = P(A = a | X = x) \forall x, a$$
-
-	Entonces el modelo causal determina totalmente el estadístico:
-	$$ P(Y, A, X) = P(Y | A, X) P^*(A | X) P^*(X) $$
-\end{proposicion}
-
-\begin{proof} \cite{mci}
-Tenemos que:
-$$ P^*(X, A, Y(0), Y(1)) = P^*(Y(0), Y(1) | X, A) P^*(A | X) P^*(X)
-$$
-Tomando
-$$ P(Y = y | A, X) = P(AY(1) + (1-A)Y(0) = y | A, X) $$
-Entonces
-$$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
-\end{proof}
 
 Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
