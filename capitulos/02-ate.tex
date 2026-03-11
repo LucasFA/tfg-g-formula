@@ -105,9 +105,8 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	\item Consistencia contrafactual.
 		$$ Y = A Y(1) + (1 - A)Y(0) $$
 		Exige que la distribución del resultado coincida entre el modelo estadístico y el causal.
-	\item \textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA})
-	    El resultado potencial de un sujeto es independiente de la exposición o no de otro sujeto al tratamiento.
-		Asumimos las observaciones a nivel de unidad son independientes (no hay interferencia) y no error en la medida.
+	\item No interferencia
+	    El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
 		% TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
 	% TODO: important: "no unobserved confounding" interpretation of this:
 	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
@@ -125,15 +124,19 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	\item Positividad
 		$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
+\begin{definicion}[SUTVA]
+\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de consistencia y de no interferencia.
+Ambas condiciones se satisfacen simultáneamente bajo muestreo iid
+\end{definicion}
 
-\begin{observacion}[Interpretación]\cite[material suplementario S1]{luque2021}
+\begin{observacion}\cite[material suplementario S1]{luque2021}
     En estudios randomizados se mantiene la intercambiabilidad condicional
     trivialmente por la randomización de la asignación de los sujetos a
     los grupos de control y de tratamiento. Esto no es así en estudios observacionales, pero
 \end{observacion}
 
-\begin{ejemplo}
-    El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{"spillover"} en inglés, o "derrame" en castellano.
+\begin{ejemplo}[Violación de SUTVA]
+    El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{"spillover"} en inglés, o \say{derrame} en castellano.
 	Un posible ejemplo de experimento donde no se cumple SUTVA es el análisis % por RCT % TODO: really por RCT?
 	de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africana.
 	Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
@@ -145,6 +148,9 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	el efecto de spillover, y el grupo de "Control con spillover", que incluye familias
 	de la misma localidad que los recipientes.
 	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
+
+	Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
+	de estudiantes de la misma clase)\cite{oxChapterCausal}.
 \end{ejemplo}
 
 \begin{proposicion}[G-formula]
@@ -153,9 +159,9 @@ $$
     \hat\psi = \sum_x P(Y = 1 | A = 1, X = x)P(X = x) - \sum_x P(Y = 1 | A = 0, X = x)P(X = x)
 $$
 \end{proposicion}
-\begin{proof}
 
-\end{proof}\cite[material suplementario S1]{luque2021}
+\begin{proof}\cite[material suplementario S1]{luque2021}
+
 Bajo las condiciones anteriores, por el Teorema de la probabilidad total (\ref{thm:probabilidad-total}) tenemos que
 $$
 P[Y(a) = 1 ] = \sum_x P[Y(a) = 1 | X = x]P[X = x]
@@ -163,6 +169,7 @@ $$
 Aplicando la intercambiabilidad condicional, por la cual dentro de cada estrato $x$ de $X$ los predictores están
 equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
 $$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
+\end{proof}
 
 
 % TODO: massively trim this down, it's repeated
