@@ -47,6 +47,7 @@
             # graphicx
             listings
             eso-pic
+            dirtytalk
             ;
         };
       in
