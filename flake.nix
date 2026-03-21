@@ -21,6 +21,7 @@
             scheme-small
             latex-bin
             latexmk
+            latexindent
             koma-script # template
             upquote
             fontaxes
