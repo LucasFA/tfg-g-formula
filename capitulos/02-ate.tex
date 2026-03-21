@@ -48,6 +48,8 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
 	También se puede escribir como:
 	$$ \psi = E[\mu_1(X) - \mu_0(X)] $$
+
+	El ATE es un estimando.
 	% TODO: does applying this function of a real variable to a random variable make sense?
 	% TODO: check "covariantes" is a proper translation, and outcome thing
 \end{definicion}
@@ -167,44 +169,28 @@ Ambas condiciones se satisfacen simultáneamente bajo muestreo iid.
 \end{proposicion}
 
 \begin{proof} \cite[sección 2.1]{mci}
-Usando el teorema de la probablidad total:
-\begin{align*}
-    P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
-               &= P^*(X)P^*(A | X)P(Y | X, A)
-\end{align*}
-y
-\begin{equation*}
-    P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
-\end{equation*}
+% TODO: do I even prove this?
+% Usando el teorema de la probablidad total:
+% \begin{align*}
+%     P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
+%                &= P^*(X)P^*(A | X)P(Y | X, A)
+% \end{align*}
+% y
+% \begin{equation*} %TODO: verify
+%     P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
+% \end{equation*}
+%
+% Usando la consistencia, debe verificarse que
+% \begin{equation*}
+%     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
+% \end{equation*}
 
-Por consistencia, debe verificarse que
-\begin{equation*}
-    P(Y | A, X) = P^*(Y(0), Y(1), A, X)
-\end{equation*}
-
-\newpage
-
-
-Tenemos que:
-$$ P^*(X, A, Y(0), Y(1)) = P^*(Y(0), Y(1) | X, A) P^*(A | X) P^*(X)
-$$
-Usando que
-$$ P^*(X = x) = P(X = x) \;\forall x $$
-$$ P^*(A = a | X = x) = P(A = a | X = x) \;\forall x, a$$
-$$ P(Y, X, A) = P(X)P(A | X)P(Y | X, A) $$
-debe verificarse que
-$$ P( Y | X, A) = $$
-$$ P^*(AY(1) + (1-A)Y(0) = y | A, X) = P(Y = y | A, X)$$
-Tomando
-$$ P(Y = y | A, X) = P(AY(1) + (1-A)Y(0) = y | A, X) $$
-Entonces
-$$ P(Y, A, X) = P(Y | A, X) P(A | X) P(X) $$
 \end{proof}
 
 \begin{proposicion}[G-formula]
-Bajo las condiciones anteriores, el ATE puede estimarse por:
+Bajo las condiciones anteriores, el ATE (estadístico) puede estimarse por:
 $$
-    \hat\psi = \sum_x P(Y = 1 | A = 1, X = x)P(X = x) - \sum_x P(Y = 1 | A = 0, X = x)P(X = x)
+    \hat\psi = \sum_x P(X = x) \left[P(Y = 1 | A = 1, X = x) - P(Y = 1 | A = 0, X = x) \right]
 $$
 \end{proposicion}
 

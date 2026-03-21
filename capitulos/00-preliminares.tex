@@ -44,7 +44,6 @@
   \end{enumerate}
 \end{ejemplo}
 
-
 % TODO: source
 \begin{definicion}[Muestra Aleatoria Simple con reemplazamiento]
   Una muestra $M$ donde los elementos del vector son independientes:
@@ -93,6 +92,7 @@
 % TODO: clear this up
 \begin{definicion}[Estimando]
     Un estimando es una cantidad deseada de ser estimada. En modelos paramétricos, puede ser un parámetro de la distribución.
+    Formalmente, puede describirse como una función $\psi:\mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo y definimos en \ref{def:modelo}.
 \end{definicion}
 
 \begin{definicion}[Estimador]
@@ -110,26 +110,8 @@ $$
 $$
 \end{definicion}
 
-\begin{definicion}[Grafo]
-    Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
-    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
-    Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
-    Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
-\end{definicion}
 
-\begin{definicion}[Camino]
-    Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
-    $\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
-\end{definicion}
-
-\begin{definicion}[Ciclo]
-    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
-\end{definicion}
-
-\begin{definicion}[Grafo causal]
-\end{definicion}
-
-\begin{definicion}[Modelo estadístico]\cite[1.2]{mci}
+\begin{definicion}[Modelo estadístico]\cite[1.2]{mci}\label{def:modelo}
     % TODO: cite source
     Un modelo estadístico es un par $(\chi, \mathcal{P})$, donde
     $\chi$ es el espacio muestral y
@@ -163,3 +145,23 @@ $$
 P(A) = \sum_i P(A | P_i) P(P_i)
 $$
 \end{teorema}
+
+\begin{definicion}[Grafo]
+    Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
+    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
+    Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
+    Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
+\end{definicion}
+
+\begin{definicion}[Camino]
+    Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
+    $\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
+\end{definicion}
+
+\begin{definicion}[Ciclo]
+    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
+\end{definicion}
+
+% TODO: finish
+\begin{definicion}[Grafo causal]
+\end{definicion}
