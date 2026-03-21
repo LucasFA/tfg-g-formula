@@ -185,7 +185,7 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 \end{proof}
 
 \begin{proposicion}[G-formula]
-	Bajo las condiciones anteriores, el ATE (estadístico) puede estimarse por:
+	Bajo las condiciones anteriores, tomamos el siguiente estimador del ATE estadístico:
 	$$
 		\hat\psi = \sum_x P(X = x) \left[P(Y = 1 | A = 1, X = x) - P(Y = 1 | A = 0, X = x) \right]
 	$$
@@ -208,7 +208,9 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 
 Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
-\begin{center}
+\vspace{0.5em}
+\begin{minipage}{0.45\textwidth}
+    \centering
 	\begin{tabular}{ C | C C | C C }
 		i & X & A & Y(0) & Y(1) \\
 		1 & 0 & 0 & 120  & 130  \\
@@ -216,9 +218,10 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 		3 & 1 & 0 & 95   & 110  \\
 		4 & 1 & 1 & 110  & 120
 	\end{tabular}
-\end{center}
-
-\begin{center}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
 	\begin{tabular}{ C | C C | C }
 		i & X & A & Y   \\
 		1 & 0 & 0 & 120 \\
@@ -226,7 +229,7 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 		3 & 1 & 0 & 95  \\
 		4 & 1 & 1 & 120
 	\end{tabular}
-\end{center}
+\end{minipage}
 
 \begin{ejemplo}[ATE]
 	Consideramos la tabla de contingencia anterior y añadimos la diferencia:
@@ -239,7 +242,10 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 			4 & 1 & 1 & 110  & 120  & 10
 		\end{tabular}
 	\end{center}
-	El ATE empírico estimado puntualmente por la media muestral es 15.
+	El valor real del ATE es 15. El valor estimado por la G-fórmula es 32.5. Esta discrepancia se debe, en este caso,
+	por la diferencia entre los grupos tratados y no tratados, violando la intercambiabilidad condicional:
+	obsérvese que la media para $A = 0$ es $107.5$ y para $A=1$ es $140$.
+	Claro está, esto no es observable, ya que hemos obtenido el valor real del ATE por el modelo causal.
 \end{ejemplo}
 
 \subsection{ATE estadístico y causal}
