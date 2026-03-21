@@ -1,4 +1,4 @@
-Email con fuentes
+Email del tutor de TFG con fuentes
 
 PLANTILLA TFG:
 https://github.com/migariane/Plantilla-TFG
@@ -14,8 +14,9 @@ GUION DEL TFG
 5. Discutir los resultados.
 
 Usa por favor el material que te comparto aquí:
-1. https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf (potential outcomes y g-formula)
-1. Complemento teórico: https://alejandroschuler.github.io/mci/introduction-to-modern-causal-inference.html
-2. https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9234 (Estimadores)
-3. https://github.com/migariane/TutorialComputationalCausalInferenceEstimators (material completo con código en R para replicar los estimadores)
-4. Para la simulación de Monte Carlo: https://github.com/migariane/HETMOR-Causal-Inference?tab=readme-ov-file
+1. Material suplementario a paper, Potential outcomes y g-formula. Material suplementario al "Paper de Migaraine" del punto 3.
+ https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf (potential outcomes y g-formula)
+2. Modern Causal Inference. Complemento teórico: https://alejandroschuler.github.io/mci/introduction-to-modern-causal-inference.html
+3. Introduction to computational causal inference using reproducible Stata, R and Python code. "Paper de Migaraine" Estimadores https://onlinelibrary.wiley.com/doi/full/10.1002/sim.9234 
+4. Educational notes for the above paper, and related code. Repositorio de código asociado al "Paper de Migaraine" del punto 3. https://github.com/migariane/TutorialComputationalCausalInferenceEstimators (material completo con código en R para replicar los estimadores)
+5. Codigo para la simulación de Monte Carlo, de otro paper (Effect Modification and Collapsibility in Evaluations of Public Health Interventions) https://github.com/migariane/HETMOR-Causal-Inference
