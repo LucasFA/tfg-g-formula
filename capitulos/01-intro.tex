@@ -3,13 +3,13 @@
 
 
 \iffalse
-################# ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
-1. Introducción a la inferencia causal, las asunciones de conditional mean independence,
-positivity y exchangeability o SUTVA, y las potential outcomes y el estimado de la diferencia de riesgos y del odds ratio (OR).
-positivity
-exchangeability o SUTVA
-potential outcomes
-estimado de la diferencia de riesgos y del odds ratio (OR)
+	################# ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
+	1. Introducción a la inferencia causal, las asunciones de conditional mean independence,
+	positivity y exchangeability o SUTVA, y las potential outcomes y el estimado de la diferencia de riesgos y del odds ratio (OR).
+	positivity
+	exchangeability o SUTVA
+	potential outcomes
+	estimado de la diferencia de riesgos y del odds ratio (OR)
 \fi
 
 % Intro a la inferencia causal
@@ -53,21 +53,21 @@ causal" \cite[sección 2.1]{mci}
 Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
 
 \begin{center} %TODO: better wording
-\begin{tabular}{c | c c}
-                  & Intervencion (I) & Control (C) \\
-    Evento (E)    & IE               & CE \\
-    No-Evento (N) & IN               & CN
-\end{tabular}
+	\begin{tabular}{c | c c}
+		              & Intervencion (I) & Control (C) \\
+		Evento (E)    & IE               & CE          \\
+		No-Evento (N) & IN               & CN
+	\end{tabular}
 \end{center}
 donde tenemos
-	\begin{itemize}
-	    \item $IE$ es el número de eventos o casos en la población intervenida,
-	    \item $CE$ es el número de eventos en la población de control,
-		\item $IN$ es el número de no-eventos en la población intervenida,
-		\item $CN$ es el número de no-eventos en la población de control,
-	    \item $I = IE + IN$ es la población intervenida total,
-	    \item $C = CE + CN$ es la población de control total.
-	\end{itemize}
+\begin{itemize}
+	\item $IE$ es el número de eventos o casos en la población intervenida,
+	\item $CE$ es el número de eventos en la población de control,
+	\item $IN$ es el número de no-eventos en la población intervenida,
+	\item $CN$ es el número de no-eventos en la población de control,
+	\item $I = IE + IN$ es la población intervenida total,
+	\item $C = CE + CN$ es la población de control total.
+\end{itemize}
 
 La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
 mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
@@ -79,11 +79,11 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 \end{definicion}
 
 \begin{definicion}[Riesgo Relativo o \textit{Relative Risk}] %TODO: find source
-Es el ratio entre afligidos por una condición condicionado si han sido expuestos
-al tratamiento o no.
+	Es el ratio entre afligidos por una condición condicionado si han sido expuestos
+	al tratamiento o no.
 
-$$ RR = \dfrac{IE/I}{CE/C} $$
-% \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
+	$$ RR = \dfrac{IE/I}{CE/C} $$
+	% \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
 
 \end{definicion}
 
@@ -93,32 +93,32 @@ $$ RR = \dfrac{IE/I}{CE/C} $$
 \end{observacion}
 
 \begin{definicion}[Odds ratio]
-Es el ratio % TODO
-$$
-    OR = \dfrac{IE/IN}{CE/CN}
-$$
+	Es el ratio % TODO
+	$$
+		OR = \dfrac{IE/IN}{CE/CN}
+	$$
 \end{definicion}
 
 % \begin{observacion}
-	% En condiciones de \textit{enfermedad rara}, por la cual la población
-	% afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
-	% es un buen estimador del riesgo relativo.
-	% $$ OR \approx RR $$
+% En condiciones de \textit{enfermedad rara}, por la cual la población
+% afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
+% es un buen estimador del riesgo relativo.
+% $$ OR \approx RR $$
 % \end{observacion}
 
 % \begin{observacion}
-	% En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
-	% de la población en su totalidad no es práctico, sino que uno se limita
-	% a una considerar a los casos que expresan la enfermedad junto a una muestra
-	% aleatoria de la población sana. En este caso, no tenemos el valor
-	% de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
-	% se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
-	% con el $OR$.
+% En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
+% de la población en su totalidad no es práctico, sino que uno se limita
+% a una considerar a los casos que expresan la enfermedad junto a una muestra
+% aleatoria de la población sana. En este caso, no tenemos el valor
+% de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
+% se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
+% con el $OR$.
 % \end{observacion}
 
 % \begin{ejemplo} % TODO: check this makes sense. Why 99%? Shouldn't it be like 1%?
-	% Caso A: riesgo asociado $99.9\%$
-	% Caso B: riesgo asociado $99.0\%$
-	% Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
-	% Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
+% Caso A: riesgo asociado $99.9\%$
+% Caso B: riesgo asociado $99.0\%$
+% Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
+% Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
 % \end{ejemplo}

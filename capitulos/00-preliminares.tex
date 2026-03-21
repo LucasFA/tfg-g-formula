@@ -9,116 +9,116 @@
 \chapter{Preliminares}
 
 \begin{definicion}[Población]
-  Una población de estudio es un conjunto de ejemplares a estudiar.
+	Una población de estudio es un conjunto de ejemplares a estudiar.
 \end{definicion}
 
 \begin{definicion}[Espacio de probabilidad]
-    $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
-    \begin{enumerate}
-      \item $\Omega$ es un conjunto no vacío
-      \item $\mathcal{F}$ es una $\sigma$ álgebra sobre $2^\Omega = \{U | U \subseteq \Omega \}$
-      \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\mathcal F) = 1$)
-    \end{enumerate}
+	$(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
+	\begin{enumerate}
+		\item $\Omega$ es un conjunto no vacío
+		\item $\mathcal{F}$ es una $\sigma$ álgebra sobre $2^\Omega = \{U | U \subseteq \Omega \}$
+		\item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\mathcal F) = 1$)
+	\end{enumerate}
 \end{definicion}
 
 \begin{definicion}[Variable aleatoria]
-  Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
-  \begin{enumerate}
-    \item $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad
-    \item $E$ es un espacio medible (típicamente $\R^n$)
-    \item $X$ es una función medible
-  \end{enumerate}
+	Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
+	\begin{enumerate}
+		\item $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad
+		\item $E$ es un espacio medible (típicamente $\R^n$)
+		\item $X$ es una función medible
+	\end{enumerate}
 \end{definicion}
 
 \begin{definicion}[Muestra]
-  Una muestra de una población es una $n$-tupla de elementos de la población $P$.
-  la distribución de $X$ para cada $i$.
+	Una muestra de una población es una $n$-tupla de elementos de la población $P$.
+	la distribución de $X$ para cada $i$.
 \end{definicion}
 
 \begin{ejemplo}
-  \begin{enumerate}
-    \item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
-    \item Altura y peso de una persona, medidas en cm y kilogramos: $\{(175, 75)\}$.
-    \item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
-      $\{(175, 75), (168, 66)\}$.
-  \end{enumerate}
+	\begin{enumerate}
+		\item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
+		\item Altura y peso de una persona, medidas en cm y kilogramos: $\{(175, 75)\}$.
+		\item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
+		      $\{(175, 75), (168, 66)\}$.
+	\end{enumerate}
 \end{ejemplo}
 
 % TODO: source
 \begin{definicion}[Muestra Aleatoria Simple con reemplazamiento]
-  Una muestra $M$ donde los elementos del vector son independientes:
-  $(X_1, ..., X_n)$ tales que
+	Una muestra $M$ donde los elementos del vector son independientes:
+	$(X_1, ..., X_n)$ tales que
 
-  \begin{displaymath}
-  \begin{cases}
-  X_i \perp X_j \;\forall j \neq i\\
-  X_i \sim X \;\forall i = 1, ..., n
-  \end{cases}
-  \end{displaymath}
+	\begin{displaymath}
+		\begin{cases}
+			X_i \perp X_j \;\forall j \neq i \\
+			X_i \sim X \;\forall i = 1, ..., n
+		\end{cases}
+	\end{displaymath}
 
-  donde el símbolo $\perp$ significa independencia.
+	donde el símbolo $\perp$ significa independencia.
 
-  Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
-  con distribución uniforme sucesivamente y con reemplazamiento,
-  justificando el nombre.
+	Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
+	con distribución uniforme sucesivamente y con reemplazamiento,
+	justificando el nombre.
 \end{definicion}
 \begin{corolario}
-% TODO: fix space after MAS
+	% TODO: fix space after MAS
 	Dada una \MAS $(x_1, ..., x_n)$, se da que:
 	$$
-	P(x_1, ..., x_n) = \prod_{i=1}^n P(x_i)
+		P(x_1, ..., x_n) = \prod_{i=1}^n P(x_i)
 	$$
 \end{corolario}
 
 % TODO: source, do I even include this?
 \begin{definicion}[Muestra Aleatoria simple sin reemplazamiento]
-% TODO: source cite cita
-  Una muestra $M$ donde los elementos de la población se eligen de forma que
-  $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
+	% TODO: source cite cita
+	Una muestra $M$ donde los elementos de la población se eligen de forma que
+	$$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
-  Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
-  Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
-  que la de cualquier otro subconjunto de $k$ elementos.
+	Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
+	Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
+	que la de cualquier otro subconjunto de $k$ elementos.
 \end{definicion}
 
 \begin{corolario}
-  Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
-  no se puede elegir el mismo sujeto de la población dos veces.
-  % Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
-  % TODO: will we talk about it?
-  % https://en.wikipedia.org/wiki/Exchangeable_random_variables
+	Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
+	no se puede elegir el mismo sujeto de la población dos veces.
+	% Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
+	% TODO: will we talk about it?
+	% https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
 
 % TODO: clear this up
 \begin{definicion}[Estimando]
-    Un estimando es una cantidad deseada de ser estimada. En modelos paramétricos, puede ser un parámetro de la distribución.
-    Formalmente, puede describirse como una función $\psi:\mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo y definimos en \ref{def:modelo}.
+	Un estimando es una cantidad deseada de ser estimada. En modelos paramétricos, puede ser un parámetro de la distribución.
+	Formalmente, puede describirse como una función $\psi:\mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo y definimos en \ref{def:modelo}.
 \end{definicion}
 
 \begin{definicion}[Estimador]
-  % https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-  Un estimador lo definiremos como cualquier función de una muestra. Pretenderá aproximar un estimando.
-  % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
-  En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución.
+	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
+	Un estimador lo definiremos como cualquier función de una muestra. Pretenderá aproximar un estimando.
+	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
+	En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución.
 \end{definicion}
 
 \begin{definicion}[Consistencia]
-Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
-se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
-$$
-    lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
-$$
+	Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
+	se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
+	$$
+		lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
+	$$
 \end{definicion}
 
 
 \begin{definicion}[Modelo estadístico]\cite[1.2]{mci}\label{def:modelo}
-    % TODO: cite source
-    Un modelo estadístico es un par $(\chi, \mathcal{P})$, donde
-    $\chi$ es el espacio muestral y
-    $\mathcal{P}$ es una familia de distribuciones de probabilidad sobre $\chi$.
+	% TODO: cite source
+	Un modelo estadístico es un par $(\chi, \mathcal{P})$, donde
+	$\chi$ es el espacio muestral y
+	$\mathcal{P}$ es una familia de distribuciones de probabilidad sobre $\chi$.
 
-    Típicamente diremos que una variable aleatoria pertecene a un modelo obviando
-    el espacio muestral de dicha variable.
+	Típicamente diremos que una variable aleatoria pertecene a un modelo obviando
+	el espacio muestral de dicha variable.
 \end{definicion}
 
 \begin{nota}
@@ -126,40 +126,40 @@ $$
 \end{nota}
 
 \begin{observacion}
-    Un modelo estadístico representa una colección de asunciones respecto a la generación de una muestra.
+	Un modelo estadístico representa una colección de asunciones respecto a la generación de una muestra.
 \end{observacion}
 
 \begin{definicion}[Variable confusora]
 
 \end{definicion}
 \begin{teorema}[La probabilidad total]\label{thm:probabilidad-total}
-Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
-con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
-Entonces,
-$$
-P(A) = \int_\R P(A | X = x)f_X(x)dx
-$$
+	Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
+	con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
+	Entonces,
+	$$
+		P(A) = \int_\R P(A | X = x)f_X(x)dx
+	$$
 
-Si $X$ es discreta y $\{P_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
-$$
-P(A) = \sum_i P(A | P_i) P(P_i)
-$$
+	Si $X$ es discreta y $\{P_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
+	$$
+		P(A) = \sum_i P(A | P_i) P(P_i)
+	$$
 \end{teorema}
 
 \begin{definicion}[Grafo]
-    Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
-    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
-    Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
-    Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
+	Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
+	y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
+	Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
+	Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
 \end{definicion}
 
 \begin{definicion}[Camino]
-    Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
-    $\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
+	Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
+	$\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
 \end{definicion}
 
 \begin{definicion}[Ciclo]
-    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
+	Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
 \end{definicion}
 
 % TODO: finish
