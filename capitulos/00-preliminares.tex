@@ -91,16 +91,21 @@
 
 % TODO: clear this up
 \begin{definicion}[Estimando]
-	Un estimando es una cantidad deseada de ser estimada. En modelos paramétricos, puede ser un parámetro de la distribución.
-	Formalmente, puede describirse como una función $\psi:\mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo y definimos en \ref{def:modelo}.
+	Un estimando es una cantidad deseada de ser estimada.
+	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo, definido en \ref{def:modelo}.
 \end{definicion}
 
 \begin{definicion}[Estimador]
 	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-	Un estimador lo definiremos como cualquier función de una muestra. Pretenderá aproximar un estimando.
+	Un estimador lo definiremos como cualquier función de una muestra, $\psi: \R^N \to \R^N$, que pretenderá aproximar un estimando.
 	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
-	En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución.
 \end{definicion}
+
+\begin{observacion}
+    En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución, y por ello se exige
+	que su imagen esté contenida en el espacio paramétrico. No hacemos tal distinción en este trabajo pues no nos centramos en
+	estimadores paramétricos.
+\end{observacion}
 
 \begin{definicion}[Consistencia]
 	Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
