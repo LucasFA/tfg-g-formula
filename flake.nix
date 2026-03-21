@@ -16,7 +16,7 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        tex = pkgs.texlive.combine {
+        texCombined = pkgs.texlive.combine {
           inherit (pkgs.texlive)
             scheme-small
             latex-bin
@@ -54,12 +54,23 @@
       in
       rec {
         packages = {
+          format = pkgs.writeShellApplication {
+            name = "document-format";
+            runtimeInputs = [ texCombined ];
+            text = ''
+                                          mkdir -p ./build
+                                          for file in ./capitulos/*.tex; do
+                                            echo "Formatting $file with latexindent..."
+                                            latexindent -s -g ./build/indent.log -o "$file" "$file"
+              		                  done
+                            	'';
+          };
           document = pkgs.stdenvNoCC.mkDerivation rec {
             name = "latex-demo-document";
             src = self;
             buildInputs = [
               pkgs.coreutils
-              tex
+              texCombined
             ];
             phases = [
               "unpackPhase"
@@ -83,6 +94,7 @@
             '';
           };
         };
+        formatter = pkgs.nixfmt-tree;
         defaultPackage = packages.document;
       }
     );
