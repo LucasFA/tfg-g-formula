@@ -58,12 +58,12 @@
             name = "document-format";
             runtimeInputs = [ texCombined ];
             text = ''
-                                          mkdir -p ./build
-                                          for file in ./capitulos/*.tex; do
-                                            echo "Formatting $file with latexindent..."
-                                            latexindent -s -g ./build/indent.log -o "$file" "$file"
-              		                  done
-                            	'';
+              mkdir -p ./build
+              for file in ./capitulos/*.tex; do
+                echo "Formatting $file with latexindent..."
+                latexindent -s -c ./build -o "$file" "$file"
+              done  
+            '';
           };
           document = pkgs.stdenvNoCC.mkDerivation rec {
             name = "latex-demo-document";
