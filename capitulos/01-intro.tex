@@ -69,6 +69,16 @@ donde tenemos
 	\item $C = CE + CN$ es la población de control total.
 \end{itemize}
 
+\begin{observacion} Denotamos
+	\begin{align*}
+		P(E|I) & = IE/I \\
+		P(E|C) & = CE/C \\
+		P(N|I) & = IN/I \\
+		P(N|C) & = CN/C
+	\end{align*}
+	donde ejercemos un sobreabuso de notación por la reutilización de $I$ como condicionante además de como valor numérico.
+\end{observacion}
+
 La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
 mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
 
@@ -78,7 +88,7 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 	$$ RD = \frac{IE}{I} - \frac{CE}{C} $$
 \end{definicion}
 
-\begin{definicion}[Riesgo Relativo o \textit{Relative Risk}] %TODO: find source
+\begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
 	Es el ratio entre afligidos por una condición condicionado si han sido expuestos
 	al tratamiento o no.
 
@@ -98,6 +108,12 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 		OR = \dfrac{IE/IN}{CE/CN}
 	$$
 \end{definicion}
+
+\begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
+	$$
+		OR = RR * \dfrac{}{}
+	$$
+\end{corolario}
 
 % \begin{observacion}
 % En condiciones de \textit{enfermedad rara}, por la cual la población
