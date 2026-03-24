@@ -12,9 +12,12 @@
 
 \usepackage{amstext} % for \text macro
 \usepackage{array}   % for \newcolumntype macro
+\usepackage{bookmark} % as requested by scrbook warning which loads the package anyway
 \usepackage{fontspec}
 \usepackage[spanish]{babel}
 \usepackage{dirtytalk}
+\usepackage{listings}
+\usepackage{minted}
 \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 \newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
 
@@ -92,6 +95,7 @@
 \input{capitulos/02-ate}
 \input{capitulos/03-salto-causal.tex}
 \input{capitulos/04-inferencia-clasica.tex}
+\input{capitulos/05-comparacion.tex}
 
 % -------------------------------------------------------------------
 % APPENDIX: Opcional

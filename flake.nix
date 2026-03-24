@@ -49,6 +49,7 @@
             listings
             eso-pic
             dirtytalk
+            minted
             ;
         };
       in

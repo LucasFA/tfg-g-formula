@@ -1,21 +1,25 @@
 \chapter{Inferencia causal clásica}
 \cite{oxChapterOutcome}
-\subsection{Regresión}
-Una forma usual de ajustar el efecto de un factor de riesgo o tratamiento
-al efecto de unas covariantes $X$ es midiendo el efecto con una regresión.
-
-$$
-    Y \sim A + \sum_{i=1}^{n} X_i
-$$
-
-Esta técnica está sujeta a las suposiciones habituales de regresión, en particular
-que los errores tengan una distribución normal multivariante y homocedasticidad de
-las variables regresoras (que tengan varianzas similares).
 
 \subsection{Estratificación}
-Otra forma de ajustar a las covariantes es estratificar la muestra y considerar
+Una forma de ajustar a las covariantes es estratificar la muestra y considerar
 el efecto del factor de interés $A$ dentro de cada estrata, donde las covariantes
 son fijas.
 Esta técnica es problemática cuando el número de covariantes es significativo,
 puesto que el número de estratos crece exponencialmente en el número de covariantes,
 y el número de muestras por estrato decrece acordemente.
+
+\subsection{Regresión}
+Otra forma de ajustar el efecto de un factor de riesgo o tratamiento
+al efecto de unas covariantes $X$ es midiendo el efecto con una regresión.
+
+$$
+	Y \sim A + \sum_{i=1}^{n} X_i
+$$
+
+Esta técnica está sujeta a las suposiciones habituales de regresión, en particular
+que los errores tengan una distribución normal multivariante y homocedasticidad de
+las variables regresoras (que tengan varianzas similares).
+A pesar de ello, los problemas de dimensionalidad de la estratificación lo
+siguen haciendo popular.
+Ñwq
