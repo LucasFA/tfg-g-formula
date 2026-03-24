@@ -67,6 +67,7 @@ donde tenemos
 	\item $CN$ es el número de no-eventos en la población de control,
 	\item $I = IE + IN$ es la población intervenida total,
 	\item $C = CE + CN$ es la población de control total.
+	\item También denotaremos $\neg I = C$
 \end{itemize}
 
 \begin{observacion} Denotamos
@@ -85,14 +86,14 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 \begin{definicion}[Diferencia de riesgo o \textit{Risk difference}] \label{def:riskdiff}
 	Dado un tratamiento, definimos la Diferencia de Riesgo como
 	la diferencia de la incidencia entre los grupos tratados y de control:
-	$$ RD = \frac{IE}{I} - \frac{CE}{C} $$
+	$$ RD = \frac{IE}{I} - \frac{CE}{C} = P(E|I) - P(E|C)$$
 \end{definicion}
 
 \begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
 	Es el ratio entre afligidos por una condición condicionado si han sido expuestos
 	al tratamiento o no.
 
-	$$ RR = \dfrac{IE/I}{CE/C} $$
+	$$ RR = \dfrac{IE/I}{CE/C} = \dfrac{P(E|I)}{P(E|C)}$$
 	% \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
 
 \end{definicion}
@@ -102,17 +103,29 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 	suele ser posible
 \end{observacion}
 
-\begin{definicion}[Odds ratio]
+\begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
 	Es el ratio % TODO
 	$$
-		OR = \dfrac{IE/IN}{CE/CN}
+		OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(\neg E |I)}{P(E|C)/P(\neg E|C)}
 	$$
 \end{definicion}
 
 \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
 	$$
-		OR = RR * \dfrac{}{}
+		OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)}
 	$$
+\end{corolario}
+
+\begin{corolario}[Enfermedad rara]
+    Entendiendo la interveción como exposición a la enfermedad, si la enfermedad tiene una baja propensidad:
+    $$
+        P(D|C) \approx 0 \quad \text{y} \quad P(D | I) \approx 0
+    $$
+    entonces
+    $$
+        OR \approx RR
+    $$
+
 \end{corolario}
 
 % \begin{observacion}
