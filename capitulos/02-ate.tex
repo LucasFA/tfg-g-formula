@@ -86,6 +86,28 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 % https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
 % Los 3 primeros items son SUTVA TODO: write this out
 
+% TODO: some intro
+%
+\subsection{Identificación}
+\cite[capítulo 2.2]{mci}
+
+Recordamos que tenemos un modelo estadístico $\mathcal{M}$ el cual contiene una distribución de probabilidad $P$,
+y que queremos hacer inferencia sobre un modelo causal relacionado $\mathcal{M}^*$ el cual contiene una distribución $P^*$,
+de forma que la distribución estadística se relaciona con la causal por la observación de esta: $P = \mathcal{O}(P^*)$.
+
+Dado un estimando $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar otro sobre la distribución observable que nos permita inferir sobre él,
+$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*)$.
+
+El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
+que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
+Eso es, tenemos que las aplicaciones de estimandos
+$\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ no son inyectivas.
+
+Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
+% TODO
+
+
+
 
 \begin{observacion}
 	La interpretación de las siguientes condiciones reside en la necesidad de comparar los efectos causales
@@ -99,12 +121,13 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
     \end{verbatim}
 \end{observacion}
 
-Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{luque2021}:
+
+Los supuestos de identificación que hacemos son los siguientes \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 \begin{enumerate}
-	\item Consistencia contrafactual.
+	\item Consistencia contrafactual. \label{consistency}
 	      $$ Y = A Y(1) + (1 - A)Y(0) $$
 	      Exige que la distribución del resultado coincida entre el modelo estadístico y el causal.
-	\item No interferencia
+	\item No interferencia \label{noInterference}
 	      El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
 	      % TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
 	      % TODO: important: "no unobserved confounding" interpretation of this:
@@ -123,8 +146,10 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	\item Positividad
 	      $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
+
 \begin{definicion}[SUTVA]
-	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de consistencia y de no interferencia.
+	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
+	consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
 	Ambas condiciones se satisfacen simultáneamente bajo muestreo iid.
 \end{definicion}
 
@@ -132,7 +157,7 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	En estudios randomizados se mantiene la intercambiabilidad condicional
 	trivialmente por la randomización de la asignación de los sujetos a
 	los grupos de control y de tratamiento.
-	Esto no es así en estudios observacionales, pero % TODO:
+	% Esto no es así en estudios observacionales, pero % TODO:
 \end{observacion}
 
 \begin{ejemplo}[Violación de SUTVA]
@@ -202,10 +227,14 @@ Los supuestos que hacemos son los siguientes \cite[material suplementario S1]{lu
 	$$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
 \end{proof}
 
+\begin{observacion}
+	La G-fórmula, en su versión no paramétrica, aplica el Teorema de la Probabilidad total
+	disgregando en todos los estratos de covariantes ($X$) posibles.
+\end{observacion}
+
 
 % TODO: massively trim this down, it's repeated
-
-
+\begin{ejemplo}[Modelos causal y estadístico]
 Tabla de contigencia del modelo causal y estadístico, respectivamente:
 
 \vspace{0.5em}
@@ -230,6 +259,7 @@ Tabla de contigencia del modelo causal y estadístico, respectivamente:
 		4 & 1 & 1 & 120
 	\end{tabular}
 \end{minipage}
+\end{ejemplo}
 
 \begin{ejemplo}[ATE]
 	Consideramos la tabla de contingencia anterior y añadimos la diferencia:
