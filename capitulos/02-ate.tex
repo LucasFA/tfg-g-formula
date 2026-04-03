@@ -43,20 +43,17 @@
 \section{Introducción}
 Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ observable
 de variables aleatorias con distribución conjunta $P$.
-Consideramos entonces el modelo estadístico $\mathcal{M} \ni P$.
-
-Consideramos el modelo causal $\mathcal{M}^* \ni P^*$ en el que vive
-la tupla $(X, A, Y(0), Y(1))$.
-
-
+Consideramos entonces el modelo estadístico $\mathcal{M} \ni P$ y
+el modelo causal $\mathcal{M}^* \ni P^*$.
 
 Supongamos que $Y$ es una variable aleatoria binaria, y
-consideremos $(X, A, Y(0), Y(1))$, que seguirá una distribución
-$P^*$, elemento del modelo causal $\mathcal{M}^*$ . Este vector no
+consideremos $(X, A, Y(0), Y(1))$, vector aleatorio que seguirá una distribución
+$P^* \in \mathcal{M}^*$.
+Este vector no
 es directamente observable, pero veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
-A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés). % TODO: potentially remove outcome
+A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés).
 
 \begin{ejemplo} % TODO: improve wording
 	Un estudio médico puede estudiar la efectividad de un tratamiento, representado como la variable binaria $A$ según si se aplica o no,
