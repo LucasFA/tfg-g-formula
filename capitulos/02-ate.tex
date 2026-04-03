@@ -42,9 +42,15 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 	tratados con el tratamiento $a$.
 \end{notac}
 
+\begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
+    El ATE, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento
+    El ATE como estimando causal es definido como
+    $$ \psi^*(P^*) = E_{P^*}(Y(1) - Y(0)) $$
+\end{definicion}
+
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
-	Definimos un estimando, llamado el \textit{Average Treatment Effect} (estadístico) o Efecto Medio de Tratamiento como
+	Definimos un estimando estadístico, que llamaremos el ATE estadístico por razones que esclareceremos, como
 	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
 	También se puede escribir como:
 	$$ \psi = E[\mu_1(X) - \mu_0(X)] $$
@@ -69,7 +75,7 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 % \end{definicion}
 
 
-\begin{definicion}[Efecto a nivel de unidad] % TODO:
+\begin{definicion}[Efecto a nivel de unidad] % TODO: I will need to move this
 	Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
 	representará una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
 \end{definicion}
@@ -91,12 +97,14 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 \subsection{Identificación}
 \cite[capítulo 2.2]{mci}
 
-Recordamos que tenemos un modelo estadístico $\mathcal{M}$ el cual contiene una distribución de probabilidad $P$,
+Recordamos que tenemos un modelo estadístico $\mathcal{M}$ y una distribución de probabilidad $P \in \mathcal{M}$,
 y que queremos hacer inferencia sobre un modelo causal relacionado $\mathcal{M}^*$ el cual contiene una distribución $P^*$,
 de forma que la distribución estadística se relaciona con la causal por la observación de esta: $P = \mathcal{O}(P^*)$.
 
-Dado un estimando $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar otro sobre la distribución observable que nos permita inferir sobre él,
+Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$ como lo es el ATE causal, queremos encontrar
+otro sobre la distribución observable que nos permita inferir sobre él,
 $\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*)$.
+Como los nombres indican, querremos identificarlo con el ATE estadístico
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.

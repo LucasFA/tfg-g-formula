@@ -94,6 +94,10 @@
 	Un estimando es una cantidad deseada de ser estimada.
 	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo, definido en \ref{def:modelo}.
 \end{definicion}
+\begin{nota}
+	Un estimando puede tener como dominio tanto un modelo estadístico como un modelo causal. Nos referiremos a ellos
+	respectivamente como estimandos estadísticos y causales.
+\end{nota}
 
 \begin{definicion}[Estimador]
 	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
@@ -116,8 +120,8 @@
 \end{definicion}
 
 
-\begin{definicion}[Modelo estadístico]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
-	Un modelo estadístico es un par $(\chi, \mathcal{P})$, donde
+\begin{definicion}[Modelo]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
+	Un modelo es un par $(\chi, \mathcal{P})$, donde
 	$\chi$ es un conjunto y
 	$\mathcal{P}$ es una familia de distribuciones de probabilidad sobre $\chi$.
 
@@ -128,14 +132,19 @@
 \begin{nota}
 	Típicamente diremos que $\mathcal{P} \in \mathcal{M}$, obviando el espacio muestral.
 \end{nota}
+\begin{Nota}
+	Los términos \textit{modelo estadístico} y \textit{modelo causal} se refieren en ambos casos a modelos.
+\end{Nota}
 
 \begin{observacion}
-	Un modelo estadístico representa una colección de asunciones respecto a la generación de una muestra.
+	Un modelo representa una colección de asunciones respecto a la generación de muestras.
 \end{observacion}
 
 \begin{definicion}[Variable confusora]
+    % TODO:
 
 \end{definicion}
+
 \begin{teorema}[La probabilidad total]\label{thm:probabilidad-total}
 	Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
 	con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
