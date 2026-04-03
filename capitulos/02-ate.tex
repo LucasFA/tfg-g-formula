@@ -19,46 +19,81 @@
 \chapter{Framework de Potential Outcomes}
 
 \begin{definicion}[Modelo]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
-	Un modelo es un par $(\chi, \mathcal{P})$, donde
+	Un modelo $\mathcal{M}$ es un par $(\chi, \mathcal{P})$, donde
 	$\chi$ es un conjunto y
 	$\mathcal{P}$ es una familia de distribuciones de probabilidad sobre $\chi$.
 \end{definicion}
 
-\begin{nota}
-	Denotaremos $\mathcal{P} \in \mathcal{M}$, obviando el espacio muestral.
-\end{nota}
-\begin{nota}
-	Los términos \textit{modelo estadístico} y \textit{modelo causal} se refieren en ambos casos a modelos.
-\end{nota}
+\begin{notac}
+	Denotaremos $P \in \mathcal{M}$ para indicar $P \in \mathcal{P}$, obviando el espacio muestral.
+\end{notac}
 \begin{observacion}
 	Un modelo representa una colección de asunciones respecto a la generación de muestras.
 \end{observacion}
+
+\section{Introducción}
+Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ observable
+de variables aleatorias con distribución conjunta $P$, y supongamos que $Y$ es una variable aleatoria binaria.
+Consideramos entonces el modelo estadístico $\mathcal{M} \ni P$ y
+un modelo que llamaremos causal $\mathcal{M}^*$
+donde vive la distribución conjunta de un vector $(X, A, Y(0), Y(1))$,
+$P^* \in \mathcal{M}^*$, donde $Y(0)$ e $Y(1)$ son, a priori, dos variables
+aleatorias nuevas no necesariamente relacionadas con $Y$.
+
 \begin{notac}
-    En el modelo causal denotaremos $Y(0)$ e $Y(1)$ como las distribución de $Y$ sujeta al supuesto que $A = 0$ o $A = 1$,
-    respectivamente, para toda la población.
+    En el modelo causal denotamos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado,
+    sujeto al supuesto de que el tratamiento o intervención tenga valor $A = 0$ o $A = 1$,
+    respectivamente, para \emph toda la población.
+
+    Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
+    puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
+
     Representan los resultados potenciales (\textit{Potential Outcomes}) que nos permitirán
     razonar de forma contrafactual.
 \end{notac}
 
-\section{Introducción}
-Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ observable
-de variables aleatorias con distribución conjunta $P$.
-Consideramos entonces el modelo estadístico $\mathcal{M} \ni P$ y
-el modelo causal $\mathcal{M}^* \ni P^*$.
-
-Supongamos que $Y$ es una variable aleatoria binaria, y
-consideremos $(X, A, Y(0), Y(1))$, vector aleatorio que seguirá una distribución
-$P^* \in \mathcal{M}^*$.
 Este vector no
 es directamente observable, pero veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
 A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés).
 
+\begin{ejemplo}[Modelos causal y estadístico]
+    Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
+    el tratamiento son binarias mientras el resultado es continuo.
+
+\vspace{0.5em}
+\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{ C | C C | C C }
+		i & X & A & Y(0) & Y(1) \\
+		1 & 0 & 0 & 120  & 130  \\
+		2 & 0 & 1 & 135  & 160  \\
+		3 & 1 & 0 & 95   & 110  \\
+		4 & 1 & 1 & 110  & 120
+	\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{tabular}{ C | C C | C }
+		i & X & A & Y   \\
+		1 & 0 & 0 & 120 \\
+		2 & 0 & 1 & 160 \\
+		3 & 1 & 0 & 95  \\
+		4 & 1 & 1 & 120
+	\end{tabular}
+\end{minipage}
+\end{ejemplo}
+
+
 \begin{ejemplo} % TODO: improve wording
-	Un estudio médico puede estudiar la efectividad de un tratamiento, representado como la variable binaria $A$ según si se aplica o no,
-	de pacientes de los cuales se registra la mortandad en un plazo determinado, medido en la variable binaria $Y$,
-	donde tenemos en cuenta una condición binaria $X$ como puede serlo si el paciente tiene presión arterial alta o no.
+	Un estudio médico puede estudiar la efectividad de un tratamiento en un
+	grupo de pacientes de los cuales se registra la mortandad en un plazo determinado.
+	La variable binaria $A$ representa si se ha aplicado cierto tratamiento o no,
+	la mortandad es medida en la variable binaria $Y$,
+	y además tenemos en cuenta una condición $X$ que puede afectar a las otras
+	dos variables, como la presión arterial del paciente.
 \end{ejemplo}
 
 \begin{notac}[Esperanza condicional]
@@ -265,34 +300,6 @@ Los supuestos de identificación que hacemos son los siguientes \cite[material s
 	disgregando en todos los estratos de covariantes ($X$) posibles.
 \end{observacion}
 
-
-% TODO: massively trim this down, it's repeated
-\begin{ejemplo}[Modelos causal y estadístico]
-Tabla de contigencia del modelo causal y estadístico, respectivamente:
-
-\vspace{0.5em}
-\begin{minipage}{0.45\textwidth}
-	\centering
-	\begin{tabular}{ C | C C | C C }
-		i & X & A & Y(0) & Y(1) \\
-		1 & 0 & 0 & 120  & 130  \\
-		2 & 0 & 1 & 135  & 160  \\
-		3 & 1 & 0 & 95   & 110  \\
-		4 & 1 & 1 & 110  & 120
-	\end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-	\centering
-	\begin{tabular}{ C | C C | C }
-		i & X & A & Y   \\
-		1 & 0 & 0 & 120 \\
-		2 & 0 & 1 & 160 \\
-		3 & 1 & 0 & 95  \\
-		4 & 1 & 1 & 120
-	\end{tabular}
-\end{minipage}
-\end{ejemplo}
 
 \begin{ejemplo}[ATE]
 	Consideramos la tabla de contingencia anterior y añadimos la diferencia:
