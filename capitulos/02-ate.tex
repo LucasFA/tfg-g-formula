@@ -32,18 +32,21 @@
 \end{observacion}
 
 \section{Introducción}
-Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el triplete $(X, A, Y)$ observable
-de variables aleatorias con distribución conjunta $P$, y supongamos que $Y$ es una variable aleatoria binaria.
-Consideramos entonces el modelo estadístico $\mathcal{M} \ni P$ y
-un modelo que llamaremos causal $\mathcal{M}^*$
-donde vive la distribución conjunta de un vector $(X, A, Y(0), Y(1))$,
-$P^* \in \mathcal{M}^*$, donde $Y(0)$ e $Y(1)$ son, a priori, dos variables
-aleatorias nuevas no necesariamente relacionadas con $Y$.
+Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el modelo estadístico $\mathcal{M} \ni P$,
+donde $P$ es la distribución conjunta del triplete $(X, A, Y)$
+de variables aleatorias observables, y supongamos que $Y$ es una variable aleatoria binaria.
+
+A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés).
+
+Consideramos entonces un modelo (familia de distribuciones) que llamaremos causal $\mathcal{M}^*$
+donde vive la distribución conjunta de un vector $(X, A, Z_0, Z_1)$,
+$P^* \in \mathcal{M}^*$ donde $Y(0)$ e $Y(1)$ son dos variables aleatorias nuevas.
+Como modelo causal, no es observable.
 
 \begin{notac}
-    En el modelo causal denotamos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado,
-    sujeto al supuesto de que el tratamiento o intervención tenga valor $A = 0$ o $A = 1$,
-    respectivamente, para \emph toda la población.
+    Denotaremos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado
+    sujeto al supuesto de que el tratamiento o intervención $A$ tenga valor $0$ o $1$,
+    respectivamente, para \emph{toda} la población.
 
     Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
     puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
@@ -52,15 +55,12 @@ aleatorias nuevas no necesariamente relacionadas con $Y$.
     razonar de forma contrafactual.
 \end{notac}
 
-Este vector no
-es directamente observable, pero veremos que $P^*$ determina $P$ en
+Veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
-
-A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés).
 
 \begin{ejemplo}[Modelos causal y estadístico]
     Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
-    el tratamiento son binarias mientras el resultado es continuo.
+    el tratamiento son variables binarias mientras el resultado es continuo.
 
 \vspace{0.5em}
 \begin{minipage}{0.45\textwidth}
@@ -104,21 +104,21 @@ A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
     El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
     es un estimando causal definido como
-    $$ \psi^*(P^*) = E_{P^*}(Y(1) - Y(0)) $$
+    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
 \end{definicion}
 
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
 	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
-	Definimos un estimando estadístico, que llamaremos el ATE estadístico por razones que esclareceremos, como
-	$$ \psi = E[ E[Y | X, A = 1] - E[Y | X, A = 0 ] ] $$
+	Definimos el ATE estadístico como el siguiente estimando estadístico:
+	$$ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] $$
 	También se puede escribir como:
-	$$ \psi = E[\mu_1(X) - \mu_0(X)] $$
+	$$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
 \end{definicion}
 
 % TODO: check "covariantes" is a proper translation, and outcome thing
 \begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
 	El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
-	por la distribución de las covariantes en la población, $X$.
+	por la predisposición a las covariantes en la población, $X$.
 	% También depende de la distribución conjunta de $(Y, X, A)$.
 	% En particular, el ATE depende de la distribución de covariantes $X$.
 \end{observacion}
@@ -165,6 +165,27 @@ Recordamos que tenemos un modelo estadístico $\mathcal{M}$ y una distribución 
 y que queremos hacer inferencia sobre un modelo causal relacionado $\mathcal{M}^*$ el cual contiene una distribución $P^*$,
 de forma que la distribución estadística se relaciona con la causal por la observación de esta: $P = \mathcal{O}(P^*)$.
 
+Visualmente, queremos que el diagrama de la derecha sea conmutativo.
+
+$$
+\begin{minipage}{0.45\textwidth}
+\centering
+$$
+\begin{tikzcd}
+   \mathcal{M}^* \arrow{r}{\mathcal{O}} & \mathcal{M}  \\
+   P^* \arrow[r, mapsto,"O"] & P \\
+\end{tikzcd}
+$$
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzcd}
+    \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*}& \mathcal{M} \arrow{d}{\psi} \\
+    \hfill & \R \\
+\end{tikzcd}
+\end{minipage}
+ $$
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.

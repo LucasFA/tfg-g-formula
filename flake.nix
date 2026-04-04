@@ -50,6 +50,7 @@
             eso-pic
             dirtytalk
             minted
+            tikz-cd
             ;
         };
       in
@@ -63,9 +64,9 @@
               for file in ./capitulos/*.tex; do
                 echo "Formatting $file with latexindent..."
                 latexindent -s -c ./build -o "$file" "$file"
-              done  
+              done
             '';
-              # latexindent -s -c ./build -o library.bib library.bib
+            # latexindent -s -c ./build -o library.bib library.bib
           };
           document = pkgs.stdenvNoCC.mkDerivation rec {
             name = "latex-demo-document";
