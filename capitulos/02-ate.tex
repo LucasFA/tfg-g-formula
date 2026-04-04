@@ -156,10 +156,13 @@ su totalidad bajo ciertos supuestos.
 \subsection{Identificación}
 \cite[capítulo 2.2]{mci}
 
-Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$ como lo es el ATE causal, queremos encontrar
-otro sobre la distribución observable que nos permita inferir sobre él,
-$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*)$.
-Como los nombres indican, querremos identificar el ATE causal con el estadístico.
+Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar
+un estimando sobre la distribución observable que nos permita inferir sobre él,
+$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*) \forall P \in \mathcal{M}$.
+Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
+
+La primera condición que vamos a imponer para  es la consistencia
+
 
 Recordamos que tenemos un modelo estadístico $\mathcal{M}$ y una distribución de probabilidad $P \in \mathcal{M}$,
 y que queremos hacer inferencia sobre un modelo causal relacionado $\mathcal{M}^*$ el cual contiene una distribución $P^*$,
@@ -178,6 +181,11 @@ El primer problema que aparece es la mayor libertad que posee el modelo causal, 
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
 Eso es, tenemos que las aplicaciones de estimandos
 $\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ no son inyectivas.
+
+\begin{ejemplo}\cite[sección 2.2]{mci}
+    Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones $P_1^*, P_2^* \in \mathcal{M}^*$
+
+\end{ejemplo}
 
 Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
 % TODO
