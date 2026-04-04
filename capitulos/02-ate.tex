@@ -44,46 +44,46 @@ $P^* \in \mathcal{M}^*$ donde $Y(0)$ e $Y(1)$ son dos variables aleatorias nueva
 Como modelo causal, no es observable.
 
 \begin{notac}
-    Denotaremos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado
-    sujeto al supuesto de que el tratamiento o intervención $A$ tenga valor $0$ o $1$,
-    respectivamente, para \emph{toda} la población.
+	Denotaremos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado
+	sujeto al supuesto de que el tratamiento o intervención $A$ tenga valor $0$ o $1$,
+	respectivamente, para \emph{toda} la población.
 
-    Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
-    puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
+	Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
+	puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
 
-    Representan los resultados potenciales (\textit{Potential Outcomes}) que nos permitirán
-    razonar de forma contrafactual.
+	Representan los resultados potenciales (\textit{Potential Outcomes}) que nos permitirán
+	razonar de forma contrafactual.
 \end{notac}
 
 Veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
 \begin{ejemplo}[Modelos causal y estadístico]
-    Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
-    el tratamiento son variables binarias mientras el resultado es continuo.
+	Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
+	el tratamiento son variables binarias mientras el resultado es continuo.
 
-\vspace{0.5em}
-\begin{minipage}{0.45\textwidth}
-	\centering
-	\begin{tabular}{ C | C C | C C }
-		i & X & A & Y(0) & Y(1) \\
-		1 & 0 & 0 & 120  & 130  \\
-		2 & 0 & 1 & 135  & 160  \\
-		3 & 1 & 0 & 95   & 110  \\
-		4 & 1 & 1 & 110  & 120
-	\end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-	\centering
-	\begin{tabular}{ C | C C | C }
-		i & X & A & Y   \\
-		1 & 0 & 0 & 120 \\
-		2 & 0 & 1 & 160 \\
-		3 & 1 & 0 & 95  \\
-		4 & 1 & 1 & 120
-	\end{tabular}
-\end{minipage}
+	\vspace{0.5em}
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\begin{tabular}{ C | C C | C C }
+			i & X & A & Y(0) & Y(1) \\
+			1 & 0 & 0 & 120  & 130  \\
+			2 & 0 & 1 & 135  & 160  \\
+			3 & 1 & 0 & 95   & 110  \\
+			4 & 1 & 1 & 110  & 120
+		\end{tabular}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\begin{tabular}{ C | C C | C }
+			i & X & A & Y   \\
+			1 & 0 & 0 & 120 \\
+			2 & 0 & 1 & 160 \\
+			3 & 1 & 0 & 95  \\
+			4 & 1 & 1 & 120
+		\end{tabular}
+	\end{minipage}
 \end{ejemplo}
 
 
@@ -102,9 +102,9 @@ su totalidad bajo ciertos supuestos.
 \end{notac}
 
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
-    El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
-    es un estimando causal definido como
-    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
+	El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
+	es un estimando causal definido como
+	$$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
 \end{definicion}
 
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
@@ -168,10 +168,10 @@ de forma que la distribución estadística se relaciona con la causal por la obs
 Visualmente, queremos que el siguiente diagrama sea conmutativo.
 
 $$
-\begin{tikzcd}
-   \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
-                                                                   & \R^N
-\end{tikzcd}
+	\begin{tikzcd}
+		\mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
+		& \R^N
+	\end{tikzcd}
 $$
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
