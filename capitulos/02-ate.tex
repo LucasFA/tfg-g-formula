@@ -165,27 +165,14 @@ Recordamos que tenemos un modelo estadístico $\mathcal{M}$ y una distribución 
 y que queremos hacer inferencia sobre un modelo causal relacionado $\mathcal{M}^*$ el cual contiene una distribución $P^*$,
 de forma que la distribución estadística se relaciona con la causal por la observación de esta: $P = \mathcal{O}(P^*)$.
 
-Visualmente, queremos que el diagrama de la derecha sea conmutativo.
+Visualmente, queremos que el siguiente diagrama sea conmutativo.
 
 $$
-\begin{minipage}{0.45\textwidth}
-\centering
-$$
 \begin{tikzcd}
-   \mathcal{M}^* \arrow{r}{\mathcal{O}} & \mathcal{M}  \\
-   P^* \arrow[r, mapsto,"O"] & P \\
+   \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
+                                                                   & \R^N
 \end{tikzcd}
 $$
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-\centering
-\begin{tikzcd}
-    \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*}& \mathcal{M} \arrow{d}{\psi} \\
-    \hfill & \R \\
-\end{tikzcd}
-\end{minipage}
- $$
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
