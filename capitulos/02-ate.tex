@@ -152,7 +152,7 @@ su totalidad bajo ciertos supuestos.
 \subsection{Motivación}
 Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar
 un estimando sobre la distribución observable que nos permita inferir sobre él,
-$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*) \forall P \in \mathcal{M}$.
+$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*) \; \forall P^* \in \mathcal{M}^*$.
 Además, la distribución estadística se relaciona con la causal a través de
 la observación: $P = \mathcal{O}(P^*)$.
 Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
@@ -170,7 +170,7 @@ Como los nombres indican, en particular querremos identificar el ATE causal con 
 \subsection{Consistencia}
 La primera condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
 las distribuciones causal y estadística:
-$$ Y = A Y(1) + (1 - A)Y(0) $$
+$$ Y = A Y(1) + (1 - A)Y(0) $$ \label{consistency}
 
 \subsection{Identificación}
 
@@ -179,7 +179,7 @@ Visualmente, queremos que el siguiente diagrama sea conmutativo.
 $$
 	\begin{tikzcd}
 		\mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
-		& \R^N
+		& \R^d
 	\end{tikzcd}
 $$
 
@@ -209,13 +209,6 @@ Antes de ello, un ejemplo del problema.
 
 Los supuestos de identificación que hacemos son los siguientes \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 \begin{enumerate}
-	\item Consistencia contrafactual. \label{consistency}
-	      $$ Y = A Y(1) + (1 - A)Y(0) $$
-	      Exige que la distribución del resultado coincida entre el modelo estadístico y el causal.
-	\item No interferencia \label{noInterference}
-	      El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
-	      % TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
-	      % TODO: important: "no unobserved confounding" interpretation of this:
 	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
 	      $$ Y(a) \indep A | X $$
 	      Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
@@ -232,6 +225,18 @@ Los supuestos de identificación que hacemos son los siguientes \cite[material s
 	      $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
 
+% TODO: current
+Además de las dos condiciones anteriores, según el autor la condición de consistencia \ref{consistency}
+puede verse como una de ellas
+
+\begin{observacion}
+	No interferencia \label{noInterference}
+	El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
+	% TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
+	% TODO: important: "no unobserved confounding" interpretation of this:
+	%
+
+\end{observacion}
 \begin{definicion}[SUTVA]
 	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
 	consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
