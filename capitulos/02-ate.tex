@@ -168,9 +168,10 @@ Como los nombres indican, en particular querremos identificar el ATE causal con 
 % TODO: some intro
 
 \subsection{Consistencia}
-La primera condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
+\label{consistency}
+Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
 las distribuciones causal y estadística:
-$$ Y = A Y(1) + (1 - A)Y(0) $$ \label{consistency}
+$$ Y = A Y(1) + (1 - A)Y(0) $$
 
 \subsection{Identificación}
 
@@ -196,7 +197,6 @@ Antes de ello, un ejemplo del problema.
 	degeneradas tomando como valor $(1, 0, 1)$ y $(1, -1, 1)$, respectivamente. Aplicando consistencia,
 	tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
 	$(A, Y) = (1, 1)$.
-
 	Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
 	porque el valor de la distribución observable no dependía del valor de $Y(0)$.
 \end{ejemplo}
@@ -225,22 +225,19 @@ Los supuestos de identificación que hacemos son los siguientes \cite[material s
 	      $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{enumerate}
 
-% TODO: current
-Además de las dos condiciones anteriores, según el autor la condición de consistencia \ref{consistency}
-puede verse como una de ellas
+Además de las dos condiciones anteriores, dependiendo del autor la condición de consistencia vista en \ref{consistency}
+se toma como una de ellas.
 
-\begin{observacion}
-	No interferencia \label{noInterference}
+\begin{definicion}[No interferencia]\label{noInterference}
 	El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
 	% TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
 	% TODO: important: "no unobserved confounding" interpretation of this:
-	%
+\end{definicion}
 
-\end{observacion}
 \begin{definicion}[SUTVA]
 	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
 	consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
-	Ambas condiciones se satisfacen simultáneamente bajo muestreo iid.
+	Ambas condiciones se satisfacen simultáneamente bajo muestreo IID.
 \end{definicion}
 
 \begin{observacion}\cite[material suplementario S1]{luque2021}
@@ -270,17 +267,20 @@ puede verse como una de ellas
 
 
 \begin{proposicion}
-	Si el modelo causal y el estadístico son consistentes:
-	$$ Y = A Y(1) + (1 - A)Y(0) $$
+	Si el modelo causal y el estadístico son consistentes
 	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
-	$$ P^*(X = x) = P(X = x) \;\forall x $$
-	$$ P^*(A = a | X = x) = P(A = a | X = x) \;\forall x, a$$
+	$$
+	\begin{cases}
+		P^*(X = x) = P(X = x) \; &\forall x \\
+		P^*(A = a | X = x) = P(A = a | X = x) \; &\forall x, a
+	\end{cases}
+	$$
 
 	Entonces el la distribución causal determina totalmente la distribución estadística por:
 	$$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
 \end{proposicion}
 
-\begin{proof} \cite[sección 2.1]{mci}
+\begin{proof} \cite[sección 2.1]{mci} TODO:
 	% TODO: do I even prove this?
 	% Usando el teorema de la probablidad total:
 	% \begin{align*}
@@ -296,7 +296,6 @@ puede verse como una de ellas
 	% \begin{equation*}
 	%     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
 	% \end{equation*}
-
 \end{proof}
 
 \begin{proposicion}[G-formula, versión no paramétrica]
