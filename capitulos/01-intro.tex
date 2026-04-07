@@ -28,13 +28,26 @@ incluso en el caso de que haya variables confusoras.
 Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
 
 Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
-otros factores confusores y covariantes, por los cuales se intenta ajustar para reducir ese sesgo.
+otros factores confusores y covariantes, por los cuales se intenta \textit{ajustar} para reducir ese sesgo.
 
 No siempre se pueden realizar estudios RCT por varios motivos, entre ellos la propia viabilidad, la ética o el coste
 de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
 
-En un estudio observacional, el investigador no puede controlar a qué unidades se le aplica el tratamiento,
-por lo que se debe tener en cuenta la distribución
+En un estudio observacional, el investigador no puede controlar a qué unidades, pacientes o comunidades se le aplica el tratamiento,
+por lo que se debe tener en cuenta la distribución del tratamiento en la población.
+
+\begin{observacion}
+    De una forma más elocuente a la presentada aquí introduce Rubin este problema en
+    \cite[sección 2, párr. 6]{rubin2005}:
+
+	\begin{verbatim}
+    One cannot compare medical compare medical costs for male
+    smokers with medical costs for female non smokers and claim
+    that this comparison is a causal effect of smoking without
+    making heroic and unwarranted assumptions.
+    \end{verbatim}
+\end{observacion}
+
 
 \section{El experimento ideal}
 El llamado experimento ideal \cite[sección 1.1]{targetedLearning} consiste en considerar una población y, en condiciones idénticas,

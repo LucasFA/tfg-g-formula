@@ -185,31 +185,26 @@ $$
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
-Eso es, tenemos que las aplicaciones de estimandos
+Eso es, tenemos que las aplicaciones de estimandos causales en estimandos estadísticos,
 $\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ no son inyectivas.
 
-\begin{ejemplo}\cite[sección 2.2]{mci}
-	Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones $P_1^*, P_2^* \in \mathcal{M}^*$
+Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
+Antes de ello, un ejemplo del problema.
 
+\begin{ejemplo}\cite[sección 2.2]{mci}
+	Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones en $\mathcal{M}^*$
+	degeneradas tomando como valor $(1, 0, 1)$ y $(1, -1, 1)$, respectivamente. Aplicando consistencia,
+	tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
+	$(A, Y) = (1, 1)$.
+
+	Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
+	porque el valor de la distribución observable no dependía del valor de $Y(0)$.
 \end{ejemplo}
 
-Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
-% TODO
+% TODO: current
 
 
 
-
-\begin{observacion}
-	La interpretación de las siguientes condiciones reside en la necesidad de comparar los efectos causales
-	dentro de un mismo grupo homogéneo, y no inter-grupos. Una ilustración de esta necesidad es presentada en \cite[sección 2, párr. 6]{rubin2005}:
-
-	\begin{verbatim}
-    One cannot compare medical compare medical costs for male
-    smokers with medical costs for female nonsmokers and claim
-    that this comparison is a causal effect of smoking without
-    making heroic and unwarranted assumptions.
-    \end{verbatim}
-\end{observacion}
 
 
 Los supuestos de identificación que hacemos son los siguientes \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
