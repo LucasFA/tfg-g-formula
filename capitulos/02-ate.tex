@@ -156,10 +156,26 @@ $\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*) \; \forall P^* 
 Además, la distribución estadística se relaciona con la causal a través de
 la observación: $P = \mathcal{O}(P^*)$.
 Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
-\begin{align*}
-	\mathcal{O}: \mathcal{M}^* \to & \; \mathcal{M} \\
-	P^* \mapsto                    & \; P
-\end{align*}
+
+Visualmente, queremos que el diagrama de la derecha sea conmutativo.
+
+\begin{minipage}{0.45\textwidth}
+	\centering
+	\begin{align*}
+		\mathcal{O}: \mathcal{M}^* \to & \; \mathcal{M} \\
+		P^* \mapsto                    & \; P
+	\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+	\centering
+	$$
+		\begin{tikzcd}
+			\mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
+			& \R^d
+		\end{tikzcd}
+	$$
+\end{minipage}
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
 %
 % https://www.jstor.org/stable/pdf/27590541.pdf?refreqid=fastly-default%3A596afd455befa7c2d5bf11298b9f67d5&ab_segments=&initiator=&acceptTC=1
@@ -167,23 +183,8 @@ Como los nombres indican, en particular querremos identificar el ATE causal con 
 
 % TODO: some intro
 
-\begin{definicion}[Consistencia]
-	\label{consistency}
-	Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
-	las distribuciones causal y estadística:
-	$$ Y = A Y(1) + (1 - A)Y(0) $$
-\end{definicion}
 
 \subsection{Identificación}
-
-Visualmente, queremos que el siguiente diagrama sea conmutativo.
-
-$$
-	\begin{tikzcd}
-		\mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
-		& \R^d
-	\end{tikzcd}
-$$
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
@@ -209,25 +210,35 @@ Antes de ello, un ejemplo del problema.
 
 
 Los supuestos de identificación que hacemos son los siguientes \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
-\begin{enumerate}
-	\item Intercambiabilidad condicional, independencia condicional o ignorabilidad. % TODO; check understanding
-	      $$ Y(a) \indep A | X $$
-	      Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
-	      % No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
-	      Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
-	      tratamiento no aporta información adicional.
-	      También significa que no hay más variables confusoras además de las representadas por $X$.
-	      En particular, se obtiene
-	      $$
-		      \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
-	      $$
 
-	\item Positividad
-	      $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
-\end{enumerate}
+\begin{definicion}[Consistencia]
+	\label{consistency}
+	Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
+	las distribuciones causal y estadística:
+	$$ Y = A Y(1) + (1 - A)Y(0) $$
+\end{definicion}
 
-Además de las dos condiciones anteriores, dependiendo del autor la condición de consistencia vista en \ref{consistency}
-se toma como una de ellas.
+\begin{definicion}[Intercambiabilidad condicional]
+    También denominada independencia condicional o ignorabilidad. % TODO; check understanding
+	$$ Y(a) \indep A | X $$
+	Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
+	% No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
+	Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
+	tratamiento no aporta información adicional.
+	También significa que no hay más variables confusoras además de las representadas por $X$.
+	En particular, se obtiene
+	$$
+		\E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
+	$$
+\end{definicion}
+
+\begin{definicion}[Positividad]
+	$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
+\end{definicion}
+
+Dependiendo del autor la condición de consistencia vista en \ref{consistency}
+se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
+y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
 \begin{definicion}[No interferencia]\label{noInterference}
 	El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
