@@ -2,7 +2,10 @@
 
 ## Compilando el PDF
 
-Puedes compilar el pdf con el gestor de paquetes `nix`, habilitando flakes y ejecutando `nix build` en el
+En Windows y Linux pero con los paquetes apropiados de Latex (que vendrían incluidos en muchas distribuciones de Latex por defecto,
+véase el archivo `flake.nix` para una lista completa),
+bastaría con ejecutar `./build.sh` en bash, o respectivamente su contenido `latexmk -pvc tfg.tex`, en una terminal.
+El repositorio incluye un archivo `.latexmkrc` con configuración de compilación.
+
+Puedes compilar el pdf con el gestor de paquetes `nix`, habilitando flakes y ejecutando `nix develop --command ./build.sh` en el
 directorio raíz del proyecto. 
-Alternativamente, una lista de paquetes necesarios para la compilación está
-disponible en el archivo `flake.nix`
