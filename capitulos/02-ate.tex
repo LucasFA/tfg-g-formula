@@ -331,23 +331,23 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 \begin{proof}\cite[sección 2.2]{mci}
 	Recordamos:
 	\begin{align*}
-		\psi^* &= \E[Y(1) - Y(0)] = \E[Y(1)] - \E[Y(0)] \\
-		\psi   &= \E[ \E[Y | A = 1, X] - \E[Y | A = 0, X]]
+		\psi^* & = \E[Y(1) - Y(0)] = \E[Y(1)] - \E[Y(0)]    \\
+		\psi   & = \E[ \E[Y | A = 1, X] - \E[Y | A = 0, X]]
 	\end{align*}
 	Identificamos $\E[Y(a)], \; a \in \{0, 1\}$:
 	\begin{align*}
-		\E[Y(a)] & = \E_X[\E[Y(a) | X]] & \\
-		         & = \E_X[\E[Y(a) | A, X]]  &  \text{(ignorabilidad y positividad)}\\
-		         & = \E_X[\E[Y | A = a, X]] & \text{(consistencia)}\\
+		\E[Y(a)] & = \E_X[\E[Y(a) | X]]     &                                      \\
+		         & = \E_X[\E[Y(a) | A, X]]  & \text{(ignorabilidad y positividad)} \\
+		         & = \E_X[\E[Y | A = a, X]] & \text{(consistencia)}                \\
 	\end{align*}
 	donde la positividad ha sido necesaria para no condicionar a un evento de probabilidad nula
 	y por tanto garantizar la existencia de $\E[Y(a) | A, X]$.
 
 	Con esto,
 	\begin{align*}
-		\psi^* & = \E[Y(1)] - \E[Y(0)] \\
+		\psi^* & = \E[Y(1)] - \E[Y(0)]                             \\
 		       & = \E_X[\E[Y | A = 1, X]] - \E_X[\E[Y | A = 0, X]] \\
-		       & = \E_X[\E[Y | A = 1, X] - \E[Y | A = 0, X]] \\
+		       & = \E_X[\E[Y | A = 1, X] - \E[Y | A = 0, X]]       \\
 		       & = \psi
 	\end{align*}
 \end{proof}
