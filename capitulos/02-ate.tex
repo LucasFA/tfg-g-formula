@@ -221,7 +221,8 @@ Los supuestos de identificación que hacemos son los siguientes \cite[material s
 \begin{definicion}[Intercambiabilidad condicional]
 	También denominada independencia condicional o ignorabilidad. % TODO; check understanding
 	$$ Y(a) \indep A | X $$
-	Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$.
+	Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
+	$(Y(a) \indep A) | X$.
 	% No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
 	Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
 	tratamiento no aporta información adicional.
@@ -330,20 +331,23 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 \begin{proof}\cite[sección 2.2]{mci}
 	Recordamos:
 	\begin{align*}
-		\psi^* & = \E[Y(1) - Y(0)] = \E[Y(1)] - \E[Y(0)] \
-		\psi   & = \E[ \E[Y | A = 1, X] - \E[Y | A = 0, X]]
+		\psi^* &= \E[Y(1) - Y(0)] = \E[Y(1)] - \E[Y(0)] \\
+		\psi   &= \E[ \E[Y | A = 1, X] - \E[Y | A = 0, X]]
 	\end{align*}
-	Identificamos $\E[Y(a)], a \in \{0, 1\}$:
+	Identificamos $\E[Y(a)], \; a \in \{0, 1\}$:
 	\begin{align*}
-		\E[Y(a)] & = \E[\E[Y(a) | X]] \
-		         & = \E[\E[Y(a) | A, X]]\
-		         & = \E[\E[Y | A = a, X]]
+		\E[Y(a)] & = \E_X[\E[Y(a) | X]] & \\
+		         & = \E_X[\E[Y(a) | A, X]]  &  \text{(ignorabilidad y positividad)}\\
+		         & = \E_X[\E[Y | A = a, X]] & \text{(consistencia)}\\
 	\end{align*}
-	Con lo cual
+	donde la positividad ha sido necesaria para no condicionar a un evento de probabilidad nula
+	y por tanto garantizar la existencia de $\E[Y(a) | A, X]$.
+
+	Con esto,
 	\begin{align*}
-		\psi^* & = \E[Y(1)] - \E[Y(0)] \
-		       & = \E\E[Y | A = 1, X]] - \E\E[Y | A = 0, X]] \
-		       & = \E[\E[Y | A = 1, X] - \E[Y | A = 0, X]] \
+		\psi^* & = \E[Y(1)] - \E[Y(0)] \\
+		       & = \E_X[\E[Y | A = 1, X]] - \E_X[\E[Y | A = 0, X]] \\
+		       & = \E_X[\E[Y | A = 1, X] - \E[Y | A = 0, X]] \\
 		       & = \psi
 	\end{align*}
 \end{proof}
