@@ -221,15 +221,16 @@ Los supuestos de identificación que hacemos son los siguientes \cite[material s
 \begin{definicion}[Intercambiabilidad condicional]
 	También denominada independencia condicional o ignorabilidad. % TODO; check understanding
 	$$ Y(a) \indep A | X $$
-	Independencia entre $Y(a)$ y $A$ bajo condicionamiento a $X$. % TODO: check is correct interpretation (associatively)
+	Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$.
 	% No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
 	Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
 	tratamiento no aporta información adicional.
-	También significa que no hay más variables confusoras además de las representadas por $X$.
+	También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
 	En particular, se obtiene
 	$$
-		\E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
+	    \E[Y(A) | A = 1, X = x] = \E[Y(A) | A = 0, X = x] = \E[Y(A) | X = x] \;\forall a \in \{0, 1\}
 	$$
+	    % \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
 \end{definicion}
 
 \begin{definicion}[Positividad]
@@ -317,7 +318,7 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 		\hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
 	$$
 	Donde a $\hat \psi - \psi $ es el error estadístico (que a su vez se puede descomponer en sesgo y varianza)
-	y $\psi - \psi^*$ es la \texit{brecha causal}, o en inglés
+	y $\psi - \psi^*$ es la \textit{brecha causal}, o en inglés
 	\textit{causal gap}.
 
 	Si hemos identificado el estimando causal con el estimador, esta brecha causal es nula.
