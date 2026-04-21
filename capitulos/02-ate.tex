@@ -352,22 +352,35 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	\end{align*}
 \end{proof}
 
+\begin{nota}
+	A partir de ahora bajo estas condiciones nos referiremos al \textit{ATE} sin especificar estadístico o causal.
+\end{nota}
+
 \begin{proposicion}[G-formula, versión no paramétrica]
-	Bajo las condiciones anteriores, tomamos el siguiente estimador del ATE estadístico:
+	Bajo las condiciones anteriores, tenemos el siguiente estimador del ATE:
 	$$
 		\hat\psi = \sum_x P(X = x) \left[P(Y = 1 | A = 1, X = x) - P(Y = 1 | A = 0, X = x) \right]
 	$$
 \end{proposicion}
 
 \begin{proof}\cite[material suplementario S1]{luque2021}
-
 	Bajo las condiciones anteriores, por el Teorema de la probabilidad total (\ref{thm:probabilidad-total}) tenemos que
 	$$
 		P[Y(a) = 1 ] = \sum_x P[Y(a) = 1 | X = x]P[X = x]
 	$$
-	Aplicando la intercambiabilidad condicional, por la cual dentro de cada estrato $x$ de $X$ los predictores están
-	equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
-	$$ = \sum_c P[Y(a) = 1 | A=a,C=c]P[C=c] $$
+	Aplicando la intercambiabilidad condicional y la consistencia: % por la cual dentro de cada estrato $x$ de $X$ los predictores están
+	% equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
+	\begin{align*}
+                  &= \sum_x P[Y(a) = 1 | A = a, X = x]P[X=x] \\
+		          &= \sum_x P[Y = 1 | A = a, X = x]P[X=x]\\
+	\end{align*}
+	con lo cual,
+	\begin{align*}
+	    ATE &= \E[Y(1) - Y(0)] \\
+	        &= \E[\E[Y | X, A = 1] - \E[Y | X, A = 0]] \text{(identificación)} \\
+	        &= \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right) \text{(teorema de la probabilidad total)}
+	\end{align*}
+	donde hemos usado que $Y \in \{0, 1 \}$ en el último paso.
 \end{proof}
 
 \begin{observacion}
