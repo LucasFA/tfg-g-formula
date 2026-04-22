@@ -134,10 +134,6 @@ su totalidad bajo ciertos supuestos.
 % \end{definicion}
 
 
-\begin{definicion}[Efecto a nivel de unidad] % TODO: I will need to move this
-	Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
-	representará una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
-\end{definicion}
 
 \begin{ejemplo}
 	Diferencia de riesgo: $Y_i(1) - Y_i(0)$,
@@ -242,11 +238,17 @@ Dependiendo del autor la condición de consistencia vista en \ref{consistency}
 se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
+\begin{definicion}[Efecto a nivel de unidad]
+	Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
+	representará una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
+\end{definicion}
+
 \begin{definicion}[No interferencia]\label{noInterference}
-	El resultado potencial de un sujeto es independiente de la exposición o no exposición de otro sujeto al tratamiento.
-	% TODO: important: eliminar la independencia entre observaciones a nivel de unidad.
+	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad son independientes.
+	Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
 	% TODO: important: "no unobserved confounding" interpretation of this:
 \end{definicion}
+
 
 \begin{definicion}[SUTVA]
 	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
@@ -371,14 +373,14 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	Aplicando la intercambiabilidad condicional y la consistencia: % por la cual dentro de cada estrato $x$ de $X$ los predictores están
 	% equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
 	\begin{align*}
-                  &= \sum_x P[Y(a) = 1 | A = a, X = x]P[X=x] \\
-		          &= \sum_x P[Y = 1 | A = a, X = x]P[X=x]\\
+		 & = \sum_x P[Y(a) = 1 | A = a, X = x]P[X=x] \\
+		 & = \sum_x P[Y = 1 | A = a, X = x]P[X=x]    \\
 	\end{align*}
 	con lo cual,
 	\begin{align*}
-	    ATE &= \E[Y(1) - Y(0)] \\
-	        &= \E[\E[Y | X, A = 1] - \E[Y | X, A = 0]] \text{(identificación)} \\
-	        &= \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right) \text{(teorema de la probabilidad total)}
+		ATE & = \E[Y(1) - Y(0)]                                                                                                          \\
+		    & = \E[\E[Y | X, A = 1] - \E[Y | X, A = 0]] \text{(identificación)}                                                          \\
+		    & = \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right) \text{(teorema de la probabilidad total)}
 	\end{align*}
 	donde hemos usado que $Y \in \{0, 1 \}$ en el último paso.
 \end{proof}
