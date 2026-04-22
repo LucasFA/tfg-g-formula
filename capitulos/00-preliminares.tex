@@ -31,8 +31,9 @@
 \end{definicion}
 
 \begin{definicion}[Muestra]
-	Una muestra de una población es una $n$-tupla de elementos de la población $P$.
-	la distribución de $X$ para cada $i$.
+	Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$ de
+	donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$ e
+	independientes dos a dos.
 \end{definicion}
 
 \begin{ejemplo}
@@ -91,17 +92,23 @@
 
 % TODO: clear this up
 \begin{definicion}[Estimando]
-	Un estimando es una cantidad deseada de ser estimada.
-	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un modelo estadístico, definido en \ref{def:modelo}.
+	Un estimando es una cantidad asociada a la distribución deseada de ser estimada.
+	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un
+	modelo estadístico, definido en \ref{def:modelo}.
 \end{definicion}
+
 \begin{nota}
 	Un estimando puede tener como dominio tanto un modelo estadístico como un modelo causal. Nos referiremos a ellos
 	respectivamente como estimandos estadísticos y causales.
 \end{nota}
 
 \begin{definicion}[Estimador]
+\end{definicion}
+
+\begin{definicion}[Estadístico]
 	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
 	Un estimador lo definiremos como cualquier función de una muestra, $\psi: \R^N \to \R^N$, que pretenderá aproximar un estimando.
+
 	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
 \end{definicion}
 
@@ -110,6 +117,7 @@
 	que su imagen esté contenida en el espacio paramétrico. No hacemos tal distinción en este trabajo pues no nos centramos en
 	estimadores paramétricos.
 \end{observacion}
+
 
 \begin{definicion}[Consistencia]
 	Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
