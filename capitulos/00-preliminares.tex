@@ -65,9 +65,9 @@
 \end{definicion}
 \begin{corolario}
 	% TODO: fix space after MAS
-	Dada una \MAS $(x_1, ..., x_n)$, se da que:
+	Dada una \MAS $(X_1, ..., X_n)$, se da que:
 	$$
-		P(x_1, ..., x_n) = \prod_{i=1}^n P(x_i)
+		P(X_1, ..., X_n) = \prod_{i=1}^n P(X_i)
 	$$
 \end{corolario}
 
@@ -90,6 +90,18 @@
 	% https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
 
+\begin{definicion}[Modelo estadístico]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
+	Un modelo $\mathcal{M}$ es una
+	familia de distribuciones de probabilidad.
+\end{definicion}
+
+\begin{notac}
+	Denotaremos $P \in \mathcal{M}$ para indicar $P \in \mathcal{P}$, obviando el espacio muestral.
+\end{notac}
+\begin{observacion}
+	Un modelo representa una colección de asunciones respecto a la generación de muestras.
+\end{observacion}
+
 % TODO: clear this up
 \begin{definicion}[Estimando]
 	Un estimando es una cantidad asociada a la distribución deseada de ser estimada.
@@ -102,20 +114,22 @@
 	respectivamente como estimandos estadísticos y causales.
 \end{nota}
 
-\begin{definicion}[Estimador]
-\end{definicion}
-
 \begin{definicion}[Estadístico]
 	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-	Un estimador lo definiremos como cualquier función de una muestra, $\psi: \R^N \to \R^N$, que pretenderá aproximar un estimando.
-
+	Un estadístico lo definiremos como cualquier función (medible) de una muestra, $\phi: \R^N \to \R^N$.
 	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
 \end{definicion}
 
+\begin{definicion}[Estimador]
+    Un estadístico $\hat\psi$ que pretende aproximar un estimando $\psi$.
+    Si el estimando sólo toma valores en un subconjunto $\operatorname{Im}(\psi) = \Omega \subset \R^N$, típicamente pediremos que el estadístico
+    tome valores en el mismo.
+\end{definicion}
+
 \begin{observacion}
-	En la asignatura de Inferencia Estadística tomamos estimadores de parámetros de una distribución, y por ello se exige
-	que su imagen esté contenida en el espacio paramétrico. No hacemos tal distinción en este trabajo pues no nos centramos en
-	estimadores paramétricos.
+	En la asignatura de Inferencia Estadística típicamente tomamos modelos parametrizados y comúnmente usamos
+	estimadores de esos parámetros de una distribución, y por ello se exige
+	que su imagen esté contenida en el espacio paramétrico.
 \end{observacion}
 
 
