@@ -238,10 +238,20 @@ Dependiendo del autor la condición de consistencia vista en \ref{consistency}
 se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
-\begin{definicion}[Efecto a nivel de unidad]
-	Llamaremos efecto a nivel de unidad a cualquier función de una muestra de tamaño $n = 1$ dada, que
-	representará una medida de el efecto del tratamiento sobre el resultado. Contrasta con el efecto a nivel de población.
+\begin{definicion}[Unidad]
+	Llamaremos unidad a un único sujeto o un conjunto de sujetos que trataremos de forma colectiva.
 \end{definicion}
+
+\begin{ejemplo}
+	De nuevo tomo como ejemplo trabajos asociados a GiveDirectly.
+	En \cite{Haushofer2016}, se toma como unidad la unidad familiar para la mayoría de medidas.
+	Vale la pena observar que esto es a pesar de haber literatura mostrando que no lo son del todo:
+	\begin{quotation}
+		In this literature, a common test of whether households are unitary is precisely the
+		test of income pooling, which asks whether expenditure shares are different when money is received
+		by husbands versus wives. Several papers have found this to be the case in observational data ([...]).
+	\end{quotation}
+\end{ejemplo}
 
 \begin{definicion}[No interferencia]\label{noInterference}
 	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad son independientes.
