@@ -30,9 +30,9 @@
 	\end{enumerate}
 \end{definicion}
 
-\begin{definicion}[Muestra]
-	Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$ de
-	donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$ e
+\begin{definicion}[Muestra]\label{def:muestra}
+	Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$
+	donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$, y son
 	independientes dos a dos.
 \end{definicion}
 
@@ -63,9 +63,10 @@
 	con distribución uniforme sucesivamente y con reemplazamiento,
 	justificando el nombre.
 \end{definicion}
+
 \begin{corolario}
 	% TODO: fix space after MAS
-	Dada una \MAS $(X_1, ..., X_n)$, se da que:
+	Dada una \MAS con reemplazamiento $(X_1, ..., X_n)$, se da que:
 	$$
 		P(X_1, ..., X_n) = \prod_{i=1}^n P(X_i)
 	$$
@@ -116,7 +117,7 @@
 
 \begin{definicion}[Estadístico]
 	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-	Un estadístico lo definiremos como cualquier función (medible) de una muestra, $\phi: \R^N \to \R^N$.
+	Un estadístico lo definiremos como cualquier función (medible) de una muestra (\ref{def:muestra}) $\phi: \R^n \to \R^N$.
 	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
 \end{definicion}
 
