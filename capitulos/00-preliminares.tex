@@ -15,18 +15,18 @@
 \begin{definicion}[Espacio de probabilidad]
 	$(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
 	\begin{enumerate}
-		\item $\Omega$ es un conjunto no vacío
-		\item $\mathcal{F}$ es una $\sigma$ álgebra sobre $2^\Omega = \{U | U \subseteq \Omega \}$
-		\item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\mathcal F) = 1$)
+		\item $\Omega$ es un conjunto no vacío.
+		\item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$ álgebra.
+		\item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\Omega) = 1$).
 	\end{enumerate}
 \end{definicion}
 
 \begin{definicion}[Variable aleatoria]
 	Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
 	\begin{enumerate}
-		\item $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad
-		\item $E$ es un espacio medible (típicamente $\R^n$)
-		\item $X$ es una función medible
+		\item $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad.
+		\item $E$ es un espacio medible (típicamente $\R^n$).
+		\item $X$ es una función medible.
 	\end{enumerate}
 \end{definicion}
 
@@ -91,9 +91,9 @@
 	% https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
 
-\begin{definicion}[Modelo estadístico]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
-	Un modelo $\mathcal{M}$ es una
-	familia de distribuciones de probabilidad.
+\begin{definicion}[Modelo]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
+	Un modelo $\mathcal{M}$ es un par $(X, \mathcal{P})$ donde $X$ es una variable aleatoria
+	y $\mathcal{P}$ es una familia de distribuciones de probabilidad.
 \end{definicion}
 
 \begin{notac}
@@ -107,7 +107,7 @@
 \begin{definicion}[Estimando]
 	Un estimando es una cantidad asociada a la distribución deseada de ser estimada.
 	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un
-	modelo estadístico, definido en \ref{def:modelo}.
+	modelo, definido en \ref{def:modelo}.
 \end{definicion}
 
 \begin{nota}
