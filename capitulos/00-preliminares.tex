@@ -16,7 +16,7 @@
 	$(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
 	\begin{enumerate}
 		\item $\Omega$ es un conjunto no vacío.
-		\item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$ álgebra.
+		\item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$-álgebra.
 		\item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\Omega) = 1$).
 	\end{enumerate}
 \end{definicion}
@@ -30,25 +30,11 @@
 	\end{enumerate}
 \end{definicion}
 
-\begin{definicion}[Muestra]\label{def:muestra}
+% TODO: source
+\begin{definicion}[Muestra Aleatoria Simple, con reemplazamiento]\label{def:muestra}
 	Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$
 	donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$, y son
 	independientes dos a dos.
-\end{definicion}
-
-\begin{ejemplo}
-	\begin{enumerate}
-		\item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
-		\item Altura y peso de una persona, medidas en cm y kilogramos: $\{(175, 75)\}$.
-		\item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
-		      $\{(175, 75), (168, 66)\}$.
-	\end{enumerate}
-\end{ejemplo}
-
-% TODO: source
-\begin{definicion}[Muestra Aleatoria Simple con reemplazamiento]
-	Una muestra $M$ donde los elementos del vector son independientes:
-	$(X_1, ..., X_n)$ tales que
 
 	\begin{displaymath}
 		\begin{cases}
@@ -72,9 +58,9 @@
 	$$
 \end{corolario}
 
-% TODO: source, do I even include this?
+% TODO: source
+% TODO: maybe delete
 \begin{definicion}[Muestra Aleatoria simple sin reemplazamiento]
-	% TODO: source cite cita
 	Una muestra $M$ donde los elementos de la población se eligen de forma que
 	$$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
@@ -83,6 +69,7 @@
 	que la de cualquier otro subconjunto de $k$ elementos.
 \end{definicion}
 
+% TODO: maybe delete, see above
 \begin{corolario}
 	Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
 	no se puede elegir el mismo sujeto de la población dos veces.
@@ -90,6 +77,14 @@
 	% TODO: will we talk about it?
 	% https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
+
+\begin{ejemplo}
+	\begin{enumerate}
+		\item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
+		\item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
+		      $\{(175, 75), (168, 66)\}$.
+	\end{enumerate}
+\end{ejemplo}
 
 \begin{definicion}[Modelo]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
 	Un modelo $\mathcal{M}$ es un par $(X, \mathcal{P})$ donde $X$ es una variable aleatoria
@@ -99,6 +94,7 @@
 \begin{notac}
 	Denotaremos $P \in \mathcal{M}$ para indicar $P \in \mathcal{P}$, obviando el espacio muestral.
 \end{notac}
+
 \begin{observacion}
 	Un modelo representa una colección de asunciones respecto a la generación de muestras.
 \end{observacion}
