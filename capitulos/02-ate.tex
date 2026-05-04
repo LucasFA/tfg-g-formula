@@ -175,20 +175,27 @@ El primer problema que aparece es la mayor libertad que posee el modelo causal, 
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
 Eso es, tenemos que las aplicaciones de estimandos causales en estimandos estadísticos,
 $\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ no son inyectivas.
+En particular, $\mathcal{O}$ no lo es.
+
+\begin{definicion}[Identificación]
+    Diremos que un estimando causal está identificado con un estimador estadístico cuando son iguales.
+\end{definicion}
 
 Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
 Antes de ello, un ejemplo del problema.
 
 \begin{ejemplo}\cite[sección 2.2]{mci}
 	Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones en $\mathcal{M}^*$
-	degeneradas tomando como valor $(1, 0, 1)$ y $(1, -1, 1)$, respectivamente. Aplicando consistencia,
+	degeneradas tomando como valores posibles $(1, 0, 1)$ y $(1, -1, 1)$. Aplicando consistencia,
 	tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
 	$(A, Y) = (1, 1)$.
 	Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
-	porque el valor de la distribución observable no dependía del valor de $Y(0)$.
+	porque el valor de la distribución observable no dependía del valor de $Y(0)$: siempre
+	se daba el caso de que $Y = Y(1)$.
 \end{ejemplo}
 
-Los supuestos de identificación que hacemos son los siguientes \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
+Los supuestos de identificación que hacemos son los siguientes, extraídos
+de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 
 \begin{definicion}[Consistencia]
 	\label{consistency}
@@ -222,21 +229,8 @@ se toma como una de ellas o no, puesto que su rol es de relacionar el modelo cau
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
 
-\begin{ejemplo}
-	De nuevo tomo como ejemplo trabajos asociados a GiveDirectly.
-	En \cite{Haushofer2016}, se toma como unidad la unidad familiar para la mayoría de medidas socioeconómicas.
-	Medidas psicológicas sí consideran la unidad individual.
-	Vale la pena observar que esto es a pesar de haber literatura mostrando que no lo son del todo.
-	Citando \cite{Haushofer2016}:
-	\begin{quotation}
-		In [the cited] literature, a common test of whether households are unitary is precisely the
-		test of income pooling, which asks whether expenditure shares are different when money is received
-		by husbands versus wives. Several papers have found this to be the case in observational data ([...]).
-	\end{quotation}
-\end{ejemplo}
-
 \begin{definicion}[No interferencia]\label{noInterference}
-	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad son independientes.
+	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\ref{def:unidad}) son independientes.
 	Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
 	% TODO: important: "no unobserved confounding" interpretation of this:
 \end{definicion}
@@ -312,10 +306,11 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	$$
 		\hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
 	$$
-	Donde a $\hat \psi - \psi $ es el error estadístico (que a su vez se puede descomponer en sesgo y varianza)
+	Donde $\hat \psi - \psi $ es el error estadístico (que a su vez se puede descomponer en sesgo y varianza)
 	y $\psi - \psi^*$ es la brecha causal, o en inglés \textit{causal gap}.
 
-	Si hemos identificado el estimando causal con el estimador, esta brecha causal es nula.
+	Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
+	que esta brecha causal es nula.
 \end{observacion}
 
 \begin{proposicion}[Identificación del ATE]
@@ -352,9 +347,11 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 
 \begin{proposicion}[G-formula, versión no paramétrica]
 	Bajo las condiciones anteriores y dada una \MAS $\{S_i\} = \{(Y_i, A_i, X_i)\}_{i = 1, ..., N}$, tenemos el siguiente estimador del ATE:
-	$$
-		\hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
-	$$
+	% TODO: find this based on sample?
+	% TODO: includes version with sample, do proof part
+	% $$
+		% \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
+	% $$
 
 	$$
 		\hat\psi = \sum_x P(X = x) \left[P(Y = 1 | A = 1, X = x) - P(Y = 1 | A = 0, X = x) \right]
@@ -377,11 +374,11 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 		ATE & = \E[Y(1) - Y(0)]                                                                \\
 		    & = \E[\E[Y | X, A = 1] - \E[Y | X, A = 0]]                                        \\
 		    & = \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
-		\text{(teorema de la probabilidad total)}
+		% \text{(teorema de la probabilidad total)}
 	\end{align*}
-	donde hemos usado que $Y \in \{0, 1 \}$ en el último paso.
-	Tomando una muestra aleatoria simple (IID) $\left(S_1, ..., S_N\right)$, donde % TODO: change S_i -> ?
-	$S_i = (Y_i, A_i, X_i)$, el estimador propuesto es
+	% TODO: if above includes version with sample
+	% Tomando una muestra aleatoria simple (IID) $\left(S_1, ..., S_N\right)$, donde % TODO: change S_i -> ?
+	% $S_i = (Y_i, A_i, X_i)$, el estimador propuesto es
 
 \end{proof}
 
@@ -409,16 +406,24 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 \end{ejemplo}
 
 \subsection{Identificación parcial}
-No siempre es el caso que un estadístico esté identificado con un estimando bajo asunciones razonables.
+No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
+asunciones razonables.
 Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
 encontrar asunciones que nos permiten acotar el valor del estimando de estudio en base al
 estadístico dado.
-Este es el caso del Odds Ratio.
+Como veremos, este es el caso del Odds Ratio.
 
-\begin{observacion}
-	Uno puede ver ciertos paralelismos entre esta necesidad y los estadísticos
-	para regiones de confianza, aunque la motivación sea casi diametralmente opuesta,
-	en el sentido que por un lado tenemos un buen estadístico que utilizamos para
-	obtener resultados más útiles, mientras que ahora tenemos un estadístico "no tan bueno"
-	por el cual debemos de flexibilizar la interpretación.
-\end{observacion}
+\begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
+    Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente si conocemos
+    un par de estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
+    $$
+        \psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
+    $$
+\end{definicion}
+
+\begin{corolario}
+	Dado estimando parcialmente identificado $\psi^*$ tiene una brecha causal acotada:
+	$$
+	    \psi^* - \psi
+	$$
+\end{corolario}
