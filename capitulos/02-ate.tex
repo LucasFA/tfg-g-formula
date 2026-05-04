@@ -136,10 +136,15 @@ su totalidad bajo ciertos supuestos.
 \subsection{Motivación}
 Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar
 un estimando sobre la distribución observable que nos permita inferir sobre él,
-$\psi : \mathcal{M} \to \R$, de forma que $\psi(P) = \psi^*(P^*) \; \forall P^* \in \mathcal{M}^*$.
-Además, la distribución estadística se relaciona con la causal a través de
+usando que la distribución estadística se relaciona con la causal a través de
 la observación: $P = \mathcal{O}(P^*)$.
 Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
+
+\begin{definicion}[Identificación]
+    Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
+    $ \varphi = \psi \circ \mathcal{O}$.
+    En tal caso, denotaremos $\psi^* \equiv \varphi$.
+\end{definicion}
 
 Visualmente, queremos que el diagrama de la derecha sea conmutativo.
 
@@ -173,13 +178,9 @@ Visualmente, queremos que el diagrama de la derecha sea conmutativo.
 
 El primer problema que aparece es la mayor libertad que posee el modelo causal, que resulta en
 que varias distribuciones causales tienen la misma distribución correspondiente en $\mathcal{M}$.
-Eso es, tenemos que las aplicaciones de estimandos causales en estimandos estadísticos,
-$\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ no son inyectivas.
-En particular, $\mathcal{O}$ no lo es.
-
-\begin{definicion}[Identificación]
-    Diremos que un estimando causal está identificado con un estimador estadístico cuando son iguales.
-\end{definicion}
+Eso es decir que $\mathcal{O}$ no es inyectiva, con lo que inmediatamente
+las aplicaciones que llevan estimandos causales en estimandos estadísticos,
+$\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ tampoco son inyectivas.
 
 Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
 Antes de ello, un ejemplo del problema.
