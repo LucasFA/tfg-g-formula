@@ -301,18 +301,21 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	% \end{equation*}
 \end{proof}
 
-\begin{observacion}\cite[sección 2.3]{mci}
-	Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
+\begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
+    Dado un estimando causal $\psi^*$ $\psi - \psi^*$ es la brecha causal, o en inglés \textit{causal gap}.
+
+    Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
+	que esta brecha causal es nula.
+\end{definicion}
+
+\begin{corolario}
+    Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
 	que el error de estimación del estimando causal por el estimador estadístico es
 	$$
 		\hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
 	$$
 	Donde $\hat \psi - \psi $ es el error estadístico (que a su vez se puede descomponer en sesgo y varianza)
-	y $\psi - \psi^*$ es la brecha causal, o en inglés \textit{causal gap}.
-
-	Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
-	que esta brecha causal es nula.
-\end{observacion}
+\end{corolario}
 
 \begin{proposicion}[Identificación del ATE]
 	Bajo las suposiciones anteriores, el ATE causal está identificado con el ATE estadístico.
@@ -415,16 +418,19 @@ estadístico dado.
 Como veremos, este es el caso del Odds Ratio.
 
 \begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
-    Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente si conocemos
-    un par de estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
+    Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
+    con un estimando estadístico $\psi$ si conocemos
+    dos estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
     $$
         \psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
     $$
 \end{definicion}
 
 \begin{corolario}
-	Dado estimando parcialmente identificado $\psi^*$ tiene una brecha causal acotada:
+	Dado estimando parcialmente identificado $\psi^*$, este tiene una brecha causal acotada.
+	Si $\psi$ es un estimando estadístico,
 	$$
-	    \psi^* - \psi
+	    (\psi^\downarrow - \psi)\circ \mathcal{O} \leq \psi^* - \psi \circ \mathcal{O} \leq (\psi^\uparrow - \psi) \circ \mathcal{O}
 	$$
+	donde $(f - g)(x) \equiv f(x) - g(x)$
 \end{corolario}
