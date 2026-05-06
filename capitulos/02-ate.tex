@@ -315,7 +315,7 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	$$
 		\hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
 	$$
-	Donde el error estadístico $\hat \psi - \psi$  a su vez se puede descomponer en sesgo y varianza.
+	Donde el error estadístico $\hat \psi - \psi$ a su vez se puede descomponer en sesgo y varianza.
 \end{corolario}
 
 \begin{proposicion}[Identificación del ATE]
@@ -410,9 +410,32 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	Claro está, esto no es observable, ya que hemos obtenido el valor real del ATE por el modelo causal.
 \end{ejemplo}
 
-\subsection{Identificación parcial}
+\subsection{Identificación parcial y análisis de sensitividad}
 No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
 asunciones razonables.
+
+La identificación parcial consiste en encontrar asunciones que nos permiten acotar el valor del estimando
+causal en base a un estimando estadístico dado que sí esté identificado.
+
+El análisis de sensitividad, por otro lado, nos da herramientas para determinar la magnitud
+mínima de la brecha causal que haría nuestra estimación estadísticamente no significativa.
+
+\begin{nota}
+	El análisis de sensitividad ha históricamente de gran relevancia: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
+	se comenta el caso del primer análisis de sensitividad, por Jerry Cornfield y compañía en \cite{cornfield1959}. % TODO: make this more formal
+	Cito un segmento del abstract the este artículo a continuación:
+
+\begin{quotation}
+        The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
+        the results can not be interpreted as arising from an indirect association of cigarette
+        smoking with some other agent or characteristic, since this hypothetical agent would have
+        to be at least as strongly associated with lung cancer as cigarette use; no such agent has
+        been found or suggested.
+\end{quotation}
+
+
+\end{nota}
+
 Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
 encontrar asunciones que nos permiten acotar el valor del estimando de estudio en base al
 estadístico dado.
@@ -425,6 +448,11 @@ Como veremos, este es el caso del Odds Ratio.
     $$
         \psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
     $$
+    o más explícitamente:
+    $$
+        (\psi^{\downarrow} \circ \mathcal{O})(P^*) \leq \psi^*(P^*) \leq (\psi^{\uparrow} \circ \mathcal{O})(P^*) \quad \forall P^* \in \mathcal{M}^*
+    $$
+
 \end{definicion}
 
 \begin{corolario}
