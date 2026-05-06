@@ -141,9 +141,9 @@ la observación: $P = \mathcal{O}(P^*)$.
 Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
 
 \begin{definicion}[Identificación]
-    Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
-    $ \varphi = \psi \circ \mathcal{O}$.
-    En tal caso, denotaremos $\psi^* \equiv \varphi$.
+	Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
+	$ \varphi = \psi \circ \mathcal{O}$.
+	En tal caso, denotaremos $\psi^* \equiv \varphi$.
 \end{definicion}
 
 Visualmente, queremos que el diagrama de la derecha sea conmutativo.
@@ -302,14 +302,14 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 \end{proof}
 
 \begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
-    Dado un estimando causal $\psi^*$ y un estimando estadístico $\psi$, llamamos brecha causal o en inglés \textit{causal gap} a la diferencia $\psi - \psi^*$,
+	Dado un estimando causal $\psi^*$ y un estimando estadístico $\psi$, llamamos brecha causal o en inglés \textit{causal gap} a la diferencia $\psi - \psi^*$,
 
-    Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
+	Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
 	que esta cantidad es nula.
 \end{definicion}
 
 \begin{corolario}
-    Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
+	Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
 	que el error de estimación del estimando causal por el estimador estadístico se descompone en
 	error estadístico y brecha causal:
 	$$
@@ -355,7 +355,7 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	% TODO: find this based on sample?
 	% TODO: includes version with sample, do proof part
 	% $$
-		% \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
+	% \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
 	% $$
 
 	$$
@@ -422,16 +422,19 @@ mínima de la brecha causal que haría nuestra estimación estadísticamente no 
 
 \begin{nota}
 	El análisis de sensitividad ha históricamente de gran relevancia: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
-	se comenta el caso del primer análisis de sensitividad, por Jerry Cornfield y compañía en \cite{cornfield1959}. % TODO: make this more formal
+	se comenta el caso del primer análisis de sensitividad, por Jerome Cornfield y compañía en \cite{cornfield1959}. % TODO: make this more formal
+	Por contexto, una crítica posible a los artículos del momento incluían el hecho de que no podían controlar
+	por todas las covariantes posibles, sugiriendo que existe la posibilidad de que
+	hubiera un factor desconocido que explicara la tasas de enfermedad en la población
+	fumadora.
 	Cito un segmento del abstract the este artículo a continuación:
-
-\begin{quotation}
-        The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
-        the results can not be interpreted as arising from an indirect association of cigarette
-        smoking with some other agent or characteristic, since this hypothetical agent would have
-        to be at least as strongly associated with lung cancer as cigarette use; no such agent has
-        been found or suggested.
-\end{quotation}
+	\begin{quotation}
+		The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
+		the results can not be interpreted as arising from an indirect association of cigarette
+		smoking with some other agent or characteristic, since this hypothetical agent would have
+		to be at least as strongly associated with lung cancer as cigarette use; no such agent has
+		been found or suggested.
+	\end{quotation}
 
 
 \end{nota}
@@ -442,16 +445,16 @@ estadístico dado.
 Como veremos, este es el caso del Odds Ratio.
 
 \begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
-    Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
-    con un estimando estadístico $\psi$ si conocemos
-    dos estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
-    $$
-        \psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
-    $$
-    o más explícitamente:
-    $$
-        (\psi^{\downarrow} \circ \mathcal{O})(P^*) \leq \psi^*(P^*) \leq (\psi^{\uparrow} \circ \mathcal{O})(P^*) \quad \forall P^* \in \mathcal{M}^*
-    $$
+	Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
+	con un estimando estadístico $\psi$ si conocemos
+	dos estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
+	$$
+		\psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
+	$$
+	o más explícitamente:
+	$$
+		(\psi^{\downarrow} \circ \mathcal{O})(P^*) \leq \psi^*(P^*) \leq (\psi^{\uparrow} \circ \mathcal{O})(P^*) \quad \forall P^* \in \mathcal{M}^*
+	$$
 
 \end{definicion}
 
@@ -459,7 +462,7 @@ Como veremos, este es el caso del Odds Ratio.
 	Dado estimando parcialmente identificado $\psi^*$, este tiene una brecha causal acotada.
 	Si $\psi$ es un estimando estadístico,
 	$$
-	    (\psi^\downarrow - \psi)\circ \mathcal{O} \leq \psi^* - \psi \circ \mathcal{O} \leq (\psi^\uparrow - \psi) \circ \mathcal{O}
+		(\psi^\downarrow - \psi)\circ \mathcal{O} \leq \psi^* - \psi \circ \mathcal{O} \leq (\psi^\uparrow - \psi) \circ \mathcal{O}
 	$$
 	donde $(f - g)(x) \equiv f(x) - g(x)$
 \end{corolario}
