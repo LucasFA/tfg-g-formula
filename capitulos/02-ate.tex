@@ -415,19 +415,19 @@ No siempre es el caso que podamos identificar totalmente un estimando causal con
 asunciones razonables.
 
 La identificación parcial consiste en encontrar asunciones que nos permiten acotar el valor del estimando
-causal en base a un estimando estadístico dado que sí esté identificado.
+causal en base a estimandos estadísticos.
 
 El análisis de sensitividad, por otro lado, nos da herramientas para determinar la magnitud
 mínima de la brecha causal que haría nuestra estimación estadísticamente no significativa.
 
 \begin{nota}
-	El análisis de sensitividad ha históricamente de gran relevancia: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
+	El análisis de sensitividad ha sido de gran relevancia histórica: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
 	se comenta el caso del primer análisis de sensitividad, por Jerome Cornfield y compañía en \cite{cornfield1959}. % TODO: make this more formal
-	Por contexto, una crítica posible a los artículos del momento incluían el hecho de que no podían controlar
-	por todas las covariantes posibles, sugiriendo que existe la posibilidad de que
-	hubiera un factor desconocido que explicara la tasas de enfermedad en la población
-	fumadora.
-	Cito un segmento del abstract the este artículo a continuación:
+	Como información contextual, una crítica posible a los artículos del momento que asociaban el consumo de tabaco
+	al cáncer de pulmón incluían el hecho de que no podían controlar
+	por todas las covariantes posibles, sugiriendo entonces la posible existencia de
+	un factor desconocido que explicara la tasas de enfermedad en la población fumadora.
+	Cito un segmento del abstract de este artículo a continuación, en el cual refutan (cuan posible es esto) esta idea:
 	\begin{quotation}
 		The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
 		the results can not be interpreted as arising from an indirect association of cigarette
@@ -435,8 +435,6 @@ mínima de la brecha causal que haría nuestra estimación estadísticamente no 
 		to be at least as strongly associated with lung cancer as cigarette use; no such agent has
 		been found or suggested.
 	\end{quotation}
-
-
 \end{nota}
 
 Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
