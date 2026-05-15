@@ -103,12 +103,20 @@
 	para disgregar en todos los estratos de covariantes ($X$) posibles.
 \end{observacion}
 
-\begin{corolario} Obtenemos el siguiente estimador \say{plug-in} del ATE:
-$$
-	\hat{ATE} = \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
-$$
+\begin{corolario} Obtenemos el siguiente estimador \say{plug-in} del ATE.
+    Dada una \MAS $(Y_i, A_i, X_i)$:
+% \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
+    $$
+        \widehat{ATE} = \dfrac{1}{N} \sum_{i = 1}^N \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
+    $$
+    donde $\hat\mu_1$ y $\hat\mu_0$ son estimadores bajo los supuestos $A=1$ y $A=0$, respectivamente.
 \end{corolario}
 
+\begin{observacion}
+    % TODO: implement this in R
+    Por ejemplo, bajo imputación de las filas o unidades con el valor incorrecto,
+    entrenamos $\hat\mu_1$ imputando todas las filas con $A = 0$.
+\end{observacion}
 
 \begin{ejemplo}[ATE]
 	Consideramos la tabla de contingencia anterior y añadimos la diferencia:

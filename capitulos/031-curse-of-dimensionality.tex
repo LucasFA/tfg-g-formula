@@ -1,1 +1,14 @@
-\subsection{Curse of Dimensionality}
+\subsection{Maldición de la Dimensionalidad}
+La maldición de la dimensionalidad o \textit{curse of dimensionality}
+es un fenómeno que ocurre cuando el número dimensiones de un conjunto de datos crece,
+específicamente cuando el muestreo no aumenta lo suficiente. Obsérvese por ejemplo que el
+número de elementos en una malla uniforme de un hipercubo requiere un crecimiento exponencial del
+número de muestras con el número de dimensiones.
+
+\begin{observacion}
+    Dada la ecuación del ATE:
+    $$
+        \widehat{ATE} = \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
+    $$
+
+\end{observacion}
