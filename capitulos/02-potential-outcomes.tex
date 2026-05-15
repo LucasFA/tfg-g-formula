@@ -230,6 +230,7 @@ se toma como una de ellas o no, puesto que su rol es de relacionar el modelo cau
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
 
+\subsection{Otras definiciones relacionadas}
 \begin{definicion}[No interferencia]\label{noInterference}
 	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\ref{def:unidad}) son independientes.
 	Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
@@ -279,7 +280,7 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 		\end{cases}
 	$$
 
-	Entonces el la distribución causal determina totalmente la distribución estadística por:
+	Entonces la distribución causal determina totalmente la distribución estadística por:
 	$$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
 \end{proposicion}
 
@@ -300,4 +301,3 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 	%     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
 	% \end{equation*}
 \end{proof}
-
