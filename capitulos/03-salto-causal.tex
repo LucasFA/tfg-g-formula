@@ -1,2 +1,167 @@
-\section{Un salto causal}
+\section{Identificación}
+% \section{Un salto causal}
 % ATE estadístico y causal
+
+\begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
+	Dado un estimando causal $\psi^*$ y un estimando estadístico $\psi$, llamamos brecha causal o en inglés \textit{causal gap} a la diferencia $\psi - \psi^*$,
+
+	Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
+	que esta cantidad es nula.
+\end{definicion}
+
+\begin{corolario}
+	Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
+	que el error de estimación del estimando causal por el estimador estadístico se descompone en
+	error estadístico y brecha causal:
+	$$
+		\hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
+	$$
+	Donde el error estadístico $\hat \psi - \psi$ a su vez se puede descomponer en sesgo y varianza.
+\end{corolario}
+
+\begin{proposicion}[Identificación del ATE]
+	Bajo las suposiciones anteriores, el ATE causal está identificado con el ATE estadístico.
+\end{proposicion}
+
+\begin{proof}\cite[sección 2.2]{mci}
+	Recordamos:
+	\begin{align*}
+		\psi^* & = \E[Y(1) - Y(0)] = \E[Y(1)] - \E[Y(0)]    \\
+		\psi   & = \E[ \E[Y | A = 1, X] - \E[Y | A = 0, X]]
+	\end{align*}
+	Identificamos $\E[Y(a)], \; a \in \{0, 1\}$:
+	\begin{align*}
+		\E[Y(a)] & = \E_X[\E[Y(a) | X]]     &                                      \\
+		         & = \E_X[\E[Y(a) | A, X]]  & \text{(ignorabilidad y positividad)} \\
+		         & = \E_X[\E[Y | A = a, X]] & \text{(consistencia)}                \\
+	\end{align*}
+	donde la positividad ha sido necesaria para no condicionar a un evento de probabilidad nula
+	y por tanto garantizar la existencia de $\E[Y(a) | A, X]$.
+
+	Con esto,
+	\begin{align*}
+		\psi^* & = \E[Y(1)] - \E[Y(0)]                             \\
+		       & = \E_X[\E[Y | A = 1, X]] - \E_X[\E[Y | A = 0, X]] \\
+		       & = \E_X[\E[Y | A = 1, X] - \E[Y | A = 0, X]]       \\
+		       & = \psi
+	\end{align*}
+\end{proof}
+
+\begin{nota}
+	A partir de ahora bajo estas condiciones nos referiremos al \textit{ATE} sin especificar estadístico o causal.
+\end{nota}
+
+\begin{proposicion}[G-formula, versión no paramétrica]
+	Bajo las condiciones anteriores y dada una \MAS $\{S_i\} = \{(Y_i, A_i, X_i)\}_{i = 1, ..., N}$, se propone el siguiente estimador del ATE:
+	% TODO: find this based on sample?
+	% TODO: includes version with sample, do proof part
+	% $$
+	% \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
+	% $$
+
+	$$
+		\hat\psi = \sum_x P(X = x) \left[P(Y = 1 | A = 1, X = x) - P(Y = 1 | A = 0, X = x) \right]
+	$$
+\end{proposicion}
+
+\begin{proof}\cite[material suplementario S1]{luque2021}
+	Por el Teorema de la probabilidad total (\ref{thm:probabilidad-total}) tenemos que
+	$$
+		P[Y(a) = 1 ] = \sum_x P[Y(a) = 1 | X = x]P[X = x]
+	$$
+	Aplicando la ignorabilidad y la consistencia: % por la cual dentro de cada estrato $x$ de $X$ los predictores están
+	% equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
+	\begin{align*}
+		P[Y(a) = 1] & = \sum_x P[Y(a) = 1 | A = a, X = x]P[X = x] \\
+		            & = \sum_x P[Y = 1 | A = a, X = x]P[X = x]
+	\end{align*}
+	con lo cual,
+	\begin{align*}
+		ATE & = \E[Y(1) - Y(0)]                                                                \\
+		    & = \E[\E[Y | X, A = 1] - \E[Y | X, A = 0]]                                        \\
+		    & = \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
+		% \text{(teorema de la probabilidad total)}
+	\end{align*}
+	% TODO: if above includes version with sample
+	% Tomando una muestra aleatoria simple (IID) $\left(S_1, ..., S_N\right)$, donde % TODO: change S_i -> ?
+	% $S_i = (Y_i, A_i, X_i)$, el estimador propuesto es
+
+\end{proof}
+
+\begin{observacion}
+	La G-fórmula, en su versión no paramétrica, aplica el Teorema de la Probabilidad total
+	disgregando en todos los estratos de covariantes ($X$) posibles.
+\end{observacion}
+
+
+\begin{ejemplo}[ATE]
+	Consideramos la tabla de contingencia anterior y añadimos la diferencia:
+	\begin{center}
+		\begin{tabular}{ C | C C | C C | C}
+			i & X & A & Y(0) & Y(1) & Y(1) - Y(0) \\
+			1 & 0 & 0 & 120  & 130  & 10          \\
+			2 & 0 & 1 & 135  & 160  & 25          \\
+			3 & 1 & 0 & 95   & 110  & 15          \\
+			4 & 1 & 1 & 110  & 120  & 10
+		\end{tabular}
+	\end{center}
+	El valor real del ATE es 15. El valor estimado por la G-fórmula es 32.5. Esta discrepancia se debe, en este caso,
+	por la diferencia entre los grupos tratados y no tratados, violando la intercambiabilidad condicional:
+	obsérvese que la media para $A = 0$ es $107.5$ y para $A=1$ es $140$.
+	Claro está, esto no es observable, ya que hemos obtenido el valor real del ATE por el modelo causal.
+\end{ejemplo}
+
+\subsection{Identificación parcial y análisis de sensitividad}
+No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
+asunciones razonables.
+
+La identificación parcial consiste en encontrar asunciones que nos permiten acotar el valor del estimando
+causal en base a estimandos estadísticos.
+
+El análisis de sensitividad, por otro lado, nos da herramientas para determinar la magnitud
+mínima de la brecha causal que haría nuestra estimación estadísticamente no significativa.
+
+\begin{nota}
+	El análisis de sensitividad ha sido de gran relevancia histórica: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
+	se comenta el caso del primer análisis de sensitividad en \cite{cornfield1959}. % TODO: make this more formal
+	Como información contextual, una crítica posible a los artículos del momento que asociaban el consumo de tabaco
+	al cáncer de pulmón incluían el hecho de que no podían controlar
+	por todas las covariantes posibles, sugiriendo entonces la posible existencia de
+	un factor desconocido que explicara la tasas de enfermedad en la población fumadora.
+	Cito un segmento del abstract de este artículo a continuación, en el cual refutan (cuan posible es esto) esta idea:
+	\begin{quotation}
+		The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
+		the results can not be interpreted as arising from an indirect association of cigarette
+		smoking with some other agent or characteristic, since this hypothetical agent would have
+		to be at least as strongly associated with lung cancer as cigarette use; no such agent has
+		been found or suggested.
+	\end{quotation}
+\end{nota}
+
+Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
+encontrar asunciones que nos permiten acotar el valor del estimando de estudio en base al
+estadístico dado.
+Como veremos, este es el caso del Odds Ratio.
+
+\begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
+	Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
+	con un estimando estadístico $\psi$ si conocemos
+	dos estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
+	$$
+		\psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
+	$$
+	o más explícitamente:
+	$$
+		(\psi^{\downarrow} \circ \mathcal{O})(P^*) \leq \psi^*(P^*) \leq (\psi^{\uparrow} \circ \mathcal{O})(P^*) \quad \forall P^* \in \mathcal{M}^*
+	$$
+
+\end{definicion}
+
+\begin{corolario}
+	Dado estimando parcialmente identificado $\psi^*$, este tiene una brecha causal acotada.
+	Si $\psi$ es un estimando estadístico,
+	$$
+		(\psi^\downarrow - \psi)\circ \mathcal{O} \leq \psi^* - \psi \circ \mathcal{O} \leq (\psi^\uparrow - \psi) \circ \mathcal{O}
+	$$
+	donde $(f - g)(x) \equiv f(x) - g(x)$
+\end{corolario}
