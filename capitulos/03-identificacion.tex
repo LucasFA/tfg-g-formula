@@ -103,9 +103,8 @@
 	para disgregar en todos los estratos de covariantes ($X$) posibles.
 \end{observacion}
 
-\begin{corolario} Obtenemos el siguiente estimador \say{plug-in} del ATE.
-	Dada una \MAS $(Y_i, A_i, X_i)$:
-	% \sum_x P[X = x] \left(P[Y = 1 | X = x, A = 1] - P[Y = 1 | X = x, A = 0]\right)
+\begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
+	Dado un estimador $\hat\mu$ de $Y$ bajo $X$ y una \MAS $(Y_i, A_i, X_i)$, obtenemos el siguiente estimador \say{plug-in} del ATE.
 	$$
 		\widehat{ATE} = \dfrac{1}{N} \sum_{i = 1}^N \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
 	$$
@@ -114,9 +113,26 @@
 
 \begin{observacion}
 	% TODO: implement this in R
-	Por ejemplo, bajo imputación de las filas o unidades con el valor incorrecto,
-	entrenamos $\hat\mu_1$ imputando todas las filas con $A = 0$.
+	Por ejemplo,
+	entrenamos $\hat\mu_1$ imputando todas las filas con $A_i = 0$.
 \end{observacion}
+
+\begin{ejemplo}[Estimador del ATE de diferencia en medias]
+    Sea $(Y_i, A_i, X_i), i = 1, ..., n$ una \MAS y $S_a = \{i | A_i = a\}$. Entonces,
+	$$
+	    \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
+	$$
+	Aquí hemos tomado $\mu$
+\end{ejemplo}
+
+\begin{ejemplo}[Estimador del ATE basado en regresión lineal]
+    Consideramos $Y$ una variable unidimensional, $\mathbf{X}$ una variable $d$ dimensional y el modelo lineal general
+    \begin{align*}
+        Y &= \beta_0 + \beta_A A + \sum_j^d \beta_j X_{j} + \varepsilon
+    \end{align*}
+    Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
+    (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
+\end{ejemplo}
 
 \begin{ejemplo}[ATE]
 	Consideramos la tabla de contingencia anterior y añadimos la diferencia:
