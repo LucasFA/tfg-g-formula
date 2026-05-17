@@ -52,7 +52,7 @@
 \end{nota}
 
 \begin{proposicion}[G-formula, versión no paramétrica]
-	Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $\{(Y, A, X)\}$, donde $A \in \{0, 1\}$,
+	Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(Y, A, X)$, donde $A \in \{0, 1\}$,
 	se obtiene el siguiente estimando estadístico identificado con el ATE:
 	% TODO: find this based on sample?
 	% TODO: includes version with sample, do proof part
@@ -106,15 +106,14 @@
 \begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
 	Dado un estimador $\hat\mu$ de $Y$ bajo $X$ y una \MAS $(Y_i, A_i, X_i)$, obtenemos el siguiente estimador \say{plug-in} del ATE.
 	$$
-		\widehat{ATE} = \dfrac{1}{N} \sum_{i = 1}^N \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
+		\widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^N \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
 	$$
 	donde $\hat\mu_1$ y $\hat\mu_0$ son estimadores bajo los supuestos $A=1$ y $A=0$, respectivamente.
 \end{corolario}
 
 \begin{observacion}
 	% TODO: implement this in R
-	Por ejemplo,
-	entrenamos $\hat\mu_1$ imputando todas las filas con $A_i = 0$.
+	Por ejemplo, entrenamos $\hat\mu_1$ imputando todas las filas con $A_i = 0$.
 \end{observacion}
 
 \begin{ejemplo}[Estimador del ATE de diferencia en medias]
@@ -122,11 +121,13 @@
 	$$
 	    \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
 	$$
-	Aquí hemos tomado $\mu$
+	Aquí hemos tomado $\hat\mu_a(x) =  \frac{n}{|S_a|}\sum_{i \in S_a} Y_i$.
+
+	% \mathbb{E}[Y | X, A = a]$.
 \end{ejemplo}
 
 \begin{ejemplo}[Estimador del ATE basado en regresión lineal]
-    Consideramos $Y$ una variable unidimensional, $\mathbf{X}$ una variable $d$ dimensional y el modelo lineal general
+    Consideramos $Y$ una variable unidimensional, $\mathbf{X} = (X_1, \dots, X_d)$ una variable aleatoria $d$ dimensional y el modelo lineal general
     \begin{align*}
         Y &= \beta_0 + \beta_A A + \sum_j^d \beta_j X_{j} + \varepsilon
     \end{align*}
