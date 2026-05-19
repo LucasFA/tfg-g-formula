@@ -51,7 +51,7 @@
 	A partir de ahora bajo estas condiciones nos referiremos al \textit{ATE} sin especificar estadístico o causal.
 \end{nota}
 
-\begin{proposicion}[G-formula, versión no paramétrica]
+\begin{proposicion}[G-fórmula, versión no paramétrica]
 	Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(Y, A, X)$, donde $A \in \{0, 1\}$,
 	se obtiene el siguiente estimando estadístico identificado con el ATE:
 	% TODO: find this based on sample?
@@ -104,27 +104,46 @@
 \end{observacion}
 
 \begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
-	Dado un estimador $\hat\mu$ de $Y$ bajo $X$ y una \MAS $(Y_i, A_i, X_i)$, obtenemos el siguiente estimador \say{plug-in} del ATE.
+	Dado un estimador $\hat\mu_a$ de $\mu_a$, donde recuerdo $\mu_a(X) = \E[Y | X, A = a]$
+	y una \MAS $\{(Y_i, A_i, X_i)\}_{i = 1, ..., n}$, obtenemos el siguiente estimador del ATE.
 	$$
-		\widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^N \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
+		\widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
 	$$
-	donde $\hat\mu_1$ y $\hat\mu_0$ son estimadores bajo los supuestos $A=1$ y $A=0$, respectivamente.
 \end{corolario}
-
-\begin{observacion}
-	% TODO: implement this in R
-	Por ejemplo, entrenamos $\hat\mu_1$ imputando todas las filas con $A_i = 0$.
-\end{observacion}
 
 \begin{ejemplo}[Estimador del ATE de diferencia en medias]
     Sea $(Y_i, A_i, X_i), i = 1, ..., n$ una \MAS y $S_a = \{i | A_i = a\}$. Entonces,
 	$$
 	    \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
 	$$
-	Aquí hemos tomado $\hat\mu_a(x) =  \frac{n}{|S_a|}\sum_{i \in S_a} Y_i$.
+	Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
 
-	% \mathbb{E}[Y | X, A = a]$.
+	Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
+	valor a todos los individuos a cada grupo $S_1$ y $S_0$.
+	Para estudios randomizados, aunque es un estimador válido porque
+	la expresión del ATE se reduce a esta por randomización de las covariantes,
+	no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
+	las covariantes presentan mejores propiedades para muestras pequeñas.
+	a
+	\begin{minted}{r}
+        ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
+	\end{minted}
 \end{ejemplo}
+
+\begin{ejemplo}[Estimador del ATE \say{naive}]
+    En vez de simplemente calcular la diferencia en medias, tenemos en cuenta las covariantes.
+\end{ejemplo}
+
+\begin{proposicion}[G-fórmula, versión paramétrica]
+    Supongamos que nuestra variable de estudio sigue una distribución desconocida $Y$ pero contenida en
+    un modelo $\mathcal{M}$ paramétrico.
+    Entonces, si $\hat \E[Y | X, A = a]$ es un estimador de $\E[Y | X, A = a]$, entonces
+    \begin{align*}
+        \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X, A = 1] - \hat \E[Y | X, A = 0]
+    \end{align*}
+    es un estimador del ATE.
+
+\end{proposicion}
 
 \begin{ejemplo}[Estimador del ATE basado en regresión lineal]
     Consideramos $Y$ una variable unidimensional, $\mathbf{X} = (X_1, \dots, X_d)$ una variable aleatoria $d$ dimensional y el modelo lineal general
