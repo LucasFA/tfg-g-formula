@@ -63,7 +63,7 @@
               mkdir -p ./build
               for file in ./capitulos/*.tex; do
                 echo "Formatting $file with latexindent..."
-                latexindent -s -c ./build -o "$file" "$file"
+                latexindent -l=latexindent.yaml -s -c ./build -o "$file" "$file"
               done
             '';
             # latexindent -s -c ./build -o library.bib library.bib
