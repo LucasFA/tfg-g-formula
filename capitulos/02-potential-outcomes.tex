@@ -3,15 +3,15 @@
 
 
 \iffalse
-	ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
-	1. Introducción a la inferencia causal,
-	1.1 las asunciones de o SUTVA, conditional mean independence,
-	positivity y exchangeability y las potential outcomes
-	y el estimado de la diferencia de riesgos y del odds ratio (OR).
-	positivity
-	exchangeability o SUTVA
-	potential outcomes
-	estimado de la diferencia de riesgos y del odds ratio (OR)
+    ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
+    1. Introducción a la inferencia causal,
+    1.1 las asunciones de o SUTVA, conditional mean independence,
+    positivity y exchangeability y las potential outcomes
+    y el estimado de la diferencia de riesgos y del odds ratio (OR).
+    positivity
+    exchangeability o SUTVA
+    potential outcomes
+    estimado de la diferencia de riesgos y del odds ratio (OR)
 \fi
 
 
@@ -32,83 +32,83 @@ que en este momento no relacionamos con la variable $Y$ del modelo estadístico.
 Como modelo causal, no es observable.
 
 \begin{notac}
-	Denotaremos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado
-	sujeto al supuesto de que el tratamiento o intervención $A$ tenga valor $0$ o $1$,
-	respectivamente, para \emph{toda} la población.
+    Denotaremos $Y(0)$ e $Y(1)$ como las variables aleatorias correspondientes a un resultado
+    sujeto al supuesto de que el tratamiento o intervención $A$ tenga valor $0$ o $1$,
+    respectivamente, para \emph{toda} la población.
 
-	Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
-	puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
+    Esto no se debe confundir con la variable estadística $Y$ condicionada al valor de $A$,
+    puesto que el primero son variables en el modelo causal y el segundo lo son en el estadístico.
 
-	Representan los resultados potenciales (\textit{Potential Outcomes}) que nos permitirán
-	razonar de forma contrafactual.
+    Representan los resultados potenciales (\textit{Potential Outcomes}) que nos permitirán
+    razonar de forma contrafactual.
 \end{notac}
 
 Veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
 \begin{ejemplo}[Modelos causal y estadístico]
-	Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
-	el tratamiento son variables binarias mientras el resultado es continuo.
+    Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
+    el tratamiento son variables binarias mientras el resultado es continuo.
 
-	\vspace{0.5em}
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\begin{tabular}{ C | C C | C C }
-			i & X & A & Y(0) & Y(1) \\
-			1 & 0 & 0 & 120  & 130  \\
-			2 & 0 & 1 & 135  & 160  \\
-			3 & 1 & 0 & 95   & 110  \\
-			4 & 1 & 1 & 110  & 120
-		\end{tabular}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.45\textwidth}
-		\centering
-		\begin{tabular}{ C | C C | C }
-			i & X & A & Y   \\
-			1 & 0 & 0 & 120 \\
-			2 & 0 & 1 & 160 \\
-			3 & 1 & 0 & 95  \\
-			4 & 1 & 1 & 120
-		\end{tabular}
-	\end{minipage}
+    \vspace{0.5em}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \begin{tabular}{ C | C C | C C }
+            i & X & A & Y(0) & Y(1) \\
+            1 & 0 & 0 & 120  & 130  \\
+            2 & 0 & 1 & 135  & 160  \\
+            3 & 1 & 0 & 95   & 110  \\
+            4 & 1 & 1 & 110  & 120
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \begin{tabular}{ C | C C | C }
+            i & X & A & Y   \\
+            1 & 0 & 0 & 120 \\
+            2 & 0 & 1 & 160 \\
+            3 & 1 & 0 & 95  \\
+            4 & 1 & 1 & 120
+        \end{tabular}
+    \end{minipage}
 \end{ejemplo}
 
 
 \begin{ejemplo} % TODO: improve wording
-	Un estudio médico puede estudiar la efectividad de un tratamiento en un
-	grupo de pacientes de los cuales se registra la mortandad en un plazo determinado.
-	La variable binaria $A$ representa si se ha aplicado cierto tratamiento o no,
-	la mortandad es medida en la variable binaria $Y$,
-	y además tenemos en cuenta una condición $X$ que puede afectar a las otras
-	dos variables, como la presión arterial del paciente.
+    Un estudio médico puede estudiar la efectividad de un tratamiento en un
+    grupo de pacientes de los cuales se registra la mortandad en un plazo determinado.
+    La variable binaria $A$ representa si se ha aplicado cierto tratamiento o no,
+    la mortandad es medida en la variable binaria $Y$,
+    y además tenemos en cuenta una condición $X$ que puede afectar a las otras
+    dos variables, como la presión arterial del paciente.
 \end{ejemplo}
 
 \begin{notac}[Esperanza condicional]
-	Denotaremos $\mu_a(x) = E[Y| X = x, A = a]$, el resultado medio de los pacientes con las covariantes $x$ que fueron
-	tratados con el tratamiento $a$.
+    Denotaremos $\mu_a(x) = E[Y| X = x, A = a]$, el resultado medio de los pacientes con las covariantes $x$ que fueron
+    tratados con el tratamiento $a$.
 \end{notac}
 
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
-	El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
-	es un estimando causal definido como
-	$$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
+    El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
+    es un estimando causal definido como
+    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
 \end{definicion}
 
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
-	Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
-	Definimos el ATE estadístico como el siguiente estimando estadístico:
-	$$ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] $$
-	También se puede escribir como:
-	$$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
+    Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
+    Definimos el ATE estadístico como el siguiente estimando estadístico:
+    $$ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] $$
+    También se puede escribir como:
+    $$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
 \end{definicion}
 
 % TODO: check "covariantes" is a proper translation, and outcome thing
 \begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
-	El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
-	por la predisposición a las covariantes en la población, $X$.
-	% También depende de la distribución conjunta de $(Y, X, A)$.
-	% En particular, el ATE depende de la distribución de covariantes $X$.
+    El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
+    por la predisposición a las covariantes en la población, $X$.
+    % También depende de la distribución conjunta de $(Y, X, A)$.
+    % En particular, el ATE depende de la distribución de covariantes $X$.
 \end{observacion}
 
 
@@ -124,10 +124,10 @@ su totalidad bajo ciertos supuestos.
 
 
 \begin{ejemplo}
-	Diferencia de riesgo: $Y_i(1) - Y_i(0)$,
-	Riesgo relativo (RR): $Y_i(1) / Y_i(0)$,
-	para un $i$ dado.
-	% \item % TODO: does odd ratios fit here?
+    Diferencia de riesgo: $Y_i(1) - Y_i(0)$,
+    Riesgo relativo (RR): $Y_i(1) / Y_i(0)$,
+    para un $i$ dado.
+    % \item % TODO: does odd ratios fit here?
 \end{ejemplo}
 
 \section{Supuestos del Potential Outcomes Framework}
@@ -141,29 +141,29 @@ la observación: $P = \mathcal{O}(P^*)$.
 Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
 
 \begin{definicion}[Identificación]
-	Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
-	$ \varphi = \psi \circ \mathcal{O}$.
-	En tal caso, denotaremos $\psi^* \equiv \varphi$.
+    Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
+    $ \varphi = \psi \circ \mathcal{O}$.
+    En tal caso, denotaremos $\psi^* \equiv \varphi$.
 \end{definicion}
 
 Visualmente, queremos que el diagrama de la derecha sea conmutativo.
 
 \begin{minipage}{0.45\textwidth}
-	\centering
-	\begin{align*}
-		\mathcal{O}: \mathcal{M}^* \to & \; \mathcal{M} \\
-		P^* \mapsto                    & \; P
-	\end{align*}
+    \centering
+    \begin{align*}
+        \mathcal{O}: \mathcal{M}^* \to & \; \mathcal{M} \\
+        P^* \mapsto                    & \; P
+    \end{align*}
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
-	\centering
-	$$
-		\begin{tikzcd}
-			\mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
-			& \R^d
-		\end{tikzcd}
-	$$
+    \centering
+    $$
+        \begin{tikzcd}
+            \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
+            & \R^d
+        \end{tikzcd}
+    $$
 \end{minipage}
 
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
@@ -186,43 +186,43 @@ Con el objectivo de eliminar este problema se introducen las \textit{asunciones 
 Antes de ello, un ejemplo del problema.
 
 \begin{ejemplo}\cite[sección 2.2]{mci}
-	Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones en $\mathcal{M}^*$
-	degeneradas tomando como valores posibles $(1, 0, 1)$ y $(1, -1, 1)$. Aplicando consistencia,
-	tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
-	$(A, Y) = (1, 1)$.
-	Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
-	porque el valor de la distribución observable no dependía del valor de $Y(0)$: siempre
-	se daba el caso de que $Y = Y(1)$.
+    Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones en $\mathcal{M}^*$
+    degeneradas tomando como valores posibles $(1, 0, 1)$ y $(1, -1, 1)$. Aplicando consistencia,
+    tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
+    $(A, Y) = (1, 1)$.
+    Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
+    porque el valor de la distribución observable no dependía del valor de $Y(0)$: siempre
+    se daba el caso de que $Y = Y(1)$.
 \end{ejemplo}
 
 Los supuestos de identificación que hacemos son los siguientes, extraídos
 de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 
 \begin{definicion}[Consistencia]
-	\label{consistency}
-	Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
-	las distribuciones causal y estadística:
-	$$ Y = A Y(1) + (1 - A)Y(0) $$
+    \label{consistency}
+    Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
+    las distribuciones causal y estadística:
+    $$ Y = A Y(1) + (1 - A)Y(0) $$
 \end{definicion}
 
 \begin{definicion}[Intercambiabilidad condicional]
-	También denominada independencia condicional o ignorabilidad. % TODO; check understanding
-	$$ Y(a) \indep A | X $$
-	Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
-	$(Y(a) \indep A) | X$.
-	% No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
-	Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
-	tratamiento no aporta información adicional.
-	También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
-	En particular, se obtiene
-	$$
-		\E[Y(A) | A = 1, X = x] = \E[Y(A) | A = 0, X = x] = \E[Y(A) | X = x] \;\forall a \in \{0, 1\}
-	$$
-	% \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
+    También denominada independencia condicional o ignorabilidad. % TODO; check understanding
+    $$ Y(a) \indep A | X $$
+    Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
+    $(Y(a) \indep A) | X$.
+    % No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
+    Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
+    tratamiento no aporta información adicional.
+    También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
+    En particular, se obtiene
+    $$
+        \E[Y(A) | A = 1, X = x] = \E[Y(A) | A = 0, X = x] = \E[Y(A) | X = x] \;\forall a \in \{0, 1\}
+    $$
+    % \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
 \end{definicion}
 
 \begin{definicion}[Positividad]
-	$$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
+    $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{definicion}
 
 Dependiendo del autor la condición de consistencia vista en \ref{consistency}
@@ -232,72 +232,72 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 
 \subsection{Otras definiciones relacionadas}
 \begin{definicion}[No interferencia]\label{noInterference}
-	Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\ref{def:unidad}) son independientes.
-	Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
-	% TODO: important: "no unobserved confounding" interpretation of this:
+    Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\ref{def:unidad}) son independientes.
+    Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
+    % TODO: important: "no unobserved confounding" interpretation of this:
 \end{definicion}
 
 
 \begin{definicion}[SUTVA]
-	\textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
-	consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
-	Ambas condiciones se satisfacen simultáneamente bajo muestreo IID.
+    \textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
+    consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
+    Ambas condiciones se satisfacen simultáneamente bajo muestreo IID.
 \end{definicion}
 
 \begin{observacion}\cite[material suplementario S1]{luque2021}
-	En estudios randomizados se mantiene la intercambiabilidad condicional
-	trivialmente por la randomización de la asignación de los sujetos a
-	los grupos de control y de tratamiento.
-	% TODO: Esto no es así en estudios observacionales, pero
+    En estudios randomizados se mantiene la intercambiabilidad condicional
+    trivialmente por la randomización de la asignación de los sujetos a
+    los grupos de control y de tratamiento.
+    % TODO: Esto no es así en estudios observacionales, pero
 \end{observacion}
 
 \begin{ejemplo}[Violación de SUTVA]
-	El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{\say{spillover}} en inglés, o \say{derrame} en castellano.
-	Un posible ejemplo de experimento donde no se cumple SUTVA es el análisis % por RCT % TODO: really por RCT?
-	de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africana.
-	Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
-	que también puede afectar a la localidad por el incremento en el consumo
-	de esta familia.
-	Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
-	En \cite{Haushofer2016}, seguido posteriormente por \cite{Egger2022},
-	dividen el grupo de control entre \say{Control puro}, para familias no afectadas por
-	el efecto de spillover, y el grupo de \say{Control con spillover}, que incluye familias
-	de la misma localidad que los recipientes.
-	Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
+    El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{\say{spillover}} en inglés, o \say{derrame} en castellano.
+    Un posible ejemplo de experimento donde no se cumple SUTVA es el análisis % por RCT % TODO: really por RCT?
+    de los efectos de una transferencia incondicional de efectivo a algunas familias en una localidad africana.
+    Aquí, la transferencia de efectivo no sólo afecta a la familia que lo recibe, sino
+    que también puede afectar a la localidad por el incremento en el consumo
+    de esta familia.
+    Este es un ejemplo del trabajo que hacen en organizaciones como GiveDirectly.
+    En \cite{Haushofer2016}, seguido posteriormente por \cite{Egger2022},
+    dividen el grupo de control entre \say{Control puro}, para familias no afectadas por
+    el efecto de spillover, y el grupo de \say{Control con spillover}, que incluye familias
+    de la misma localidad que los recipientes.
+    Se puede encontrar una explicación más divulgativa de estos artículos en \cite{GiveDirectly2016}.
 
-	Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
-	de estudiantes de la misma clase)\cite{oxChapterCausal}.
+    Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
+    de estudiantes de la misma clase)\cite{oxChapterCausal}.
 \end{ejemplo}
 
 
 \begin{proposicion}
-	Si el modelo causal y el estadístico son consistentes
-	y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
-	$$
-		\begin{cases}
-			P^*(X = x) = P(X = x) \;                 & \forall x    \\
-			P^*(A = a | X = x) = P(A = a | X = x) \; & \forall x, a
-		\end{cases}
-	$$
+    Si el modelo causal y el estadístico son consistentes
+    y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
+    $$
+        \begin{cases}
+            P^*(X = x) = P(X = x) \;                 & \forall x    \\
+            P^*(A = a | X = x) = P(A = a | X = x) \; & \forall x, a
+        \end{cases}
+    $$
 
-	Entonces la distribución causal determina totalmente la distribución estadística por:
-	$$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
+    Entonces la distribución causal determina totalmente la distribución estadística por:
+    $$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
 \end{proposicion}
 
 \begin{proof} \cite[sección 2.1]{mci}
-	% TODO:
-	% Usando el teorema de la probablidad total:
-	% \begin{align*}
-	%     P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
-	%                &= P^*(X)P^*(A | X)P(Y | X, A)
-	% \end{align*}
-	% y
-	% \begin{equation*} %TODO: verify
-	%     P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
-	% \end{equation*}
-	%
-	% Usando la consistencia, debe verificarse que
-	% \begin{equation*}
-	%     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
-	% \end{equation*}
+    % TODO:
+    % Usando el teorema de la probablidad total:
+    % \begin{align*}
+    %     P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
+    %                &= P^*(X)P^*(A | X)P(Y | X, A)
+    % \end{align*}
+    % y
+    % \begin{equation*} %TODO: verify
+    %     P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
+    % \end{equation*}
+    %
+    % Usando la consistencia, debe verificarse que
+    % \begin{equation*}
+    %     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
+    % \end{equation*}
 \end{proof}

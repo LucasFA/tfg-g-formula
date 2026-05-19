@@ -3,13 +3,13 @@
 
 
 \iffalse
-	################# ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
-	1. Introducción a la inferencia causal, las asunciones de conditional mean independence,
-	positivity y exchangeability o SUTVA, y las potential outcomes y el estimado de la diferencia de riesgos y del odds ratio (OR).
-	positivity
-	exchangeability o SUTVA
-	potential outcomes
-	estimado de la diferencia de riesgos y del odds ratio (OR)
+    ################# ASUNCIONES CONDITIONAL MEAN INDEPENDENCE
+    1. Introducción a la inferencia causal, las asunciones de conditional mean independence,
+    positivity y exchangeability o SUTVA, y las potential outcomes y el estimado de la diferencia de riesgos y del odds ratio (OR).
+    positivity
+    exchangeability o SUTVA
+    potential outcomes
+    estimado de la diferencia de riesgos y del odds ratio (OR)
 \fi
 
 % Intro a la inferencia causal
@@ -37,15 +37,15 @@ En un estudio observacional, el investigador no puede controlar a qué unidades,
 por lo que se debe tener en cuenta la distribución del tratamiento en la población.
 
 \begin{observacion}
-	De una forma más elocuente a la presentada aquí introduce Rubin este problema en
-	\cite[sección 2, párr. 6]{rubin2005}:
+    De una forma más elocuente a la presentada aquí introduce Rubin este problema en
+    \cite[sección 2, párr. 6]{rubin2005}:
 
-	\begin{quotation}
-		One cannot compare medical compare medical costs for male
-		smokers with medical costs for female non smokers and claim
-		that this comparison is a causal effect of smoking without
-		making heroic and unwarranted assumptions.
-	\end{quotation}
+    \begin{quotation}
+        One cannot compare medical compare medical costs for male
+        smokers with medical costs for female non smokers and claim
+        that this comparison is a causal effect of smoking without
+        making heroic and unwarranted assumptions.
+    \end{quotation}
 \end{observacion}
 
 
@@ -66,79 +66,79 @@ causal" \cite[sección 2.1]{mci}
 Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
 
 \begin{center} %TODO: better wording
-	\begin{tabular}{c | c c}
-		              & Intervencion (I) & Control (C) \\
-		Evento (E)    & IE               & CE          \\
-		No-Evento (N) & IN               & CN
-	\end{tabular}
+    \begin{tabular}{c | c c}
+                      & Intervencion (I) & Control (C) \\
+        Evento (E)    & IE               & CE          \\
+        No-Evento (N) & IN               & CN
+    \end{tabular}
 \end{center}
 donde tenemos
 \begin{itemize}
-	\item $IE$ es el número de eventos o casos en la población intervenida,
-	\item $CE$ es el número de eventos en la población de control,
-	\item $IN$ es el número de no-eventos en la población intervenida,
-	\item $CN$ es el número de no-eventos en la población de control,
-	\item $I = IE + IN$ es la población intervenida total,
-	\item $C = CE + CN$ es la población de control total.
-	\item También denotaremos $\neg I = C$
+    \item $IE$ es el número de eventos o casos en la población intervenida,
+    \item $CE$ es el número de eventos en la población de control,
+    \item $IN$ es el número de no-eventos en la población intervenida,
+    \item $CN$ es el número de no-eventos en la población de control,
+    \item $I = IE + IN$ es la población intervenida total,
+    \item $C = CE + CN$ es la población de control total.
+    \item También denotaremos $\neg I = C$
 \end{itemize}
 
 \begin{observacion} Denotamos
-	\begin{align*}
-		P(E|I) & = IE/I \\
-		P(E|C) & = CE/C \\
-		P(N|I) & = IN/I \\
-		P(N|C) & = CN/C
-	\end{align*}
-	donde ejercemos un sobreabuso de notación por la reutilización de $I$ como condicionante además de como valor numérico.
+    \begin{align*}
+        P(E|I) & = IE/I \\
+        P(E|C) & = CE/C \\
+        P(N|I) & = IN/I \\
+        P(N|C) & = CN/C
+    \end{align*}
+    donde ejercemos un sobreabuso de notación por la reutilización de $I$ como condicionante además de como valor numérico.
 \end{observacion}
 
 La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
 mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
 
 \begin{definicion}[Diferencia de riesgo o \textit{Risk difference}] \label{def:riskdiff}
-	Dado un tratamiento, definimos la Diferencia de Riesgo como
-	la diferencia de la incidencia entre los grupos tratados y de control:
-	$$ RD = \frac{IE}{I} - \frac{CE}{C} = P(E|I) - P(E|C)$$
+    Dado un tratamiento, definimos la Diferencia de Riesgo como
+    la diferencia de la incidencia entre los grupos tratados y de control:
+    $$ RD = \frac{IE}{I} - \frac{CE}{C} = P(E|I) - P(E|C)$$
 \end{definicion}
 
 \begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
-	Es el ratio entre afligidos por una condición condicionado si han sido expuestos
-	al tratamiento o no.
+    Es el ratio entre afligidos por una condición condicionado si han sido expuestos
+    al tratamiento o no.
 
-	$$ RR = \dfrac{IE/I}{CE/C} = \dfrac{P(E|I)}{P(E|C)}$$
-	% \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
+    $$ RR = \dfrac{IE/I}{CE/C} = \dfrac{P(E|I)}{P(E|C)}$$
+    % \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
 
 \end{definicion}
 
 \begin{observacion} % TODO: expand or delete
-	El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
-	suele ser posible
+    El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
+    suele ser posible
 \end{observacion}
 
 \begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
-	Es el ratio % TODO
-	$$
-		OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(\neg E |I)}{P(E|C)/P(\neg E|C)}
-	$$
+    Es el ratio % TODO
+    $$
+        OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(\neg E |I)}{P(E|C)/P(\neg E|C)}
+    $$
 \end{definicion}
 
 \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
-	$$
-		OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)}
-	$$
+    $$
+        OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)}
+    $$
 \end{corolario}
 
 \begin{corolario}[Enfermedad rara]
-	% TODO: prove, formal assumptions of this
-	Entendiendo la intervención como exposición a la enfermedad, si la enfermedad tiene una baja propensidad:
-	$$
-		P(E|C) \approx 0 \quad \text{y} \quad P(E | I) \approx 0
-	$$
-	entonces
-	$$
-		OR \approx RR
-	$$
+    % TODO: prove, formal assumptions of this
+    Entendiendo la intervención como exposición a la enfermedad, si la enfermedad tiene una baja propensidad:
+    $$
+        P(E|C) \approx 0 \quad \text{y} \quad P(E | I) \approx 0
+    $$
+    entonces
+    $$
+        OR \approx RR
+    $$
 
 \end{corolario}
 

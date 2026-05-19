@@ -9,195 +9,195 @@
 \chapter{Preliminares}
 
 \begin{definicion}[Población]
-	Una población de estudio es un conjunto de ejemplares a estudiar.
+    Una población de estudio es un conjunto de ejemplares a estudiar.
 \end{definicion}
 
 \begin{definicion}[Espacio de probabilidad]
-	$(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
-	\begin{enumerate}
-		\item $\Omega$ es un conjunto no vacío.
-		\item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$-álgebra.
-		\item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\Omega) = 1$).
-	\end{enumerate}
+    $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
+    \begin{enumerate}
+        \item $\Omega$ es un conjunto no vacío.
+        \item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$-álgebra.
+        \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\Omega) = 1$).
+    \end{enumerate}
 \end{definicion}
 
 \begin{definicion}[Variable aleatoria]
-	Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
-	\begin{enumerate}
-		\item $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad.
-		\item $E$ es un espacio medible (típicamente $\R^n$).
-		\item $X$ es una función medible.
-	\end{enumerate}
+    Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
+    \begin{enumerate}
+        \item $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad.
+        \item $E$ es un espacio medible (típicamente $\R^n$).
+        \item $X$ es una función medible.
+    \end{enumerate}
 \end{definicion}
 
 % TODO: source
 \begin{definicion}[Muestra Aleatoria Simple, con reemplazamiento]\label{def:muestra}
-	Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$
-	donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$, y son
-	independientes dos a dos.
+    Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$
+    donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$, y son
+    independientes dos a dos.
 
-	\begin{displaymath}
-		\begin{cases}
-			X_i \perp X_j \;\forall j \neq i \\
-			X_i \sim X \;\forall i = 1, ..., n
-		\end{cases}
-	\end{displaymath}
+    \begin{displaymath}
+        \begin{cases}
+            X_i \perp X_j \;\forall j \neq i \\
+            X_i \sim X \;\forall i = 1, ..., n
+        \end{cases}
+    \end{displaymath}
 
-	donde el símbolo $\perp$ significa independencia.
+    donde el símbolo $\perp$ significa independencia.
 
-	Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
-	con distribución uniforme sucesivamente y con reemplazamiento,
-	justificando el nombre.
+    Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
+    con distribución uniforme sucesivamente y con reemplazamiento,
+    justificando el nombre.
 \end{definicion}
 
 \begin{corolario}
-	% TODO: fix space after MAS
-	Dada una \MAS con reemplazamiento $(X_1, ..., X_n)$, se da que:
-	$$
-		P(X_1, ..., X_n) = \prod_{i=1}^n P(X_i)
-	$$
+    % TODO: fix space after MAS
+    Dada una \MAS con reemplazamiento $(X_1, ..., X_n)$, se da que:
+    $$
+        P(X_1, ..., X_n) = \prod_{i=1}^n P(X_i)
+    $$
 \end{corolario}
 
 % TODO: source
 % TODO: maybe delete
 \begin{definicion}[Muestra Aleatoria simple sin reemplazamiento]
-	Una muestra $M$ donde los elementos de la población se eligen de forma que
-	$$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
+    Una muestra $M$ donde los elementos de la población se eligen de forma que
+    $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
 
-	Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
-	Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
-	que la de cualquier otro subconjunto de $k$ elementos.
+    Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
+    Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
+    que la de cualquier otro subconjunto de $k$ elementos.
 \end{definicion}
 
 % TODO: maybe delete, see above
 \begin{corolario}
-	Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
-	no se puede elegir el mismo sujeto de la población dos veces.
-	% Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
-	% TODO: will we talk about it?
-	% https://en.wikipedia.org/wiki/Exchangeable_random_variables
+    Una muestra aleatoria simple sin reemplazo no es independiente, puesto que
+    no se puede elegir el mismo sujeto de la población dos veces.
+    % Sin embargo, sí conserva otras propiedades, como la intercambiabilidad, de la que hablaremos más tarde.
+    % TODO: will we talk about it?
+    % https://en.wikipedia.org/wiki/Exchangeable_random_variables
 \end{corolario}
 
 \begin{ejemplo}
-	\begin{enumerate}
-		\item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
-		\item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
-		      $\{(175, 75), (168, 66)\}$.
-	\end{enumerate}
+    \begin{enumerate}
+        \item Altura de una persona elegida al azar, medida en cm: $\{175\}$.
+        \item Altura y peso de dos personas elegidas al azar con reemplazo, medida en cm y kilogramos:
+              $\{(175, 75), (168, 66)\}$.
+    \end{enumerate}
 \end{ejemplo}
 
 \begin{definicion}[Modelo]\cite[1.2]{mci}\cite[1.3.1]{targetedLearning}\label{def:modelo}
-	Un modelo $\mathcal{M}$ es un par $(X, \mathcal{P})$ donde $X$ es una variable aleatoria
-	y $\mathcal{P}$ es una familia de distribuciones de probabilidad.
+    Un modelo $\mathcal{M}$ es un par $(X, \mathcal{P})$ donde $X$ es una variable aleatoria
+    y $\mathcal{P}$ es una familia de distribuciones de probabilidad.
 \end{definicion}
 
 \begin{nota} \label{nota:correctamenteEspecificado}
-	Se dice que un modelo está \say{correctamente especificado} cuando incluye la verdadera distribución
-	de probabilidad de la variable de estudio.
+    Se dice que un modelo está \say{correctamente especificado} cuando incluye la verdadera distribución
+    de probabilidad de la variable de estudio.
 \end{nota}
 
 \begin{notac}
-	Denotaremos $P \in \mathcal{M}$ para indicar $P \in \mathcal{P}$, obviando el espacio muestral.
+    Denotaremos $P \in \mathcal{M}$ para indicar $P \in \mathcal{P}$, obviando el espacio muestral.
 \end{notac}
 
 \begin{observacion}
-	Un modelo representa una colección de asunciones respecto a la generación de muestras.
+    Un modelo representa una colección de asunciones respecto a la generación de muestras.
 \end{observacion}
 
 
 % TODO: clear this up
 \begin{definicion}[Estimando]
-	Un estimando es una cantidad asociada a la distribución deseada de ser estimada.
-	Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un
-	modelo, definido en \ref{def:modelo}.
+    Un estimando es una cantidad asociada a la distribución deseada de ser estimada.
+    Formalmente, puede describirse como una función $\psi: \mathcal{M} \to \R^N$, donde $\mathcal{M}$ es un
+    modelo, definido en \ref{def:modelo}.
 \end{definicion}
 
 \begin{nota}
-	Un estimando puede tener como dominio tanto un modelo estadístico como un modelo causal. Nos referiremos a ellos
-	respectivamente como estimandos estadísticos y causales.
+    Un estimando puede tener como dominio tanto un modelo estadístico como un modelo causal. Nos referiremos a ellos
+    respectivamente como estimandos estadísticos y causales.
 \end{nota}
 
 \begin{definicion}[Estadístico]
-	% https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
-	Un estadístico lo definiremos como cualquier función (medible) de una muestra (\ref{def:muestra}) $\phi: \R^n \to \R^N$.
-	% TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
+    % https://alejandroschuler.github.io/mci/52bed1d6fcf441baacee6b11048130f8.html
+    Un estadístico lo definiremos como cualquier función (medible) de una muestra (\ref{def:muestra}) $\phi: \R^n \to \R^N$.
+    % TODO: should I say the following? Con algo más de floritura y detalle, en cualquier caso.
 \end{definicion}
 
 \begin{definicion}[Estimador]
-	Un estadístico $\hat\psi$ que pretende aproximar un estimando $\psi$.
-	Si el estimando sólo toma valores en un subconjunto $\operatorname{Im}(\psi) = \Omega \subset \R^N$, típicamente pediremos que el estadístico
-	tome valores en el mismo.
+    Un estadístico $\hat\psi$ que pretende aproximar un estimando $\psi$.
+    Si el estimando sólo toma valores en un subconjunto $\operatorname{Im}(\psi) = \Omega \subset \R^N$, típicamente pediremos que el estadístico
+    tome valores en el mismo.
 \end{definicion}
 
 \begin{observacion}
-	En la asignatura de Inferencia Estadística típicamente tomamos modelos parametrizados y comúnmente usamos
-	estimadores de esos parámetros de una distribución, y por ello se exige
-	que su imagen esté contenida en el espacio paramétrico.
+    En la asignatura de Inferencia Estadística típicamente tomamos modelos parametrizados y comúnmente usamos
+    estimadores de esos parámetros de una distribución, y por ello se exige
+    que su imagen esté contenida en el espacio paramétrico.
 \end{observacion}
 
 
 \begin{definicion}[Consistencia]
-	Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
-	se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
-	$$
-		lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
-	$$
+    Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
+    se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
+    $$
+        lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
+    $$
 \end{definicion}
 
 
 
 \begin{definicion}[Variable confusora]
-	% TODO:
+    % TODO:
 
 \end{definicion}
 
 
 \begin{definicion}[Unidad]\label{def:unidad}
-	Llamaremos unidad a un único sujeto o un conjunto de sujetos que trataremos de forma colectiva.
+    Llamaremos unidad a un único sujeto o un conjunto de sujetos que trataremos de forma colectiva.
 \end{definicion}
 
 \begin{ejemplo}
-	En \cite{Haushofer2016}, trabajo asociado a GiveDirectly,
-	se toma como unidad la unidad familiar para la mayoría de medidas socioeconómicas.
-	Las medidas psicológicas sí consideran la unidad individual.
-	Vale la pena observar que esto es a pesar de haber literatura mostrando que no lo son del todo.
-	Citando \cite{Haushofer2016}:
-	\begin{quotation}
-		% TODO: check this interpretation is actually what they meant (wording)
-		In [the cited] literature, a common test of whether households are unitary is precisely the
-		test of income pooling, which asks whether expenditure shares are different when money is received
-		by husbands versus wives. Several papers have found this to be the case in observational data ([...]).
-	\end{quotation}
+    En \cite{Haushofer2016}, trabajo asociado a GiveDirectly,
+    se toma como unidad la unidad familiar para la mayoría de medidas socioeconómicas.
+    Las medidas psicológicas sí consideran la unidad individual.
+    Vale la pena observar que esto es a pesar de haber literatura mostrando que no lo son del todo.
+    Citando \cite{Haushofer2016}:
+    \begin{quotation}
+        % TODO: check this interpretation is actually what they meant (wording)
+        In [the cited] literature, a common test of whether households are unitary is precisely the
+        test of income pooling, which asks whether expenditure shares are different when money is received
+        by husbands versus wives. Several papers have found this to be the case in observational data ([...]).
+    \end{quotation}
 \end{ejemplo}
 
 \begin{teorema}[La probabilidad total]\label{thm:probabilidad-total}
-	Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
-	con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
-	Entonces,
-	$$
-		P(A) = \int_\R P(A | X = x)f_X(x)dx
-	$$
+    Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
+    con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
+    Entonces,
+    $$
+        P(A) = \int_\R P(A | X = x)f_X(x)dx
+    $$
 
-	Si $X$ es discreta y $\{P_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
-	$$
-		P(A) = \sum_i P(A | P_i) P(P_i)
-	$$
+    Si $X$ es discreta y $\{P_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
+    $$
+        P(A) = \sum_i P(A | P_i) P(P_i)
+    $$
 \end{teorema}
 
 \begin{definicion}[Grafo]
-	Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
-	y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
-	Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
-	Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
+    Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
+    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
+    Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
+    Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
 \end{definicion}
 
 \begin{definicion}[Camino]
-	Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
-	$\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
+    Un camino en un grafo $G = (V, E)$ es una $n$-tupla $(c_i)_{i = 1, ..., n}$ de elementos de $V$ tales que
+    $\forall i \in \{2, ..., n\} \exists e_i = (e_i^1, e_i^2) \in E$ cumpliendo $e_i^1 = c_{i - 1}$ y $e_i^2 = c_i$
 \end{definicion}
 
 \begin{definicion}[Ciclo]
-	Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
+    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
 \end{definicion}
 
 % TODO:
