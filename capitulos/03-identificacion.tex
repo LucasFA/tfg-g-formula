@@ -116,6 +116,9 @@
     $$
         \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
     $$
+    \begin{minted}{r}
+        est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
+    \end{minted}
     Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
@@ -124,10 +127,6 @@
     la expresión del ATE se reduce a esta por randomización de las covariantes,
     no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
     las covariantes presentan mejores propiedades para muestras pequeñas.
-    a
-    \begin{minted}{r}
-        ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
-	\end{minted}
 \end{ejemplo}
 
 \begin{ejemplo}[Estimador del ATE \say{naive}]
