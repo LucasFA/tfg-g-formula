@@ -48,7 +48,8 @@
 \end{proof}
 
 \begin{nota}
-    A partir de ahora bajo estas condiciones nos referiremos al \textit{ATE} sin especificar estadístico o causal.
+    A partir de ahora bajo estas condiciones nos referiremos al \textit{ATE} sin necesariamente
+    especificar estadístico o causal.
 \end{nota}
 
 \begin{proposicion}[G-fórmula, versión no paramétrica]
@@ -104,7 +105,7 @@
 \end{observacion}
 
 \begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
-    Dado un estimador $\hat\mu_a$ de $\mu_a$, donde recuerdo $\mu_a(X) = \E[Y | X, A = a]$
+    Dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
     y una \MAS $\{(Y_i, A_i, X_i)\}_{i = 1, ..., n}$, obtenemos el siguiente estimador del ATE.
     $$
         \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
@@ -132,11 +133,12 @@
 
 
 \begin{proposicion}[G-fórmula, versión paramétrica]
-    Supongamos que nuestra variable de estudio sigue una distribución desconocida $Y$ pero contenida en
-    un modelo $\mathcal{M}$ paramétrico.
-    Entonces, si $\hat \E[Y | X, A = a]$ es un estimador de $\E[Y | X, A = a]$, entonces
+    Supongamos que nuestra variable de estudio $Y$ sigue una distribución desconocida pero contenida en
+    un modelo $\mathcal{M}$ paramétrico, de forma que sigue una forma funcional $Y = f(X, A)$
+
+    Entonces dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
     \begin{align*}
-        \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X, A = 1] - \hat \E[Y | X, A = 0]
+        \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X_i, A = 1] - \hat \E[Y | X_i, A = 0] % TODO:!
     \end{align*}
     es un estimador del ATE.
 \end{proposicion}
@@ -150,10 +152,11 @@
     (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
     En el caso de una sola variable confusora $X$,
     \begin{minted}{r}
-        naive <- lm(y ~ A + X, data = data)
+        naive <- lm(Y ~ A + X, data = data)
     \end{minted}
     Nótese que la regresión lineal no es robusta ante heterocedasticidad sin aplicar procedimientos
     más avanzados.
+    Esta es una técnica muy extendida en la práctica clínica.
 \end{ejemplo}
 
 \begin{ejemplo}[ATE]
