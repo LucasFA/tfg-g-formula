@@ -127,11 +127,9 @@
     la expresión del ATE se reduce a esta por randomización de las covariantes,
     no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
     las covariantes presentan mejores propiedades para muestras pequeñas.
+    En cualquier caso, es una estimación sin ajustar por las covariantes.
 \end{ejemplo}
 
-\begin{ejemplo}[Estimador del ATE \say{naive}]
-    En vez de simplemente calcular la diferencia en medias, tenemos en cuenta las covariantes.
-\end{ejemplo}
 
 \begin{proposicion}[G-fórmula, versión paramétrica]
     Supongamos que nuestra variable de estudio sigue una distribución desconocida $Y$ pero contenida en
@@ -141,16 +139,21 @@
         \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X, A = 1] - \hat \E[Y | X, A = 0]
     \end{align*}
     es un estimador del ATE.
-
 \end{proposicion}
 
-\begin{ejemplo}[Estimador del ATE basado en regresión lineal]
-    Consideramos $Y$ una variable unidimensional, $\mathbf{X} = (X_1, \dots, X_d)$ una variable aleatoria $d$ dimensional y el modelo lineal general
+\begin{ejemplo}[Estimador del ATE basado en regresión lineal] % TODO: general?
+    Consideramos $Y$ una variable unidimensional, $\mathbf{X} = (X_1, \dots, X_d)$ una variable aleatoria $d$ dimensional y el modelo lineal
     \begin{align*}
         Y & = \beta_0 + \beta_A A + \sum_j^d \beta_j X_{j} + \varepsilon
     \end{align*}
     Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
     (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
+    En el caso de una sola variable confusora $X$,
+    \begin{minted}{r}
+        naive <- lm(y ~ A + X, data = data)
+    \end{minted}
+    Nótese que la regresión lineal no es robusta ante heterocedasticidad sin aplicar procedimientos
+    más avanzados.
 \end{ejemplo}
 
 \begin{ejemplo}[ATE]
