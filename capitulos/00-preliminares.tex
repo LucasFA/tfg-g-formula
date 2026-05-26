@@ -184,6 +184,53 @@
     $$
 \end{teorema}
 
+\begin{definicion}[Función de pérdida]\cite[2.4]{elements_of_statistical_learning}
+    Una función de pérdida $L: \R^2 \to \R$ mide la diferencia entre el valor predicho y el valor real.
+\end{definicion}
+
+\begin{ejemplo}[Función de pérdida cuadrática]
+    La función de pérdida más común es la cuadrática:
+    $$
+        L(y, \hat{y}) = (y - \hat{y})^2
+    $$
+\end{ejemplo}
+
+\begin{proposicion}[Predictor óptimo bajo pérdida cuadrática]
+    Dado un vector aleatorio $(X, Y)$ con distribución conjunta $P_{X, Y}$, la función que
+    minimiza el funcional $EPE(f) = \E[(Y - f(X))^2]$ es
+    $$
+        f(x) = \E[Y | X = x]
+    $$
+    donde $E[Y | X = x]$ es la esperanza condicional de $Y$ dado $X = x$.
+\end{proposicion}
+
+\begin{definicion}[Modelo de regresión] % TODO: figure out how to write this out proper
+    De forma general, dadas las variables aleatorias $X$ y $Y$, de $n$ y $m$ dimensiones, el modelo de regresión es
+    $$
+        Y = f(X) + \epsilon(X)
+    $$
+    donde $\epsilon(x)$ es una variable aleatoria de error para cada $x$, satisfaciendo $\E_X[\epsilon(X)] = 0$.
+    Usualmente se asume homocedasticidad, es decir, $\Var[\epsilon] = \sigma^2$, independiente de $X$.
+\end{definicion}
+
+\begin{definicion}[Modelo de regresión]
+    Dadas variables aleatorias $X$ e $Y$, un modelo de regresión consiste en una estimación de $Y$
+    dado $X$. Se suele escribir funcionalmente como
+    $$
+        Y = f_\theta(X, A) + \epsilon
+    $$
+
+    Supongamos que nuestra variable de estudio $Y$ sigue una distribución desconocida pero contenida en
+    un modelo $\mathcal{M}$ paramétrico, de forma que sigue una forma funcional $Y = f(X, A)$
+
+    modelo paramétrico $\mathcal{M}_\theta, \theta \in \Theta$, de forma que
+    $Y = f_\theta(X, A) + \epsilon$,
+    para cierto $\theta \in \Theta$ y $\epsilon$ una variable aleatoria con distribución conocida.
+
+
+    Comúnmente se asume homocedasticidad, es decir, $\E[\epsilon | X, A] = 0$ y $\Var[\epsilon | X, A] = \sigma^2$.
+\end{definicion}
+
 \begin{definicion}[Grafo]
     Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
     y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
