@@ -117,6 +117,7 @@
     $$
         \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
     $$
+    Esto se puede escribir de la siguiente forma en el lenguaje R:
     \begin{minted}{r}
         est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
     \end{minted}
