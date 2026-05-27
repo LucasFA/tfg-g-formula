@@ -134,11 +134,9 @@
 
 
 \begin{proposicion}[G-fórmula, versión paramétrica]
-    En los supuestos de la G-fórmula, consideramos el modelo de regresión de  $Y$ dados
+    En los supuestos de la G-fórmula, consideramos el problema de regresión de $Y$ dados
     $X$ y $A$.
 
-
-    Entonces dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
     \begin{align*}
         \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X_i, A = 1] - \hat \E[Y | X_i, A = 0] % TODO:!
     \end{align*}
