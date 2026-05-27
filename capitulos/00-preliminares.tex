@@ -197,20 +197,26 @@
 
 \begin{proposicion}[Predictor óptimo bajo pérdida cuadrática]
     Dado un vector aleatorio $(X, Y)$ con distribución conjunta $P_{X, Y}$, la función que
-    minimiza el funcional $EPE(f) = \E[(Y - f(X))^2]$ es
+    minimiza el funcional $Err(f) := \E[(Y - f(X))^2]$ es
     $$
         f(x) = \E[Y | X = x]
     $$
     donde $E[Y | X = x]$ es la esperanza condicional de $Y$ dado $X = x$.
 \end{proposicion}
 
-\begin{definicion}[Modelo de regresión] % TODO: figure out how to write this out proper
-    De forma general, dadas las variables aleatorias $X$ y $Y$, de $n$ y $m$ dimensiones, el modelo de regresión es
+\begin{definicion}[Problema de regresión] %\cite{targetedLearning}
+    Dado un vector aleatorio $(X,Y)$, con distribución conjunta en $\mathcal{M}$,
+    y con $X$ tomando valores en $\R^{d_x}$, e $Y$ tomando valores en $\R^{d_y}$,
+    consideramos el siguiente estimando:
+    \begin{align*}
+        \Psi:& \quad \mathcal{M} \to (\R^{d_x} \to \R^{d_y}) \\
+        \Psi(P)& = \E_P[Y | X]
+    \end{align*}
+    Que toma comom valor una \textit{función de regresión} asociada:
     $$
-        Y = f(X) + \epsilon(X)
+        \Psi(P)(x) = f_P(x) = \E_P[Y | X = x]
     $$
-    donde $\epsilon(x)$ es una variable aleatoria de error para cada $x$, satisfaciendo $\E_X[\epsilon(X)] = 0$.
-    Usualmente se asume homocedasticidad, es decir, $Var[\epsilon] = \sigma^2$, independiente de $X$.
+    El problema de regresión consisten en estimar esta función.
 \end{definicion}
 
 \begin{definicion}[Modelo de regresión]
