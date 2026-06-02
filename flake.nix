@@ -83,11 +83,9 @@
             buildPhase = ''
               export NIX_LOG_FD=1
               export PATH="${pkgs.lib.makeBinPath buildInputs}";
-              mkdir -p .cache/texmf-var
               mkdir -p build
-              env TEXMFHOME=.cache TEXMFVAR=.cache/texmf-var \
-                latexmk -interaction=nonstopmode -pdf -xelatex \
-                -outdir=build
+              latexmk -interaction=nonstopmode -pdf -xelatex \
+                -outdir=build \
                 tfg.tex
             '';
             installPhase = ''
