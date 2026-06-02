@@ -59,6 +59,7 @@ jobs:
           body: |
             Automatically generated LaTeX PDF from the nightly build.
             Commit: ${{ github.sha }}
+            Commit link: ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}
             Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           files: |
             result/tfg.pdf
