@@ -56,6 +56,7 @@
       in
       rec {
         packages = {
+          # Ejecutar con `nix run .#format`
           format = pkgs.writeShellApplication {
             name = "document-format";
             runtimeInputs = [ texCombined ];
