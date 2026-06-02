@@ -2,7 +2,7 @@
   # https://flyx.org/nix-flakes-latex/
   description = "Flake for building the TFG with nix";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
