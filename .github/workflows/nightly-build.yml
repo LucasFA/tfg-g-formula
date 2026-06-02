@@ -34,20 +34,22 @@ jobs:
       - name: Build document
         run: nix build .#document --print-build-logs
 
-      - name: Clean up old nightly releases
+      - name: Cleanup old nightly releases
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # List releases matching nightly-*, skip the one we're about to create, keep last 7
           gh release list \
-            --json tagName,isPrerelease \
-            --jq '.[] | select(.isPrerelease and (.tagName | startswith("nightly-"))) | .tagName' \
-            | sort \
-            | head -n -7 \
-            | while read tag; do
-                echo "Deleting old release: $tag"
-                gh release delete "$tag" --yes
-              done
+            --json tagName,isPrerelease,createdAt \
+            --jq '
+              .[]
+              | select(.isPrerelease and (.tagName | startswith("nightly-")))
+              | {tag: .tagName, created: .createdAt}
+            ' \
+          | jq -s 'sort_by(.created) | reverse | .[7:] | .[].tag' \
+          | while read tag; do
+              echo "Deleting $tag"
+              gh release delete "$tag" --yes
+            done
 
       - name: Create Release
         uses: softprops/action-gh-release@v3
