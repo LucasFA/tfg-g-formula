@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
     # Allows manual trigger from GitHub UI
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Compile LaTeX document
@@ -21,11 +24,14 @@ jobs:
           extra-conf: |
             accept-flake-config = true
 
+      - name: Cache Nix Store
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
       - name: Build document
         run: nix build .#document --print-build-logs
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: nightly-${{ github.run_id }}
           name: Nightly Build (${{ github.run_number }})
