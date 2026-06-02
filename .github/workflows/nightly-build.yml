@@ -25,16 +25,35 @@ jobs:
             accept-flake-config = true
 
       - name: Cache Nix Store
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Build document
         run: nix build .#document --print-build-logs
 
+      - name: Clean up old nightly releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # List releases matching nightly-*, skip the one we're about to create, keep last 7
+          gh release list \
+            --json tagName,isPrerelease \
+            --jq '.[] | select(.isPrerelease and (.tagName | startswith("nightly-"))) | .tagName' \
+            | sort \
+            | head -n -7 \
+            | while read tag; do
+                echo "Deleting old release: $tag"
+                gh release delete "$tag" --yes
+              done
+
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: nightly-${{ github.run_id }}
-          name: Nightly Build (${{ github.run_number }})
+          tag_name: nightly-${{ steps.date.outputs.date }}-${{ github.run_id }}
+          name: Nightly Build (${{ steps.date.outputs.date }}) #${{ github.run_number }}
           body: |
             Automatically generated LaTeX PDF from the nightly build.
             Commit: ${{ github.sha }}
