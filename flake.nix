@@ -16,12 +16,20 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        texIndent = pkgs.texlive.combine {
+          inherit (pkgs.texlive)
+            scheme-small
+            latex-bin
+
+            latexindent
+            ;
+        };
         texCombined = pkgs.texlive.combine {
           inherit (pkgs.texlive)
             scheme-small
             latex-bin
+
             latexmk
-            latexindent
             koma-script # template
             upquote
             fontaxes
@@ -55,39 +63,43 @@
         };
       in
       rec {
+        devShells.default = pkgs.mkShell {
+          packages = [
+            texCombined
+            pkgs.coreutils
+          ];
+
+          shellHook = ''
+            mkdir -p .cache/texmf-var
+            ${pkgs.bash}/bin/bash ./scripts/watch.sh
+          '';
+        };
         packages = {
           # Ejecutar con `nix run .#format`
           format = pkgs.writeShellApplication {
             name = "document-format";
-            runtimeInputs = [ texCombined ];
+            runtimeInputs = [ texIndent ];
             text = ''
-              mkdir -p ./build
-              for file in ./capitulos/*.tex; do
-                echo "Formatting $file with latexindent..."
-                latexindent -l=latexindent.yaml -s -c ./build -o "$file" "$file"
-              done
+              ${pkgs.bash}/bin/bash ./scripts/format.sh
             '';
-            # latexindent -s -c ./build -o library.bib library.bib
           };
           document = pkgs.stdenvNoCC.mkDerivation rec {
-            name = "latex-demo-document";
+            name = "Compile project";
             src = self;
             buildInputs = [
               pkgs.coreutils
               texCombined
             ];
             phases = [
+              # prevent the fixup phase. It throws errors
               "unpackPhase"
               "buildPhase"
               "installPhase"
             ];
             buildPhase = ''
-              export NIX_LOG_FD=1
-              export PATH="${pkgs.lib.makeBinPath buildInputs}";
-              mkdir -p build
-              latexmk -interaction=nonstopmode -pdf -xelatex \
-                -outdir=build \
-                tfg.tex
+               export NIX_LOG_FD=1
+               export PATH="${pkgs.lib.makeBinPath buildInputs}";
+              ${pkgs.bash}/bin/bash ./scripts/build.sh
             '';
             installPhase = ''
               mkdir -p $out
@@ -96,6 +108,8 @@
             '';
           };
         };
+        # this formatter is for nix, not for the latex project.
+        # Check out the above `format` package
         formatter = pkgs.nixfmt-tree;
         defaultPackage = packages.document;
       }
