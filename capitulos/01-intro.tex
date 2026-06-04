@@ -62,12 +62,52 @@ causal" \cite[sección 2.1]{mci}
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
 
-\section{Estimadores}
+\section{Estimandos de interés}
+Vamos a considerar la Diferencia de Riesgo (RD, por sus siglas en inglés), el
+Riesgo Relativo (RR) y el Odds Ratio (OR). % TODO: translation OR
+
+En las siguientes definiciones consideramos una distribución $P$ de una variable bidimensional
+$(A, Y)$, donde tanto $A$ como $Y$ son variables binarias. $A$ es un factor de riesgo
+e $Y$ es la variable de respuesta.
+
+\begin{definicion}[Diferencia de Riesgo] % TODO: source
+    Definimos la diferencia de riesgo (RD) como:
+    $$
+        RD = P(Y = 1 | A = 1) - P(Y = 1 | A = 0)
+    $$
+\end{definicion}
+
+\begin{definicion}[Riesgo Relativo] % TODO: source
+    Definimos el Riesgo Relativo (RR) como:
+    $$
+        RR(P) = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)}
+    $$
+\end{definicion}
+
+\begin{definicion}[Odds Ratio] % TODO: source
+    Definimos el Odds Ratio (OR) como:
+    % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
+    \begin{align*}
+        OR & = \frac{\frac{P(Y = 1 | A = 1)}{P(Y = 0 | A = 1)}}{\frac{P(Y = 1 | A = 0)}{P(Y = 0 | A = 0)}} \\
+        OR & = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)} * \frac{P(Y = 0 | A = 0)}{P(Y = 0 | A = 1)}
+    \end{align*}
+\end{definicion}
+
+\begin{corolario}
+    $$
+    OR = RR * \dfrac{P(Y=0|A=0)}{P(Y=0|A=1)}
+    $$
+\end{corolario}
+
+\begin{corolario}[Caso de enfermedad rara]
+    Si $P(Y = 1 | A = a) \approx 0 \; \forall a$, entonces $OR \approx RR$.
+\end{corolario}
+
 Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
 
 \begin{center} %TODO: better wording
     \begin{tabular}{c | c c}
-                      & Intervencion (I) & Control (C) \\
+                      & Intervención (I) & Control (C) \\
         Evento (E)    & IE               & CE          \\
         No-Evento (N) & IN               & CN
     \end{tabular}
@@ -113,7 +153,7 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 
 \begin{observacion} % TODO: expand or delete
     El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
-    suele ser posible
+    suele ser posible.
 \end{observacion}
 
 \begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
@@ -125,7 +165,7 @@ mientras la división entre Evento y No evento corresponde a la variable $Y$ de 
 
 \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
     $$
-        OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)}
+        OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     $$
 \end{corolario}
 

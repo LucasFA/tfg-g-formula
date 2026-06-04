@@ -4,8 +4,8 @@ IDEAS:
 Capitulo 5.
 
 ## Nuevas secciones:
-- Estimadores. Después de el de identificación
-- Estimandos. Donde ahora está lo de "estimadores". Trata RD,  RR, OR
+- Estimadores. Después de el de identificación. [In progress]
+- Estimandos. Donde ahora está lo de "estimadores". Trata RD,  RR, OR [In progress]
 - Dos nuevos apartados: resultados y conclusiones, de la parte práctica
 
 ## Nuevos temas a tratar:
@@ -23,4 +23,4 @@ Verlos en ejemplo con la simulación de MC (o datos reales?), donde se rompa ran
 - Más métodos clásicos tipo ANOVA o t test (low priority)
 - sección de Estimandos donde ahora está estimadores, con lo de RR y stuff
 ## Nuevos recursos:
-- Paper: USING SIMULATION STUDIES TO simulate statistical methods. Wiley 
+- Paper: USING SIMULATION STUDIES TO simulate statistical methods. Wiley
