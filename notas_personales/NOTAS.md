@@ -10,11 +10,13 @@ Capitulo 5.
 
 ## Nuevos temas a tratar:
 - Más DAGs para SCM 
-Dos métodos a tratar, como extensión a G formula (G methods)
-- Resampling IPTW ,
-- double robust estimation
+Dos métodos a tratar, como extensión
+- Resampling IPTW
+- double robust estimation (DRE)
+DRE basado en RA (regression adjustment) + IPTW
 Los dos de arriba es en ese orden histórico
-Ver en ejemplo con la simulación de MC (o datos reales?), donde se rompa randomización la comparacion
+
+Verlos en ejemplo con la simulación de MC (o datos reales?), donde se rompa randomización la comparacion
 
 ## Otras modificaciones
 - Introducción dando punto de vista práctico con perspectiva computacional
