@@ -232,3 +232,99 @@ Como veremos, este es el caso del Odds Ratio.
     $$
     donde $(f - g)(x) \equiv f(x) - g(x)$
 \end{corolario}
+
+\subsection{Algunos estimadores de interés} \label{sec:estimadores_asociados}
+
+Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
+
+\begin{center} %TODO: better wording
+    \begin{tabular}{c | c c}
+                      & Intervención (I) & Control (C) \\
+        Evento (E)    & IE               & CE          \\
+        No-Evento (N) & IN               & CN
+    \end{tabular}
+\end{center}
+donde tenemos
+\begin{itemize}
+    \item $IE$ es el número de eventos o casos en la población intervenida,
+    \item $CE$ es el número de eventos en la población de control,
+    \item $IN$ es el número de no-eventos en la población intervenida,
+    \item $CN$ es el número de no-eventos en la población de control,
+    \item $I = IE + IN$ es la población intervenida total,
+    \item $C = CE + CN$ es la población de control total.
+    \item También denotaremos $\neg I = C$
+\end{itemize}
+
+La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
+mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
+
+% TODO: change these into propositions (of identification) or change names
+\begin{definicion}[Diferencia de riesgo o \textit{Risk difference}] \label{def:riskdiff}
+    Dado un tratamiento, definimos la Diferencia de Riesgo como
+    la diferencia de la incidencia entre los grupos tratados y de control:
+    $$ RD = \frac{IE}{I} - \frac{CE}{C} = P(E|I) - P(E|C)$$
+\end{definicion}
+
+\begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
+    Es el ratio entre afligidos por una condición condicionado si han sido expuestos
+    al tratamiento o no.
+
+    $$ RR = \dfrac{IE/I}{CE/C} = \dfrac{P(E|I)}{P(E|C)}$$
+    % \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
+
+\end{definicion}
+
+\begin{observacion} % TODO: expand or delete
+    El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
+    suele ser posible.
+\end{observacion}
+
+\begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
+    Es el ratio % TODO
+    $$
+        OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(\neg E |I)}{P(E|C)/P(\neg E|C)}
+    $$
+\end{definicion}
+
+\begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
+    $$
+        OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
+    $$
+\end{corolario}
+
+\begin{corolario}[Enfermedad rara]
+    % TODO: prove, formal assumptions of this
+    Entendiendo la intervención como exposición a la enfermedad, si la enfermedad tiene una baja propensidad:
+    $$
+        P(E|C) \approx 0 \quad \text{y} \quad P(E | I) \approx 0
+    $$
+    entonces
+    $$
+        OR \approx RR
+    $$
+
+\end{corolario}
+
+% \begin{observacion}
+% En condiciones de \textit{enfermedad rara}, por la cual la población
+% afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
+% es un buen estimador del riesgo relativo.
+% $$ OR \approx RR $$
+% \end{observacion}
+
+% \begin{observacion}
+% En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
+% de la población en su totalidad no es práctico, sino que uno se limita
+% a una considerar a los casos que expresan la enfermedad junto a una muestra
+% aleatoria de la población sana. En este caso, no tenemos el valor
+% de la población expuesta $IE + IN$ y no expuesta $CE + CN$, con lo que
+% se suele utilizar la asunción de enfermedad rara para aproximar el $RR$
+% con el $OR$.
+% \end{observacion}
+
+% \begin{ejemplo} % TODO: check this makes sense. Why 99%? Shouldn't it be like 1%?
+% Caso A: riesgo asociado $99.9\%$
+% Caso B: riesgo asociado $99.0\%$
+% Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
+% Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
+% \end{ejemplo}
