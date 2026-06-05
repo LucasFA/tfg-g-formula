@@ -125,13 +125,15 @@
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
     valor a todos los individuos a cada grupo $S_1$ y $S_0$.
-    Para estudios randomizados, aunque es un estimador válido porque
-    la expresión del ATE se reduce a esta por randomización de las covariantes,
-    no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
+    Es, un estimador válido para estudios randomizados pero no pasa observacionales, porque en RCTs
+    la expresión del ATE se reduce a esta por randomización de las covariantes en la asignación del tratamiento.
+    Naturalmente no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
     las covariantes presentan mejores propiedades para muestras pequeñas.
-    En cualquier caso, es una estimación sin ajustar por las covariantes.
 \end{ejemplo}
 
+\begin{ejemplo}[Estimador del ATE de diferencia en medias, ajustando por las covariantes]
+
+\end{ejemplo}
 
 \begin{proposicion}[G-fórmula, versión paramétrica]
     En los supuestos de la G-fórmula, consideramos el problema de regresión de $Y$ dados
