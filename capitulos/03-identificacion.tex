@@ -233,9 +233,10 @@ Como veremos, este es el caso del Odds Ratio.
     donde $(f - g)(x) \equiv f(x) - g(x)$
 \end{corolario}
 
-\subsection{Algunos estimadores de interés} \label{sec:estimadores_asociados}
 
-Consideramos la siguiente tabla de contingencia para las siguientes definiciones:
+\subsection{Algunos estimadores de interés} \label{sec:estimadores_asociados}
+Consideramos una muestra aleatoria de dos variables aleatorias binarias $(Y, A)$
+con la siguiente tabla de contingencia:
 
 \begin{center} %TODO: better wording
     \begin{tabular}{c | c c}
@@ -256,14 +257,26 @@ donde tenemos
 \end{itemize}
 
 La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
-mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado.
+mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado, ambas
+binarias.
 
 % TODO: change these into propositions (of identification) or change names
-\begin{definicion}[Diferencia de riesgo o \textit{Risk difference}] \label{def:riskdiff}
-    Dado un tratamiento, definimos la Diferencia de Riesgo como
-    la diferencia de la incidencia entre los grupos tratados y de control:
-    $$ RD = \frac{IE}{I} - \frac{CE}{C} = P(E|I) - P(E|C)$$
-\end{definicion}
+\begin{proposicion}[Identificación de la Diferencia de Riesgo]
+    Recordamos que la Diferencia de Riesgo (\ref{def:riskdiff}) se define como:
+    $$
+        RD = P(Y = 1 | A = 1) - P(Y = 1 | A = 0) = P(E|I) - P(E|C)
+    $$
+    Este estimando está identificado con:
+    $$
+        \widehat{RD} = \frac{IE}{I} - \frac{CE}{C}
+    $$
+\end{proposicion}
+
+%\begin{proposicion}[Identificación RR]
+%\end{proposicion}
+
+%\begin{proposicion}[Identificación parcial OR]
+%\end{proposicion}
 
 \begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
     Es el ratio entre afligidos por una condición condicionado si han sido expuestos
