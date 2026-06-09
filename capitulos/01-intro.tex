@@ -70,21 +70,21 @@ En las siguientes definiciones consideramos una distribución $P$ de una variabl
 $(A, Y)$, donde tanto $A$ como $Y$ son variables binarias. $A$ es un factor de riesgo
 e $Y$ es la variable de respuesta.
 
-\begin{definicion}[Diferencia de Riesgo] % TODO: source
+\begin{definicion}[Diferencia de Riesgo] \label{def:riskdiff} % TODO: source
     Definimos la diferencia de riesgo (RD) como:
     $$
         RD = P(Y = 1 | A = 1) - P(Y = 1 | A = 0)
     $$
 \end{definicion}
 
-\begin{definicion}[Riesgo Relativo] % TODO: source
+\begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
     Definimos el Riesgo Relativo (RR) como:
     $$
         RR(P) = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)}
     $$
 \end{definicion}
 
-\begin{definicion}[Odds Ratio] % TODO: source
+\begin{definicion}[Odds Ratio] \label{def:oddsratio} % TODO: source
     Definimos el Odds Ratio (OR) como:
     % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     \begin{align*}
