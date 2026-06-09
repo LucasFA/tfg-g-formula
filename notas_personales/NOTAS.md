@@ -5,7 +5,7 @@ Capitulo 5.
 
 ## Nuevas secciones:
 - Estimadores. Después de el de identificación. [In progress]
-- Estimandos. Donde ahora está lo de "estimadores". Trata RD,  RR, OR [In progress]
+- Estimandos. Donde ahora está lo de "estimadores". Trata RD, RR, OR [In progress -- Pasar a estimandos causales]
 - Dos nuevos apartados: resultados y conclusiones, de la parte práctica
 
 ## Nuevos temas a tratar:
