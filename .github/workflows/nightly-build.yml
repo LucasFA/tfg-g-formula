@@ -45,7 +45,7 @@ jobs:
               | select(.isPrerelease and (.tagName | startswith("nightly-")))
               | {tag: .tagName, created: .createdAt}
             ' \
-          | jq -s 'sort_by(.created) | reverse | .[3:] | .[].tag' \
+          | jq -r -s 'sort_by(.created) | reverse | .[3:] | .[].tag' \
           | while read tag; do
               echo "Deleting $tag"
               gh release delete "$tag" --yes
