@@ -46,7 +46,7 @@ Como modelo causal, no es observable.
 Veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
-\section{Estimandos de interés}
+\section{Estimandos de interés} \label{sec:estimandos_de_interes}
 Vamos a considerar la Diferencia de Riesgo (RD, por sus siglas en inglés), el
 Riesgo Relativo (RR) y el Odds Ratio (OR).
 
@@ -73,20 +73,32 @@ e $Y$ es la variable de respuesta.
     Definimos el Odds Ratio (OR) como:
     % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     \begin{align*}
-        OR & = \frac{P(Y(1) = 1)/P(Y(1) = 0)}{P(Y(0) = 1)/P(Y(0) = 0)} \\
+        OR & = \frac{P(Y(1) = 1)/P(Y(1) = 0)}{P(Y(0) = 1)/P(Y(0) = 0)}           \\
         OR & = \frac{P(Y(1) = 1)}{P(Y(0) = 1)} * \frac{P(Y(0) = 0)}{P(Y(1) = 0)}
     \end{align*}
 \end{definicion}
 
 \begin{corolario}[Relación entre OR y RR]
     $$
-        OR = RR * \dfrac{P(Y=0|A=0)}{P(Y=0|A=1)}
+        OR = RR \dfrac{P(Y(0) = 0)}{P(Y(1) = 0)}
     $$
 \end{corolario}
 
 \begin{corolario}[Caso de enfermedad rara] % TODO: prove
-    Si $P(Y = 1 | A = a) \approx 0 \; \forall a$, entonces $OR \approx RR$.
+    % Si $P(Y = 0 | A = a) \approx 1 \; \forall a$, entonces $OR \approx RR$.
+    Si $P(Y = 0) \approx 1 $, entonces $OR \approx RR$, para un tamaño
+    de grupo de tratamiento fijo.
 \end{corolario}
+\begin{proof}
+    Tenemos que
+    \[
+        OR - RR = RR \left(\dfrac{P(Y(0) = 0)}{P(Y(1) = 0)} - 1\right)
+    \]
+    Bajo el límite $P(Y = 0) \to 1$
+    el último factor se anula.
+    Al realizar el experimento y aplicar consistencia \autoref{consistency},
+    la condición adicional $P(A = a) \nrightarrow 0$ será suficiente.
+\end{proof}
 
 Estudiaremos los estimadores asociados a estos estimandos en \autoref{sec:estimadores_asociados}.
 
