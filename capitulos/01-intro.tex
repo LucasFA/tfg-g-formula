@@ -14,7 +14,7 @@
 
 % Intro a la inferencia causal
 \chapter{Introducción a la inferencia causal}
-\section{Motivación - RCT}
+\section{Motivación: RCTs y estudios observacionales}
 Para entender el razonamiento que lleva al desarrollo de los modelos causales, los compararemos
 con los más ubicuos RCT.
 
@@ -60,47 +60,3 @@ Este experimento es, naturalmente, imposible, pues son situaciones incompatibles
 causal" \cite[sección 2.1]{mci}
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
-
-
-\section{Estimandos de interés}
-Vamos a considerar la Diferencia de Riesgo (RD, por sus siglas en inglés), el
-Riesgo Relativo (RR) y el Odds Ratio (OR). % TODO: translation OR
-
-En las siguientes definiciones consideramos una distribución $P$ de una variable bidimensional
-$(A, Y)$, donde tanto $A$ como $Y$ son variables binarias. $A$ es un factor de riesgo
-e $Y$ es la variable de respuesta.
-
-\begin{definicion}[Diferencia de Riesgo] \label{def:riskdiff} % TODO: source
-    Definimos la diferencia de riesgo (RD) como:
-    $$
-        RD = P(Y = 1 | A = 1) - P(Y = 1 | A = 0)
-    $$
-\end{definicion}
-
-\begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
-    Definimos el Riesgo Relativo (RR) como:
-    $$
-        RR(P) = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)}
-    $$
-\end{definicion}
-
-\begin{definicion}[Odds Ratio] \label{def:oddsratio} % TODO: source
-    Definimos el Odds Ratio (OR) como:
-    % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
-    \begin{align*}
-        OR & = \frac{\frac{P(Y = 1 | A = 1)}{P(Y = 0 | A = 1)}}{\frac{P(Y = 1 | A = 0)}{P(Y = 0 | A = 0)}} \\
-        OR & = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)} * \frac{P(Y = 0 | A = 0)}{P(Y = 0 | A = 1)}
-    \end{align*}
-\end{definicion}
-
-\begin{corolario}[Relación entre OR y RR]
-    $$
-        OR = RR * \dfrac{P(Y=0|A=0)}{P(Y=0|A=1)}
-    $$
-\end{corolario}
-
-\begin{corolario}[Caso de enfermedad rara]
-    Si $P(Y = 1 | A = a) \approx 0 \; \forall a$, entonces $OR \approx RR$.
-\end{corolario}
-
-Estudiaremos los estimadores asociados en \autoref{sec:estimadores_asociados}
