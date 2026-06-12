@@ -234,41 +234,21 @@ Como veremos, este es el caso del Odds Ratio.
 \end{corolario}
 
 
-\subsection{Algunos estimadores de interés} \label{sec:estimadores_asociados}
-Consideramos una muestra aleatoria de dos variables aleatorias binarias $(Y, A)$
-con la siguiente tabla de contingencia:
-
-\begin{center} %TODO: better wording
-    \begin{tabular}{c | c c}
-                      & Intervención (I) & Control (C) \\
-        Evento (E)    & IE               & CE          \\
-        No-Evento (N) & IN               & CN
-    \end{tabular}
-\end{center}
-donde tenemos
-\begin{itemize}
-    \item $IE$ es el número de eventos o casos en la población intervenida,
-    \item $CE$ es el número de eventos en la población de control,
-    \item $IN$ es el número de no-eventos en la población intervenida,
-    \item $CN$ es el número de no-eventos en la población de control,
-    \item $I = IE + IN$ es la población intervenida total,
-    \item $C = CE + CN$ es la población de control total.
-    \item También denotaremos $\neg I = C$
-\end{itemize}
-
-La división entre Intervención y Control reside en el valor de la variable $A$ de tratamiento,
-mientras la división entre Evento y No evento corresponde a la variable $Y$ de resultado, ambas
-binarias.
+\subsection{Identificación de estimandos de interés} \label{sec:estimadores_asociados}
+Presentamos la identificación de los estimandos causales introducidos en la \autoref{sec:estimandos_de_interes}.
+% Consideramos una muestra aleatoria de dos variables aleatorias binarias $(Y, A)$
+% produciendo una distribución empírica $\P$. De esta manera, la tabla de contingencia
+% viene dada por  $\P(y, a)$.
 
 % TODO: change these into propositions (of identification) or change names
 \begin{proposicion}[Identificación de la Diferencia de Riesgo]
     Recordamos que la Diferencia de Riesgo (\ref{def:riskdiff}) se define como:
     $$
-        RD = P(Y = 1 | A = 1) - P(Y = 1 | A = 0) = P(E|I) - P(E|C)
+        RD = P(Y(1) = 1) - P(Y(0) = 1)
     $$
     Este estimando está identificado con:
     $$
-        \widehat{RD} = \frac{IE}{I} - \frac{CE}{C}
+        RD^* = P(Y = 1 | A = 1) - P(Y = 1 | A = 0)
     $$
 \end{proposicion}
 
@@ -278,44 +258,38 @@ binarias.
 %\begin{proposicion}[Identificación parcial OR]
 %\end{proposicion}
 
-\begin{definicion}[Riesgo Relativo o \textit{Relative Risk}]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
-    Es el ratio entre afligidos por una condición condicionado si han sido expuestos
-    al tratamiento o no.
+\begin{proposicion}[Identificación del Riesgo Relativo]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
+    Recordamos que se define (\ref{def:relrisk}) como:
+    \[
+        RR(P) = \frac{P(Y(1) = 1)}{P(Y(0) = 1)}
+    \]
+    Está identificado con
+    \[
+        RR^* = \frac{\P(Y = 1 | A = 1)}{\P(Y = 1 | A = 0)}
+    \]
 
-    $$ RR = \dfrac{IE/I}{CE/C} = \dfrac{P(E|I)}{P(E|C)}$$
-    % \dfrac{IE/(IE+IN)}{CE/(CE+CN)}
+\end{proposicion}
 
-\end{definicion}
-
-\begin{observacion} % TODO: expand or delete
+% TODO: expand or delete
+\begin{observacion}
     El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
     suele ser posible.
 \end{observacion}
 
+\begin{proposicion}[Identificación parcial del Odds ratio TODO:]
+
+\end{proposicion}
 \begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
     Es el ratio % TODO
     $$
-        OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(\neg E |I)}{P(E|C)/P(\neg E|C)}
+        OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(N |I)}{P(E|C)/P(N |C)}
     $$
 \end{definicion}
 
 \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
     $$
-        OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
+        OR = RR * \dfrac{P(N | C)}{P(N | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     $$
-\end{corolario}
-
-\begin{corolario}[Enfermedad rara]
-    % TODO: prove, formal assumptions of this
-    Entendiendo la intervención como exposición a la enfermedad, si la enfermedad tiene una baja propensidad:
-    $$
-        P(E|C) \approx 0 \quad \text{y} \quad P(E | I) \approx 0
-    $$
-    entonces
-    $$
-        OR \approx RR
-    $$
-
 \end{corolario}
 
 % \begin{observacion}
