@@ -15,14 +15,53 @@
 % Intro a la inferencia causal
 \chapter{Introducción a la inferencia causal}
 \section{Motivación: RCTs y estudios observacionales}
-Para entender el razonamiento que lleva al desarrollo de los modelos causales, los compararemos
-con los más ubicuos RCT.
+Un estudio controlado aleatorizado o RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es
+el \say{gold standard} de la experimentación clínica.
+En él, los investigadores tienen un tratamiento a estudiar,
+toman una muestra, y asignan de forma aleatoria\footnotemark a los sujetos a un grupo
+de control que no recibe tratamiento, y a un grupo de tratamiento.
+El diseño ideal requiere condiciones de doble ciego o \emph{double blind}.
+Ello consiste en que ni los pacientes ni los investigadores conozcan
+quiénes están bajo tratamiento y quién no. Prácticamente, esto hacerse
+con medicación placebo aparentemente idéntica a la medicación real.
 
-Un RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es un experimento en el que,
-dentro de la muestra elegida, se asigna a los miembros a los grupos de control o de tratamiento de forma aleatoria.
-Esta asignación aleatoria puede ser simple, siguiendo una distribución de Bernouilli, o más elaborada.
-En cualquier caso, conocemos la distribución de probabilidad de la variable aleatoria que representa si una unidad es tratada o no.
+\footnotetext{La forma más simple es la randomización simple, pero existen otros
+métodos más complejos, como la estratificada, usados para minimizar el efecto de
+variables ajenas a la de estudio y conseguir mayor poder estadístico.}
 
+Habiendo registrado los resultados, los investigadores pueden entonces
+determinar el efecto del tratamiento en los sujetos a partir de las
+diferencias entre las distribuciones de los dos grupos.
+
+Por otro lado, los estudios observacionales pueden ser necesarios por razones éticas
+(no privar a los sujetos de estudio de la libertad de elección de tratamiento),
+prácticas (en enfermedades raras necesitamos tomar un grupo de sujetos con
+síntomas, y a partir de ahí construir un estudio de casos-control) o
+simplemente no se pueda tener control de la situación, como es el caso
+al estudiar el efecto de política pública, tanto en el ámbito sanitario como
+el económico.
+Aquí los investigadores no tienen control sobre la asignación del tratamiento
+a los sujetos, sino que otros factores determinan
+si el sujeto se expone al tratamiento o factor de riesgo a estudiar o no.
+Estos factores además de estar asociados con la asignación al
+tratamiento, pueden estar directamente correlacionados con el resultado.
+Por ejemplo, el consumo de suplementos puede covariar con la realización de
+ejercicio, y ambos estar negativamente relacionados con eventos cardiacos.
+Esta relación de variable confusora\footnotemark no existe en estudios randomizados.
+\footnotetext{Definimos este término en \cite{def:confounder} }
+
+La inferencia causal y observacional trata de lidiar con estos obstáculos.
+
+Rubin introduce este problema de manera ilutrativa en
+\cite[sección 2, párr. 6]{rubin2005}:
+\begin{quotation}
+    One cannot compare medical compare medical costs for male
+    smokers with medical costs for female non smokers and claim
+    that this comparison is a causal effect of smoking without
+    making heroic and unwarranted assumptions.
+\end{quotation}
+
+\iffalse
 En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no,
 incluso en el caso de que haya variables confusoras.
 Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
@@ -35,28 +74,17 @@ de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
 
 En un estudio observacional, el investigador no puede controlar a qué unidades, pacientes o comunidades se le aplica el tratamiento,
 por lo que se debe tener en cuenta la distribución del tratamiento en la población.
-
-\begin{observacion}
-    De una forma más elocuente a la presentada aquí introduce Rubin este problema en
-    \cite[sección 2, párr. 6]{rubin2005}:
-
-    \begin{quotation}
-        One cannot compare medical compare medical costs for male
-        smokers with medical costs for female non smokers and claim
-        that this comparison is a causal effect of smoking without
-        making heroic and unwarranted assumptions.
-    \end{quotation}
-\end{observacion}
+\fi
 
 
 \section{El experimento ideal}
 El llamado experimento ideal \cite[sección 1.1]{targetedLearning} consiste en considerar una población y, en condiciones idénticas,
-usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo.
-Comparar estos dos grupos nos permitirá hacer conclusiones causales. Dejamos la causalidad como un término
-no definido de momento.
+usar la población tanto como grupo de control y como grupo de tratamiento al mismo tiempo,
+teniendo así el \say{caso contrafactual} además del observado realmente.
+Comparar estos dos grupos nos permitirá hacer conclusiones causales.
 % TODO: definicion causalidad?
 
-Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el "problema fundamental de la inferencia
-causal" \cite[sección 2.1]{mci}
+Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el \say{problema fundamental de la inferencia
+causal} \cite[sección 2.1]{mci}.
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
