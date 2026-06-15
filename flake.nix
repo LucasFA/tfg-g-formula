@@ -1,5 +1,5 @@
 {
-  # https://flyx.org/nix-flakes-latex/
+  # https://flyx.org/nix-flakes-latex/  https://github.com/flyx/flyx.org/blob/master/nix-flakes-latex.md
   description = "Flake for building the TFG with nix";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -28,6 +28,7 @@
           inherit (pkgs.texlive)
             scheme-small
             latex-bin
+            # fpl # fonts? URW Palladio
 
             latexmk
             koma-script # template
