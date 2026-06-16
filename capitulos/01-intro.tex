@@ -92,9 +92,53 @@ causal} \cite[sección 2.1]{mci}.
 \section{Grafos causales}
 Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009causality}.
 
-\begin{definicion}
-
+\begin{definicion}[Padres Markovianos]\cite[1.2.1]{pearl2009causality}.
+    Sea $(X_1, \ldots, X_n)$ un vector aleatorio con distribución conjunta $P$.
+    Se dice que una familia $PA_i \subseteq \{X_1, \ldots, X_{j-1}\}$ forma el conjunto
+    de los padres Markovianos de
+    $X_i$ si $P(X_i | PA_i) = P(X_i | X_1, \ldots X_{i-1})$, y esta familia es minimal
+    satisfaciendo esta propiedad.
 \end{definicion}
+
+\begin{proposicion}[Unicidad de los padres Markovianos]
+    Si dos familias $P, Q \subseteq \{X_1, \ldots, X_{i-1}\}$ son padres Markovianos de $X_i$,
+    entonces $P = Q$.
+\end{proposicion}
+
+\begin{proof} % TODO
+    Supongamos sin pérdida de generalidad, que $X_j \in Q, X_j \not \in P$.
+\end{proof}
+
+% TODO: improve presentation
+\begin{minipage}{0.45\textwidth}
+\begin{ejemplo}
+    Supongamos que tenemos la siguiente factorización
+
+    \begin{align*}
+        P(x_1, x_2, x_3) &= P(x_1) P(x_2 | x_1) P(x_3 | x_1, x_2) \\
+                         &= P(x_1) P(x_2) P(x_3 | x_1, x_2)
+    \end{align*}
+    Da lugar al siguiente grafo
+
+    \centering
+    \begin{tikzcd}
+        X_1 \arrow{r}{} & X_3 \\
+        X_2 \arrow{ur}{}
+    \end{tikzcd}
+\end{ejemplo}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{ejemplo}
+    Supongamos esta vez $P(x_1) P(x_2 | x_1) P(x_3 | x_1)$
+    Da lugar al siguiente grafo
+
+    \centering
+    \begin{tikzcd}
+        X_1 \arrow{dr}{} \arrow{r}{} & X_3 \\
+                                     & X_2
+    \end{tikzcd}
+\end{ejemplo}
+\end{minipage}
 
 \begin{definicion}[Modelo causal]\cite[sección 7.1.1]{pearl2009causality}
     Un modelo causal es una tripleta $M = \langle U, V, F \rangle$ donde
