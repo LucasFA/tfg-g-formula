@@ -46,7 +46,7 @@ si el sujeto se expone al tratamiento o factor de riesgo a estudiar o no.
 Estos factores además de estar asociados con la asignación al
 tratamiento, pueden estar directamente correlacionados con el resultado.
 Por ejemplo, el consumo de suplementos puede covariar con la realización de
-ejercicio, y ambos estar negativamente relacionados con eventos cardiacos.
+ejercicio físico, y ambos estar negativamente relacionados con eventos cardiacos.
 Esta relación de variable confusora\footnotemark no existe en estudios randomizados.
 \footnotetext{Definimos este término en \cite{def:confounder} }
 
@@ -88,3 +88,40 @@ Este experimento es, naturalmente, imposible, pues son situaciones incompatibles
 causal} \cite[sección 2.1]{mci}.
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
+
+\section{Grafos causales}
+Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009causality}.
+
+\begin{definicion}
+
+\end{definicion}
+
+\begin{definicion}[Modelo causal]\cite[sección 7.1.1]{pearl2009causality}
+    Un modelo causal es una tripleta $M = \langle U, V, F \rangle$ donde
+    \begin{enumerate}
+        \item $U$ es un conjunto de variables exógenas
+        \item $V = \{V_1, \ldots, V_n \}$ es un conjunto de variables endógenas determinadas por $U \cup V$
+        \item $F = \{f_1, \ldots, f_n \}$ es un conjunto de funciones $f_i : U_i \cup PA_i \to V_i$ para
+        cierto $U_i \subseteq U$ y $PA_i \subseteq V \setminus V_i$
+    \end{enumerate}
+\end{definicion}
+Todo modelo causal tiene asociado un grafo dirigido que llamamos \emph{diagrama causal}.
+
+\begin{definicion}[Modelo causal probabilístico]\cite[7.1.6]{pearl2009causality}
+    Un modelo causal probabilístico es un par $\langle M, P \rangle$, donde
+    $M$ es un modelo causal y $P$ es una función de distribución sobre el dominio de $U$.
+\end{definicion}
+\begin{corolario}
+    Para $Y \subseteq V$, tenemos que
+    \[
+        P(Y = y) = \sum_{ \{u | Y(u) = y\} } P(u)
+    \]
+\end{corolario}
+
+Consideramos una familia de variables aleatorias $(X, A, Y)$, donde cada componente puede ser
+por sí mismo un vector aleatorio.
+
+Tenemos que
+\[
+    P(x, a, y) = P(x) P(a | X = x) P(y | X = x, A = a)
+\]
