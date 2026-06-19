@@ -18,8 +18,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
         texIndent = pkgs.texlive.combine {
           inherit (pkgs.texlive)
-            scheme-small
-            latex-bin
+            scheme-basic
 
             latexindent
             ;
@@ -27,7 +26,6 @@
         texCombined = pkgs.texlive.combine {
           inherit (pkgs.texlive)
             scheme-small
-            latex-bin
             # fpl # fonts? URW Palladio
 
             latexmk
@@ -35,6 +33,11 @@
             upquote
             fontaxes
             fontspec
+            
+            # lista obtenida con `cat ugrTFG.cls | grep RequirePackage`
+            # paquetes comentados con # no están en nixpkgs con ese nombre,
+            # pero siguen estando disponibles en la compilación.
+
             # inputenc
             babel
             amsmath
