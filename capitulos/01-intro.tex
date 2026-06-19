@@ -26,8 +26,8 @@ quiénes están bajo tratamiento y quién no. Prácticamente, esto hacerse
 con medicación placebo aparentemente idéntica a la medicación real.
 
 \footnotetext{La forma más simple es la randomización simple, pero existen otros
-métodos más complejos, como la estratificada, usados para minimizar el efecto de
-variables ajenas a la de estudio y conseguir mayor poder estadístico.}
+    métodos más complejos, como la estratificada, usados para minimizar el efecto de
+    variables ajenas a la de estudio y conseguir mayor poder estadístico.}
 
 Habiendo registrado los resultados, los investigadores pueden entonces
 determinar el efecto del tratamiento en los sujetos a partir de las
@@ -62,18 +62,18 @@ Rubin introduce este problema de manera ilutrativa en
 \end{quotation}
 
 \iffalse
-En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no,
-incluso en el caso de que haya variables confusoras.
-Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
+    En el límite de una muestra de gran tamaño, esto lleva a que la única diferencia entre los dos grupos es si son tratados o no,
+    incluso en el caso de que haya variables confusoras.
+    Esto nos permite eliminar el efecto del sesgo de selección y de las variables confusoras.
 
-Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
-otros factores confusores y covariantes, por los cuales se intenta \textit{ajustar} para reducir ese sesgo.
+    Es cierto que en experimentos clínicos usuales, la muestra no suele ser tan grande como para ignorar
+    otros factores confusores y covariantes, por los cuales se intenta \textit{ajustar} para reducir ese sesgo.
 
-No siempre se pueden realizar estudios RCT por varios motivos, entre ellos la propia viabilidad, la ética o el coste
-de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
+    No siempre se pueden realizar estudios RCT por varios motivos, entre ellos la propia viabilidad, la ética o el coste
+    de realizarlos, por lo que uno se ve obligado a hacer estudios observacionales.
 
-En un estudio observacional, el investigador no puede controlar a qué unidades, pacientes o comunidades se le aplica el tratamiento,
-por lo que se debe tener en cuenta la distribución del tratamiento en la población.
+    En un estudio observacional, el investigador no puede controlar a qué unidades, pacientes o comunidades se le aplica el tratamiento,
+    por lo que se debe tener en cuenta la distribución del tratamiento en la población.
 \fi
 
 
@@ -85,7 +85,7 @@ Comparar estos dos grupos nos permitirá hacer conclusiones causales.
 % TODO: definicion causalidad?
 
 Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el \say{problema fundamental de la inferencia
-causal} \cite[sección 2.1]{mci}.
+    causal} \cite[sección 2.1]{mci}.
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
@@ -111,33 +111,33 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
 
 % TODO: improve presentation
 \begin{minipage}{0.45\textwidth}
-\begin{ejemplo}
-    Supongamos que tenemos la siguiente factorización
+    \begin{ejemplo}
+        Supongamos que tenemos la siguiente factorización
 
-    \begin{align*}
-        P(x_1, x_2, x_3) &= P(x_1) P(x_2 | x_1) P(x_3 | x_1, x_2) \\
-                         &= P(x_1) P(x_2) P(x_3 | x_1, x_2)
-    \end{align*}
-    Da lugar al siguiente grafo
+        \begin{align*}
+            P(x_1, x_2, x_3) & = P(x_1) P(x_2 | x_1) P(x_3 | x_1, x_2) \\
+                             & = P(x_1) P(x_2) P(x_3 | x_1, x_2)
+        \end{align*}
+        Da lugar al siguiente grafo
 
-    \centering
-    \begin{tikzcd}
-        X_1 \arrow{r}{} & X_3 \\
-        X_2 \arrow{ur}{}
-    \end{tikzcd}
-\end{ejemplo}
+        \centering
+        \begin{tikzcd}
+            X_1 \arrow{r}{} & X_3 \\
+            X_2 \arrow{ur}{}
+        \end{tikzcd}
+    \end{ejemplo}
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
-\begin{ejemplo}
-    Supongamos esta vez $P(x_1) P(x_2 | x_1) P(x_3 | x_1)$
-    Da lugar al siguiente grafo
+    \begin{ejemplo}
+        Supongamos esta vez $P(x_1) P(x_2 | x_1) P(x_3 | x_1)$
+        Da lugar al siguiente grafo
 
-    \centering
-    \begin{tikzcd}
-        X_1 \arrow{dr}{} \arrow{r}{} & X_3 \\
-                                     & X_2
-    \end{tikzcd}
-\end{ejemplo}
+        \centering
+        \begin{tikzcd}
+            X_1 \arrow{dr}{} \arrow{r}{} & X_3 \\
+            & X_2
+        \end{tikzcd}
+    \end{ejemplo}
 \end{minipage}
 
 \begin{definicion}[Modelo causal]\cite[sección 7.1.1]{pearl2009causality}
@@ -146,7 +146,7 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
         \item $U$ es un conjunto de variables exógenas
         \item $V = \{V_1, \ldots, V_n \}$ es un conjunto de variables endógenas determinadas por $U \cup V$
         \item $F = \{f_1, \ldots, f_n \}$ es un conjunto de funciones $f_i : U_i \cup PA_i \to V_i$ para
-        cierto $U_i \subseteq U$ y $PA_i \subseteq V \setminus V_i$
+              cierto $U_i \subseteq U$ y $PA_i \subseteq V \setminus V_i$
     \end{enumerate}
 \end{definicion}
 Todo modelo causal tiene asociado un grafo dirigido que llamamos \emph{diagrama causal}.
