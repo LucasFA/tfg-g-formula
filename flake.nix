@@ -67,6 +67,7 @@
         devShells.default = pkgs.mkShell {
           packages = [
             texCombined
+            texIndent
             pkgs.coreutils
           ];
 
