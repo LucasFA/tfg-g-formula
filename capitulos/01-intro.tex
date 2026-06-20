@@ -93,51 +93,107 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
 
 \begin{definicion}[Padres Markovianos]\cite[1.2.1]{pearl2009causality}.
     Sea $(X_1, \ldots, X_n)$ un vector aleatorio con distribución conjunta $P$.
-    Se dice que una familia $PA_i \subseteq \{X_1, \ldots, X_{j-1}\}$ forma el conjunto
+    Se dice que una familia $PA_i \subseteq \{X_1, \ldots, X_{i-1}\}$ forma el conjunto
     de los padres Markovianos de
     $X_i$ si $P(X_i | PA_i) = P(X_i | X_1, \ldots X_{i-1})$, y esta familia es minimal
     satisfaciendo esta propiedad.
 \end{definicion}
 
 \begin{proposicion}[Unicidad de los padres Markovianos]
-    Si dos familias $P, Q \subseteq \{X_1, \ldots, X_{i-1}\}$ son padres Markovianos de $X_i$,
-    entonces $P = Q$.
+    Si dos familias $Q_1, Q_2 \subseteq \{X_1, \ldots, X_{i-1}\}$ son padres Markovianos de $X_i$
+    y la distribución conjunta $P$ es estrictamente positiva,
+    entonces $Q_1 = Q_2$.
 \end{proposicion}
 
-\begin{proof} % TODO
-    Supongamos sin pérdida de generalidad, que $X_j \in Q, X_j \not \in P$.
-\end{proof}
-
-% TODO: improve presentation
-\begin{minipage}{0.45\textwidth}
-    \begin{ejemplo}
-        Supongamos que tenemos la siguiente factorización
-
+% TODO proof
+\iffalse
+    \begin{proof}
+        Supongamos sin pérdida de generalidad, que $X_j \in Q_1, X_j \not \in Q_2$ para $j \in \{1, \ldots, i-1\}$.
+        Tenemos entonces que
         \begin{align*}
-            P(x_1, x_2, x_3) & = P(x_1) P(x_2 | x_1) P(x_3 | x_1, x_2) \\
-                             & = P(x_1) P(x_2) P(x_3 | x_1, x_2)
+            P(X_i | P, X_j) = P(X_i | Q_1) = P(X_i | X_1, \ldots, X_{i-1})
         \end{align*}
-        Da lugar al siguiente grafo
+        Por un lado
+        \[
+            P(X_i | Q_2, X_j) = P(X_i | X_1, \ldots, X_{i-1}, X_j) = P(X_i | X_1, \ldots, X_{i-1})
+        \]
+        y por otro
+        \[
+            P(X_i | Q_2) = P(X_i | X_1, \ldots, X_{i-1})
+        \]
+        Es decir, $P(X_i | Q_2) = P(X_i | Q_2, X_j)$, $X_j \indep X_i | Q$.
+    \end{proof}
+\fi
 
+
+\begin{figure}[t]
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \begin{tikzcd}
             X_1 \arrow{r}{} & X_3 \\
             X_2 \arrow{ur}{}
         \end{tikzcd}
-    \end{ejemplo}
-\end{minipage}
-\begin{minipage}{0.45\textwidth}
-    \begin{ejemplo}
-        Supongamos esta vez $P(x_1) P(x_2 | x_1) P(x_3 | x_1)$
-        Da lugar al siguiente grafo
-
+        \caption{Colisionador}
+        \label{subfig:cd-colisionador}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \begin{tikzcd}
             X_1 \arrow{dr}{} \arrow{r}{} & X_3 \\
             & X_2
         \end{tikzcd}
-    \end{ejemplo}
-\end{minipage}
+        \caption{Bifurcación}
+        \label{subfig:cd-bifurc}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzcd}
+            A \arrow{r}{} & Y \\
+            X \arrow{ur}{} \arrow{u}
+        \end{tikzcd}
+        \caption{Estudio observacional}
+        \label{subfig:observacional}
+    \end{subfigure}
+
+
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzcd}
+            \arrow[d, leftrightarrow, dashed, bend right=90] A \arrow{r}{} & Y \\
+            X \arrow{ur}{}
+        \end{tikzcd}
+        \caption{Confusor implícito}
+        \label{subfig:confounder}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzcd}[row sep=tiny, column sep=small]
+            & A \arrow[dr] & \\
+            C \arrow[ur] \arrow[dr] & & Y \\
+            & X \arrow[ur]
+        \end{tikzcd}
+        \caption{Confusor explícito}
+        \label{subfig:confounderFull}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \begin{tikzcd}
+            A \arrow{r}{} & Y \\
+            X \arrow{ur}{}
+        \end{tikzcd}
+        \caption{RCT}
+        \label{subfig:cd-rct}
+    \end{subfigure}
+    \label{fig:causal-diagrams}
+    \caption{Varios grafos causales.
+        (a) corresponde a la factorización
+        $P(X_1, X_2, X_3) = P(X_1) P(X_2) P(X_3 | X_1, X_2)$.
+        (b) corresponde a
+        $P(X_1) P(X_2 | X_1) P(X_3 | X_1)$
+        y (c) corresponde a
+        $P(X, A, Y) = P(X) P(A | X) P(Y | X, A)$
+    }
+\end{figure}
 
 \begin{definicion}[Modelo causal]\cite[sección 7.1.1]{pearl2009causality}
     Un modelo causal es una tripleta $M = \langle U, V, F \rangle$ donde
