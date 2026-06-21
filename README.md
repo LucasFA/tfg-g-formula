@@ -11,15 +11,12 @@ Ejecuta uno de los siguientes comandos:
 
 ```bash
 ./scripts/build.sh
-```
-
-O,
-
-```bash
-latexmk tfg.tex 
+./scripts/watch.sh
 ```
 
 El repositorio incluye un archivo `.latexmkrc` con la configuración de compilación.
+El primer comando produce el PDF, el segundo lo recompila en vivo con cada escritura si tienes
+instalado `inotify-tools`
 
 ### Con Nix
 
@@ -27,8 +24,9 @@ Nix descargará automáticamente el compilador de LaTeX y todos los paquetes nec
 Este repositorio requiere el uso de [flakes](https://wiki.nixos.org/wiki/Flakes#Nix_standalone). En la raíz del proyecto:
 
 ```bash
-nix build # o nix build .#document
+nix build # (o nix build .#document)
 ```
+
 Producirá el pdf bajo `./result/`
 
 Si quieres desarrollar interactivamente:
