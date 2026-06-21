@@ -9,11 +9,10 @@ compile() { latexmk -f build/tfg.tex; }
 knit && compile
 
 inotifywait -m -e modify -q --format '%w%f' \
-  tfg.Rnw \
-  *.tex \
-  capitulos/* \
+  **.Rnw \
+  **.tex \
   code/* \
   library.bib \
   | while read -r f; do
-      knit && compile ;;
+      knit && compile
   done

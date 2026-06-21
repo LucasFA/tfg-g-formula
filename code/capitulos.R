@@ -1,5 +1,4 @@
 ## ---- est-ate ----
-set.seed(42)
 est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
 
 ## ---- idk ----

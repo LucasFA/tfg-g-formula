@@ -66,7 +66,8 @@
 % Si es necesario cuando el código crezca se cambia
 <<setup, include=FALSE>>=
 knitr::read_chunk("code/capitulos.R")
-knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/") 
+knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
+set.seed(2026)
 @
 
 \maketitle
