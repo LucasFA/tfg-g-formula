@@ -9,14 +9,10 @@ de la distribución.
 \subsection{Comparison code blocks}
 \subsubsection{lstlisting}
 % \lstinputlisting[firstline=10,lastline=20]{script.R}
-\begin{lstlisting}[language=R]
-x <- rnorm(100)
-mean(x)
-\end{lstlisting}
+<<rnorm-lst, echo=TRUE, eval=TRUE>>=
+@
 
 \subsubsection{minted}
 % \inputminted{R}{script.R}
-\begin{minted}{r}
-x <- rnorm(100)
-mean(x)
-\end{minted}
+<<rnorm-mint, echo=TRUE, eval=TRUE>>=
+@

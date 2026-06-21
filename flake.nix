@@ -16,6 +16,9 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        rWithPkgs = pkgs.rWrapper.override {
+          packages = with pkgs.rPackages; [ knitr ];
+        };
         texIndent = pkgs.texlive.combine {
           inherit (pkgs.texlive)
             scheme-basic
@@ -33,7 +36,7 @@
             upquote
             fontaxes
             fontspec
-            
+
             # lista obtenida con `cat ugrTFG.cls | grep RequirePackage`
             # paquetes comentados con # no están en nixpkgs con ese nombre,
             # pero siguen estando disponibles en la compilación.
@@ -58,11 +61,10 @@
             booktabs
             xcolor
             # graphicx
-            listings
             eso-pic
             dirtytalk
-            minted
             tikz-cd
+            framed
             ;
         };
       in
@@ -72,6 +74,8 @@
             texCombined
             texIndent
             pkgs.coreutils
+            pkgs.inotify-tools
+            rWithPkgs
           ];
 
           shellHook = ''
@@ -94,6 +98,7 @@
             buildInputs = [
               pkgs.coreutils
               texCombined
+              rWithPkgs
             ];
             phases = [
               # prevent the fixup phase. It throws errors

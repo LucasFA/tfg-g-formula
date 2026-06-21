@@ -4,7 +4,7 @@
 
 La compilación genera el archivo `build/tfg.pdf`.
 
-### Con una instalación tradicional de LaTeX
+### Con una instalación tradicional de LaTeX y R
 
 Necesitas una distribución de LaTeX con `latexmk`, `xelatex` y los paquetes listados en `flake.nix`.
 Ejecuta uno de los siguientes comandos:

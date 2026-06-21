@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#inside nix develop:
 set -euo pipefail
 
-mkdir -p .cache/texmf-var
-mkdir -p build
+mkdir -p .cache/texmf-var build
 
-# please check .latexmkrc for build options
-latexmk tfg.tex
+# Knit tfg.Rnw (processes all <<child=...>>= includes in one session)
+Rscript -e 'knitr::knit("tfg.Rnw", output = "build/tfg.tex")'
+
+latexmk build/tfg.tex

@@ -118,9 +118,10 @@
         \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
     $$
     Esto se puede escribir de la siguiente forma en el lenguaje R:
-    \begin{minted}{r}
-        est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
-    \end{minted}
+<<est-ate, echo=TRUE, eval=FALSE>>=
+@
+<<idk, echo=TRUE, eval=TRUE>>=
+@
     Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
@@ -153,9 +154,8 @@
     Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
     (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
     En el caso de una sola variable confusora $X$,
-    \begin{minted}{r}
-        naive <- lm(Y ~ A + X, data = data)
-    \end{minted}
+<<naive-lm, echo=TRUE, eval=FALSE>>=
+@
     Nótese que la regresión lineal no es robusta ante heterocedasticidad sin aplicar procedimientos
     más avanzados.
     Esta es una técnica muy extendida en la práctica clínica.

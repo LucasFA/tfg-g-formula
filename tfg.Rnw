@@ -16,8 +16,6 @@
 \usepackage{fontspec}
 \usepackage[spanish]{babel}
 \usepackage{dirtytalk}
-\usepackage{listings}
-\usepackage{minted}
 \usepackage{tikz-cd}
 \usepackage{hyperref}
 \usepackage{subcaption}
@@ -35,7 +33,6 @@
 \newcommand{\MAS}{Muestra Aleatoria Simple\xspace}
 \newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
 % \newcommand{\indep}{\perp\!\!\!\perp}
-\setminted{autogobble}
 
 % -------------------------------------------------------------------
 % INFORMACIÓN DEL TFG Y EL AUTOR
@@ -64,6 +61,13 @@
 }
 
 \begin{document}
+
+% Paso de analizar problemas de invalidación de cache.
+% Si es necesario cuando el código crezca se cambia
+<<setup, include=FALSE>>=
+knitr::read_chunk("code/capitulos.R")
+knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/") 
+@
 
 \maketitle
 
@@ -101,10 +105,12 @@
 \input{capitulos/00-preliminares}
 \input{capitulos/01-intro}
 \input{capitulos/02-potential-outcomes}
-\input{capitulos/03-identificacion}
+<<child='capitulos/03-identificacion.Rnw'>>=
+@
 \input{capitulos/031-curse-of-dimensionality}
 \input{capitulos/04-inferencia-clasica}
-\input{capitulos/05-comparacion}
+<<child='capitulos/05-comparacion.Rnw'>>=
+@
 
 % -------------------------------------------------------------------
 % APPENDIX: Opcional
