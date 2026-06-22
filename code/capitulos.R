@@ -1,3 +1,6 @@
+## ---- script-setup ----
+set.seed(2026)
+
 ## ---- est-ate ----
 est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
 

@@ -67,7 +67,8 @@
 <<setup, include=FALSE>>=
 knitr::read_chunk("code/capitulos.R")
 knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
-set.seed(2026)
+@
+<<script-setup, include=FALSE>>=
 @
 
 \maketitle

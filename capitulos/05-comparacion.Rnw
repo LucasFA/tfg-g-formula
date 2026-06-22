@@ -6,13 +6,7 @@ como en casos extremos % TODO: will we?
 de la distribución.
 
 
-\subsection{Comparison code blocks}
-\subsubsection{lstlisting}
-% \lstinputlisting[firstline=10,lastline=20]{script.R}
-<<rnorm-lst, echo=TRUE, eval=TRUE>>=
-@
-
-\subsubsection{minted}
+\subsection{Code block example}
 % \inputminted{R}{script.R}
 <<rnorm-mint, echo=TRUE, eval=TRUE>>=
 @
