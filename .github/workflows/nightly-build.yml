@@ -66,4 +66,4 @@ jobs:
             result/tfg.log
           draft: false
           prerelease: true
-          make_latest: "false"
+          make_latest: "true"
