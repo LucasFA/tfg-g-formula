@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v22
@@ -33,6 +33,12 @@ jobs:
 
       - name: Build document
         run: nix build .#document --print-build-logs
+
+      - name: Upload PDF artifact for Pages deployment
+        uses: actions/upload-artifact@v7
+        with:
+          name: thesis-pdf
+          path: result/tfg.pdf
 
       - name: Cleanup old nightly releases
         env:
