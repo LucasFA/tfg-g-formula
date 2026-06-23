@@ -31,8 +31,8 @@ jobs:
         with:
           name: build-output
           path: |
-            tfg.pdf
-            tfg.log
+            result/tfg.pdf
+            result/tfg.log
 
   deploy:
     name: Create Release & Deploy Pages
