@@ -28,7 +28,12 @@
         };
         texCombined = pkgs.texlive.combine {
           inherit (pkgs.texlive)
-            scheme-small
+            scheme-basic
+            ## packages that are in scheme-small but are not in scheme-basic that are needed:
+            collection-xetex
+            babel-spanish
+            collection-latexrecommended
+            hyphen-spanish
             # fpl # fonts? URW Palladio
 
             latexmk
