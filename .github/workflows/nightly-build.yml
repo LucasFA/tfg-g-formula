@@ -1,44 +1,51 @@
-name: Nightly Build
+name: Nightly Build & Deploy PDF
 
 on:
   schedule:
-    # Runs daily at 03:00 UTC
     - cron: '0 3 * * *'
   workflow_dispatch:
-    # Allows manual trigger from GitHub UI
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
-    name: Compile LaTeX document
+    name: Build PDF
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - uses: actions/checkout@v7
 
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v22
+      - uses: DeterminateSystems/nix-installer-action@v22
         with:
           extra-conf: |
             accept-flake-config = true
 
-      - name: Cache Nix Store
-        uses: DeterminateSystems/magic-nix-cache-action@v14
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - run: nix build .#document --print-build-logs
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: build-output
+          path: |
+            result/tfg.pdf
+            result/tfg.log
+
+  deploy:
+    name: Create Release & Deploy Pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: build-output
+          path: .
 
       - name: Get current date
         id: date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
-      - name: Build document
-        run: nix build .#document --print-build-logs
-
-      - name: Upload PDF artifact for Pages deployment
-        uses: actions/upload-artifact@v7
-        with:
-          name: thesis-pdf
-          path: result/tfg.pdf
 
       - name: Cleanup old nightly releases
         env:
@@ -61,7 +68,7 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           tag_name: nightly-${{ steps.date.outputs.date }}-${{ github.run_number }}
-          name: Nightly Build (${{ steps.date.outputs.date }}) #${{ github.run_number }}
+          name: Nightly Build (${{ steps.date.outputs.date }})
           body: |
             Automatically generated LaTeX PDF from the nightly build.
             Commit: ${{ github.sha }}
@@ -72,4 +79,23 @@ jobs:
             result/tfg.log
           draft: false
           prerelease: true
-          make_latest: "false" # can only make non-prereleases latest
+          make_latest: "false"
+
+      - run: |
+          mkdir -p site
+          cp result/tfg.pdf site/
+          cat > site/index.html <<EOF
+          <!doctype html>
+          <html>
+          <body>
+            <a href="tfg.pdf">Download PDF</a>
+            <embed src="tfg.pdf" width="100%" height="1000px">
+          </body>
+          </html>
+          EOF
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - uses: actions/deploy-pages@v5
