@@ -16,11 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-
-      - uses: DeterminateSystems/nix-installer-action@v22
-        with:
-          extra-conf: |
-            accept-flake-config = true
+      - uses: cachix/nix-install-action@v31
 
       - uses: Mic92/hestia@main
       # - uses: DeterminateSystems/magic-nix-cache-action@v14
