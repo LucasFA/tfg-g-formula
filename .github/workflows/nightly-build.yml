@@ -31,8 +31,8 @@ jobs:
         with:
           name: build-output
           path: |
-            result/tfg.pdf
-            result/tfg.log
+            tfg.pdf
+            tfg.log
 
   deploy:
     name: Create Release & Deploy Pages
@@ -84,7 +84,7 @@ jobs:
 
       - run: |
           mkdir -p site
-          cp result/tfg.pdf site/
+          cp tfg.pdf site/
           cat > site/index.html <<EOF
           <!doctype html>
           <html>
