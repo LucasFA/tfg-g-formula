@@ -22,7 +22,8 @@ jobs:
           extra-conf: |
             accept-flake-config = true
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v14
+      - uses: Mic92/hestia@v1
+      # - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - run: nix build .#document --print-build-logs
 
