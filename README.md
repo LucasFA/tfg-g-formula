@@ -1,5 +1,7 @@
 # Introducción a la inferencia causal y observacional
 
+El trabajo en pdf está disponible en https://blog.lucasfa.com/tfg-g-formula/tfg.pdf
+
 ## Compilando el PDF
 
 La compilación genera el archivo `build/tfg.pdf`.
