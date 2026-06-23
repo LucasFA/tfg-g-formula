@@ -54,7 +54,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: nightly-${{ steps.date.outputs.date }}-${{ github.run_id }}
+          tag_name: nightly-${{ steps.date.outputs.date }}-${{ github.run_number }}
           name: Nightly Build (${{ steps.date.outputs.date }}) #${{ github.run_number }}
           body: |
             Automatically generated LaTeX PDF from the nightly build.
@@ -66,4 +66,4 @@ jobs:
             result/tfg.log
           draft: false
           prerelease: true
-          make_latest: "true"
+          make_latest: "false" # can only make non-prereleases latest
