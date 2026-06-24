@@ -46,17 +46,7 @@ jobs:
       # from source and use the action in token-capture-only mode (GC
       # needs the cache API tokens, not the daemon).
       - name: Install hestia (released binary)
-        if: vars.HESTIA_DOGFOOD == 'true'
         uses: Mic92/hestia@main
-      - name: Build hestia
-        if: vars.HESTIA_DOGFOOD != 'true'
-        run: nix build github:Mic92/hestia# -o hestia-bin
-      - uses: Mic92/hestia@main
-        if: vars.HESTIA_DOGFOOD != 'true'
-        with:
-          # Explicitly empty: token-capture-only mode (version defaults to
-          # "latest" when omitted, which would start an unwanted daemon).
-          version: ""
       - name: Run garbage collection
         run: |
           "${HESTIA_BIN:-./hestia-bin/bin/hestia}" gc \
