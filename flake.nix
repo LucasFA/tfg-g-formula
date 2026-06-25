@@ -17,7 +17,16 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         rWithPkgs = pkgs.rWrapper.override {
-          packages = with pkgs.rPackages; [ knitr ];
+          packages = with pkgs.rPackages; [
+            knitr
+            ggdag
+            # lavaan
+            simcausal
+            simDAG
+
+            languageserver
+            lintr
+          ];
         };
         texIndent = pkgs.texlive.combine {
           inherit (pkgs.texlive)
@@ -79,7 +88,6 @@
           ];
 
           shellHook = ''
-            mkdir -p .cache/texmf-var
             ${pkgs.bash}/bin/bash ./scripts/watch.sh
           '';
         };

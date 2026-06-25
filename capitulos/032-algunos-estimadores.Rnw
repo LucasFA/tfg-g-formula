@@ -1,0 +1,7 @@
+\section{Estimadores en la práctica}
+Hemos comentado previamente varios estimadores. Vamos a evaluar su rendimiento en datos
+simulados observando la distribución obtenida por bootstrap. Utilizamos el paquete
+\emph{simcausal} \cite{simcausalPkg}
+
+<<generar-datos, echo=TRUE, eval=TRUE>>=
+@
