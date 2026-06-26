@@ -86,12 +86,17 @@
             pkgs.inotify-tools
             rWithPkgs
           ];
-
-          shellHook = ''
-            ${pkgs.bash}/bin/bash ./scripts/watch.sh
-          '';
         };
+
         packages = {
+          live-compilation = pkgs.writeShellApplication {
+            name = "Live recompilation";
+            runtimeInputs = [ ];
+            text = ''
+              ${pkgs.bash}/bin/bash ./scripts/watch.sh
+            '';
+          };
+
           # Ejecutar con `nix run .#format`
           format = pkgs.writeShellApplication {
             name = "document-format";
