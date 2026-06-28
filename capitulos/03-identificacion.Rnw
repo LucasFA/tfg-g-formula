@@ -235,7 +235,7 @@ Como veremos, este es el caso del Odds Ratio.
 \end{corolario}
 
 
-\subsection{Identificación de estimandos de interés} \label{sec:estimadores_asociados}
+\section{Identificación de estimandos de interés} \label{sec:estimadores_asociados}
 Presentamos la identificación de los estimandos causales introducidos en la \autoref{sec:estimandos_de_interes}.
 % Consideramos una muestra aleatoria de dos variables aleatorias binarias $(Y, A)$
 % produciendo una distribución empírica $\P$. De esta manera, la tabla de contingencia
@@ -243,7 +243,7 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
 
 % TODO: change these into propositions (of identification) or change names
 \begin{proposicion}[Identificación de la Diferencia de Riesgo]
-    Recordamos que la Diferencia de Riesgo (\ref{def:riskdiff}) se define como:
+    Recordamos que la Diferencia de Riesgo (\autoref{def:riskdiff}) se define como:
     $$
         RD = P(Y(1) = 1) - P(Y(0) = 1)
     $$

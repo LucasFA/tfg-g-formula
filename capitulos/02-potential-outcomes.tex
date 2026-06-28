@@ -73,8 +73,8 @@ e $Y$ es la variable de respuesta.
     Definimos el Odds Ratio (OR) como:
     % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     \begin{align*}
-        OR & = \frac{P(Y(1) = 1)/P(Y(1) = 0)}{P(Y(0) = 1)/P(Y(0) = 0)}           \\
-        OR & = \frac{P(Y(1) = 1)}{P(Y(0) = 1)} * \frac{P(Y(0) = 0)}{P(Y(1) = 0)}
+        OR & = \frac{P(Y(1) = 1)/P(Y(1) = 0)}{P(Y(0) = 1)/P(Y(0) = 0)}
+        % OR & = \frac{P(Y(1) = 1)}{P(Y(0) = 1)} \cdot \frac{P(Y(0) = 0)}{P(Y(1) = 0)}
     \end{align*}
 \end{definicion}
 
@@ -86,21 +86,21 @@ e $Y$ es la variable de respuesta.
 
 \begin{corolario}[Caso de enfermedad rara] % TODO: prove
     % Si $P(Y = 0 | A = a) \approx 1 \; \forall a$, entonces $OR \approx RR$.
-    Si $P(Y = 0) \approx 1 $, entonces $OR \approx RR$, para un tamaño
-    de grupo de tratamiento fijo.
+    Si $P(Y(a) = 0) \approx 1 \; \forall a$, entonces $OR \approx RR$.
 \end{corolario}
 \begin{proof}
     Tenemos que
     \[
         OR - RR = RR \left(\dfrac{P(Y(0) = 0)}{P(Y(1) = 0)} - 1\right)
     \]
-    Bajo el límite $P(Y = 0) \to 1$
+    Bajo el límite $P(Y(a) = 0) \to 1$
     el último factor se anula.
-    Al realizar el experimento y aplicar consistencia \autoref{consistency},
-    la condición adicional $P(A = a) \nrightarrow 0$ será suficiente.
+    % Al realizar el experimento y aplicar consistencia \autoref{consistency},
+    % la condición adicional $P(A = a) \nrightarrow 0$ será suficiente.
 \end{proof}
 
-Estudiaremos los estimadores asociados a estos estimandos en \autoref{sec:estimadores_asociados}.
+Estudiaremos los estimandos estadísticos asociados a estos estimandos causales
+en la \autoref{sec:estimadores_asociados}.
 
 \begin{ejemplo}[Modelos causal y estadístico] % TODO:
     Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
@@ -133,9 +133,9 @@ Estudiaremos los estimadores asociados a estos estimandos en \autoref{sec:estima
 
 \begin{ejemplo} % TODO: improve wording
     Un estudio médico puede estudiar la efectividad de un tratamiento en un
-    grupo de pacientes de los cuales se registra la mortandad en un plazo determinado.
+    grupo de pacientes de los cuales se registra la mortalidad en un plazo determinado.
     La variable binaria $A$ representa si se ha aplicado cierto tratamiento o no,
-    la mortandad es medida en la variable binaria $Y$,
+    la mortalidad es medida en la variable binaria $Y$,
     y además tenemos en cuenta una condición $X$ que puede afectar a las otras
     dos variables, como la presión arterial del paciente.
 \end{ejemplo}
