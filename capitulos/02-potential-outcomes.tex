@@ -62,6 +62,12 @@ e $Y$ es la variable de respuesta.
     $$
 \end{definicion}
 
+\begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
+    El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
+    es definido como
+    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
+\end{definicion}
+
 \begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
     Definimos el Riesgo Relativo (RR) como:
     $$
@@ -144,12 +150,6 @@ en la \autoref{sec:estimadores_asociados}.
     Denotaremos $\mu_a(x) = \E[Y| X = x, A = a]$, el resultado medio de los pacientes con las covariantes $x$ que fueron
     tratados con el tratamiento $a$. De la misma manera, $\mu_a(X) = \E[Y | X, A = a]$
 \end{notac}
-
-\begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
-    El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
-    es un estimando causal definido como
-    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
-\end{definicion}
 
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
     Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
@@ -246,9 +246,10 @@ Antes de ello, un ejemplo del problema.
     degeneradas tomando como valores posibles $(1, 0, 1)$ y $(1, -1, 1)$. Aplicando consistencia,
     tenemos que la distribución observable en ambos casos es la distribución degenerada de valor
     $(A, Y) = (1, 1)$.
-    Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad,
-    porque el valor de la distribución observable no dependía del valor de $Y(0)$: siempre
-    se daba el caso de que $Y = Y(1)$.
+    Este ejemplo específicamente pone de manifiesto la necesidad de la asunción de positividad
+    (\autoref{def:positivity}),
+    porque $A$ siempre toma el valor $1$ y por tanto siempre
+    se da $Y = Y(1)$ mientras que el valor de $Y(0)$ resulta libre.
 \end{ejemplo}
 
 Los supuestos de identificación que hacemos son los siguientes, extraídos
@@ -277,7 +278,7 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     % \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
 \end{definicion}
 
-\begin{definicion}[Positividad]
+\begin{definicion}[Positividad] \label{def:positivity}
     $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{definicion}
 
