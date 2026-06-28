@@ -8,13 +8,13 @@ compile() { latexmk -f build/tfg.tex; }
 
 knit && compile
 
-inotifywait -m -e modify -q --format '%w%f' \
+inotifywait -m -e modify -e close_write --format '%w%f' \
   tfg.Rnw \
   *.tex \
-  capitulos/* \
-  preliminares/* \
-  apendices/* \
-  code/* \
+  capitulos \
+  preliminares \
+  apendices \
+  code \
   library.bib \
   | while read -r f; do
       knit && compile
