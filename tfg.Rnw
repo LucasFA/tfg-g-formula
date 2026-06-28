@@ -110,10 +110,11 @@ knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 <<child='capitulos/03-identificacion.Rnw'>>=
 @
 \input{capitulos/031-curse-of-dimensionality}
-<<child='capitulos/032-algunos-estimadores.Rnw'>>=
-@
+\input{capitulos/035-g-formula}
 \input{capitulos/04-inferencia-clasica}
 <<child='capitulos/05-comparacion.Rnw'>>=
+@
+<<child='capitulos/051-algunos-estimadores.Rnw'>>=
 @
 
 % -------------------------------------------------------------------

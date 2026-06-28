@@ -21,7 +21,7 @@ Verlos en ejemplo con la simulación de MC (o datos reales?), donde se rompa ran
 ## Otras modificaciones
 - Introducción dando punto de vista práctico con perspectiva computacional
 - Más métodos clásicos tipo ANOVA o t test (low priority)
-- sección de Estimandos donde ahora está estimadores, con lo de RR y stuff
+- sección de Estimandos donde ahora está estimadores, con lo de RR y stuff [Done - ver sección `nuevas secciones`]
 ## Nuevos recursos:
 - Paper: USING SIMULATION STUDIES TO simulate statistical methods. Wiley
 

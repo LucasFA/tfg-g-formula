@@ -3,7 +3,8 @@
 % ATE estadístico y causal
 
 \begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
-    Dado un estimando causal $\psi^*$ y un estimando estadístico $\psi$, llamamos brecha causal o en inglés \textit{causal gap} a la diferencia $\psi - \psi^*$,
+    Dado un estimando causal $\psi^*$ y un estimando estadístico $\psi$, llamamos brecha causal o en
+    inglés \textit{causal gap} a la diferencia $(\mathcal{O}~\circ~\psi) - \psi^*$,
 
     Si hemos identificado el estimando causal con el estimando estadístico, hemos visto
     que esta cantidad es nula.
@@ -53,7 +54,7 @@
 \end{nota}
 
 \begin{proposicion}[G-fórmula, versión no paramétrica]
-    Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(Y, A, X)$, donde $A \in \{0, 1\}$,
+    Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(X, A, Y)$, donde $A \in \{0, 1\}$,
     se obtiene el siguiente estimando estadístico identificado con el ATE:
     % TODO: find this based on sample?
     % TODO: includes version with sample, do proof part
@@ -118,10 +119,10 @@
         \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
     $$
     Esto se puede escribir de la siguiente forma en el lenguaje R:
-<<est-ate, echo=TRUE, eval=FALSE>>=
-@
-<<idk, echo=TRUE, eval=TRUE>>=
-@
+    <<est-ate, echo=TRUE, eval=FALSE>>=
+    @
+    <<idk, echo=TRUE, eval=TRUE>>=
+    @
     Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
@@ -154,8 +155,8 @@
     Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
     (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
     En el caso de una sola variable confusora $X$,
-<<naive-lm, echo=TRUE, eval=FALSE>>=
-@
+    <<naive-lm, echo=TRUE, eval=FALSE>>=
+    @
     Nótese que la regresión lineal no es robusta ante heterocedasticidad sin aplicar procedimientos
     más avanzados.
     Esta es una técnica muy extendida en la práctica clínica.

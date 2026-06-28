@@ -6,7 +6,7 @@ library("simcausal")
 D <- empty_dag() +
   node("X", distr = "rbern", prob = 0.3) +
   # node("X", type = "rbernouilli", p = 0.3) +
-  node("A", distr = "rbern", prob = 0.5 + 0.2 * (X > 0.5) ) +
+  node("A", distr = "rbern", prob = 0.5 + 0.2 * (X > 0.5)) +
   # node("A", distr = "rbernouilli", p = 0.5 + 0.2 * (X > 0.5) ) +
   node("Y", distr = "rbern", prob = plogis(-2 + 0.5 * A)) # + 0.3 * X
 D <- set.DAG(D)
