@@ -47,26 +47,35 @@ Veremos que $P^*$ determina $P$ en
 su totalidad bajo ciertos supuestos.
 
 \section{Estimandos de interés} \label{sec:estimandos_de_interes}
-Vamos a considerar la Diferencia de Riesgo (RD, por sus siglas en inglés), el
-Riesgo Relativo (RR) y el Odds Ratio (OR).
-
-En las siguientes definiciones consideramos una distribución $P$ de $(Y(0), Y(1), A)$
-donde tanto $A$ como $Y(a)$ son variables binarias. $A$ es un factor de riesgo
+En las siguientes definiciones consideramos una distribución $P^*$ de $(Y(0), Y(1), A)$
+donde tanto $A$ como $Y(a)$ son variables binarias salvo mención de lo contrario.
+$A$ es un factor de riesgo
+o tratamiento
 e $Y$ es la variable de respuesta.
 
 % TODO: another(?) source
 \begin{definicion}[Diferencia de Riesgo] \label{def:riskdiff} \cite[capítulo 1.3]{whatif}
-    Definimos la diferencia de riesgo (RD) como:
+
+    Definimos la diferencia de riesgo (RD por sus siglas en inglés) como:
     $$
-        RD(P) = P(Y(1) = 1) - P(Y(0) = 1)
+        RD(P^*) = P(Y(1) = 1) - P(Y(0) = 1)
     $$
 \end{definicion}
 
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
     El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
     es definido como
-    $$ \psi^*(P^*) \equiv \psi^* = \E(Y(1) - Y(0)) $$
+    $$ \psi^*(P^*) = \E(Y(1) - Y(0)) $$
+    En este caso, la variable respuesta puede tomar varios valores discretos o ser continua.
 \end{definicion}
+
+% TODO: check "covariantes" is a proper translation, and outcome thing
+\begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
+    El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
+    por la predisposición a las covariantes en la población, $X$.
+    % También depende de la distribución conjunta de $(Y, X, A)$.
+    % En particular, el ATE depende de la distribución de covariantes $X$.
+\end{observacion}
 
 \begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
     Definimos el Riesgo Relativo (RR) como:
@@ -146,27 +155,6 @@ en la \autoref{sec:estimadores_asociados}.
     dos variables, como la presión arterial del paciente.
 \end{ejemplo}
 
-\begin{notac}[Esperanza condicional]\label{def:mu_a}
-    Denotaremos $\mu_a(x) = \E[Y| X = x, A = a]$, el resultado medio de los pacientes con las covariantes $x$ que fueron
-    tratados con el tratamiento $a$. De la misma manera, $\mu_a(X) = \E[Y | X, A = a]$
-\end{notac}
-
-\begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
-    Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
-    Definimos el ATE estadístico como el siguiente estimando estadístico:
-    $$ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] $$
-    También se puede escribir como:
-    $$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
-\end{definicion}
-
-% TODO: check "covariantes" is a proper translation, and outcome thing
-\begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
-    El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
-    por la predisposición a las covariantes en la población, $X$.
-    % También depende de la distribución conjunta de $(Y, X, A)$.
-    % En particular, el ATE depende de la distribución de covariantes $X$.
-\end{observacion}
-
 
 % \begin{definicion}[Independencia condicional]
 % TODO: maybe put it in conceptos preliminares
@@ -179,12 +167,14 @@ en la \autoref{sec:estimadores_asociados}.
 
 
 
-\begin{ejemplo}
-    Diferencia de riesgo: $Y_i(1) - Y_i(0)$,
-    Riesgo relativo (RR): $Y_i(1) / Y_i(0)$,
-    para un $i$ dado.
-    % \item % TODO: does odd ratios fit here?
-\end{ejemplo}
+\iffalse
+    \begin{ejemplo}
+        Diferencia de riesgo: $Y_i(1) - Y_i(0)$,
+        Riesgo relativo (RR): $Y_i(1) / Y_i(0)$,
+        para un $i$ dado.
+        % \item % TODO: does odd ratios fit here?
+    \end{ejemplo}
+\fi
 
 \section{Supuestos del Potential Outcomes Framework}
 \cite[capítulo 2.2]{mci}
@@ -194,7 +184,6 @@ Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar
 un estimando sobre la distribución observable que nos permita inferir sobre él,
 usando que la distribución estadística se relaciona con la causal a través de
 la observación: $P = \mathcal{O}(P^*)$.
-Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
 
 \begin{definicion}[Identificación]
     Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando
@@ -256,13 +245,13 @@ Los supuestos de identificación que hacemos son los siguientes, extraídos
 de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 
 \begin{definicion}[Consistencia]
-    \label{consistency}
+    \label{def:consistency}
     Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
     las distribuciones causal y estadística:
     $$ Y = A Y(1) + (1 - A)Y(0) $$
 \end{definicion}
 
-\begin{definicion}[Intercambiabilidad condicional] % TODO; check understanding
+\begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad} % TODO; check understanding
     También denominada independencia condicional, ignorabilidad o suficiencia causal.
     $$ Y(a) \indep A | X $$
     Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
@@ -282,14 +271,14 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
 \end{definicion}
 
-Dependiendo del autor la condición de consistencia vista en \ref{consistency}
+Dependiendo del autor la condición de consistencia vista en \ref{def:consistency}
 se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
 
 \subsection{Otras definiciones relacionadas}
-\begin{definicion}[No interferencia]\label{noInterference}
-    Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\ref{def:unidad}) son independientes.
+\begin{definicion}[No interferencia]\label{def:noInterference}
+    Se dice que se cumple la asunción de no interferencia cuando los efectos a nivel de unidad (\autoref{def:unidad}) son independientes.
     Es decir, que la exposición o no exposición de un sujeto al tratamiento no afecta al resultado de otros sujetos.
     % TODO: important: "no unobserved confounding" interpretation of this:
 \end{definicion}
@@ -297,7 +286,7 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 
 \begin{definicion}[SUTVA]
     \textit{Stable Unit Treatment Values Assumption} (\textit{SUTVA}) combina las condiciones de
-    consistencia (\ref{consistency}) y de no interferencia (\ref{noInterference}).
+    consistencia (\ref{def:consistency}) y de no interferencia (\ref{def:noInterference}).
     Ambas condiciones se satisfacen simultáneamente bajo muestreo IID.
 \end{definicion}
 
@@ -325,7 +314,6 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
     Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
     de estudiantes de la misma clase)\cite{oxChapterCausal}.
 \end{ejemplo}
-
 
 \begin{proposicion}
     Si el modelo causal y el estadístico son consistentes
