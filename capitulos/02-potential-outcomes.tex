@@ -23,9 +23,9 @@ Basándonos en \cite[capítulo 2]{targetedLearning}, consideremos el modelo esta
 donde $P$ es la distribución conjunta del triplete $(X, A, Y)$
 de variables aleatorias observables, y supongamos que $Y$ es una variable aleatoria binaria.
 
-A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado (\textit{outcome}, del inglés).
+A $X$ lo llamamos las covariantes, a $A$ el tratamiento, y a $Y$ el resultado o respuesta (\textit{outcome}, del inglés).
 
-Consideramos entonces un modelo (familia de distribuciones) que llamaremos causal $\mathcal{M}^*$
+Consideramos entonces un modelo causal (\ref{def:modelo_causal}) $\mathcal{M}^*$
 donde vive la distribución conjunta de un vector $(X, A, Y(0), Y(1))$,
 $P^* \in \mathcal{M}^*$ donde $Y(0)$ e $Y(1)$ son dos variables aleatorias nuevas,
 que en este momento no relacionamos con la variable $Y$ del modelo estadístico.
@@ -55,10 +55,9 @@ e $Y$ es la variable de respuesta.
 
 % TODO: another(?) source
 \begin{definicion}[Diferencia de Riesgo] \label{def:riskdiff} \cite[capítulo 1.3]{whatif}
-
     Definimos la diferencia de riesgo (RD por sus siglas en inglés) como:
     $$
-        RD(P^*) = P(Y(1) = 1) - P(Y(0) = 1)
+        RD(P^*) = P^*(Y(1) = 1) - P^*(Y(0) = 1)
     $$
 \end{definicion}
 
@@ -67,20 +66,23 @@ e $Y$ es la variable de respuesta.
     es definido como
     $$ \psi^*(P^*) = \E(Y(1) - Y(0)) $$
     En este caso, la variable respuesta puede tomar varios valores discretos o ser continua.
+    En el caso que $Y$ sea binaria, coincide con la diferencia de riesgo.
 \end{definicion}
 
 % TODO: check "covariantes" is a proper translation, and outcome thing
-\begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
-    El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
-    por la predisposición a las covariantes en la población, $X$.
-    % También depende de la distribución conjunta de $(Y, X, A)$.
-    % En particular, el ATE depende de la distribución de covariantes $X$.
-\end{observacion}
+\iffalse
+    \begin{observacion}[Interpretación] \cite[sección 1.3]{mci}
+        El ATE mide la diferencia media entre los pacientes tratados y no tratados, ponderando
+        por la predisposición a las covariantes en la población, $X$.
+        % También depende de la distribución conjunta de $(Y, X, A)$.
+        % En particular, el ATE depende de la distribución de covariantes $X$.
+    \end{observacion}
+\fi
 
 \begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
     Definimos el Riesgo Relativo (RR) como:
     $$
-        RR(P) = \frac{P(Y(1) = 1)}{P(Y(0) = 1)}
+        RR(P^*) = \frac{P^*(Y(1) = 1)}{P^*(Y(0) = 1)}
     $$
 \end{definicion}
 
@@ -88,27 +90,27 @@ e $Y$ es la variable de respuesta.
     Definimos el Odds Ratio (OR) como:
     % OR = RR * \dfrac{P(\neg E|C)}{P(\neg E | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     \begin{align*}
-        OR & = \frac{P(Y(1) = 1)/P(Y(1) = 0)}{P(Y(0) = 1)/P(Y(0) = 0)}
+        OR(P^*) & = \frac{P^*(Y(1) = 1)/P^*(Y(1) = 0)}{P^*(Y(0) = 1)/P^*(Y(0) = 0)}
         % OR & = \frac{P(Y(1) = 1)}{P(Y(0) = 1)} \cdot \frac{P(Y(0) = 0)}{P(Y(1) = 0)}
     \end{align*}
 \end{definicion}
 
 \begin{corolario}[Relación entre OR y RR]
     $$
-        OR = RR \dfrac{P(Y(0) = 0)}{P(Y(1) = 0)}
+        OR = RR \dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)}
     $$
 \end{corolario}
 
 \begin{corolario}[Caso de enfermedad rara] % TODO: prove
     % Si $P(Y = 0 | A = a) \approx 1 \; \forall a$, entonces $OR \approx RR$.
-    Si $P(Y(a) = 0) \approx 1 \; \forall a$, entonces $OR \approx RR$.
+    Si $P^*(Y(a) = 0) \approx 1 \; \forall a$, entonces $OR \approx RR$.
 \end{corolario}
 \begin{proof}
     Tenemos que
     \[
-        OR - RR = RR \left(\dfrac{P(Y(0) = 0)}{P(Y(1) = 0)} - 1\right)
+        OR - RR = RR \left(\dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)} - 1\right)
     \]
-    Bajo el límite $P(Y(a) = 0) \to 1$
+    Bajo el límite $P^*(Y(a) = 0) \to 1$
     el último factor se anula.
     % Al realizar el experimento y aplicar consistencia \autoref{consistency},
     % la condición adicional $P(A = a) \nrightarrow 0$ será suficiente.
@@ -184,6 +186,7 @@ Dado un estimando causal $\psi^* : \mathcal{M}^* \to \R$, queremos encontrar
 un estimando sobre la distribución observable que nos permita inferir sobre él,
 usando que la distribución estadística se relaciona con la causal a través de
 la observación: $P = \mathcal{O}(P^*)$.
+Como los nombres indican, en particular querremos identificar el ATE causal con el ATE estadístico.
 
 \begin{definicion}[Identificación]
     Diremos que un estimando causal $\varphi$ está identificado con un estimando estadístico $\psi$ cuando

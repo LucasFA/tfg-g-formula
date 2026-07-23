@@ -1,0 +1,45 @@
+\chapter{Estudios observacionales}
+Vamos a aplicar el marco presentado primero para estudios randomizados controlados y
+posteriormente para estudios observacionales.
+Vamos a ver las condiciones que un estudio randomizado implica y cómo se debilitan
+en un estudio observacional.
+
+\section{Estudios randomizados}
+Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
+
+\begin{figure}[h]
+    \label{fig:grafo-causal-rct}
+    \centering
+    \begin{tikzcd}
+        A \arrow{r}{} & Y \\
+        X \arrow{ur}{}
+    \end{tikzcd}
+    \caption{RCT}
+\end{figure}
+
+Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
+randomización simple en la que los sujetos son asignados a las variantes del tratamiento
+por una distribución de Bernouilli $B(1/2)$.
+
+\footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
+    frente a muestras pequeñas. Otras técnicas incluyen la randomización estratificada, y la
+    randomización por bloques.
+    La primera se subdivide la población a estudiar en estratos
+    por característica (por ejemplo, el sexo o la edad) y se hace un muestreo en cada estrato, que
+    a su vez puede ser simple o por bloques.
+    La randomización por bloques,
+}
+
+\section{Estudios observacionales}
+Ahora, no controlamos la asignación del tratamiento, sino que puede ser afectada por el resto de
+condiciones del sujeto de estudio ($X$).
+
+\begin{figure}[h]
+    \label{fig:grafo-causal-obs}
+    \centering
+    \begin{tikzcd}
+        A \arrow{r}{} & Y \\
+        X  \arrow{u}{} \arrow{ur}{}
+    \end{tikzcd}
+    \caption{Estudio observacional}
+\end{figure}

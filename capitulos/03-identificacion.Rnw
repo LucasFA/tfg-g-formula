@@ -35,7 +35,7 @@
 
 \begin{proposicion}[Identificación del ATE] \label{identificacion-ate}
     Consideramos una distribución $(X, A, Y(0), Y(1))$.
-    Bajo las condiciones anteriores \autoref{def:positivity} \autoref{} \autoref{} , el ATE causal está identificado con el ATE estadístico.
+    Bajo las condiciones anteriores (\autoref{def:consistency} \autoref{def:intercambiabilidad} \autoref{def:positivity}), el ATE causal está identificado con el ATE estadístico.
 \end{proposicion}
 
 \begin{proof}\cite[sección 2.2]{mci}
