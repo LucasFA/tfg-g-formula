@@ -21,13 +21,14 @@ Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos un
 randomización simple en la que los sujetos son asignados a las variantes del tratamiento
 por una distribución de Bernouilli $B(1/2)$.
 
+
 \footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
-    frente a muestras pequeñas. Otras técnicas incluyen la randomización estratificada, y la
-    randomización por bloques.
-    La primera se subdivide la población a estudiar en estratos
-    por característica (por ejemplo, el sexo o la edad) y se hace un muestreo en cada estrato, que
-    a su vez puede ser simple o por bloques.
-    La randomización por bloques,
+    frente a muestras pequeñas. Existen técnicas como la randomización por bloques,
+    que divide la población a estudiar en estratos
+    por alguna variable que no sea de interés primario (por ejemplo, el sexo o la edad)
+    y asignando el tratamiento de forma randomizada en cada estrato.
+    De esta forma, uno controla la variabilidad que hubiera generado tal variable.
+    A estas variables se las denomina, en inglés, \say{nuisance variables}.
 }
 
 \section{Estudios observacionales}

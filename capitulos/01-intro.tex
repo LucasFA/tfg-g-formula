@@ -162,8 +162,8 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \begin{tikzcd}
-            \arrow[d, leftrightarrow, dashed, bend right=90] A \arrow{r}{} & Y \\
-            X \arrow{ur}{}
+            \arrow[d, leftrightarrow, dashed, bend right=90] Y \\
+            X
         \end{tikzcd}
         \caption{Confusor implícito}
         \label{subfig:confounder}
@@ -171,9 +171,9 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \begin{tikzcd}[row sep=tiny, column sep=small]
-            & A \arrow[dr] & \\
-            C \arrow[ur] \arrow[dr] & & Y \\
-            & X \arrow[ur]
+            & Y \\
+            C \arrow[ur] \arrow[dr] \\
+            & X
         \end{tikzcd}
         \caption{Confusor explícito}
         \label{subfig:confounderFull}
@@ -208,6 +208,8 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
               cierto $U_i \subseteq U$ y $PA_i \subseteq V \setminus V_i$
     \end{enumerate}
     Todo modelo causal gráfico tiene un grafo dirigido asociado que llamamos su \emph{diagrama causal}.
+    Por economía del lenguaje, no se suelen representar las variables exógenas en los diagramas si no
+    es necesario.
 \end{definicion}
 
 \begin{definicion}[Modelo causal gráfico probabilístico]\cite[7.1.6]{pearl2009causality}
@@ -232,3 +234,30 @@ Tenemos que
 \[
     P(x, a, y) = P(x) P(a | X = x) P(y | X = x, A = a)
 \]
+
+\begin{definicion}[Variable confusora]\label{def:confounder} \cite[sección 1.2.1]{pearl2009causality}
+    Dado un modelo causal gráfico $M = \langle U, V, F \rangle$, se dice que una variable $C \in U \cup V$
+    es un confusor para $X, Y \in V$ si existen aristas dirigidas originándose en $C$ destinadas a $X$ e $Y$.
+    El diagrama causal restringido entonces toma la forma $X \leftarrow C \rightarrow Y$.
+\end{definicion}
+
+\begin{corolario}[Efecto confusor]
+    Bajo el contexto anterior, un estudio del efecto de $X$ en $Y$ sin ajustar $C$, mostrará un
+    efecto, siendo sesgado por la falta de control del confusor. En la \autoref{subfig:observacional},
+    $A$ tiene un efecto en $Y$, pero si no se controlara por $X$, el efecto estimado estaría sesgado.
+\end{corolario}
+
+\begin{definicion}[Modelo de ecuaciones estructurales]
+    \cite[sección 1.2]{mci}
+    Dado un vector aleatorio
+    $(X_1, \ldots, X_n)$, factorizando su función de distribución como
+    $P(X_1, \ldots, X_n) = P(X_1) \prod_{i=2} P(X_i | X_1, \ldots, X_{i-1})$,
+    obtenemos un sistema de ecuaciones:
+    \begin{align*}
+        X_1 & = f_1(U_1)                                         \\
+        X_2 & = f_2(X_1, U_2)                                    \\
+        \vdots                                                   \\
+        X_i & = f_i(X_1, \ldots, X_{i-1}, U_i), i = 1, \ldots, n
+    \end{align*}
+    donde $U_i, i = 1, \ldots, n$ son variables exógenas.
+\end{definicion}

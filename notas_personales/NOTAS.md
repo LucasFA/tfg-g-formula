@@ -1,6 +1,6 @@
 IDEAS:
 
-1. La sensitividad requerida sobre los covariantes no medidos. Vease el el libro Causal inference de Rosenbaum.
+1. La sensitividad requerida sobre los covariantes no medidos. Vease el libro Causal inference de Rosenbaum.
 Capitulo 5.
 
 ## Nuevas secciones:
