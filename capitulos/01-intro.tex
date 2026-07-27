@@ -97,47 +97,8 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
 \section{Grafos causales}
-Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009causality}.
 
-\begin{definicion}[Padres Markovianos]\cite[1.2.1]{pearl2009causality}.
-    Sea $(X_1, \ldots, X_n)$ un vector aleatorio con distribución conjunta $P$.
-    Se dice que una familia $PA_i \subseteq \{X_1, \ldots, X_{i-1}\}$ forma el conjunto
-    de los padres Markovianos de
-    $X_i$ si $P(X_i | PA_i) = P(X_i | X_1, \ldots X_{i-1})$, y esta familia es minimal
-    satisfaciendo esta propiedad.
-\end{definicion}
-
-% TODO: unicidad
-\iffalse
-    \begin{proposicion}[Unicidad de los padres Markovianos]
-        Si dos familias $Q_1, Q_2 \subseteq \{X_1, \ldots, X_{i-1}\}$ son padres Markovianos de $X_i$
-        y la distribución conjunta $P$ es estrictamente positiva,
-        entonces $Q_1 = Q_2$.
-    \end{proposicion}
-\fi
-
-% TODO proof
-\iffalse
-    \begin{proof}
-        Supongamos sin pérdida de generalidad, que $X_j \in Q_1, X_j \not \in Q_2$ para $j \in \{1, \ldots, i-1\}$.
-        Tenemos entonces que
-        \begin{align*}
-            P(X_i | P, X_j) = P(X_i | Q_1) = P(X_i | X_1, \ldots, X_{i-1})
-        \end{align*}
-        Por un lado
-        \[
-            P(X_i | Q_2, X_j) = P(X_i | X_1, \ldots, X_{i-1}, X_j) = P(X_i | X_1, \ldots, X_{i-1})
-        \]
-        y por otro
-        \[
-            P(X_i | Q_2) = P(X_i | X_1, \ldots, X_{i-1})
-        \]
-        Es decir, $P(X_i | Q_2) = P(X_i | Q_2, X_j)$, $X_j \indep X_i | Q$.
-    \end{proof}
-\fi
-
-
-\begin{figure}[t]
+\begin{figure}[h]
     \begin{subfigure}[b]{0.3\textwidth}
         \centering
         \begin{tikzcd}
@@ -205,6 +166,46 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
         $P(X, A, Y) = P(X) P(A | X) P(Y | X, A)$
     }
 \end{figure}
+
+Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009causality}.
+
+\begin{definicion}[Padres Markovianos]\cite[1.2.1]{pearl2009causality}.
+    Sea $(X_1, \ldots, X_n)$ un vector aleatorio con distribución conjunta $P$.
+    Se dice que una familia $PA_i \subseteq \{X_1, \ldots, X_{i-1}\}$ forma el conjunto
+    de los padres Markovianos de
+    $X_i$ si $P(X_i | PA_i) = P(X_i | X_1, \ldots X_{i-1})$, y esta familia es minimal
+    satisfaciendo esta propiedad.
+\end{definicion}
+
+% TODO: unicidad
+\iffalse
+    \begin{proposicion}[Unicidad de los padres Markovianos]
+        Si dos familias $Q_1, Q_2 \subseteq \{X_1, \ldots, X_{i-1}\}$ son padres Markovianos de $X_i$
+        y la distribución conjunta $P$ es estrictamente positiva,
+        entonces $Q_1 = Q_2$.
+    \end{proposicion}
+\fi
+
+% TODO proof
+\iffalse
+    \begin{proof}
+        Supongamos sin pérdida de generalidad, que $X_j \in Q_1, X_j \not \in Q_2$ para $j \in \{1, \ldots, i-1\}$.
+        Tenemos entonces que
+        \begin{align*}
+            P(X_i | P, X_j) = P(X_i | Q_1) = P(X_i | X_1, \ldots, X_{i-1})
+        \end{align*}
+        Por un lado
+        \[
+            P(X_i | Q_2, X_j) = P(X_i | X_1, \ldots, X_{i-1}, X_j) = P(X_i | X_1, \ldots, X_{i-1})
+        \]
+        y por otro
+        \[
+            P(X_i | Q_2) = P(X_i | X_1, \ldots, X_{i-1})
+        \]
+        Es decir, $P(X_i | Q_2) = P(X_i | Q_2, X_j)$, $X_j \indep X_i | Q$.
+    \end{proof}
+\fi
+
 
 \begin{definicion}[Modelo causal gráfico]\cite[sección 7.1.1]{pearl2009causality}
     \label{def:modelo_causal}
