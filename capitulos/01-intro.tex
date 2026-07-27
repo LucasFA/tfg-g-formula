@@ -18,23 +18,29 @@
 Un estudio controlado aleatorizado o RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es
 el \say{gold standard} de la experimentación clínica.
 En él, los investigadores tienen un tratamiento a estudiar,
-toman una muestra, y asignan de forma aleatoria\footnotemark{} a los sujetos a un grupo
+toman una muestra\footnotemark{}, y asignan de forma aleatoria\footnotemark{} a los sujetos a un grupo
 de control que no recibe tratamiento, y a un grupo de tratamiento.
-El diseño ideal requiere condiciones de doble ciego o \emph{double blind}.
+El diseño ideal requiere condiciones de doble ciego o \say{double blind}.
 Ello consiste en que ni los pacientes ni los investigadores conozcan
 quiénes están bajo tratamiento y quién no. Prácticamente, esto hacerse
 con medicación placebo aparentemente idéntica a la medicación real.
 
+\footnotetext{Puede ser un muestreo aleatorio simple u otras formas más robustas
+    como el muestreo estratificado, con la intención de obtener una muestra más
+    representativa y equilibrada de la población de estudio.
+}
 \footnotetext{La forma más simple es la randomización simple, pero existen otros
-    métodos más complejos, como la estratificada, usados para minimizar el efecto de
-    variables ajenas a la de estudio y conseguir mayor poder estadístico.}
+    métodos más complejos, como la asignación por bloques, usada para minimizar el efecto de
+    variables ajenas a la de estudio y conseguir mayor poder estadístico.
+}
 
 Habiendo registrado los resultados, los investigadores pueden entonces
 determinar el efecto del tratamiento en los sujetos a partir de las
 diferencias entre las distribuciones de los dos grupos.
 
 Por otro lado, los estudios observacionales pueden ser necesarios por razones éticas
-(no privar a los sujetos de estudio de la libertad de elección de tratamiento),
+(no privar a los sujetos de estudio de la libertad de elección de tratamiento, o
+denegar estándares de tratado establecidos),
 prácticas (en enfermedades raras necesitamos tomar un grupo de sujetos con
 síntomas, y a partir de ahí construir un estudio de casos-control) o
 simplemente no se pueda tener control de la situación, como es el caso
@@ -45,9 +51,11 @@ a los sujetos, sino que otros factores determinan
 si el sujeto se expone al tratamiento o factor de riesgo a estudiar o no.
 Estos factores además de estar asociados con la asignación al
 tratamiento, pueden estar directamente correlacionados con el resultado.
-Por ejemplo, el consumo de suplementos puede covariar con la realización de
+Por ejemplo, el consumo de omega 3 potencialmente puede covariar con la realización de
 ejercicio físico, y ambos estar negativamente relacionados con eventos cardiacos.
-Esta relación de variable confusora\footnotemark{} no existe en estudios randomizados.
+Esta relación de variable confusora\footnotemark{} no existe en estudios randomizados,
+y puede nublar el efecto de cualquiera de las dos variables si no se tiene en cuenta
+la otra.
 \footnotetext{Definimos este término en \ref{def:confounder} }
 
 La inferencia causal y observacional trata de lidiar con estos obstáculos.
@@ -83,8 +91,8 @@ teniendo así el \say{caso contrafactual} además del observado realmente.
 Comparar estos dos grupos nos permitirá hacer conclusiones causales.
 % TODO: definicion causalidad?
 
-Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el \say{problema fundamental de la inferencia
-    causal} \cite[sección 2.1]{mci}.
+Este experimento es, naturalmente, imposible, pues son situaciones incompatibles. Este es el denominado
+problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 
 % Con asunciones adicionales, construiremos un modelo causal a partir de un modelo estadístico.
 
@@ -214,7 +222,7 @@ Esta sección se basa en \emph{Causality}, por Judea Pearl, ver \cite{pearl2009c
 
 \begin{definicion}[Modelo causal gráfico probabilístico]\cite[7.1.6]{pearl2009causality}
     Un modelo causal gráfico probabilístico es un par $\langle M, P \rangle$, donde
-    $M$ es un modelo causal gráfico y $P$ es una función de distribución sobre el dominio de $U$.
+    $M = \langle U, V, F \rangle$ es un modelo causal gráfico y $P$ es una función de distribución sobre el dominio de $U$.
 \end{definicion}
 
 Así, la distribución sobre las variables en $V$ queda determinada por la distribución en las variables
@@ -238,16 +246,18 @@ Tenemos que
 \begin{definicion}[Variable confusora]\label{def:confounder} \cite[sección 1.2.1]{pearl2009causality}
     Dado un modelo causal gráfico $M = \langle U, V, F \rangle$, se dice que una variable $C \in U \cup V$
     es un confusor para $X, Y \in V$ si existen aristas dirigidas originándose en $C$ destinadas a $X$ e $Y$.
-    El diagrama causal restringido entonces toma la forma $X \leftarrow C \rightarrow Y$.
+    El diagrama causal local a $C$ entonces toma la forma $X \leftarrow C \rightarrow Y$ (sin eliminarse la
+    posibilidad de una arista entre $X$ e $Y$).
 \end{definicion}
 
-\begin{corolario}[Efecto confusor]
+\begin{nota}[Efecto confusor]
     Bajo el contexto anterior, un estudio del efecto de $X$ en $Y$ sin ajustar $C$, mostrará un
-    efecto, siendo sesgado por la falta de control del confusor. En la \autoref{subfig:observacional},
-    $A$ tiene un efecto en $Y$, pero si no se controlara por $X$, el efecto estimado estaría sesgado.
-\end{corolario}
+    efecto sesgado por la falta de control del confusor. En la \autoref{subfig:confounderFull},
+    $X$ no tiene un efecto en $Y$, pero sin controlar por $C$,
+    el efecto estimado puede ser no nulo.
+\end{nota}
 
-\begin{definicion}[Modelo de ecuaciones estructurales]
+\begin{definicion}[Modelo estructural de ecuaciones]
     \cite[sección 1.2]{mci}
     Dado un vector aleatorio
     $(X_1, \ldots, X_n)$, factorizando su función de distribución como
@@ -261,3 +271,14 @@ Tenemos que
     \end{align*}
     donde $U_i, i = 1, \ldots, n$ son variables exógenas.
 \end{definicion}
+
+% TODO: is this proper notation? with the mathcal
+\begin{definicion}[Efecto causal]\cite[Def. 3.2.1]{pearl2009causality}
+    Dado un modelo estructural de ecuaciones $\mathcal{M}$, y dos conjuntos
+    disjuntos de variables $X$ e $Y$, se  define
+    $P(Y = y | do(X = x)) \equiv P(y | do(x))$
+    como la probabilidad $P(y)$ en el modelo $\mathcal{M}\~{}$ obtenido
+    de eliminar las ecuaciones que dan como resultado variables en $X$
+    y tomando en el resto de ecuaciones los valores $X = x$.
+\end{definicion}
+Esto efectivamente elimina las aristas dirigidas hacia los nodos de $X$.
