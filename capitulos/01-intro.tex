@@ -170,7 +170,10 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 
 \begin{figure}
     \label{fig:causal-diagrams-with-U}
-    \caption{}
+    \caption{Posibles grafos causales para estudios randomizados controlados y observacionales.
+    $U = (U_X, U_A, U_Y)$
+    En el RCT, se fija la distribución que asigna el tratamiento, lueg
+    }
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \begin{tikzcd}
@@ -279,19 +282,17 @@ Tenemos que
     el efecto estimado puede ser no nulo.
 \end{nota}
 
-\begin{definicion}[Modelo estructural de ecuaciones]
+\begin{definicion}[Modelo estructural causal]
     \cite[sección 1.2]{mci}
     Dado un vector aleatorio
     $(X_1, \ldots, X_n)$, factorizando su función de distribución como
-    $P(X_1, \ldots, X_n) = P(X_1) \prod_{i=2} P(X_i | X_1, \ldots, X_{i-1})$,
-    obtenemos un sistema de ecuaciones:
+    $P(X_1, \ldots, X_n) = P(X_1) \prod_{i=2} P(X_i | PA_i)$,
+    modelamos con el siguiente sistema de ecuaciones:
     \begin{align*}
-        X_1 & = f_1(U_1)                                         \\
-        X_2 & = f_2(X_1, U_2)                                    \\
-        \vdots                                                   \\
-        X_i & = f_i(X_1, \ldots, X_{i-1}, U_i), i = 1, \ldots, n
+        X_1 & = f_1(U_1)                         \\
+        X_i & = f_i(PA_i, U_i), i = 2, \ldots, n
     \end{align*}
-    donde $U_i, i = 1, \ldots, n$ son variables exógenas.
+    donde $U_i, \, i = 1, \ldots, n$ son variables exógenas.
 \end{definicion}
 
 % TODO: is this proper notation? with the mathcal
