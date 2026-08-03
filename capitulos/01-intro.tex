@@ -144,7 +144,7 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
             A \arrow{r}{} & Y \\
             X \arrow{ur}{} &
         \end{tikzcd}
-        \caption{Base de un RCT}
+        \caption{RCT (simplificado)}
         \label{subfig:cd-rct}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
@@ -153,7 +153,7 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
             A \arrow{r}{} & Y \\
             X \arrow{ur}{} \arrow{u} &
         \end{tikzcd}
-        \caption{Base de un estudio observacional}
+        \caption{Estudio observacional (simplificado)}
         \label{subfig:observacional}
     \end{subfigure}
 
@@ -170,10 +170,6 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 
 \begin{figure}
     \label{fig:causal-diagrams-with-U}
-    \caption{Posibles grafos causales para estudios randomizados controlados y observacionales.
-    $U = (U_X, U_A, U_Y)$
-    En el RCT, se fija la distribución que asigna el tratamiento, lueg
-    }
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \begin{tikzcd}
@@ -195,6 +191,11 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
         \label{subfig:observacional2}
     \end{subfigure}
 
+    \caption{Posibles grafos causales para estudios randomizados controlados y observacionales.
+    $U = (U_X, U_A, U_Y)$
+    En el RCT, se fija la distribución que asigna el tratamiento, luego se eliminan las flechas
+    entrantes a $A$.
+    }
 
 \end{figure}
 
