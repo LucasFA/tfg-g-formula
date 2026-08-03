@@ -283,6 +283,14 @@ Tenemos que
     el efecto estimado puede ser no nulo.
 \end{nota}
 
+\begin{ejemplo}[Efecto confusor] TODO: mover a sección post-def G-formula/identif
+    Supongamos como mencionamos previamente que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull}.
+    Simulamos estas variables:
+    <<ejemplo-confusor, echo=TRUE, eval=TRUE>>=
+    @
+
+\end{ejemplo}
+
 \begin{definicion}[Modelo estructural causal]
     \cite[sección 1.2]{mci}
     Dado un vector aleatorio
