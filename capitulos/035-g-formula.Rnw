@@ -1,0 +1,17 @@
+\chapter{Fórmula G}
+\section{Estandarización y fórmula G}
+
+\begin{ejemplo}[Efecto confusor]
+    \label{ex:efectoConfusor}
+    Supongamos que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull}.
+    Simulamos estas variables:
+    <<ejemplo-confusor-g-formula, echo=TRUE, eval=TRUE>>=
+    @
+
+    Usando una muestra de tamaño grande observamos que el ATE de $X$ en $Y$ es
+    casi nulo, como esperamos por la definición de las variables.
+
+\end{ejemplo}
+
+\section{IPW}
+\section{AIPW}

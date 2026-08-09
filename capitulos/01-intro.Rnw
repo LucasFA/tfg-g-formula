@@ -280,16 +280,8 @@ Tenemos que
     Bajo el contexto anterior, un estudio del efecto de $X$ en $Y$ sin ajustar $C$, mostrará un
     efecto sesgado por la falta de control del confusor. En la \autoref{subfig:confounderFull},
     $X$ no tiene un efecto en $Y$, pero sin controlar por $C$,
-    el efecto estimado puede ser no nulo.
+    el efecto estimado puede ser no nulo. Vemos un caso en el \autoref{ex:efectoConfusor}.
 \end{nota}
-
-\begin{ejemplo}[Efecto confusor] TODO: mover a sección post-def G-formula/identif
-    Supongamos como mencionamos previamente que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull}.
-    Simulamos estas variables:
-    <<ejemplo-confusor, echo=TRUE, eval=TRUE>>=
-    @
-
-\end{ejemplo}
 
 \begin{definicion}[Modelo estructural causal]
     \cite[sección 1.2]{mci}
