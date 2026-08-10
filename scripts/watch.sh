@@ -8,7 +8,7 @@ compile() { latexmk -f build/tfg.tex; }
 
 knit && compile
 
-inotifywait -m -e modify -e close_write --format '%w%f' \
+inotifywait -m -e close_write --format '%w%f' \
   tfg.Rnw \
   *.tex \
   capitulos \
