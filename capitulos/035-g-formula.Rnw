@@ -3,8 +3,9 @@
 
 \begin{ejemplo}[Efecto confusor]
     \label{ex:efectoConfusor}
-    Supongamos que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull}.
-    Simulamos estas variables:
+    Supongamos que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull},
+    $X \leftarrow C \rightarrow Y$.
+    Simulamos una posible instancia de estas variables:
     <<ejemplo-confusor-g-formula, echo=TRUE, eval=TRUE>>=
     @
 

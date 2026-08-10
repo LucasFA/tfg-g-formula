@@ -3,15 +3,32 @@
 
 \subsection{Estratificación}
 Una forma de ajustar a las covariantes es estratificar la muestra y considerar
-el efecto del factor de interés $A$ dentro de cada estrata, donde las covariantes
+el efecto del factor de interés $A$ dentro de cada estrato, donde las covariantes
 son fijas.
 Esta técnica es problemática cuando el número de covariantes es significativo,
-puesto que el número de estratos crece exponencialmente en el número de covariantes,
+puesto que el número de estratos crece exponencialmente en función del número de covariantes,
 y el número de muestras por estrato decrece acordemente.
+A este concepto se le llama la \say{maldición de la dimensionalidad}\footnotemark{}.
+Aplicamos esta técnica en \autoref{ex:efectoConfusor}.
+
+\begin{definicion}[Modificación de efecto] \label{def:modificacion_de_efecto}
+    Cuando la relación entre dos variables $X$ e $Y$ está sujeta a una tercera variable
+    $L$, de forma que el efecto de $X$ en $Y$ se ve modificado según el valor de $L$,
+    decimos que $L$ modifica el efecto de $X$ en $Y$.
+    Esto se diferencia del confounding (\autoref{def:confounder}), el cual muestra su efecto
+    debido a su modificación en la propensidad de $X$, pero el efecto de $X$ e $Y$ no es
+    modificado.
+\end{definicion}
+\begin{nota}
+    Lo anterior no excluye la posibilidad del caso que una variable sea tanto
+    confusora como modificadora de efecto al mismo tiempo.
+\end{nota}
+
+\footnotetext{O en inglés, \say{the curse of dimensionality}.}
 
 \subsection{Regresión}
 Otra forma de ajustar el efecto de un factor de riesgo o tratamiento
-al efecto de unas covariantes $X$ es midiendo el efecto con una regresión.
+al efecto de unas covariantes $X = (X_1, \ldots, X_n)$ es midiendo el efecto con una regresión.
 
 $$
     Y \sim A + \sum_{i=1}^{n} X_i
@@ -20,5 +37,6 @@ $$
 Esta técnica está sujeta a las suposiciones habituales de regresión, en particular
 que los errores tengan una distribución normal multivariante y homocedasticidad de
 las variables regresoras (que tengan varianzas similares).
-A pesar de ello, los problemas de dimensionalidad de la estratificación lo
-siguen haciendo popular.
+Puede ser un estimador insesgado sobre $Y$ supuesto que $X$ afecte a la distribución de $A$,
+eso es, que no haya \emph{modificación del efecto}, con lo cual es apto para estudios randomizados
+controlados, pero no para estudios observacionales.
