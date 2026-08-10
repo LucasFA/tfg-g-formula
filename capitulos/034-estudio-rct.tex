@@ -1,10 +1,37 @@
-\chapter{Estudios observacionales}
+\chapter{Análisis de estudios observacionales y RCTs}
 Vamos a aplicar el marco presentado primero para estudios randomizados controlados y
 posteriormente para estudios observacionales.
 Vamos a ver las condiciones que un estudio randomizado implica y cómo se debilitan
 en un estudio observacional.
 
 \section{Estudios randomizados}
+Vamos a definir unos conceptos más fuertes que la intercambiabilidad condicional:
+
+\begin{definicion}[Randomización]
+    Diremos que un estudio implicando variables $X, A, Y$ es randomizado cuando la
+    variable de tratamiento $A$ es controlada, eso es, tenemos la expresión de $P(A | X) > 0$.
+    % $A \indep Y(a)$: el tratamiento no está correlado con otras covariantes ni % TODO:
+\end{definicion}
+
+\begin{nota}
+    Sólo consideramos el caso en el que $P(A) = P(A | X)$, con un muestreo simple sin estratificación
+    ni otras medidas más sofisticadas.
+\end{nota}
+
+\begin{definicion}[Intercambiabilidad]
+    Decimos que se presenta intercambiabilidad cuando $ Y(a) \indep A, \, \forall a $.
+    Escrito de otra forma, $P(Y(a) = y | A = 1) = P(Y(a) = y | A = 0) = P(Y(a) = y)$,
+    en el caso discreto.
+\end{definicion}
+
+\begin{proposicion}[Randomización implica intercambiabilidad]
+
+\end{proposicion}
+
+\begin{proposicion}[Intercambiabilidad implica intercambiabilidad condicional]
+
+\end{proposicion}
+
 Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
 
 \begin{figure}[h]
@@ -19,7 +46,16 @@ Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
 
 Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
 randomización simple en la que los sujetos son asignados a las variantes del tratamiento
-por una distribución de Bernouilli $B(1/2)$.
+por una distribución fija sin parámetros libres.
+
+% TODO:
+\begin{proposicion}[Propiedades de un estudio controlado]
+    Se verifican las siguientes propiedades:
+    \begin{itemize}
+    \item $A \indep X$
+    \item  $A \indep Y(a)$
+    \end{itemize}
+\end{proposicion}
 
 
 \footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
@@ -28,7 +64,8 @@ por una distribución de Bernouilli $B(1/2)$.
     por alguna variable que no sea de interés primario (por ejemplo, el sexo o la edad)
     y asignando el tratamiento de forma randomizada en cada estrato.
     De esta forma, uno controla la variabilidad que hubiera generado tal variable.
-    A estas variables se las denomina, en inglés, \say{nuisance variables}.
+    A estas variables se las denomina, en inglés, \say{nuisance variables}. En el grafo causal,
+    $X$ es una de ellas.
 }
 
 \section{Estudios observacionales}

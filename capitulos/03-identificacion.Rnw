@@ -71,7 +71,7 @@
     Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(X, A, Y)$, donde $A \in \{0, 1\}$,
     se obtiene el siguiente estimando estadístico identificado con el ATE:
     % TODO: find this based on sample?
-    % TODO: includes version with sample, do proof part
+    % TODO: include version with sample, do proof part
     % $$
     % \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
     % $$
@@ -79,6 +79,11 @@
     $$
         \sum_x P(X = x) \left[\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x] \right]
     $$
+    Esta denominación también se puede aplicar a la siguiente ecuación, también a la cual referida
+    como la fórmula de estandarización.
+    \begin{equation*}
+        \E[Y(a)] = \sum_x P(X = x) \E[Y | A = a, X = x]
+    \end{equation*}
 \end{proposicion}
 
 \begin{proof}\cite[material suplementario S1]{luque2021}
@@ -135,8 +140,7 @@
     Esto se puede escribir de la siguiente forma en el lenguaje R:
     <<est-ate, echo=TRUE, eval=FALSE>>=
     @
-    <<idk, echo=TRUE, eval=TRUE>>=
-    @
+
     Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo

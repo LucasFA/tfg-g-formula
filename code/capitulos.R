@@ -4,10 +4,6 @@ set.seed(2026)
 ## ---- est-ate ----
 est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
 
-## ---- idk ----
-x <- rnorm(100)
-mean(x)
-
 ## ---- naive-lm ----
 naive <- lm(Y ~ A + X, data = data)
 
@@ -31,7 +27,7 @@ D <- DAG.empty() +
 D <- set.DAG(D)
 dat <- sim(D, n = 1000000)
 # Si uno asumiera que no existe la variable confusora C
-# y en cambio asumiera que X tiene un efecto causal en Y,
+# y en cambio asumiera que X tiene un posible efecto causal en Y,
 # calcularíamos el ATE como
 mu_1 <- mean(dat$Y[dat$X == 1])
 mu_0 <- mean(dat$Y[dat$X == 0])
