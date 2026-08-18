@@ -9,6 +9,7 @@ naive <- lm(Y ~ A + X, data = data)
 
 ## ----  ejemplo-confusor-g-formula ----
 library("simcausal")
+options(simcausal.verbose = FALSE)
 D <- DAG.empty() +
   node("C", distr = "rbern", p = 0.5) +
   node("X", distr = "rbern", p = max(0.5 * C, 0.2)) +

@@ -34,14 +34,15 @@
 \end{ejemplo}
 
 \section{Estandarización y fórmula G}
+
+
 \section{IPW}
 % TODO: cite
-El método IPW, del inglés \say{Inverse Probability Weighting} o método ponderante inverso a la
-probabilidad\footnotemark{}, consiste en, en vez de estimar un modelo del resultado
-($\E[Y | A, X]$), pretende estimar la propensidad $e(x) = P(A | X = x)$
+El método IPW, del inglés \say{Inverse Probability Weighting} o método de ponderador de probabilidad
+inverso, consiste en, en vez de estimar un modelo del resultado
+($\E[Y | A, X]$), estimar la propensidad $e(x) = P(A | X = x)$.
 
 
-\footnotetext{Traducción propia}
 
 \section{AIPW}
 Este método utiliza la estandarización y el método IPW simultáneamente para obtener
