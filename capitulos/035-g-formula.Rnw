@@ -31,6 +31,9 @@
     Simulamos de manera similar al ejemplo anterior:
     <<ejemplo-modificacion-efecto, echo=TRUE, eval=TRUE>>=
     @
+    En este caso, es de interés reportar las medidas estratificadas
+    Esto tiene como consecuencia la pérdida de cierta potencia estadística
+    correspondiente al menor tamaño de muestra.
 \end{ejemplo}
 
 \section{Estandarización y fórmula G}
