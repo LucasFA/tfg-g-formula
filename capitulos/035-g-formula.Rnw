@@ -1,5 +1,13 @@
 \chapter{Métodos de ajuste de confounders y covariantes}
-\section{Estandarización y fórmula G}
+
+\begin{definicion}[Variable confusora] % TODO: cite
+    Se dice que una variable es confusora cuando se dan las siguientes condiciones:
+    \begin{itemize}
+        \item La variable está estadísticamente asociada con el tratamiento.
+        \item La variable tiene una relación causal con el resultado.
+        \item La variable no es un mediador en el camino tratamiento a resultado.
+    \end{itemize}
+\end{definicion}
 
 \begin{ejemplo}[Efecto confusor]
     \label{ex:efectoConfusor}
@@ -13,6 +21,7 @@
     casi nulo, como esperamos por la definición de las variables.
 \end{ejemplo}
 
+\section{Estandarización y fórmula G}
 \section{IPW}
 % TODO: cite
 El método IPW, del inglés \say{Inverse Probability Weighting} o método ponderante inverso a la
