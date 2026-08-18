@@ -21,6 +21,18 @@
     casi nulo, como esperamos por la definición de las variables.
 \end{ejemplo}
 
+\begin{definicion}[Modificación de efecto]
+    Se dice que una variable $M$ modifica el efecto de otra variable $X$ en $Y$ si las medidas de
+    asociación entre $X$ e $Y$ se distinguen según el valor de $M$.
+\end{definicion}
+
+\begin{ejemplo}[Modificación de efecto]
+    Consideramos un colisionador, como en \autoref{subfig:cd-colisionador}.
+    Simulamos de manera similar al ejemplo anterior:
+    <<ejemplo-modificacion-efecto, echo=TRUE, eval=TRUE>>=
+    @
+\end{ejemplo}
+
 \section{Estandarización y fórmula G}
 \section{IPW}
 % TODO: cite

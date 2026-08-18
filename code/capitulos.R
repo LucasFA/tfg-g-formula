@@ -36,3 +36,29 @@ mu_10 <- mean(dat$Y[dat$X == 1 & dat$C == 0])
 mu_00 <- mean(dat$Y[dat$X == 0 & dat$C == 0])
 ATE_C_0 <- mu_10 - mu_00
 ATE_C_0
+
+
+## ----  ejemplo-modificacion-efecto ----
+D <- DAG.empty() +
+  node("M", distr = "rbern", p = 0.5) +
+  node("A", distr = "rbern", p = 0.5) +
+  node("Y", distr = "rnorm", mean = M * (1 + A))
+D <- set.DAG(D)
+dat <- sim(D, n = 1000000)
+
+# Sin estratificar:
+mu_1 <- mean(dat$Y[dat$A == 1])
+mu_0 <- mean(dat$Y[dat$A == 0])
+ATE_agregado <- mu_1 - mu_0
+ATE_agregado
+
+# Estratificando en M:
+mu_11 <- mean(dat$Y[dat$A == 1 & dat$M == 1])
+mu_01 <- mean(dat$Y[dat$A == 0 & dat$M == 1])
+ATE_M_1 <- mu_11 - mu_01
+ATE_M_1
+
+mu_10 <- mean(dat$Y[dat$A == 1 & dat$M == 0])
+mu_00 <- mean(dat$Y[dat$A == 0 & dat$M == 0])
+ATE_M_0 <- mu_10 - mu_00
+ATE_M_0
