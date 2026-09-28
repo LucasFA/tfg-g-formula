@@ -147,8 +147,9 @@
     valor a todos los individuos a cada grupo $S_1$ y $S_0$.
     Es, un estimador válido para estudios randomizados pero no pasa observacionales, porque en RCTs
     la expresión del ATE se reduce a esta por randomización de las covariantes en la asignación del tratamiento.
-    Naturalmente no se suele aplicar en presencia de mejores estimadores que al tener en cuenta
-    las covariantes presentan mejores propiedades para muestras pequeñas.
+    Naturalmente, no se suele aplicar siquiera en estudios randomizados en presencia de mejores
+    estimadores que al tener en cuenta
+    las covariantes presentan mejores propiedades (en particular, varianza reducida) para muestras pequeñas.
 \end{ejemplo}
 
 \begin{ejemplo}[Estimador del ATE de diferencia en medias, ajustando por las covariantes]
@@ -295,21 +296,21 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
     suele ser posible.
 \end{observacion}
 
-\begin{proposicion}[Identificación parcial del Odds ratio TODO:]
+No hay un resultado de identificación para el Odds Ratio.
 
-\end{proposicion}
-\begin{definicion}[Odds ratio]\cite[4.2]{jewell2004_Stats_for_Epidemiology}
-    Es el ratio % TODO
-    $$
-        OR = \dfrac{IE/IN}{CE/CN} = \dfrac{P(E|I)/P(N |I)}{P(E|C)/P(N |C)}
-    $$
-\end{definicion}
-
+% TODO: see if this holds up
+\iffalse
 \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
     $$
         OR = RR * \dfrac{P(N | C)}{P(N | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
     $$
 \end{corolario}
+\fi
+
+% TODO:
+\begin{proposicion}[Identificación parcial del Odds ratio TODO:]
+
+\end{proposicion}
 
 % \begin{observacion}
 % En condiciones de \textit{enfermedad rara}, por la cual la población
