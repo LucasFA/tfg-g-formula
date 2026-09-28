@@ -1,5 +1,6 @@
-\chapter{Inferencia causal clásica}
+\chapter{Métodos de ajuste al confounding}
 \cite{oxChapterOutcome}
+\section{Métodos clásicos}
 
 \subsection{Estratificación}
 Una forma de ajustar a las covariantes es estratificar la muestra y considerar
@@ -11,23 +12,10 @@ y el número de muestras por estrato decrece acordemente.
 A este concepto se le llama la \say{maldición de la dimensionalidad}\footnotemark{}.
 Aplicamos esta técnica en \autoref{ex:efectoConfusor}.
 
-\begin{definicion}[Modificación de efecto] \label{def:modificacion_de_efecto}
-    % TODO: move this
-    Cuando la relación entre dos variables $X$ e $Y$ está sujeta a una tercera variable
-    $L$, de forma que el efecto de $X$ en $Y$ se ve modificado según el valor de $L$,
-    decimos que $L$ modifica el efecto de $X$ en $Y$.
-    Esto se diferencia del confounding (\autoref{def:confounder}), el cual muestra su efecto
-    debido a su modificación en la propensidad de $X$, pero el efecto de $X$ e $Y$ no es
-    modificado.
-\end{definicion}
-\begin{nota}
-    Lo anterior no excluye la posibilidad del caso que una variable sea tanto
-    confusora como modificadora de efecto al mismo tiempo.
-\end{nota}
-
 \footnotetext{O en inglés, \say{the curse of dimensionality}.}
 
 \subsection{Regresión}
+\subsubsection{Regresión lineal}
 Otra forma de ajustar el efecto de un factor de riesgo o tratamiento
 al efecto de unas covariantes $X = (X_1, \ldots, X_n)$ es midiendo el efecto con una regresión.
 
@@ -41,3 +29,140 @@ las variables regresoras (que tengan varianzas similares).
 Puede ser un estimador insesgado sobre $Y$ supuesto que $X$ afecte a la distribución de $A$,
 eso es, que no haya \emph{modificación del efecto}, con lo cual es apto para estudios randomizados
 controlados, pero no para estudios observacionales.
+
+\subsubsection{Regresión logística}
+\begin{definicion}[Regresión logística simple]
+\cite[12.4]{jewell2004_Stats_for_Epidemiology}
+Se propone un modelo
+\[
+    p_x = P(Y = 1 | X = x) = \dfrac{1}{1 + e^{-(a + bx)}}
+\]
+con parámetros $a, b \in \R$.
+\end{definicion}
+
+\begin{observacion}[Interpretación]
+\cite[12.4.1]{jewell2004_Stats_for_Epidemiology}
+    El valor de $b$ representa la relación de incremento de riesgo para el factor $X$,
+    siendo $b = 0$ el caso de independencia, y $b > 0$ de riesgo creciente en $X$.
+    El parámetro $a$ fija, en el caso de $X$ binaria, el riesgo para el grupo con $X = 0$.
+\end{observacion}
+
+\begin{definicion}[Regresión logística multidimensional]
+\cite[12.6]{jewell2004_Stats_for_Epidemiology}
+
+\[
+    p_{x_1, \ldots, x_k} = P(Y = 1 | X_1 = x_1, \ldots, X_k = x_k) = \dfrac{1}{1 + e^{-(a + \sum_{i = 1}^k b_i x_i)}}
+\]
+\end{definicion}
+
+\begin{nota}
+\cite[13.1.1]{jewell2004_Stats_for_Epidemiology}
+    Para obtener valores de los parámetros, se puede maximizar la verosimilitud. Por simplicidad,
+    en el caso unidimensional:
+    \[
+        L_{x_1, \ldots, x_k} (a,b) = \prod_{i=1}^{k} P(Y = 1 | X = x_i) P (X = x_i)
+    \]
+
+    Dependiendo de la
+    necesidad y el tamaño del conjunto de datos, se puede hacer con métodos iterativos o exactos.
+\end{nota}
+
+
+% TODO: rename
+\section{Métodos modernos}
+
+\begin{definicion}[Efecto confusor a nivel poblacional]
+    Basándonos en \cite[sección 2.2]{greenland1999}, consideramos dos poblaciones:
+    una población objetivo $P_1$ y una de referencia $P_2$.
+    En ellas medimos unos valores $Y_1$ e $Y_2$.
+    A estas poblaciones aplicamos tratamientos, uno de control $A = 0$ y otra de exposición $A = 1$.
+
+    Así el efecto causal del tratamiento sobre la población objetivo es $Y_1(1) - Y_1(0)$,
+    o el ratio de estas cantidades si $Y$ toma valores estrictamente positivos.
+
+    Diremos que se presenta un efecto confusor si $Y_1(0) \neq Y_2(0)$.
+\end{definicion}
+
+\begin{nota} % TODO: check this is the proper environment to use
+    Esto es, que la población de referencia y la población objetivo son distintas por razones
+    más allá del tratamiento (que es igual).
+\end{nota}
+
+\iffalse
+\begin{corolario}
+    Esto tiene varias implicaciones inmediatas \cite{greenland1999}.
+    \begin{itemize}
+    \item El efecto confusor depende del estimando de interés. En el artículo citado, se presenta
+    el ejemplo de superviviencia a lo largo de distintos plazos de tiempo.
+    \item La absencia de efecto confusor no implica que cada unidad no sea afectada
+
+    \end{itemize}
+
+\end{corolario}
+\fi
+
+\begin{definicion}[Variable confusora]
+    En el contexto anterior, para que una variable $X$ sea considerada confusora, deben cumplirse
+    estas condiciones necesarias
+    \begin{itemize}
+    \item $X$ puede afectar al resultado. Gráficamente, el modelo gráfico tiene una flecha $X \to Y$
+    \item $X$ se distribuye de manera diferente entre las poblaciones a comparar.
+    \end{itemize}
+    No son condiciones suficientes: el efecto causal puede ser anulado y resultar en efecto total nulo.
+\end{definicion}
+
+\begin{definicion}[Variable confusora, versión clásica] % TODO: cite
+    Una definición clásica del concepto de variable confusora es la siguiente.
+
+    Se dice que una variable es confusora cuando se dan las siguientes condiciones:
+    \begin{itemize}
+        \item La variable está estadísticamente asociada con el tratamiento.
+        \item La variable tiene una relación con el resultado para el grupo no tratado.
+        \item La variable no es un mediador en el camino tratamiento a resultado.
+    \end{itemize}
+\end{definicion}
+
+
+\begin{ejemplo}[Efecto confusor]
+    \label{ex:efectoConfusor}
+    Supongamos que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull},
+    $X \leftarrow C \rightarrow Y$.
+    Simulamos una posible instancia de estas variables:
+    <<ejemplo-confusor-g-formula, echo=TRUE, eval=TRUE>>=
+    @
+
+    Usando una muestra de tamaño grande observamos que el ATE de $X$ en $Y$ es
+    casi nulo en cada estrato, como esperamos por la definición de las variables.
+\end{ejemplo}
+
+\begin{definicion}[Modificación de efecto]
+    Se dice que una variable $M$ modifica el efecto de otra variable $X$ en $Y$ si las medidas de
+    asociación entre $X$ e $Y$ se distinguen según el valor de $M$.
+\end{definicion}
+
+\begin{ejemplo}[Modificación de efecto]
+    Consideramos un colisionador, como en \autoref{subfig:cd-colisionador}.
+    Obsérvese que en este ejemplo, considerando la interpolación de $A$ entre 0 y 1,
+    $\frac{\partial \E[Y | A, M = m]}{\partial A} = m$.
+    Simulamos de manera similar al ejemplo anterior:
+    <<ejemplo-modificacion-efecto, echo=TRUE, eval=TRUE>>=
+    @
+    En este caso, es de interés reportar las medidas estratificadas.
+    Esto tiene como consecuencia la pérdida de cierta potencia estadística
+    correspondiente al menor tamaño de muestra.
+\end{ejemplo}
+
+\subsection{Estandarización y fórmula G}
+
+
+\subsection{IPW}
+% TODO: cite
+El método IPW, del inglés \say{Inverse Probability Weighting} o método de ponderador de probabilidad
+inverso, consiste en, en vez de estimar un modelo del resultado
+($\E[Y | A, X]$), estimar la propensidad $e(x) = P(A | X = x)$.
+
+
+
+\subsection{AIPW}
+Este método utiliza la estandarización y el método IPW simultáneamente para obtener
+una estimación \emph{doblemente robusta}.
