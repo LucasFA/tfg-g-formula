@@ -64,7 +64,7 @@ e $Y$ es la variable de respuesta.
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
     El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
     es definido como
-    $$ \psi^*(P^*) = \E(Y(1) - Y(0)) $$
+    $$ \psi^*(P^*) = \E_{P^*}(Y(1) - Y(0)) $$
     En este caso, la variable respuesta puede tomar varios valores discretos o ser continua.
     En el caso que $Y$ sea binaria, coincide con la diferencia de riesgo.
 \end{definicion}
@@ -97,7 +97,7 @@ e $Y$ es la variable de respuesta.
 
 \begin{corolario}[Relación entre OR y RR]
     $$
-        OR = RR \dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)}
+        OR(P^*) = RR(P^*) \dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)}
     $$
 \end{corolario}
 
@@ -108,7 +108,7 @@ e $Y$ es la variable de respuesta.
 \begin{proof}
     Tenemos que
     \[
-        OR - RR = RR \left(\dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)} - 1\right)
+        OR - RR = RR \cdot \left(\dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)} - 1\right)
     \]
     Bajo el límite $P^*(Y(a) = 0) \to 1$
     el último factor se anula.
@@ -195,6 +195,7 @@ Como los nombres indican, en particular querremos identificar el ATE causal con 
 \end{definicion}
 
 Visualmente, queremos que el diagrama de la derecha sea conmutativo.
+\nopagebreak
 
 \begin{minipage}{0.45\textwidth}
     \centering
@@ -230,8 +231,9 @@ Eso es decir que $\mathcal{O}$ no es inyectiva, con lo que inmediatamente
 las aplicaciones que llevan estimandos causales en estimandos estadísticos,
 $\pi: \left\{\mathcal{M}^* \to \R \right\} \mapsto \left\{\mathcal{M} \to \R \right\}$ tampoco son inyectivas.
 
-Con el objectivo de eliminar este problema se introducen las \textit{asunciones de identificación}.
-Antes de ello, un ejemplo del problema.
+% TODO: thesaurus problema
+Con el objectivo de lidiar con este problema se introducen las \textit{asunciones de identificación}.
+Antes de ello, un ejemplo.
 
 \begin{ejemplo}\cite[sección 2.2]{mci}
     Consideramos las tripletas $(A, Y(0),Y(1))$ con distribuciones en $\mathcal{M}^*$
