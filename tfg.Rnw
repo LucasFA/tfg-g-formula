@@ -115,7 +115,10 @@ knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 \input{capitulos/034-estudio-rct}
 <<child='capitulos/035-g-formula.Rnw'>>=
 @
-\input{capitulos/04-inferencia-clasica}
+
+<<child='capitulos/04-inferencia-clasica.Rnw'>>=
+@
+
 <<child='capitulos/05-comparacion.Rnw'>>=
 @
 <<child='capitulos/051-algunos-estimadores.Rnw'>>=
