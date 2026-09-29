@@ -1,5 +1,5 @@
-\section{Identificación}
-% \section{Un salto causal}
+% \section{Identificación}
+\section{Un salto causal}
 % ATE estadístico y causal
 
 \begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
