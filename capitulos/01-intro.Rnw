@@ -192,9 +192,9 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
     \end{subfigure}
 
     \caption{Posibles grafos causales para estudios randomizados controlados y observacionales.
-    $U = (U_X, U_A, U_Y)$
-    En el RCT, se fija la distribución que asigna el tratamiento, luego se eliminan las flechas
-    entrantes a $A$.
+        $U = (U_X, U_A, U_Y)$
+        En el RCT, se fija la distribución que asigna el tratamiento, luego se eliminan las flechas
+        entrantes a $A$.
     }
 
 \end{figure}

@@ -300,11 +300,11 @@ No hay un resultado de identificación para el Odds Ratio.
 
 % TODO: see if this holds up
 \iffalse
-\begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
-    $$
-        OR = RR * \dfrac{P(N | C)}{P(N | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
-    $$
-\end{corolario}
+    \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
+        $$
+            OR = RR * \dfrac{P(N | C)}{P(N | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
+        $$
+    \end{corolario}
 \fi
 
 % TODO:

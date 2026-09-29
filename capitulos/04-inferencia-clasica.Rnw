@@ -32,31 +32,31 @@ controlados, pero no para estudios observacionales.
 
 \subsubsection{Regresión logística}
 \begin{definicion}[Regresión logística simple]
-\cite[12.4]{jewell2004_Stats_for_Epidemiology}
-Se propone un modelo
-\[
-    p_x = P(Y = 1 | X = x) = \dfrac{1}{1 + e^{-(a + bx)}}
-\]
-con parámetros $a, b \in \R$.
+    \cite[12.4]{jewell2004_Stats_for_Epidemiology}
+    Se propone un modelo
+    \[
+        p_x = P(Y = 1 | X = x) = \dfrac{1}{1 + e^{-(a + bx)}}
+    \]
+    con parámetros $a, b \in \R$.
 \end{definicion}
 
 \begin{observacion}[Interpretación]
-\cite[12.4.1]{jewell2004_Stats_for_Epidemiology}
+    \cite[12.4.1]{jewell2004_Stats_for_Epidemiology}
     El valor de $b$ representa la relación de incremento de riesgo para el factor $X$,
     siendo $b = 0$ el caso de independencia, y $b > 0$ de riesgo creciente en $X$.
     El parámetro $a$ fija, en el caso de $X$ binaria, el riesgo para el grupo con $X = 0$.
 \end{observacion}
 
 \begin{definicion}[Regresión logística multidimensional]
-\cite[12.6]{jewell2004_Stats_for_Epidemiology}
+    \cite[12.6]{jewell2004_Stats_for_Epidemiology}
 
-\[
-    p_{x_1, \ldots, x_k} = P(Y = 1 | X_1 = x_1, \ldots, X_k = x_k) = \dfrac{1}{1 + e^{-(a + \sum_{i = 1}^k b_i x_i)}}
-\]
+    \[
+        p_{x_1, \ldots, x_k} = P(Y = 1 | X_1 = x_1, \ldots, X_k = x_k) = \dfrac{1}{1 + e^{-(a + \sum_{i = 1}^k b_i x_i)}}
+    \]
 \end{definicion}
 
 \begin{nota}
-\cite[13.1.1]{jewell2004_Stats_for_Epidemiology}
+    \cite[13.1.1]{jewell2004_Stats_for_Epidemiology}
     Para obtener valores de los parámetros, se puede maximizar la verosimilitud. Por simplicidad,
     en el caso unidimensional:
     \[
@@ -89,24 +89,24 @@ con parámetros $a, b \in \R$.
 \end{nota}
 
 \iffalse
-\begin{corolario}
-    Esto tiene varias implicaciones inmediatas \cite{greenland1999}.
-    \begin{itemize}
-    \item El efecto confusor depende del estimando de interés. En el artículo citado, se presenta
-    el ejemplo de superviviencia a lo largo de distintos plazos de tiempo.
-    \item La absencia de efecto confusor no implica que cada unidad no sea afectada
+    \begin{corolario}
+        Esto tiene varias implicaciones inmediatas \cite{greenland1999}.
+        \begin{itemize}
+            \item El efecto confusor depende del estimando de interés. En el artículo citado, se presenta
+                  el ejemplo de superviviencia a lo largo de distintos plazos de tiempo.
+            \item La absencia de efecto confusor no implica que cada unidad no sea afectada
 
-    \end{itemize}
+        \end{itemize}
 
-\end{corolario}
+    \end{corolario}
 \fi
 
 \begin{definicion}[Variable confusora]
     En el contexto anterior, para que una variable $X$ sea considerada confusora, deben cumplirse
     estas condiciones necesarias
     \begin{itemize}
-    \item $X$ puede afectar al resultado. Gráficamente, el modelo gráfico tiene una flecha $X \to Y$
-    \item $X$ se distribuye de manera diferente entre las poblaciones a comparar.
+        \item $X$ puede afectar al resultado. Gráficamente, el modelo gráfico tiene una flecha $X \to Y$
+        \item $X$ se distribuye de manera diferente entre las poblaciones a comparar.
     \end{itemize}
     No son condiciones suficientes: el efecto causal puede ser anulado y resultar en efecto total nulo.
 \end{definicion}
