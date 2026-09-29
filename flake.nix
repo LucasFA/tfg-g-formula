@@ -28,15 +28,14 @@
             lintr
           ];
         };
-        texIndent = pkgs.texlive.combine {
-          inherit (pkgs.texlive)
+        texIndent = pkgs.texliveSmall.withPackages (
+          ps: with ps; [
             scheme-basic
-
             latexindent
-            ;
-        };
-        texCombined = pkgs.texlive.combine {
-          inherit (pkgs.texlive)
+          ]
+        );
+        texCombined = pkgs.texliveSmall.withPackages (
+          ps: with ps; [
             scheme-small
             # fpl # fonts? URW Palladio
 
@@ -74,8 +73,8 @@
             dirtytalk
             tikz-cd
             framed
-            ;
-        };
+          ]
+        );
       in
       rec {
         devShells.default = pkgs.mkShell {
