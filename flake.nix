@@ -83,6 +83,7 @@
             texIndent
             pkgs.coreutils
             pkgs.inotify-tools
+            pkgs.parallel
             rWithPkgs
           ];
         };
@@ -99,7 +100,7 @@
           # Ejecutar con `nix run .#format`
           format = pkgs.writeShellApplication {
             name = "document-format";
-            runtimeInputs = [ texIndent ];
+            runtimeInputs = [ texIndent pkgs.parallel ];
             text = ''
               ${pkgs.bash}/bin/bash ./scripts/format.sh
             '';
