@@ -25,19 +25,16 @@ en un estudio observacional.
     en el caso discreto.
 \end{definicion}
 
-\begin{proposicion}[Randomización implica intercambiabilidad]
-\end{proposicion}
-
 Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
 
 \begin{figure}[h]
-    \label{fig:grafo-causal-rct}
     \centering
     \begin{tikzcd}
         A \arrow{r}{} & Y \\
         X \arrow{ur}{}
     \end{tikzcd}
     \caption{RCT}
+    \label{fig:grafo-causal-rct}
 \end{figure}
 
 Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
@@ -58,7 +55,7 @@ por una distribución fija sin parámetros libres.
         \item Se obtiene marginalizando sobre $X$ (es $A \indep (Y(0), Y(1))$), luego
               $A \indep Y(a), \, a = 0, 1$
         \item $P(A = a', Y(a) = y \mid X = x) = \frac{P(A = a')P(Y(a) = y, X = x)}{P(X = x)}$.
-              que $A \indep X$, tenemos la iguadad con
+              Como $A \indep X$, tenemos la igualdad con
               $P(A = a' \mid X = x)P(Y(a) = y \mid X = x)$, como queríamos mostrar.
     \end{enumerate}
 \end{proof}
@@ -79,11 +76,11 @@ Ahora, no controlamos la asignación del tratamiento, sino que puede ser afectad
 condiciones del sujeto de estudio ($X$).
 
 \begin{figure}[h]
-    \label{fig:grafo-causal-obs}
     \centering
     \begin{tikzcd}
         A \arrow{r}{} & Y \\
         X  \arrow{u}{} \arrow{ur}{}
     \end{tikzcd}
     \caption{Estudio observacional}
+    \label{fig:grafo-causal-obs}
 \end{figure}
