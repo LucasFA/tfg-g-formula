@@ -5,18 +5,18 @@ Vamos a ver las condiciones que un estudio randomizado implica y cómo se debili
 en un estudio observacional.
 
 \section{Estudios randomizados}
-Vamos a definir unos conceptos más fuertes que la intercambiabilidad condicional:
-
 \begin{definicion}[Randomización]
     Diremos que un estudio implicando variables $X, A, Y$ es randomizado cuando la
-    variable de tratamiento $A$ es controlada. En el caso más sencillo, exigimos independencia,
-    $P(A | X) = P(A)$.
+    variable de tratamiento $A$ es aleatoria y controlada por el investigador, de forma que
+    no depende de covariantes ni resultados:
+    $A \indep (X, Y(0), Y(1))$.
+
     % $A \indep Y(a)$: el tratamiento no está correlado con otras covariantes ni % TODO:
 \end{definicion}
 
 \begin{nota}
-    Sólo consideramos el caso en el que $P(A) = P(A | X)$, con un muestreo simple sin estratificación
-    ni otras medidas más sofisticadas.
+    Sólo consideramos el caso en el que $P(A) = P(A | X, Y(0), Y(1))$, con una asignación
+    simple sin estratificación, blocking, ni otras medidas más sofisticadas.
 \end{nota}
 
 \begin{definicion}[Intercambiabilidad]
@@ -26,11 +26,6 @@ Vamos a definir unos conceptos más fuertes que la intercambiabilidad condiciona
 \end{definicion}
 
 \begin{proposicion}[Randomización implica intercambiabilidad]
-
-\end{proposicion}
-
-\begin{proposicion}[Intercambiabilidad implica intercambiabilidad condicional]
-
 \end{proposicion}
 
 Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
@@ -49,14 +44,24 @@ Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos un
 randomización simple en la que los sujetos son asignados a las variantes del tratamiento
 por una distribución fija sin parámetros libres.
 
-% TODO:
-\begin{proposicion}[Propiedades de un estudio controlado]
-    Se verifican las siguientes propiedades:
-    \begin{itemize}
-        \item $A \indep X$
-        \item  $A \indep Y(a)$
-    \end{itemize}
+\begin{proposicion}[Propiedades de un estudio controlado randomizado]
+    Se verifica:
+    \begin{enumerate}
+        \item $Y(a) \indep A$
+        \item $Y(a) \indep A | X$
+    \end{enumerate}
 \end{proposicion}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[]
+        \item Se obtiene marginalizando sobre $X$ (es $A \indep (Y(0), Y(1))$), luego
+              $A \indep Y(a), \, a = 0, 1$
+        \item $P(A = a', Y(a) = y \mid X = x) = \frac{P(A = a')P(Y(a) = y, X = x)}{P(X = x)}$.
+              que $A \indep X$, tenemos la iguadad con
+              $P(A = a' \mid X = x)P(Y(a) = y \mid X = x)$, como queríamos mostrar.
+    \end{enumerate}
+\end{proof}
 
 
 \footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
