@@ -172,7 +172,7 @@
         Y & = \beta_0 + \beta_A A + \sum_j^d \beta_j X_{j} + \varepsilon
     \end{align*}
     Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
-    (\ref{nota:correctamenteEspecificado}), entonces $ATE = \hat\beta_A$.
+    (\ref{nota:correctamenteEspecificado}), entonces $ATE = \beta_A$.
     En el caso de una sola variable confusora $X$,
     <<naive-lm, echo=TRUE, eval=FALSE>>=
     @

@@ -23,7 +23,7 @@ $$
     Y \sim A + \sum_{i=1}^{n} X_i
 $$
 
-Esta técnica está sujeta a las suposiciones habituales de regresión, en particular
+Esta técnica está sujeta a las suposiciones habituales de la regresión lineal, en particular
 que los errores tengan una distribución normal multivariante y homocedasticidad de
 las variables regresoras (que tengan varianzas similares).
 Puede ser un estimador insesgado sobre $Y$ supuesto que $X$ afecte a la distribución de $A$,
