@@ -256,7 +256,7 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     $$ Y = A Y(1) + (1 - A)Y(0) $$
 \end{definicion}
 
-\begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad} % TODO; check understanding
+\begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
     También denominada independencia condicional, ignorabilidad o suficiencia causal.
     $$ Y(a) \indep A | X $$
     Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
@@ -267,19 +267,46 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
     En particular, se obtiene
     $$
-        \E[Y(A) | A = 1, X = x] = \E[Y(A) | A = 0, X = x] = \E[Y(A) | X = x] \;\forall a \in \{0, 1\}
+        \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
     $$
-    % \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
 \end{definicion}
 
 \begin{definicion}[Positividad] \label{def:positivity}
-    $$ P(A | X = x) > 0 \; \forall x:  P(X = x) > 0$$
+    $$ P(A = a | X = x) > 0 \; \forall a \in \{0, 1\}, \; \forall x:  P(X = x) > 0$$
 \end{definicion}
 
 Dependiendo del autor la condición de consistencia vista en \ref{def:consistency}
 se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
 y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
+La intercambiabilidad condicional está relacionada con el siguiente concepto:
+
+\begin{definicion}[Intercambiabilidad marginal] \label{def:intercambiabilidad-marginal}
+    Decimos que tenemos intercambiabilidad marginal o simplemente intercambiabilidad cuando
+    se verifica
+    $$ Y(a) \indep A \quad \forall a \in \{0, 1\} $$
+    En el caso discreto:
+    $$
+        P(Y(a) = y | A = 1) = P(Y(a) = y | A = 0) = P(Y(a) = y) \quad \forall a \in \{0, 1\}, \; \forall y
+    $$
+    Eso es, el grupo tratado y el no tratado tienen la misma distribución de resultados potenciales.
+    Por ello la nomenclatura: son intercambiables.
+\end{definicion}
+
+\begin{observacion}
+    En el caso general de unas covariantes $X$ arbitrarias sin un grafo causal especificado
+    como \autoref{subfig:observacional}, ninguna de las dos intercambiabilidades implica la otra.
+
+    En un estudio observacional, con $X$ una causa común de $A$ e $Y$, puede darse
+    la intercambiabilidad condicional y no darse la marginal.
+
+    Si en cambio $X$ es un colisionador entre $A$ e $Y$,
+    puede darse la intercambiabilidad marginal y no la condicional.
+
+    Estas relaciones se estudian, entre otras formas, mediante criterios sobre grafos causales,
+    como la $d$-separación \cite[1.2.3]{pearl2009causality} y el criterio de la puerta trasera
+    o \emph{backdoor criterion} \cite[3.3.1]{pearl2009causality}.
+\end{observacion}
 
 \subsection{Otras definiciones relacionadas}
 \begin{definicion}[No interferencia]\label{def:noInterference}
