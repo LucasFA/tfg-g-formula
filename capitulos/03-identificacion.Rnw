@@ -35,7 +35,8 @@
 
 \begin{proposicion}[Identificación del ATE] \label{identificacion-ate}
     Consideramos una distribución $(X, A, Y(0), Y(1))$.
-    Bajo las condiciones anteriores (\autoref{def:consistency} \autoref{def:intercambiabilidad} \autoref{def:positivity}), el ATE causal está identificado con el ATE estadístico.
+    Bajo las condiciones anteriores (\autoref{def:consistency} \autoref{def:intercambiabilidad}
+    \autoref{def:positivity}), el ATE causal está identificado con el ATE estadístico.
 \end{proposicion}
 
 \begin{proof}\cite[sección 2.2]{mci}
@@ -67,7 +68,7 @@
     especificar estadístico o causal.
 \end{nota}
 
-\begin{proposicion}[G-fórmula, versión no paramétrica]
+\begin{proposicion}[G-fórmula, versión no paramétrica] \label{prop:g-formula-no-param}
     Bajo las condiciones anteriores y dada una tripleta de variables aleatorias $(X, A, Y)$, donde $A \in \{0, 1\}$,
     se obtiene el siguiente estimando estadístico identificado con el ATE:
     % TODO: find this based on sample?
@@ -260,57 +261,139 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
 % produciendo una distribución empírica $\P$. De esta manera, la tabla de contingencia
 % viene dada por  $\P(y, a)$.
 
-% TODO: change these into propositions (of identification) or change names
-\begin{proposicion}[Identificación de la Diferencia de Riesgo]
-    Recordamos que la Diferencia de Riesgo (\autoref{def:riskdiff}) se define como:
-    $$
-        RD = P(Y(1) = 1) - P(Y(0) = 1)
-    $$
-    Este estimando está identificado con:
-    $$
-        RD^* = P(Y = 1 | A = 1) - P(Y = 1 | A = 0)
-    $$
+\begin{proposicion}[Identificación de RD, RR y OR]
+    Sean $A$ e $Y$ binarias, y $X$ discreta.
+    Bajo las condiciones de consistencia, intercambiabilidad
+    condicional y positividad,
+    (\autoref{def:consistency}, \autoref{def:intercambiabilidad}, \autoref{def:positivity}),
+    identificamos la siguiente cantidad:
+    \[
+        P^*(Y(a) = 1) = \sum_x P(Y = 1 | A = a, X = x) P(X = x), \quad a \in \{0, 1\}
+    \]
+    Los estimandos de \autoref{sec:estimandos_de_interes} se identifican sustituyendo esta cantidad
+    en sus definiciones:
+    \begin{align*}
+        RD & = P^*(Y(1) = 1) - P^*(Y(0) = 1)                                                   \\
+        RR & = \frac{P^*(Y(1) = 1)}{P^*(Y(0) = 1)}                                             \\
+        OR & = \frac{P^*(Y(1) = 1) / (1 - P^*(Y(1) = 1))}{P^*(Y(0) = 1) / (1 - P^*(Y(0) = 1))}
+    \end{align*}
+    donde además se debe verificar $P^*(Y(0) = 1) > 0$ para el RR y $0 < P^*(Y(a) = 1) < 1$ para el OR.
 \end{proposicion}
 
-%\begin{proposicion}[Identificación RR]
-%\end{proposicion}
+\begin{proof}
+    Como $P^*(Y(a) = 1) = \E[Y(a)]$, la primera igualdad es inmediata desde la G-fórmula
+    no paramétrica, vista en \autoref{prop:g-formula-no-param}.
 
-%\begin{proposicion}[Identificación parcial OR]
-%\end{proposicion}
+    Para el RD, el RR y el OR, que son de la forma $g(P^*(Y(1) = 1), P^*(Y(0) = 1))$ para una
+    función $g$, sus argumentos están identificados y por tanto su imagen también lo está,
+    aplicando $g$ al estimando estadístico que los identifica:
+    \begin{align*}
+        g(P^*(Y(1) = 1), P^*(Y(0) = 1)) =
+        g( & \sum_x P(Y = 1 | A = 1, X = x) P(X = x), \\
+           & \sum_x P(Y = 1 | A = 0, X = x) P(X = x))
+    \end{align*}
+    que sólo depende de $P$.
+\end{proof}
 
-\begin{proposicion}[Identificación del Riesgo Relativo]\cite[4.1]{jewell2004_Stats_for_Epidemiology} %TODO: find source
-    Recordamos que se define (\ref{def:relrisk}) como:
-    \[
-        RR(P) = \frac{P(Y(1) = 1)}{P(Y(0) = 1)}
-    \]
-    Está identificado con
-    \[
-        RR^* = \frac{\P(Y = 1 | A = 1)}{\P(Y = 1 | A = 0)}
-    \]
-
+\begin{proposicion}[Identificación bajo intercambiabilidad marginal]
+    Sean $A$ e $Y$ binarias.
+    Si se cumplen la consistencia, intercambiabilidad marginal
+    (\autoref{def:intercambiabilidad-marginal}, $Y(a) \indep A$) y positividad del
+    tratamiento $P(A = a) > 0 \; \forall a$,
+    entonces $P^*(Y(a) = 1) = P(Y = 1 | A = a)$.
+    Los estimandos quedan identificados de la siguiente manera:
+    \begin{align*}
+        RD & = P(Y = 1 | A = 1) - P(Y = 1 | A = 0),                                            \\
+        RR & = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)},                                      \\
+        OR & = \frac{P(Y = 1 | A = 1) / P(Y = 0 | A = 1)}{P(Y = 1 | A = 0) / P(Y = 0 | A = 0)}
+    \end{align*}
+    Sujeto a que, igual que en la proposición anterior,
+    se verifique que $P^*(Y(0) = 1) > 0$ para el RR y $0 < P^*(Y(a) = 1) < 1$ para el OR.
 \end{proposicion}
 
-% TODO: expand or delete
+\begin{proof}
+    Aplicando positividad de $P(A = a)$ (para que exista $P(Y = 1 | A = a)$), intercambiabilidad marginal
+    y consistencia, $P^*(Y(a) = 1) = P^*(Y(a) = 1 | A = a) = P(Y = 1 | A = a)$.
+    Sustituyendo esta cantidad en las definiciones de los estimandos causales obtenemos
+    las fórmulas anteriores.
+\end{proof}
+
 \begin{observacion}
-    El Riesgo Relativo es utilizado en RCT, pero en estudios observacionales no
-    suele ser posible.
+    Esta es la forma que se obtiene en un estudio randomizado controlado, los cuales
+    presentan intercambiabilidad marginal.
 \end{observacion}
 
-No hay un resultado de identificación para el Odds Ratio.
+\begin{definicion}[Odds Ratio condicional]
+    Para cada estrato $x$ de $X$ discreta,
+    $$
+        OR(X = x) = \frac{P^*(Y(1) = 1 | X = x) / P^*(Y(1) = 0 | X = x)}{P^*(Y(0) = 1 | X = x) / P^*(Y(0) = 0 | X = x)}
+    $$
+    Al Odds Ratio de la \autoref{def:oddsratio} lo llamamos \emph{marginal} para distinguirlo.
+\end{definicion}
 
-% TODO: see if this holds up
-\iffalse
-    \begin{corolario}\cite[4.3]{jewell2004_Stats_for_Epidemiology}
-        $$
-            OR = RR * \dfrac{P(N | C)}{P(N | I)} = RR * \dfrac{1 - P(E|C)}{1 - P(E|I)}
-        $$
-    \end{corolario}
-\fi
-
-% TODO:
-\begin{proposicion}[Identificación parcial del Odds ratio TODO:]
-
+\begin{proposicion}[Identificación del OR condicional]
+    Bajo consistencia, intercambiabilidad condicional y positividad,
+    con $X$ discreta, $P(X = x) > 0$ y $0 < P^*(Y(a) = 1 | X = x) < 1$,
+    identificamos el OR condicional al sustituir
+    $P^*(Y(a) = 1 | X = x) = P(Y = 1 | A = a, X = x)$.
+    Se obtiene
+    $$
+        OR(X = x) = \frac{P(Y = 1 | A = 1, X = x) / P(Y = 0 | A = 1, X = x)}{P(Y = 1 | A = 0, X = x) / P(Y = 0 | A = 0, X = x)}
+    $$
 \end{proposicion}
+
+\begin{proof}
+    El paso es inmediato aplicando intercambiabilidad (condicional a $A$), consistencia y positividad.
+\end{proof}
+
+\begin{definicion}[Colapsabilidad] \label{def:colapsabilidad} \cite[4.1]{greenland1999} \cite[Fine Point 4.3]{whatif}
+    Sea $m$ una medida de efecto (como la RD, RR u OR) y $m(x)$ su versión
+    condicional en el estrato $X = x$.
+    Decimos que $m$ es estrictamente colapsable si $m(x)$ es constante en $x$ y coincide con
+    el valor marginal de $m$.
+    Decimos que $m$ es colapsable si el valor marginal de $m$ es una media ponderada de los valores
+    de $m(x)$.
+\end{definicion}
+
+\begin{observacion}\cite[Fine Point 4.3]{whatif}
+    La RD y el RR son ambos colapsables.
+    Como vemos en el siguiente ejemplo, no es el caso con el OR.
+\end{observacion}
+
+\begin{ejemplo}[No colapsabilidad del Odds Ratio]\cite{greenland1999}
+    Sea $X \sim B(1, 1/2)$ y un tratamiento randomizado, estando por tanto en la situación de
+    \autoref{subfig:cd-rct}, resultando en la siguiente tabla
+    \cite[Tabla 8.7]{jewell2004_Stats_for_Epidemiology}:
+    \begin{center}
+        \begin{tabular}{ l | c c | c c }
+                     & P(Y = 1 | A = 0) & P(Y = 1 | A = 1) & RD  & OR   \\ \hline
+            $X = 0$  & 0.2              & 0.5              & 0.3 & 4    \\
+            $X = 1$  & 0.5              & 0.8              & 0.3 & 4    \\ \hline
+            Marginal & 0.35             & 0.65             & 0.3 & 3.45
+        \end{tabular}
+    \end{center}
+    La diferencia de riesgo marginal coincide con la de los estratos: es \emph{colapsable}
+    (\autoref{def:colapsabilidad}).
+    El Odds Ratio es $4$ en ambos estratos, pero el marginal es
+    $\frac{0.65 / 0.35}{0.35 / 0.65} \approx 3.45$, que no coincide con ellos.
+
+    La discrepancia se debe únicamente a que el odds ratio no es lineal en $p$. Vemos entonces que
+    por tanto es (una realización) no colapsable.
+
+    Una regresión logística $y \sim A$, sujeto como es en este caso a la intercambiabilidad marginal,
+    da como coeficiente el logaritmo del odds ratio marginal. Si añadimos $X$ a la regresión, $y \sim A + X$,
+    el coeficiente de $A$ corresponderá al logaritmo del odds ratio condicional.
+    Si no hubiera intercambiabilidad marginal, como en \autoref{subfig:observacional},
+    $y \sim A$ resultaría en un coeficiente sesgado y habría que ajustar por $X$, obteniendo sólo
+    el odds ratio condicional.
+
+    La G-fórmula permite estimar el odds ratio marginal incluso en ese caso, bajo
+    intercambiabilidad condicional.
+
+    Una regresión logística $\operatorname{logit} P(Y = 1 | A, X) = \beta_0 + \beta_A A + \beta_X X$
+    con $A$ y $X$ como factores estima el Odds Ratio condicional ($e^{\beta_A} = 4$),
+    mientras que la G-fórmula estima el marginal ($3.45$).
+\end{ejemplo}
 
 % \begin{observacion}
 % En condiciones de \textit{enfermedad rara}, por la cual la población
