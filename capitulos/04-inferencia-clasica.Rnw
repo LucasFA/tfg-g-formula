@@ -38,10 +38,14 @@ que no es, en el caso general, suficiente para obtener un modelo bien especifica
 
 Para ver esto, consideramos un caso con modificación del efecto y un modelo que no
 incluye interacciones. En él observamos que en el caso randomizado el coeficiente de $A$
-sigue estimando el ATE, mientras que en el caso observacional estima una media ponderada
-de los efectos condicionales, con pesos proporcionales a $Var[A | X = x] P(X = x)$.
+sigue estimando el ATE, y que esto no se cumple en el caso observacional:
 
 <<regresion-rct-vs-observacional, echo=TRUE, eval=TRUE>>=
+@
+
+Limitándonos al caso observacional, podemos ver que se hace una media ponderada
+por $e(1 - e)$, donde $e = P(A = 1 | X)$ es la propensidad.
+<<regresion-ipw, echo=TRUE, eval=TRUE>>=
 @
 
 \subsubsection{Regresión logística}
