@@ -396,13 +396,6 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
 \end{ejemplo}
 
 % \begin{observacion}
-% En condiciones de \textit{enfermedad rara}, por la cual la población
-% afectada es mucho menor que la de la población sana, tenemos que el Odds Ratio
-% es un buen estimador del riesgo relativo.
-% $$ OR \approx RR $$
-% \end{observacion}
-
-% \begin{observacion}
 % En muchos casos, cuando tomar una muestra es costoso, una Muestra Aleatoria
 % de la población en su totalidad no es práctico, sino que uno se limita
 % a una considerar a los casos que expresan la enfermedad junto a una muestra
