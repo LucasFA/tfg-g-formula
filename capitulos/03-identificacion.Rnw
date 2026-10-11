@@ -1,5 +1,5 @@
 \chapter{Identificación}
-\section{Un salto causal}
+\section{Identificación del ATE}
 % ATE estadístico y causal
 
 \begin{definicion}[Brecha causal]\cite[sección 2.3]{mci}
@@ -161,7 +161,7 @@
 \end{ejemplo}
 
 
-\section{Identificación de estimandos de interés} \label{sec:estimadores_asociados}
+\section{Identificación de estimandos de interés} \label{sec:identificacion_estimandos}
 Presentamos la identificación de los estimandos causales introducidos en la \autoref{sec:estimandos_de_interes}.
 % Consideramos una muestra aleatoria de dos variables aleatorias binarias $(Y, A)$
 % produciendo una distribución empírica $\P$. De esta manera, la tabla de contingencia
