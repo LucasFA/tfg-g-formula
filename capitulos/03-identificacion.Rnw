@@ -330,6 +330,23 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
     El paso es inmediato aplicando intercambiabilidad (condicional a $A$), consistencia y positividad.
 \end{proof}
 
+\begin{definicion}[Modificación de efecto]
+    Se dice que una variable $M$ modifica el efecto de otra variable $X$ en $Y$ si las medidas de
+    asociación entre $X$ e $Y$ se distinguen según el valor de $M$.
+\end{definicion}
+
+\begin{ejemplo}[Modificación de efecto]
+    Consideramos un colisionador, como en \autoref{subfig:cd-colisionador}.
+    Obsérvese que en este ejemplo, considerando la interpolación de $A$ entre 0 y 1,
+    $\frac{\partial \E[Y | A, M = m]}{\partial A} = m$.
+    Simulamos de manera similar al ejemplo anterior:
+    <<ejemplo-modificacion-efecto, echo=TRUE, eval=TRUE>>=
+    @
+    En este caso, es de interés reportar las medidas estratificadas.
+    Esto tiene como consecuencia la pérdida de cierta potencia estadística
+    correspondiente al menor tamaño de muestra.
+\end{ejemplo}
+
 \begin{definicion}[Colapsabilidad] \label{def:colapsabilidad} \cite[4.1]{greenland1999} \cite[Fine Point 4.3]{whatif}
     Sea $m$ una medida de efecto (como la RD, RR u OR) y $m(x)$ su versión
     condicional en el estrato $X = x$.
