@@ -34,6 +34,13 @@
 \newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
 % \newcommand{\indep}{\perp\!\!\!\perp}
 
+\newcommand{\grafoObservacional}{%
+    \begin{tikzcd}[ampersand replacement=\&] % aparentemente hace falta esto dentro de macros
+        A \arrow{r}{} \& Y \\
+        X \arrow{ur}{} \arrow{u} \&
+    \end{tikzcd}%
+}
+
 % -------------------------------------------------------------------
 % INFORMACIÓN DEL TFG Y EL AUTOR
 % -------------------------------------------------------------------

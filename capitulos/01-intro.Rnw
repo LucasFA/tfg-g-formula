@@ -18,7 +18,7 @@
 Un estudio controlado aleatorizado o RCT, por sus siglas en inglés de \textit{Randomized Controlled Trial} es
 el \say{gold standard} de la experimentación clínica.
 En él, los investigadores tienen un tratamiento a estudiar,
-toman una muestra\footnotemark{}, y asignan de forma aleatoria\footnotemark{} a los sujetos a un grupo
+toman una muestra\footnotemark{}, y asignan de forma aleatoria a los sujetos a un grupo
 de control que no recibe tratamiento, y a un grupo de tratamiento.
 El diseño ideal requiere condiciones de doble ciego o \say{double blind}.
 Ello consiste en que ni los pacientes ni los investigadores conozcan
@@ -28,10 +28,6 @@ con medicación placebo aparentemente idéntica a la medicación real.
 \footnotetext{Puede ser un muestreo aleatorio simple u otras formas más robustas
     como el muestreo estratificado, con la intención de obtener una muestra más
     representativa y equilibrada de la población de estudio.
-}
-\footnotetext{La forma más simple es la randomización simple, pero existen otros
-    métodos más complejos, como la asignación por bloques, usada para minimizar el efecto de
-    variables ajenas a la de estudio y conseguir mayor poder estadístico.
 }
 
 Habiendo registrado los resultados, los investigadores pueden entonces
@@ -149,10 +145,7 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \begin{tikzcd}
-            A \arrow{r}{} & Y \\
-            X \arrow{ur}{} \arrow{u} &
-        \end{tikzcd}
+        \grafoObservacional
         \caption{Estudio observacional (simplificado)}
         \label{subfig:observacional}
     \end{subfigure}

@@ -286,7 +286,7 @@ La intercambiabilidad condicional está relacionada con el siguiente concepto:
 \begin{definicion}[Intercambiabilidad marginal] \label{def:intercambiabilidad-marginal}
     Decimos que tenemos intercambiabilidad marginal o simplemente intercambiabilidad cuando
     se verifica
-    $$ Y(a) \indep A \quad \forall a \in \{0, 1\} $$
+    $$ Y(a) \indep A \quad \forall a \in \{0, 1\} $$ % TODO: verify usage of a
     En el caso discreto:
     $$
         P(Y(a) = y | A = 1) = P(Y(a) = y | A = 0) = P(Y(a) = y) \quad \forall a \in \{0, 1\}, \; \forall y
@@ -323,13 +323,6 @@ La intercambiabilidad condicional está relacionada con el siguiente concepto:
     consistencia (\ref{def:consistency}) y de no interferencia (\ref{def:noInterference}).
     Ambas condiciones se satisfacen simultáneamente bajo muestreo IID.
 \end{definicion}
-
-\begin{observacion}\cite[material suplementario S1]{luque2021}
-    En estudios randomizados se mantiene la intercambiabilidad condicional
-    trivialmente por la randomización de la asignación de los sujetos a
-    los grupos de control y de tratamiento.
-    % TODO: Esto no es así en estudios observacionales, pero
-\end{observacion}
 
 \begin{ejemplo}[Violación de SUTVA]
     El efecto por el cual el tratamiento a unidad afecta a otras se le llama \textit{\say{spillover}} en inglés, o \say{derrame} en castellano.

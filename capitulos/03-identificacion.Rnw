@@ -167,21 +167,6 @@
     es un estimador del ATE.
 \end{proposicion}
 
-\begin{ejemplo}[Estimador del ATE basado en regresión lineal] % TODO: general?
-    Consideramos $Y$ una variable unidimensional, $\mathbf{X} = (X_1, \dots, X_d)$ una variable aleatoria $d$ dimensional y el modelo lineal
-    \begin{align*}
-        Y & = \beta_0 + \beta_A A + \sum_j^d \beta_j X_{j} + \varepsilon
-    \end{align*}
-    Si $X$ cumple la intercambiabilidad condicional y el modelo está correctamente especificado
-    (\ref{nota:correctamenteEspecificado}), entonces $ATE = \beta_A$.
-    En el caso de una sola variable confusora $X$,
-    <<naive-lm, echo=TRUE, eval=FALSE>>=
-    @
-    Nótese que la regresión lineal no es robusta ante heterocedasticidad sin aplicar procedimientos
-    más avanzados.
-    Esta es una técnica muy extendida en la práctica clínica.
-\end{ejemplo}
-
 \begin{ejemplo}[ATE]
     Consideramos la tabla de contingencia anterior y añadimos la diferencia:
     \begin{center}
@@ -211,7 +196,7 @@ mínima de la brecha causal que haría nuestra estimación estadísticamente no 
 
 \begin{nota}
     El análisis de sensitividad ha sido de gran relevancia histórica: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
-    se comenta el caso del primer análisis de sensitividad en \cite{cornfield1959}. % DONETODO: make this more formal
+    se comenta el caso del primer análisis de sensitividad en \cite{cornfield1959}.
     Como información contextual, una crítica posible a los artículos del momento que asociaban el consumo de tabaco
     al cáncer de pulmón incluían el hecho de que no podían controlar
     por todas las covariantes posibles, sugiriendo entonces la posible existencia de
@@ -229,7 +214,6 @@ mínima de la brecha causal que haría nuestra estimación estadísticamente no 
 Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
 encontrar asunciones que nos permiten acotar el valor del estimando de estudio en base al
 estadístico dado.
-Como veremos, este es el caso del Odds Ratio.
 
 \begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
     Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
@@ -381,18 +365,16 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
     por tanto es (una realización) no colapsable.
 
     Una regresión logística $y \sim A$, sujeto como es en este caso a la intercambiabilidad marginal,
-    da como coeficiente el logaritmo del odds ratio marginal. Si añadimos $X$ a la regresión, $y \sim A + X$,
-    el coeficiente de $A$ corresponderá al logaritmo del odds ratio condicional.
+    da como coeficiente el logaritmo del odds ratio marginal. Si añadimos $X$ a la regresión,
+    $\operatorname{logit} P(Y = 1 | A, X) = \beta_0 + \beta_A A + \beta_X X$,
+    el coeficiente de $A$ corresponderá al logaritmo del odds ratio condicional
+    ($e^{\beta_A} = 4$).
     Si no hubiera intercambiabilidad marginal, como en \autoref{subfig:observacional},
     $y \sim A$ resultaría en un coeficiente sesgado y habría que ajustar por $X$, obteniendo sólo
     el odds ratio condicional.
 
-    La G-fórmula permite estimar el odds ratio marginal incluso en ese caso, bajo
-    intercambiabilidad condicional.
-
-    Una regresión logística $\operatorname{logit} P(Y = 1 | A, X) = \beta_0 + \beta_A A + \beta_X X$
-    con $A$ y $X$ como factores estima el Odds Ratio condicional ($e^{\beta_A} = 4$),
-    mientras que la G-fórmula estima el marginal ($3.45$).
+    La G-fórmula permite estimar el odds ratio marginal (aquí $3.45$) incluso en
+    ese caso, bajo intercambiabilidad condicional.
 \end{ejemplo}
 
 % \begin{observacion}

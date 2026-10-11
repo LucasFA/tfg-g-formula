@@ -14,28 +14,8 @@ en un estudio observacional.
     % $A \indep Y(a)$: el tratamiento no está correlado con otras covariantes ni % TODO:
 \end{definicion}
 
-\begin{nota}
-    Sólo consideramos el caso en el que $P(A) = P(A | X, Y(0), Y(1))$, con una asignación
-    simple sin estratificación, blocking, ni otras medidas más sofisticadas.
-\end{nota}
-
-\begin{definicion}[Intercambiabilidad]
-    Decimos que se presenta intercambiabilidad cuando $ Y(a) \indep A, \, \forall a $.
-    Escrito de otra forma, $P(Y(a) = y | A = 1) = P(Y(a) = y | A = 0) = P(Y(a) = y)$,
-    en el caso discreto.
-\end{definicion}
-
-Consideramos de nuevo el grafo causal de un estudio randomizado controlado:
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzcd}
-        A \arrow{r}{} & Y \\
-        X \arrow{ur}{}
-    \end{tikzcd}
-    \caption{RCT}
-    \label{fig:grafo-causal-rct}
-\end{figure}
+Consideramos de nuevo el grafo causal de un estudio randomizado controlado
+(\autoref{subfig:cd-rct}).
 
 Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
 randomización simple en la que los sujetos son asignados a las variantes del tratamiento
@@ -44,7 +24,7 @@ por una distribución fija sin parámetros libres.
 \begin{proposicion}[Propiedades de un estudio controlado randomizado]
     Se verifica:
     \begin{enumerate}
-        \item $Y(a) \indep A$
+        \item $Y(a) \indep A$ (intercambiabilidad marginal, \autoref{def:intercambiabilidad-marginal})
         \item $Y(a) \indep A | X$
     \end{enumerate}
 \end{proposicion}
@@ -77,10 +57,7 @@ condiciones del sujeto de estudio ($X$).
 
 \begin{figure}[h]
     \centering
-    \begin{tikzcd}
-        A \arrow{r}{} & Y \\
-        X  \arrow{u}{} \arrow{ur}{}
-    \end{tikzcd}
+    \grafoObservacional
     \caption{Estudio observacional}
     \label{fig:grafo-causal-obs}
 \end{figure}
