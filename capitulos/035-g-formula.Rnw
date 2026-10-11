@@ -1,0 +1,43 @@
+\chapter{Estimación con la g-fórmula}
+
+\begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
+    Dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
+    y una \MAS $\{(Y_i, A_i, X_i)\}_{i = 1, ..., n}$, obtenemos el siguiente estimador del ATE.
+    $$
+        \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
+    $$
+\end{corolario}
+
+\begin{ejemplo}[Estimador del ATE de diferencia en medias]
+    Sea $(Y_i, A_i, X_i), i = 1, ..., n$ una \MAS y $S_a = \{i | A_i = a\}$. Entonces,
+    $$
+        \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
+    $$
+    Esto se puede escribir de la siguiente forma en el lenguaje R:
+    <<est-ate, echo=TRUE, eval=FALSE>>=
+    @
+
+    Aquí hemos tomado $\hat\mu_a(x) =  \frac{1}{|S_a|}\sum_{i \in S_a} Y_i$.
+
+    Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
+    valor a todos los individuos a cada grupo $S_1$ y $S_0$.
+    Es, un estimador válido para estudios randomizados pero no pasa observacionales, porque en RCTs
+    la expresión del ATE se reduce a esta por randomización de las covariantes en la asignación del tratamiento.
+    Naturalmente, no se suele aplicar siquiera en estudios randomizados en presencia de mejores
+    estimadores que al tener en cuenta
+    las covariantes presentan mejores propiedades (en particular, varianza reducida) para muestras pequeñas.
+\end{ejemplo}
+
+\begin{ejemplo}[Estimador del ATE de diferencia en medias, ajustando por las covariantes]
+
+\end{ejemplo}
+
+\begin{proposicion}[G-fórmula, versión paramétrica]
+    En los supuestos de la G-fórmula, consideramos el problema de regresión de $Y$ dados
+    $X$ y $A$.
+
+    \begin{align*}
+        \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \hat \E[Y | X_i, A = 1] - \hat \E[Y | X_i, A = 0] % TODO:!
+    \end{align*}
+    es un estimador del ATE.
+\end{proposicion}
