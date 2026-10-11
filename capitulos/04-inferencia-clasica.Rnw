@@ -24,11 +24,25 @@ $$
 $$
 
 Esta técnica está sujeta a las suposiciones habituales de la regresión lineal, en particular
-que los errores tengan una distribución normal multivariante y homocedasticidad de
-las variables regresoras (que tengan varianzas similares).
-Puede ser un estimador insesgado sobre $Y$ supuesto que $X$ afecte a la distribución de $A$,
-eso es, que no haya \emph{modificación del efecto}, con lo cual es apto para estudios randomizados
-controlados, pero no para estudios observacionales.
+que los errores tengan una distribución normal multivariante y sean homocedásticos
+(tengan varianza constante).
+
+En RCTs, el coeficiente de $A$ en un modelo sin interacciones es un estimador asintóticamente
+insesgado del ATE, haya o no modificación del efecto.
+En estudios observacionales, y supuesta la intercambiabilidad condicional a $X$, para tener
+la insesgadez es suficiente que el modelo esté bien especificado y que, o bien no haya
+modificación del efecto, o bien la regresión incluya términos de interacción y se estandarice
+(sin centrar, el coeficiente es el efecto condicional a $X = 0$).
+En la práctica los términos de interacción se reducen a un término multiplicativo,
+que no es, en el caso general, suficiente para obtener un modelo bien especificado.
+
+Para ver esto, consideramos un caso con modificación del efecto y un modelo que no
+incluye interacciones. En él observamos que en el caso randomizado el coeficiente de $A$
+sigue estimando el ATE, mientras que en el caso observacional estima una media ponderada
+de los efectos condicionales, con pesos proporcionales a $Var[A | X = x] P(X = x)$.
+
+<<regresion-rct-vs-observacional, echo=TRUE, eval=TRUE>>=
+@
 
 \subsubsection{Regresión logística}
 \begin{definicion}[Regresión logística simple]
