@@ -118,7 +118,6 @@ knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 \input{capitulos/02-potential-outcomes}
 <<child='capitulos/03-identificacion.Rnw'>>=
 @
-\input{capitulos/031-curse-of-dimensionality}
 \input{capitulos/034-estudio-rct}
 <<child='capitulos/035-g-formula.Rnw'>>=
 @

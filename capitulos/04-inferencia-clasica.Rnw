@@ -6,13 +6,7 @@
 Una forma de ajustar a las covariantes es estratificar la muestra y considerar
 el efecto del factor de interés $A$ dentro de cada estrato, donde las covariantes
 son fijas.
-Esta técnica es problemática cuando el número de covariantes es significativo,
-puesto que el número de estratos crece exponencialmente en función del número de covariantes,
-y el número de muestras por estrato decrece acordemente.
-A este concepto se le llama la \say{maldición de la dimensionalidad}\footnotemark{}.
 Aplicamos esta técnica en \autoref{ex:efectoConfusor}.
-
-\footnotetext{O en inglés, \say{the curse of dimensionality}.}
 
 \subsection{Regresión}
 \subsubsection{Regresión lineal}

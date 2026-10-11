@@ -1,5 +1,14 @@
 \chapter{Estimación con la g-fórmula}
 
+La estratificación es problemática cuando el número de covariantes es significativo,
+puesto que el número de estratos crece exponencialmente en función del número de covariantes,
+y el número de muestras por estrato decrece acordemente.
+A este concepto se le llama la \say{maldición de la dimensionalidad} o \textit{curse of dimensionality}:
+un fenómeno que ocurre cuando el número de dimensiones de un conjunto de datos crece,
+específicamente cuando el muestreo no aumenta lo suficiente. Obsérvese por ejemplo que el
+número de elementos en una malla uniforme de un hipercubo requiere un crecimiento exponencial del
+número de muestras con el número de dimensiones.
+
 \begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
     Dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
     y una \MAS $\{(Y_i, A_i, X_i)\}_{i = 1, ..., n}$, obtenemos el siguiente estimador del ATE.
