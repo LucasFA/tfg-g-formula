@@ -258,6 +258,38 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     como definido en \autoref{def:insesgadez-asintotica}.
 \end{definicion}
 
+\begin{proposicion}
+    Si el modelo causal y el estadístico son consistentes
+    y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
+    $$
+        \begin{cases}
+            P^*(X = x) = P(X = x) \;                 & \forall x    \\
+            P^*(A = a | X = x) = P(A = a | X = x) \; & \forall x, a
+        \end{cases}
+    $$
+
+    Entonces la distribución causal determina totalmente la distribución estadística por:
+    $$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
+\end{proposicion}
+
+\begin{proof} \cite[sección 2.1]{mci}
+    % TODO:
+    % Usando el teorema de la probablidad total:
+    % \begin{align*}
+    %     P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
+    %                &= P^*(X)P^*(A | X)P(Y | X, A)
+    % \end{align*}
+    % y
+    % \begin{equation*} %TODO: verify
+    %     P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
+    % \end{equation*}
+    %
+    % Usando la consistencia, debe verificarse que
+    % \begin{equation*}
+    %     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
+    % \end{equation*}
+\end{proof}
+
 \begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
     También denominada independencia condicional, ignorabilidad o suficiencia causal.
     $$ Y(a) \indep A | X $$
@@ -367,35 +399,3 @@ La intercambiabilidad condicional está relacionada con el siguiente concepto:
     Otro ejemplo es un estudio de la efectividad de una vacuna donde el muestreo se asigna por grupos (como un grupo
     de estudiantes de la misma clase)\cite{oxChapterCausal}.
 \end{ejemplo}
-
-\begin{proposicion}
-    Si el modelo causal y el estadístico son consistentes
-    y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
-    $$
-        \begin{cases}
-            P^*(X = x) = P(X = x) \;                 & \forall x    \\
-            P^*(A = a | X = x) = P(A = a | X = x) \; & \forall x, a
-        \end{cases}
-    $$
-
-    Entonces la distribución causal determina totalmente la distribución estadística por:
-    $$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
-\end{proposicion}
-
-\begin{proof} \cite[sección 2.1]{mci}
-    % TODO:
-    % Usando el teorema de la probablidad total:
-    % \begin{align*}
-    %     P(Y, A, X) &= P(X)P(A | X)P(Y | X, A) \\
-    %                &= P^*(X)P^*(A | X)P(Y | X, A)
-    % \end{align*}
-    % y
-    % \begin{equation*} %TODO: verify
-    %     P^*(Y(0), Y(1), A, X) = P^*(X)P^*(A | X)P^*(Y(0), Y(1) | X, A)
-    % \end{equation*}
-    %
-    % Usando la consistencia, debe verificarse que
-    % \begin{equation*}
-    %     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
-    % \end{equation*}
-\end{proof}
