@@ -276,6 +276,70 @@ Tenemos que
     el efecto estimado puede ser no nulo. Vemos un caso en el \autoref{ex:efectoConfusor}.
 \end{nota}
 
+\begin{definicion}[Efecto confusor a nivel poblacional]
+    Basándonos en \cite[sección 2.2]{greenland1999}, consideramos dos poblaciones:
+    una población objetivo $P_1$ y una de referencia $P_2$.
+    En ellas medimos unos valores $Y_1$ e $Y_2$.
+    A estas poblaciones aplicamos tratamientos, uno de control $A = 0$ y otra de exposición $A = 1$.
+
+    Así el efecto causal del tratamiento sobre la población objetivo es $Y_1(1) - Y_1(0)$,
+    o el ratio de estas cantidades si $Y$ toma valores estrictamente positivos.
+
+    Diremos que se presenta un efecto confusor si $Y_1(0) \neq Y_2(0)$.
+\end{definicion}
+
+\begin{nota} % TODO: check this is the proper environment to use
+    Esto es, que la población de referencia y la población objetivo son distintas por razones
+    más allá del tratamiento (que es igual).
+\end{nota}
+
+\iffalse
+    \begin{corolario}
+        Esto tiene varias implicaciones inmediatas \cite{greenland1999}.
+        \begin{itemize}
+            \item El efecto confusor depende del estimando de interés. En el artículo citado, se presenta
+                  el ejemplo de superviviencia a lo largo de distintos plazos de tiempo.
+            \item La absencia de efecto confusor no implica que cada unidad no sea afectada
+
+        \end{itemize}
+
+    \end{corolario}
+\fi
+
+\begin{definicion}[Variable confusora]
+    En el contexto anterior, para que una variable $X$ sea considerada confusora, deben cumplirse
+    estas condiciones necesarias
+    \begin{itemize}
+        \item $X$ puede afectar al resultado. Gráficamente, el modelo gráfico tiene una flecha $X \to Y$
+        \item $X$ se distribuye de manera diferente entre las poblaciones a comparar.
+    \end{itemize}
+    No son condiciones suficientes: el efecto causal puede ser anulado y resultar en efecto total nulo.
+\end{definicion}
+
+\begin{definicion}[Variable confusora, versión clásica] % TODO: cite
+    Una definición clásica del concepto de variable confusora es la siguiente.
+
+    Se dice que una variable es confusora cuando se dan las siguientes condiciones:
+    \begin{itemize}
+        \item La variable está estadísticamente asociada con el tratamiento.
+        \item La variable tiene una relación con el resultado para el grupo no tratado.
+        \item La variable no es un mediador en el camino tratamiento a resultado.
+    \end{itemize}
+\end{definicion}
+
+
+\begin{ejemplo}[Efecto confusor]
+    \label{ex:efectoConfusor}
+    Supongamos que tenemos el grafo causal correspondiente a \autoref{subfig:confounderFull},
+    $X \leftarrow C \rightarrow Y$.
+    Simulamos una posible instancia de estas variables:
+    <<ejemplo-confusor-g-formula, echo=TRUE, eval=TRUE>>=
+    @
+
+    Usando una muestra de tamaño grande observamos que el ATE de $X$ en $Y$ es
+    casi nulo en cada estrato, como esperamos por la definición de las variables.
+\end{ejemplo}
+
 \begin{definicion}[Modelo estructural causal]
     \cite[sección 1.2]{mci}
     Dado un vector aleatorio
