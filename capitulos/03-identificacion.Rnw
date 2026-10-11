@@ -125,9 +125,14 @@
     para disgregar en todos los estratos de covariantes ($X$) posibles.
 \end{observacion}
 
-\begin{ejemplo}[ATE]
-    Consideramos la tabla de contingencia anterior y añadimos la diferencia:
-    \begin{center}
+\begin{ejemplo}[Modelos causal y estadístico] % TODO:
+    Tabla de contigencia de un modelo causal y estadístico, respectivamente, donde la covariante y
+    el tratamiento son variables binarias mientras el resultado es continuo.
+    En la del modelo causal añadimos la diferencia:
+
+    \vspace{0.5em}
+    \begin{minipage}{0.55\textwidth}
+        \centering
         \begin{tabular}{ C | C C | C C | C}
             i & X & A & Y(0) & Y(1) & Y(1) - Y(0) \\
             1 & 0 & 0 & 120  & 130  & 10          \\
@@ -135,7 +140,20 @@
             3 & 1 & 0 & 95   & 110  & 15          \\
             4 & 1 & 1 & 110  & 120  & 10
         \end{tabular}
-    \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.35\textwidth}
+        \centering
+        \begin{tabular}{ C | C C | C }
+            i & X & A & Y   \\
+            1 & 0 & 0 & 120 \\
+            2 & 0 & 1 & 160 \\
+            3 & 1 & 0 & 95  \\
+            4 & 1 & 1 & 120
+        \end{tabular}
+    \end{minipage}
+    \vspace{0.5em}
+
     El valor real del ATE es 15. El valor estimado por la G-fórmula es 32.5. Esta discrepancia se debe, en este caso,
     por la diferencia entre los grupos tratados y no tratados, violando la intercambiabilidad condicional:
     obsérvese que la media para $A = 0$ es $107.5$ y para $A=1$ es $140$.
