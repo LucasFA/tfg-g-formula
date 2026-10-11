@@ -21,8 +21,6 @@
             knitr
             ggdag
             # lavaan
-            simcausal
-            simDAG
 
             languageserver
             lintr

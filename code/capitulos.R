@@ -8,14 +8,11 @@ est_ate <- mean(data$y[data$A == 1]) - mean(data$y[data$A == 0])
 naive <- lm(Y ~ A + X, data = data)
 
 ## ----  ejemplo-confusor-g-formula ----
-library("simcausal")
-options(simcausal.verbose = FALSE)
-D <- DAG.empty() +
-  node("C", distr = "rbern", p = 0.5) +
-  node("X", distr = "rbern", p = max(0.5 * C, 0.2)) +
-  node("Y", distr = "rnorm", mean = C)
-D <- set.DAG(D)
-dat <- sim(D, n = 1000000)
+N <- 1000000
+C <- rbinom(N, 1, 0.5)
+X <- rbinom(N, 1, pmax(0.5 * C, 0.2))
+Y <- rnorm(N, mean = C)
+dat <- data.frame(C, X, Y)
 # Si uno asumiera que no existe la variable confusora C
 # y en cambio asumiera que X tiene un posible efecto causal en Y,
 # calcularíamos el ATE como
@@ -40,12 +37,11 @@ ATE_C_0
 
 
 ## ----  ejemplo-modificacion-efecto ----
-D <- DAG.empty() +
-  node("M", distr = "rbern", p = 0.5) +
-  node("A", distr = "rbern", p = 0.5) +
-  node("Y", distr = "rnorm", mean = M * (1 + A))
-D <- set.DAG(D)
-dat <- sim(D, n = 1000000)
+N <- 1000000
+M <- rbinom(N, 1, 0.5)
+A <- rbinom(N, 1, 0.5)
+Y <- rnorm(N, mean = M * (1 + A))
+dat <- data.frame(M, A, Y)
 
 # Sin estratificar:
 mu_1 <- mean(dat$Y[dat$A == 1])
@@ -63,3 +59,40 @@ mu_10 <- mean(dat$Y[dat$A == 1 & dat$M == 0])
 mu_00 <- mean(dat$Y[dat$A == 0 & dat$M == 0])
 ATE_M_0 <- mu_10 - mu_00
 ATE_M_0
+
+## ----  ejemplo-g-formula-parametrica ----
+# X confunde (X -> A, X -> Y) y además modifica el efecto de A.
+# E[Y | A, X] = 1 + A + X + A * X, luego ATE = 1 + E[X] = 2
+N <- 1000
+X <- rnorm(N, mean = 1)
+A <- rbinom(N, 1, plogis(2 * X))
+Y <- rnorm(N, mean = 1 + A + X + A * X)
+dat <- data.frame(X, A, Y)
+
+g_formula <- function(dat) {
+  # 1. Ajustar el modelo de E[Y | A, X]
+  modelo <- lm(Y ~ A * X, data = dat)
+  # 2. Predecir para toda la muestra con A = 1 y con A = 0
+  mu_1 <- predict(modelo, newdata = transform(dat, A = 1))
+  mu_0 <- predict(modelo, newdata = transform(dat, A = 0))
+  # 3. Promediar la diferencia
+  mean(mu_1 - mu_0)
+}
+ATE_g_formula <- g_formula(dat)
+ATE_g_formula
+
+# El coeficiente de A no estima el ATE, ni con interacción ni sin ella
+coef(lm(Y ~ A * X, data = dat))["A"]
+coef(lm(Y ~ A + X, data = dat))["A"]
+
+# Intervalo de confianza por bootstrap (percentiles)
+B <- 1000
+ATE_boot <- replicate(B, g_formula(dat[sample(nrow(dat), replace = TRUE), ]))
+quantile(ATE_boot, c(0.025, 0.975))
+
+## ---- generar-datos ----
+N <- 200
+X <- rbinom(N, 1, 0.3)
+A <- rbinom(N, 1, 0.5 + 0.2 * (X > 0.5))
+Y <- rbinom(N, 1, plogis(-2 + 0.5 * A)) # + 0.3 * X
+dat <- data.frame(X, A, Y)

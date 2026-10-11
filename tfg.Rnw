@@ -65,7 +65,7 @@
 % Paso de analizar problemas de invalidación de cache.
 % Si es necesario cuando el código crezca se cambia
 <<setup, include=FALSE>>=
-knitr::read_chunk("code/capitulos.R")
+for (f in list.files("code", pattern = "\\.R$", full.names = TRUE)) knitr::read_chunk(f)
 knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 @
 <<script-setup, include=FALSE>>=
