@@ -2,7 +2,7 @@
 # E[Y | A, X] = 1 + A + X + A * X: el efecto condicional es 1 si X = 0
 # y 2 si X = 1, luego ATE = 1 + E[X] = 1.5
 func_Y <- function(A, X) {
-	1 + A + X + A * X
+  1 + A + X + A * X
 }
 N <- 100000
 X <- rbinom(N, 1, 0.5)

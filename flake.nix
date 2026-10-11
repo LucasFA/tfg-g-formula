@@ -98,7 +98,10 @@
           # Ejecutar con `nix run .#format`
           format = pkgs.writeShellApplication {
             name = "document-format";
-            runtimeInputs = [ texIndent pkgs.parallel ];
+            runtimeInputs = [
+              texIndent
+              pkgs.parallel
+            ];
             text = ''
               ${pkgs.bash}/bin/bash ./scripts/format.sh
             '';
@@ -129,9 +132,19 @@
             '';
           };
         };
-        # this formatter is for nix, not for the latex project.
+        # this formatter is for nix and the R code in code/, not for the latex project.
         # Check out the above `format` package
-        formatter = pkgs.nixfmt-tree;
+        formatter = pkgs.nixfmt-tree.override {
+          runtimeInputs = [ pkgs.air-formatter ];
+          settings.formatter.air = {
+            command = "air";
+            options = [ "format" ];
+            includes = [
+              "code/*.R"
+              "code/*.r"
+            ];
+          };
+        };
         defaultPackage = packages.document;
       }
     );
