@@ -229,6 +229,29 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     como definido en \autoref{def:insesgadez-asintotica}.
 \end{definicion}
 
+\begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
+    También denominada independencia condicional, ignorabilidad o suficiencia causal.
+    $$ Y(a) \indep A | X $$
+    Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
+    $(Y(a) \indep A) | X$.
+    % No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
+    Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
+    tratamiento no aporta información adicional.
+    También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
+    En particular, se obtiene
+    $$
+        \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
+    $$
+\end{definicion}
+
+\begin{definicion}[Positividad] \label{def:positivity}
+    $$ P(A = a | X = x) > 0 \; \forall a \in \{0, 1\}, \; \forall x:  P(X = x) > 0$$
+\end{definicion}
+
+Dependiendo del autor la condición de consistencia vista en \ref{def:consistency}
+se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
+y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
+
 \begin{proposicion}
     Si el modelo causal y el estadístico son consistentes
     y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
@@ -260,29 +283,6 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     %     P(Y | A, X) = P^*(AY(1) + (1-A) Y(0), A, X)
     % \end{equation*}
 \end{proof}
-
-\begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
-    También denominada independencia condicional, ignorabilidad o suficiencia causal.
-    $$ Y(a) \indep A | X $$
-    Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
-    $(Y(a) \indep A) | X$.
-    % No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
-    Una forma de verlo es que dado un paciente con ciertas covariantes $X$, la asignación al
-    tratamiento no aporta información adicional.
-    También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
-    En particular, se obtiene
-    $$
-        \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
-    $$
-\end{definicion}
-
-\begin{definicion}[Positividad] \label{def:positivity}
-    $$ P(A = a | X = x) > 0 \; \forall a \in \{0, 1\}, \; \forall x:  P(X = x) > 0$$
-\end{definicion}
-
-Dependiendo del autor la condición de consistencia vista en \ref{def:consistency}
-se toma como una de ellas o no, puesto que su rol es de relacionar el modelo causal
-y el modelo estadístico, y no constituye una restricción en la familia de modelos causales.
 
 La intercambiabilidad condicional está relacionada con el siguiente concepto:
 
