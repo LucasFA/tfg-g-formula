@@ -55,3 +55,6 @@ número de muestras con el número de dimensiones.
     \end{align*}
     es un estimador del ATE.
 \end{proposicion}
+
+<<ejemplo-g-formula-parametrica, echo=TRUE, eval=TRUE>>=
+@

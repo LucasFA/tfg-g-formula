@@ -61,7 +61,7 @@ ATE_M_0 <- mu_10 - mu_00
 ATE_M_0
 
 ## ----  ejemplo-g-formula-parametrica ----
-# X confunde (X -> A, X -> Y) y además modifica el efecto de A.
+# X confunde (X -> A, X -> Y) y modifica el efecto de A.
 # E[Y | A, X] = 1 + A + X + A * X, luego ATE = 1 + E[X] = 2
 N <- 1000
 X <- rnorm(N, mean = 1)
@@ -79,9 +79,11 @@ g_formula <- function(dat) {
 ATE_g_formula <- g_formula(dat)
 ATE_g_formula
 
-# El coeficiente de A no estima el ATE, ni con interacción ni sin ella
-coef(lm(Y ~ A * X, data = dat))
+# El coeficiente de A no estima el ATE sin interacción:
 coef(lm(Y ~ A + X, data = dat))
+# Añadiendo las covariantes lo que obtenemos es el OR condicional a X,
+# aqui sin centrar es para X = 0:
+coef(lm(Y ~ A + X + A * X, data = dat))
 
 # Intervalo de confianza por bootstrap (percentiles)
 B <- 1000
