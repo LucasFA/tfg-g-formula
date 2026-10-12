@@ -81,11 +81,16 @@ ATE_g_formula
 
 # El coeficiente de A no estima el ATE sin interacción:
 coef(lm(Y ~ A + X, data = dat))
-# Añadiendo las covariantes lo que obtenemos es el OR condicional a X,
+# Añadiendo las interacción lo que obtenemos es el ATE condicional a X,
 # aqui sin centrar es para X = 0:
 coef(lm(Y ~ A + X + A * X, data = dat))
+# centrando recuperamos el valor de la g formula:
+mean(X)
+Z <- X - mean(X)
+dat2 <- data.frame(Z, A, Y)
+coef(lm(Y ~ A + Z + A * Z, data = dat2))
 
-# Intervalo de confianza por bootstrap (percentiles)
+# Intervalo de confianza por bootstrap
 B <- 1000
 ATE_boot <- replicate(B, g_formula(dat[sample(nrow(dat), replace = TRUE), ]))
 quantile(ATE_boot, c(0.025, 0.975))
