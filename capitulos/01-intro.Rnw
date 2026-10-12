@@ -337,7 +337,8 @@ Tenemos que
 \end{definicion}
 
 \begin{definicion}[Variable confusora, versión clásica] % TODO: cite
-    Una definición clásica del concepto de variable confusora es la siguiente.
+    Una definición clásica del concepto de variable confusora es la siguiente. Nos limitaremos
+    a utilizar la definición anterior pero esta es incluida por complitud.
 
     Se dice que una variable es confusora cuando se dan las siguientes condiciones:
     \begin{itemize}
@@ -356,7 +357,8 @@ Tenemos que
     <<ejemplo-confusor-g-formula, echo=TRUE, eval=TRUE>>=
     @
 
-    Usando una muestra de tamaño grande observamos que el ATE de $X$ en $Y$ es
+    Usando una muestra de tamaño grande observamos que el ATE de $X$ en $Y$
+    (como veremos en la \autoref{def:causalATE}) es
     casi nulo en cada estrato, como esperamos por la definición de las variables.
 \end{ejemplo}
 
