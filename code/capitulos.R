@@ -70,20 +70,18 @@ Y <- rnorm(N, mean = 1 + A + X + A * X)
 dat <- data.frame(X, A, Y)
 
 g_formula <- function(dat) {
-  # 1. Ajustar el modelo de E[Y | A, X]
-  modelo <- lm(Y ~ A * X, data = dat)
-  # 2. Predecir para toda la muestra con A = 1 y con A = 0
+  modelo <- lm(Y ~ A + X + A * X, data = dat)
   mu_1 <- predict(modelo, newdata = transform(dat, A = 1))
   mu_0 <- predict(modelo, newdata = transform(dat, A = 0))
-  # 3. Promediar la diferencia
+
   mean(mu_1 - mu_0)
 }
 ATE_g_formula <- g_formula(dat)
 ATE_g_formula
 
 # El coeficiente de A no estima el ATE, ni con interacción ni sin ella
-coef(lm(Y ~ A * X, data = dat))["A"]
-coef(lm(Y ~ A + X, data = dat))["A"]
+coef(lm(Y ~ A * X, data = dat))
+coef(lm(Y ~ A + X, data = dat))
 
 # Intervalo de confianza por bootstrap (percentiles)
 B <- 1000
