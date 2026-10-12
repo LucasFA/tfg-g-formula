@@ -160,6 +160,30 @@
     Claro está, esto no es observable, ya que hemos obtenido el valor real del ATE por el modelo causal.
 \end{ejemplo}
 
+\begin{nota}[Identificación parcial y análisis de sensitividad]
+    No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
+    asunciones razonables.
+    La identificación parcial consiste en encontrar asunciones que nos permiten acotar el valor del estimando
+    causal en base a estimandos estadísticos \cite[sección 2.3]{mci}.
+    El análisis de sensitividad, por otro lado, nos da herramientas para determinar la magnitud
+    mínima de la brecha causal que haría nuestra estimación estadísticamente no significativa.
+
+    El análisis de sensitividad ha sido de gran relevancia histórica: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
+    se comenta el caso del primer análisis de sensitividad en \cite{cornfield1959}.
+    Como información contextual, una crítica posible a los artículos del momento que asociaban el consumo de tabaco
+    al cáncer de pulmón incluían el hecho de que no podían controlar
+    por todas las covariantes posibles, sugiriendo entonces la posible existencia de
+    un factor desconocido que explicara la tasas de cáncer de pulmón en la población fumadora.
+    Cito un segmento del abstract de este artículo, en el cual refutan (en cuan posible es esto) esta posibilidad:
+    \begin{quotation}
+        The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
+        the results can not be interpreted as arising from an indirect association of cigarette
+        smoking with some other agent or characteristic, since this hypothetical agent would have
+        to be at least as strongly associated with lung cancer as cigarette use; no such agent has
+        been found or suggested.
+    \end{quotation}
+\end{nota}
+
 
 \section{Identificación de estimandos de interés} \label{sec:identificacion_estimandos}
 Presentamos la identificación de los estimandos causales introducidos en la \autoref{sec:estimandos_de_interes}.
@@ -397,57 +421,3 @@ condiciones del sujeto de estudio ($X$).
 % Risk Ratio: ligeramente superior a $1$, aproximadamente $ 0.999/0.99 \approx 1.009 $
 % Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
 % \end{ejemplo}
-
-\section{Identificación parcial y análisis de sensitividad}
-No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
-asunciones razonables.
-
-La identificación parcial consiste en encontrar asunciones que nos permiten acotar el valor del estimando
-causal en base a estimandos estadísticos.
-
-El análisis de sensitividad, por otro lado, nos da herramientas para determinar la magnitud
-mínima de la brecha causal que haría nuestra estimación estadísticamente no significativa.
-
-\begin{nota}
-    El análisis de sensitividad ha sido de gran relevancia histórica: en \cite[5: Sensitivity to Unmeasured Covariates]{rosenbaumCausalInference2023}
-    se comenta el caso del primer análisis de sensitividad en \cite{cornfield1959}.
-    Como información contextual, una crítica posible a los artículos del momento que asociaban el consumo de tabaco
-    al cáncer de pulmón incluían el hecho de que no podían controlar
-    por todas las covariantes posibles, sugiriendo entonces la posible existencia de
-    un factor desconocido que explicara la tasas de cáncer de pulmón en la población fumadora.
-    Cito un segmento del abstract de este artículo, en el cual refutan (en cuan posible es esto) esta posibilidad:
-    \begin{quotation}
-        The magnitude of the excess lung-cancer risk among cigarette smokers is so great that
-        the results can not be interpreted as arising from an indirect association of cigarette
-        smoking with some other agent or characteristic, since this hypothetical agent would have
-        to be at least as strongly associated with lung cancer as cigarette use; no such agent has
-        been found or suggested.
-    \end{quotation}
-\end{nota}
-
-Vamos a ver que a pesar de ello, a veces podemos \textit{identificarlo parcialmente}: esto es,
-encontrar asunciones que nos permiten acotar el valor del estimando de estudio en base al
-estadístico dado.
-
-\begin{definicion}[Estimando identificado parcialmente] \cite[sección 2.3]{mci}
-    Dado un estimando causal $\psi^*$, diremos que está identificado parcialmente
-    con un estimando estadístico $\psi$ si conocemos
-    dos estimandos estadísticos $\psi^{\uparrow}, \psi^{\downarrow}$ tales que
-    $$
-        \psi^{\downarrow} \circ \mathcal{O} \leq \psi^* \leq \psi^{\uparrow} \circ \mathcal{O}
-    $$
-    o más explícitamente:
-    $$
-        (\psi^{\downarrow} \circ \mathcal{O})(P^*) \leq \psi^*(P^*) \leq (\psi^{\uparrow} \circ \mathcal{O})(P^*) \quad \forall P^* \in \mathcal{M}^*
-    $$
-
-\end{definicion}
-
-\begin{corolario}
-    Dado estimando parcialmente identificado $\psi^*$, este tiene una brecha causal acotada.
-    Si $\psi$ es un estimando estadístico,
-    $$
-        (\psi^\downarrow - \psi)\circ \mathcal{O} \leq \psi^* - \psi \circ \mathcal{O} \leq (\psi^\uparrow - \psi) \circ \mathcal{O}
-    $$
-    donde $(f - g)(x) \equiv f(x) - g(x)$
-\end{corolario}
