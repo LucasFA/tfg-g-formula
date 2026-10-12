@@ -167,7 +167,7 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
 % produciendo una distribución empírica $\P$. De esta manera, la tabla de contingencia
 % viene dada por  $\P(y, a)$.
 
-\begin{proposicion}[Identificación de RD, RR y OR]
+\begin{proposicion}[Identificación de RD, RR y OR] \label{prop:identificacion-rd-rr-or}
     Sean $A$ e $Y$ binarias, y $X$ discreta.
     Bajo las condiciones de consistencia, intercambiabilidad
     condicional y positividad,
@@ -201,6 +201,59 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
     que sólo depende de $P$.
 \end{proof}
 
+\section{Análisis de estudios observacionales y RCTs}
+Vamos a aplicar el marco presentado primero para estudios randomizados controlados y
+posteriormente para estudios observacionales.
+Vamos a ver las condiciones que un estudio randomizado implica y cómo se debilitan
+en un estudio observacional.
+
+\subsection{Estudios randomizados}
+\begin{definicion}[Randomización]
+    Diremos que un estudio implicando variables $X, A, Y$ es randomizado cuando la
+    variable de tratamiento $A$ es aleatoria y controlada por el investigador, de forma que
+    no depende de covariantes ni resultados:
+    $A \indep (X, Y(0), Y(1))$.
+
+    % $A \indep Y(a)$: el tratamiento no está correlado con otras covariantes ni % TODO:
+\end{definicion}
+
+Consideramos de nuevo el grafo causal de un estudio randomizado controlado
+(\autoref{subfig:cd-rct}).
+
+Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
+randomización simple en la que los sujetos son asignados a las variantes del tratamiento
+por una distribución fija sin parámetros libres.
+
+\begin{proposicion}[Propiedades de un estudio controlado randomizado]
+    Se verifica:
+    \begin{enumerate}
+        \item $Y(a) \indep A$ (intercambiabilidad marginal, \autoref{def:intercambiabilidad-marginal})
+        \item $Y(a) \indep A | X$
+    \end{enumerate}
+\end{proposicion}
+
+\begin{proof}
+    \begin{enumerate}
+        \item[]
+        \item Se obtiene marginalizando sobre $X$ (es $A \indep (Y(0), Y(1))$), luego
+              $A \indep Y(a), \, a = 0, 1$
+        \item $P(A = a', Y(a) = y \mid X = x) = \frac{P(A = a')P(Y(a) = y, X = x)}{P(X = x)}$.
+              Como $A \indep X$, tenemos la igualdad con
+              $P(A = a' \mid X = x)P(Y(a) = y \mid X = x)$, como queríamos mostrar.
+    \end{enumerate}
+\end{proof}
+
+
+\footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
+    frente a muestras pequeñas. Existen técnicas como la randomización por bloques,
+    que divide la población a estudiar en estratos
+    por alguna variable que no sea de interés primario (por ejemplo, el sexo o la edad)
+    y asignando el tratamiento de forma randomizada en cada estrato.
+    De esta forma, uno controla la variabilidad que hubiera generado tal variable.
+    A estas variables se las denomina, en inglés, \say{nuisance variables}. En el grafo causal,
+    $X$ es una de ellas.
+}
+
 \begin{proposicion}[Identificación bajo intercambiabilidad marginal]
     Sean $A$ e $Y$ binarias.
     Si se cumplen la consistencia, intercambiabilidad marginal
@@ -213,7 +266,7 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
         RR & = \frac{P(Y = 1 | A = 1)}{P(Y = 1 | A = 0)},                                      \\
         OR & = \frac{P(Y = 1 | A = 1) / P(Y = 0 | A = 1)}{P(Y = 1 | A = 0) / P(Y = 0 | A = 0)}
     \end{align*}
-    Sujeto a que, igual que en la proposición anterior,
+    Sujeto a que, igual que en la \autoref{prop:identificacion-rd-rr-or},
     se verifique que $P^*(Y(0) = 1) > 0$ para el RR y $0 < P^*(Y(a) = 1) < 1$ para el OR.
 \end{proposicion}
 
@@ -229,6 +282,18 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
     presentan intercambiabilidad marginal.
 \end{observacion}
 
+\subsection{Estudios observacionales}
+Ahora, no controlamos la asignación del tratamiento, sino que puede ser afectada por el resto de
+condiciones del sujeto de estudio ($X$).
+
+\begin{figure}[h]
+    \centering
+    \grafoObservacional
+    \caption{Estudio observacional}
+    \label{fig:grafo-causal-obs}
+\end{figure}
+
+\section{Medidas condicionales y colapsabilidad}
 \begin{definicion}[Odds Ratio condicional]
     Para cada estrato $x$ de $X$ discreta,
     $$
@@ -333,7 +398,7 @@ Presentamos la identificación de los estimandos causales introducidos en la \au
 % Odds ratio: aproximadamente $\frac{0.999/(1-0.999)}{0.99/(1-0.99)} = 999/99 \approx 10.09 $
 % \end{ejemplo}
 
-\subsection{Identificación parcial y análisis de sensitividad}
+\section{Identificación parcial y análisis de sensitividad}
 No siempre es el caso que podamos identificar totalmente un estimando causal con uno estadístico bajo
 asunciones razonables.
 
@@ -386,67 +451,3 @@ estadístico dado.
     $$
     donde $(f - g)(x) \equiv f(x) - g(x)$
 \end{corolario}
-
-\section{Análisis de estudios observacionales y RCTs}
-Vamos a aplicar el marco presentado primero para estudios randomizados controlados y
-posteriormente para estudios observacionales.
-Vamos a ver las condiciones que un estudio randomizado implica y cómo se debilitan
-en un estudio observacional.
-
-\subsection{Estudios randomizados}
-\begin{definicion}[Randomización]
-    Diremos que un estudio implicando variables $X, A, Y$ es randomizado cuando la
-    variable de tratamiento $A$ es aleatoria y controlada por el investigador, de forma que
-    no depende de covariantes ni resultados:
-    $A \indep (X, Y(0), Y(1))$.
-
-    % $A \indep Y(a)$: el tratamiento no está correlado con otras covariantes ni % TODO:
-\end{definicion}
-
-Consideramos de nuevo el grafo causal de un estudio randomizado controlado
-(\autoref{subfig:cd-rct}).
-
-Habiendo varias formas de randomizar a los sujetos\footnotemark, consideramos una
-randomización simple en la que los sujetos son asignados a las variantes del tratamiento
-por una distribución fija sin parámetros libres.
-
-\begin{proposicion}[Propiedades de un estudio controlado randomizado]
-    Se verifica:
-    \begin{enumerate}
-        \item $Y(a) \indep A$ (intercambiabilidad marginal, \autoref{def:intercambiabilidad-marginal})
-        \item $Y(a) \indep A | X$
-    \end{enumerate}
-\end{proposicion}
-
-\begin{proof}
-    \begin{enumerate}
-        \item[]
-        \item Se obtiene marginalizando sobre $X$ (es $A \indep (Y(0), Y(1))$), luego
-              $A \indep Y(a), \, a = 0, 1$
-        \item $P(A = a', Y(a) = y \mid X = x) = \frac{P(A = a')P(Y(a) = y, X = x)}{P(X = x)}$.
-              Como $A \indep X$, tenemos la igualdad con
-              $P(A = a' \mid X = x)P(Y(a) = y \mid X = x)$, como queríamos mostrar.
-    \end{enumerate}
-\end{proof}
-
-
-\footnotetext{Una randomización simple como la usada en nuestro ejemplo puede no ser robusta
-    frente a muestras pequeñas. Existen técnicas como la randomización por bloques,
-    que divide la población a estudiar en estratos
-    por alguna variable que no sea de interés primario (por ejemplo, el sexo o la edad)
-    y asignando el tratamiento de forma randomizada en cada estrato.
-    De esta forma, uno controla la variabilidad que hubiera generado tal variable.
-    A estas variables se las denomina, en inglés, \say{nuisance variables}. En el grafo causal,
-    $X$ es una de ellas.
-}
-
-\subsection{Estudios observacionales}
-Ahora, no controlamos la asignación del tratamiento, sino que puede ser afectada por el resto de
-condiciones del sujeto de estudio ($X$).
-
-\begin{figure}[h]
-    \centering
-    \grafoObservacional
-    \caption{Estudio observacional}
-    \label{fig:grafo-causal-obs}
-\end{figure}
