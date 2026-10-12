@@ -2,12 +2,6 @@
 \cite{oxChapterOutcome}
 \section{Métodos clásicos}
 
-\subsection{Estratificación}
-Una forma de ajustar a las covariantes es estratificar la muestra y considerar
-el efecto del factor de interés $A$ dentro de cada estrato, donde las covariantes
-son fijas.
-Aplicamos esta técnica en \autoref{ex:efectoConfusor}.
-
 \subsection{Regresión}
 \subsubsection{Regresión lineal}
 Otra forma de ajustar el efecto de un factor de riesgo o tratamiento
