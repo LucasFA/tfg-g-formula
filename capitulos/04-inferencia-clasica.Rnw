@@ -84,9 +84,55 @@ por $e(1 - e)$, donde $e = P(A = 1 | X)$ es la propensidad.
 % TODO: cite
 El método IPW, del inglés \say{Inverse Probability Weighting} o método de ponderador de probabilidad
 inverso, consiste en, en vez de estimar un modelo del resultado
-($\E[Y | A, X]$), estimar la propensidad $e(x) = P(A | X = x)$.
+($\E[Y | A, X]$), estimar la propensidad al tratamiento dadas las covariantes.
 
+\begin{definicion}[Propensidad al tratamiento]
+    Definimos la propensidad al tratamiento o, por brevedad, propensidad, como la siguiente cantidad:
+    \[
+        e(x) = P(A = 1| X = x)
+    \]
+\end{definicion}
 
+\begin{proposicion}[Equivalencia entre IPW y g-computación]
+    Bajo positividad (\autoref{def:positivity}),
+    \begin{align*}
+        E\left[\frac{A Y}{e(X)}\right]           & = E[E[Y | A = 1, X]] = \sum_x \mu_1(x) P(X = x) \\
+        E\left[\frac{(1 - A) Y}{1 - e(X)}\right] & = E[E[Y | A = 0, X]] = \sum_x \mu_0(x) P(X = x)
+    \end{align*}
+\end{proposicion}
+
+\begin{proof}\cite[Technical point 2.3]{whatif}
+    Usando que el producto se anula para $a = 0$:
+    \begin{align*}
+        \E\left[\frac{A Y}{e(X)}\right]
+         & = \sum_{x, a, y} \frac{a y}{e(x)} P(Y = y, A = a, X = x)                       \\
+         & = \sum_{x, y} \frac{y}{e(x)} P(Y = y, A = 1, X = x)                            \\
+         & = \sum_{x, y} \frac{y}{e(x)} P(Y = y | A = 1, X = x) P(A = 1 | X = x) P(X = x) \\
+         & = \sum_x P(X = x) \sum_y y P(Y = y | A = 1, X = x)                             \\
+         & = \sum_x P(X = x) \mu_1(x) = \E_X[\E[Y | A = 1, X]]
+    \end{align*}
+
+    donde las sumas en $x$ toman los valores con $P(X = x) > 0$, en los cuales
+    $e(x) = P(A = 1 | X = x) > 0$ por la positividad.
+
+    El caso para $\frac{(1-A)Y}{1-e(X)} = \frac{(1-A)Y}{1- e(X)}$
+    es análogo.
+\end{proof}
+
+\begin{nota}
+    Recordando la demostración de la identificación del ATE, \autoref{prop:identificacion-ate},
+    tenemos que si además se da la intercambiabilidad condicional y la consistencia
+    (\autoref{def:intercambiabilidad}, \autoref{def:consistency}), estas
+    cantidades están identificadas con $E[Y(1)]$ y $E[Y(0)]$, respectivamente.
+\end{nota}
+
+\begin{corolario}[Estimación del ATE por IPW]
+    Bajo las condiciones de la observación, tenemos que:
+    \[
+        ATE = E\left[\frac{AY}{e(X)}\right] - E\left[\frac{(1-A) Y}{1-e(X)}\right]
+    \]
+    y por tanto es estimado por
+\end{corolario}
 
 \subsection{AIPW}
 Este método utiliza la estandarización y el método IPW simultáneamente para obtener

@@ -33,7 +33,7 @@
     $$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
 \end{definicion}
 
-\begin{proposicion}[Identificación del ATE] \label{identificacion-ate}
+\begin{proposicion}[Identificación del ATE] \label{prop:identificacion-ate}
     Consideramos una distribución $(X, A, Y(0), Y(1))$.
     Bajo las condiciones anteriores (\autoref{def:consistency} \autoref{def:intercambiabilidad}
     \autoref{def:positivity}), el ATE causal está identificado con el ATE estadístico.
@@ -88,7 +88,7 @@
 \end{proposicion}
 
 \begin{proof}\cite[material suplementario S1]{luque2021}
-    Ya vimos en \ref{identificacion-ate} que
+    Ya vimos en \ref{prop:identificacion-ate} que
     $$
         \E[Y(1) - Y(0)] = \E_X[\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x]]
     $$
