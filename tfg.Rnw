@@ -163,3 +163,12 @@ knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 \end{small}
 
 \end{document}
+
+% LaTeX ignora lo que sigue. Está para texlab (el servidor de lenguaje del editor), que no entiende los <<child=...>>= de knitr:
+% autocompleta en ellos \ref y \cite.
+\input{capitulos/01-intro.Rnw}
+\input{capitulos/03-identificacion.Rnw}
+\input{capitulos/035-g-formula.Rnw}
+\input{capitulos/04-inferencia-clasica.Rnw}
+\input{capitulos/05-comparacion.Rnw}
+\input{capitulos/051-algunos-estimadores.Rnw}
