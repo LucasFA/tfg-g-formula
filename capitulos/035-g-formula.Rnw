@@ -17,16 +17,16 @@ número de muestras con el número de dimensiones.
 \begin{corolario}[Estimador plug-in del ATE o \say{outcome regression model}]
     Dado un estimador $\hat\mu_a$ de $\mu_a$, donde $\mu_a(X) = \E[Y | X, A = a]$
     y una \MAS $\{(Y_i, A_i, X_i)\}_{i = 1, ..., n}$, obtenemos el siguiente estimador del ATE.
-    $$
+    \[
         \widehat{ATE} = \dfrac{1}{n} \sum_{i = 1}^n \left(\hat\mu_1(X_i) - \hat\mu_0(X_i) \right)
-    $$
+    \]
 \end{corolario}
 
 \begin{ejemplo}[Estimador del ATE de diferencia en medias]
     Sea $(Y_i, A_i, X_i), i = 1, ..., n$ una \MAS y $S_a = \{i | A_i = a\}$. Entonces,
-    $$
+    \[
         \hat\psi = \dfrac{1}{|S_1|} \sum_{i \in S_1} Y_i - \dfrac{1}{|S_0|} \sum_{i \in S_0} Y_i
-    $$
+    \]
     Esto se puede escribir de la siguiente forma en el lenguaje R:
     <<est-ate, echo=TRUE, eval=FALSE>>=
     @

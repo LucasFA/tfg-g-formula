@@ -14,9 +14,9 @@
     Dados un estimando causal $\psi^*$ y un estimador $\hat\psi$ de un estimando estadístico $\psi$, tenemos
     que el error de estimación del estimando causal por el estimador estadístico se descompone en
     error estadístico y brecha causal:
-    $$
+    \[
         \hat{\psi} - \psi^* = \hat \psi - \psi + \psi - \psi^*
-    $$
+    \]
     Donde el error estadístico $\hat \psi - \psi$ a su vez se puede descomponer en sesgo y varianza.
 \end{corolario}
 
@@ -28,9 +28,9 @@
 \begin{definicion}[ATE estadístico] \label{def:ate} \cite[sección 1.3]{mci}
     Consideramos dos variables aleatorias $X$ e $Y$ y una variable aleatoria binaria $A \in \{0, 1\}$.
     Definimos el ATE estadístico como el siguiente estimando estadístico:
-    $$ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] $$
+    \[ \psi = \E[ \E[Y | X, A = 1] - \E[Y | X, A = 0 ] ] \]
     También se puede escribir como:
-    $$ \psi = \E[\mu_1(X) - \mu_0(X)] $$
+    \[ \psi = \E[\mu_1(X) - \mu_0(X)] \]
 \end{definicion}
 
 \begin{proposicion}[Identificación del ATE] \label{prop:identificacion-ate}
@@ -73,13 +73,13 @@
     se obtiene el siguiente estimando estadístico identificado con el ATE:
     % TODO: find this based on sample?
     % TODO: include version with sample, do proof part
-    % $$
+    % \[
     % \hat\psi(S_1, ..., S_N) = \sum_{i = 1} P[X = ]
-    % $$
+    % \]
 
-    $$
+    \[
         \sum_x P(X = x) \left[\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x] \right]
-    $$
+    \]
     Esta denominación también se puede aplicar a la siguiente ecuación, también a la cual referida
     como la fórmula de estandarización.
     \begin{equation*}
@@ -89,13 +89,13 @@
 
 \begin{proof}\cite[material suplementario S1]{luque2021}
     Ya vimos en \ref{prop:identificacion-ate} que
-    $$
+    \[
         \E[Y(1) - Y(0)] = \E_X[\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x]]
-    $$
+    \]
     Por el Teorema de la probabilidad total \ref{thm:probabilidad-total} tenemos que
-    $$
+    \[
         \E[Y(a)] = \sum_x \E[Y(a) | X = x]P[X = x]
-    $$
+    \]
     Por lo cual,
     \begin{align*}
         \E[Y(1) - Y(0)] & = \sum_x \E[Y | A = 1, X = x]P[X = x] - \sum_x \E[Y | A = 0 X = x]P[X = x]        \\
@@ -320,9 +320,9 @@ condiciones del sujeto de estudio ($X$).
 \section{Medidas condicionales y colapsabilidad}
 \begin{definicion}[Odds Ratio condicional]
     Para cada estrato $x$ de $X$ discreta,
-    $$
+    \[
         OR(X = x) = \frac{P^*(Y(1) = 1 | X = x) / P^*(Y(1) = 0 | X = x)}{P^*(Y(0) = 1 | X = x) / P^*(Y(0) = 0 | X = x)}
-    $$
+    \]
     Al Odds Ratio de la \autoref{def:oddsratio} lo llamamos \emph{marginal} para distinguirlo.
 \end{definicion}
 
@@ -332,9 +332,9 @@ condiciones del sujeto de estudio ($X$).
     identificamos el OR condicional al sustituir
     $P^*(Y(a) = 1 | X = x) = P(Y = 1 | A = a, X = x)$.
     Se obtiene
-    $$
+    \[
         OR(X = x) = \frac{P(Y = 1 | A = 1, X = x) / P(Y = 0 | A = 1, X = x)}{P(Y = 1 | A = 0, X = x) / P(Y = 0 | A = 0, X = x)}
-    $$
+    \]
 \end{proposicion}
 
 \begin{proof}

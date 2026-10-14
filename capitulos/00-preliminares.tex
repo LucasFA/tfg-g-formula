@@ -53,16 +53,16 @@
 \begin{corolario}
     % TODO: fix space after MAS
     Dada una \MAS con reemplazamiento $(X_1, ..., X_n)$, se da que:
-    $$
+    \[
         P(X_1, ..., X_n) = \prod_{i=1}^n P(X_i)
-    $$
+    \]
 \end{corolario}
 
 % TODO: source
 % TODO: maybe delete
 \begin{definicion}[Muestra Aleatoria simple sin reemplazamiento]
     Una muestra $M$ donde los elementos de la población se eligen de forma que
-    $$ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  $$
+    \[ \forall k \leq n, P(S_1) = P(S_2) \forall S_1, S_2 \in \{U \in 2^P | \#(U) = k \},  \]
 
     Donde $\#$ denota la función que cuenta el número de elementos de un conjunto.
     Esto es, la probabilidad de elegir cualquier subconjunto subconjunto con $k$ elementos es la misma
@@ -139,23 +139,23 @@
 \begin{definicion}[Estimador consistente o asintóticamente insesgado]\label{def:insesgadez-asintotica}
     Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
     se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
-    $$
+    \[
         lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
-    $$
+    \]
 \end{definicion}
 
 \begin{teorema}[La probabilidad total]\label{thm:probabilidad-total}
     Sea $(\Omega, \mathcal{F}, P)$ un espacio de probabilidad, $X$ una variable aleatoria
     con función de densidad $f_X$ y $A$ un evento en el espacio de probabilidad.
     Entonces,
-    $$
+    \[
         P(A) = \int_\R P(A | X = x)f_X(x)dx
-    $$
+    \]
 
     Si $X$ es discreta y $\{P_i\}_{i\in\N}$ es una partición de $\Omega$, entonces
-    $$
+    \[
         P(A) = \sum_i P(A | P_i) P(P_i)
-    $$
+    \]
 \end{teorema}
 
 \begin{definicion}[Función de pérdida]\cite[2.4]{elements_of_statistical_learning}
@@ -164,17 +164,17 @@
 
 \begin{ejemplo}[Función de pérdida cuadrática]
     La función de pérdida más común es la cuadrática:
-    $$
+    \[
         L(y, \hat{y}) = (y - \hat{y})^2
-    $$
+    \]
 \end{ejemplo}
 
 \begin{proposicion}[Predictor óptimo bajo pérdida cuadrática]
     Dado un vector aleatorio $(X, Y)$ con distribución conjunta $P_{X, Y}$, la función que
     minimiza el funcional $Err(f) := \E[(Y - f(X))^2]$ es
-    $$
+    \[
         f(x) = \E[Y | X = x]
-    $$
+    \]
     donde $E[Y | X = x]$ es la esperanza condicional de $Y$ dado $X = x$.
 \end{proposicion}
 
@@ -187,18 +187,18 @@
         \Psi(P) & = \E_P[Y | X] : \R^{d_x} \to \R^{d_y}
     \end{align*}
     Que toma como valor:
-    $$
+    \[
         \Psi(P)(x) = \E_P[Y | X = x]
-    $$
+    \]
     El problema de regresión consiste en estimar esta función.
 \end{definicion}
 
 \begin{definicion}[Modelo de regresión]
     Dadas variables aleatorias $X$ e $Y$, un modelo de regresión consiste en una estimación de $Y$
     dado $X$. Se suele escribir funcionalmente como
-    $$
+    \[
         Y = f_\theta(X, A) + \epsilon
-    $$
+    \]
 
     Supongamos que nuestra variable de estudio $Y$ sigue una distribución desconocida pero contenida en
     un modelo $\mathcal{M}$ paramétrico, de forma que sigue una forma funcional $Y = f(X, A)$

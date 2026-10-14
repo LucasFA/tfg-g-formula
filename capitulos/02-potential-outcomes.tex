@@ -55,15 +55,15 @@ e $Y$ es la variable de respuesta.
 % TODO: another(?) source
 \begin{definicion}[Diferencia de Riesgo] \label{def:riskdiff} \cite[capítulo 1.3]{whatif}
     Definimos la diferencia de riesgo (RD por sus siglas en inglés) como:
-    $$
+    \[
         RD(P^*) = P^*(Y(1) = 1) - P^*(Y(0) = 1)
-    $$
+    \]
 \end{definicion}
 
 \begin{definicion}[ATE causal]\cite[sección 2.1]{mci}\label{def:causalATE}
     El ATE causal, del inglés \textit{Average Treatment Effect} o Efecto Medio de Tratamiento,
     es definido como
-    $$ \psi^*(P^*) = \E_{P^*}(Y(1) - Y(0)) $$
+    \[ \psi^*(P^*) = \E_{P^*}(Y(1) - Y(0)) \]
     En este caso, la variable respuesta puede tomar varios valores discretos o ser continua.
     En el caso que $Y$ sea binaria, coincide con la diferencia de riesgo.
 \end{definicion}
@@ -80,9 +80,9 @@ e $Y$ es la variable de respuesta.
 
 \begin{definicion}[Riesgo Relativo] \label{def:relrisk} % TODO: source
     Definimos el Riesgo Relativo (RR) como:
-    $$
+    \[
         RR(P^*) = \frac{P^*(Y(1) = 1)}{P^*(Y(0) = 1)}
-    $$
+    \]
 \end{definicion}
 
 \begin{definicion}[Odds Ratio] \label{def:oddsratio} % TODO: source
@@ -95,9 +95,9 @@ e $Y$ es la variable de respuesta.
 \end{definicion}
 
 \begin{corolario}[Relación entre OR y RR]
-    $$
+    \[
         OR(P^*) = RR(P^*) \dfrac{P^*(Y(0) = 0)}{P^*(Y(1) = 0)}
-    $$
+    \]
 \end{corolario}
 
 \begin{corolario}[Caso de enfermedad rara] % TODO: prove
@@ -157,12 +157,12 @@ Visualmente, queremos que el diagrama de la derecha sea conmutativo.
 \hfill
 \begin{minipage}{0.45\textwidth}
     \centering
-    $$
+    \[
         \begin{tikzcd}
             \mathcal{M}^* \arrow{r}{{\mathcal{O}}} \arrow[swap]{dr}{\psi^*} & \mathcal{M} \arrow{d}{\psi} \\
             & \R^d
         \end{tikzcd}
-    $$
+    \]
 \end{minipage}
 
 % ( https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fsim.9234&file=sim9234-sup-0001-supinfo.pdf)
@@ -204,7 +204,7 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     \label{def:consistency}
     Una condición que vamos a imponer es la de \textbf{consistencia}, que enlaza
     las distribuciones causal y estadística:
-    $$ Y = A Y(1) + (1 - A)Y(0) $$
+    \[ Y = A Y(1) + (1 - A)Y(0) \]
     No confundir con el concepto de estimador estadístico consistente o asintóticamente insesgado,
     como definido en \autoref{def:insesgadez-asintotica}.
 \end{definicion}
@@ -220,7 +220,7 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
 
 \begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
     También denominada independencia condicional, ignorabilidad o suficiencia causal.
-    $$ Y(a) \indep A | X $$
+    \[ Y(a) \indep A | X \]
     Esto es independencia entre $Y(a)$ y $A$, bajo condicionamiento a $X$. Debe leerse como
     $(Y(a) \indep A) | X$.
     % No confundir con indepedencia entre $Y(a)$ y $A | X$, denotada $ Y(a) \indep (A | X)$
@@ -228,13 +228,13 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     tratamiento no aporta información adicional.
     También significa que no hay más variables confusoras además de las representadas por $X$. % TODO: confusoras o simplemente covariantes?
     En particular, se obtiene
-    $$
+    \[
         \E[Y(a) | A = 1, X = x] = \E[Y(a) | A = 0, X = x] = \E[Y(a) | X = x] \;\forall a \in \{0, 1\}
-    $$
+    \]
 \end{definicion}
 
 \begin{definicion}[Positividad] \label{def:positivity}
-    $$ P(A = a | X = x) > 0 \; \forall a \in \{0, 1\}, \; \forall x:  P(X = x) > 0$$
+    \[ P(A = a | X = x) > 0 \; \forall a \in \{0, 1\}, \; \forall x:  P(X = x) > 0\]
 \end{definicion}
 
 Dependiendo del autor la condición de consistencia vista en \ref{def:consistency}
@@ -244,15 +244,15 @@ y el modelo estadístico, y no constituye una restricción en la familia de mode
 \begin{proposicion}
     Si el modelo causal y el estadístico son consistentes
     y $(X, A)$ sigue la misma distribución entre el modelo causal y el modelo estadístico:
-    $$
+    \[
         \begin{cases}
             P^*(X = x) = P(X = x) \;                 & \forall x    \\
             P^*(A = a | X = x) = P(A = a | X = x) \; & \forall x, a
         \end{cases}
-    $$
+    \]
 
     Entonces la distribución causal determina totalmente la distribución estadística por:
-    $$ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) $$
+    \[ P(Y, A, X) = P^*([AY(1) + (1 - A)Y(0)] \; |\, A, X) P^*(A | X) P^*(X) \]
 \end{proposicion}
 
 \begin{proof} \cite[sección 2.1]{mci}
@@ -278,11 +278,11 @@ La intercambiabilidad condicional está relacionada con el siguiente concepto:
 \begin{definicion}[Intercambiabilidad marginal] \label{def:intercambiabilidad-marginal}
     Decimos que tenemos intercambiabilidad marginal o simplemente intercambiabilidad cuando
     se verifica
-    $$ Y(a) \indep A \quad \forall a \in \{0, 1\} $$ % TODO: verify usage of a
+    \[ Y(a) \indep A \quad \forall a \in \{0, 1\} \] % TODO: verify usage of a
     En el caso discreto:
-    $$
+    \[
         P(Y(a) = y | A = 1) = P(Y(a) = y | A = 0) = P(Y(a) = y) \quad \forall a \in \{0, 1\}, \; \forall y
-    $$
+    \]
     Eso es, el grupo tratado y el no tratado tienen la misma distribución de resultados potenciales.
     Por ello la nomenclatura: son intercambiables.
 \end{definicion}
