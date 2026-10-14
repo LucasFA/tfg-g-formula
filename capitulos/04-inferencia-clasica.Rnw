@@ -178,14 +178,14 @@ Este método utiliza la estandarización y el método IPTW simultáneamente para
 una estimación \emph{doblemente robusta}.
 
 \begin{definicion}[Estimador AIPW] \cite[Technical Point 13.3]{whatif} \cite[5.2]{luque2021}
-	Sea $\hat \mu_a(x)$ un estimador de $E[Y | A = a, X = x]$ y $\hat e(x)$ un
-	estimador de $P(A = 1 | X = x)$.
-	\[
-	    \hat \psi_{AIPW} = \frac{1}{n} \sum_{i = 1}^n
-	    \left(
-	    \frac{A_i (Y_i - \hat \mu_1(X_i))}{\hat e(X_i)}
-	    - \frac{(1 - A_i) (Y_i - \hat \mu_0(X_i))}{1 - \hat e(X_i)}
-	    + \hat \mu_1(X_i) - \hat \mu_0(X_i)
-	    \right)
-	\]
+    Sea $\hat \mu_a(x)$ un estimador de $E[Y | A = a, X = x]$ y $\hat e(x)$ un
+    estimador de $P(A = 1 | X = x)$.
+    \[
+        \hat \psi_{AIPW} = \frac{1}{n} \sum_{i = 1}^n
+        \left(
+        \frac{A_i (Y_i - \hat \mu_1(X_i))}{\hat e(X_i)}
+        - \frac{(1 - A_i) (Y_i - \hat \mu_0(X_i))}{1 - \hat e(X_i)}
+        + \hat \mu_1(X_i) - \hat \mu_0(X_i)
+        \right)
+    \]
 \end{definicion}

@@ -20,7 +20,7 @@
 \usepackage{hyperref}
 \usepackage{subcaption}
 \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
-\newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
+    \newcolumntype{C}{>{$}c<{$}} % math-mode version of "l" column type
 
 
 \addtheorem{nota}{Nota}
@@ -53,18 +53,18 @@
 
 % Añadir tantos tutores como sea necesario separando cada uno de ellos mediante el comando `\medskip` y una línea en blanco
 \newcommand{\miTutor}{
-  Miguel Ángel Luque Fernández \\ \emph{Departamento de Estadística e Investigación Operativa}
+    Miguel Ángel Luque Fernández \\ \emph{Departamento de Estadística e Investigación Operativa}
 
-  % Añadir tantos tutores como sea necesario.
+    % Añadir tantos tutores como sea necesario.
 
-  % \medskip
-   %Nombre del tutor 2 \\ \emph{Departamento del tutor 2}
+    % \medskip
+    %Nombre del tutor 2 \\ \emph{Departamento del tutor 2}
 }
 \newcommand{\miCurso}{2025-2026\xspace}
 
 \hypersetup{
-  pdftitle={\miTitulo},
-  pdfauthor={\textcopyright\ \miNombre, \miFacultad, \miUniversidad}
+    pdftitle={\miTitulo},
+    pdfauthor={\textcopyright\ \miNombre, \miFacultad, \miUniversidad}
 }
 
 \begin{document}
@@ -73,7 +73,7 @@
 % Si es necesario cuando el código crezca se cambia
 <<setup, include=FALSE>>=
 for (f in list.files("code", pattern = "\\.R$", full.names = TRUE)) knitr::read_chunk(f)
-knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
+    knitr::opts_chunk$set(cache = FALSE, cache.path = "./.cache/knitr/")
 @
 <<script-setup, include=FALSE>>=
 @
