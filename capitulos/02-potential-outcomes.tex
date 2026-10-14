@@ -229,6 +229,15 @@ de \cite[material suplementario S1]{luque2021} y \cite[capítulo 2.2]{mci}:
     como definido en \autoref{def:insesgadez-asintotica}.
 \end{definicion}
 
+\begin{definicion}[Independencia condicional] \cite[1.1.5]{pearl2009causality}
+    Se dice que dos variables $X, Y$ son independientes condicionadas a $Z$, denotado
+    $X \indep Y | Z$, si
+    \[
+    P(X = x | Y = y, Z = z) = P(X = x | Z = z) \quad \forall x, y, z: P(Y = y, Z = z) > 0
+    \]
+    Esto es, conocida $Z$, conocer $Y$ no aporta información adicional sobre $X$.
+\end{definicion}
+
 \begin{definicion}[Intercambiabilidad condicional] \label{def:intercambiabilidad}
     También denominada independencia condicional, ignorabilidad o suficiencia causal.
     $$ Y(a) \indep A | X $$
