@@ -144,12 +144,31 @@ en vez de estimar un modelo del resultado
     %\footnotetext{Consideramos, generalmente, modelos topológicamente cerrados.}
 \end{observacion}
 
-\begin{definicion}[Estimador de Horvitz-Thompson]
+\begin{definicion}[Estimador de Horvitz-Thompson] \cite[Technical Point 12.1]{whatif}
     Estimando $e$ por $\hat e$ y sustituyendo esperanzas por medias, obtenemos
     \[
         \hat \psi_{HT} = \frac{1}{n} \sum_{i = 1}^n
         \left(
         \frac{A_i Y_i}{\hat e(X_i)} - \frac{(1 - A_i) Y_i}{1- \hat e(X_i)}
+        \right)
+    \]
+\end{definicion}
+
+\begin{definicion}[Estimador de Hájek] \cite[Technical Point 12.1]{whatif}
+    Dividiendo cada lado por
+    \[
+        \hat \psi_{Hajek} =
+        \frac{
+            \sum_{i = 1}^n \frac{A_i Y_i}{\hat e(X_i)}
+        }{
+            \sum_{i = 1}^n \frac{A_i}{\hat e(X_i)}
+        }
+        -
+        \frac{
+            \sum_{i = 1}^n \frac{(1 - A_i) Y_i}{1- \hat e(X_i)}
+        }{
+            \sum_{i = 1}^n \frac{1 - A_i}{1- \hat e(X_i)}
+        }
         \right)
     \]
 \end{definicion}
