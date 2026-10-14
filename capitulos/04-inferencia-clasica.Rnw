@@ -80,10 +80,10 @@ por $e(1 - e)$, donde $e = P(A = 1 | X)$ es la propensidad.
 \subsection{Estandarización y fórmula G}
 
 
-\subsection{IPW}
+\subsection{IPTW}
 % TODO: cite
-El método IPW, del inglés \say{Inverse Probability Weighting} o método de ponderador de probabilidad
-inverso, consiste en, en vez de estimar un modelo del resultado
+El método IPTW, del inglés \say{Inverse Probability of Treatment Weighting}, consiste en,
+en vez de estimar un modelo del resultado
 ($\E[Y | A, X]$), estimar la propensidad al tratamiento dadas las covariantes.
 
 \begin{definicion}[Propensidad al tratamiento]
@@ -94,7 +94,7 @@ inverso, consiste en, en vez de estimar un modelo del resultado
 \end{definicion}
 
 \begin{proposicion}[Equivalencia entre IPW y g-computación]
-    Bajo positividad (\autoref{def:positivity}),
+    Bajo positividad (\autoref{def:positivity}) se verifican:
     \begin{align*}
         E\left[\frac{A Y}{e(X)}\right]           & = E[E[Y | A = 1, X]] = \sum_x \mu_1(x) P(X = x) \\
         E\left[\frac{(1 - A) Y}{1 - e(X)}\right] & = E[E[Y | A = 0, X]] = \sum_x \mu_0(x) P(X = x)
@@ -115,24 +115,44 @@ inverso, consiste en, en vez de estimar un modelo del resultado
     donde las sumas en $x$ toman los valores con $P(X = x) > 0$, en los cuales
     $e(x) = P(A = 1 | X = x) > 0$ por la positividad.
 
-    El caso para $\frac{(1-A)Y}{1-e(X)} = \frac{(1-A)Y}{1- e(X)}$
-    es análogo.
+    El caso para $\frac{(1-A)Y}{1 - e(X)}$ es análogo.
 \end{proof}
 
-\begin{nota}
+\begin{corolario}
     Recordando la demostración de la identificación del ATE, \autoref{prop:identificacion-ate},
     tenemos que si además se da la intercambiabilidad condicional y la consistencia
-    (\autoref{def:intercambiabilidad}, \autoref{def:consistency}), estas
-    cantidades están identificadas con $E[Y(1)]$ y $E[Y(0)]$, respectivamente.
-\end{nota}
+    (\autoref{def:intercambiabilidad}, \autoref{def:consistency}),
+    $\E\left[\frac{A Y}{e(X)}\right]$ está identificada con $E[Y(1)]$
+    y
+    $\frac{(1-A)Y}{1- e(X)}$ con $E[Y(0)]$.
+\end{corolario}
 
-\begin{corolario}[Estimación del ATE por IPW]
-    Bajo las condiciones de la observación, tenemos que:
+\begin{corolario}[Estimación del ATE por IPTW] \label{cor:ate-ipwt}
+    Bajo las condiciones del corolario, tenemos que:
     \[
         ATE = E\left[\frac{AY}{e(X)}\right] - E\left[\frac{(1-A) Y}{1-e(X)}\right]
     \]
-    y por tanto es estimado por
+    Igualdad de la cual se derivan varios estimadores.
 \end{corolario}
+
+\begin{observacion}
+    Teniendo una propensidad conocida, tendríamos estimadores insesgados (tomando la esperanza en
+    \autoref{cor:ate-ipwt}). Para propensidades aproximadas, tenemos insesgadez asintótica
+    sujeto a que la propensidad estimada converja a la propensidad real. Eso es, que el
+    modelo de la propensidad esté bien especificado.
+    %\footnotemark{}. % TODO:
+    %\footnotetext{Consideramos, generalmente, modelos topológicamente cerrados.}
+\end{observacion}
+
+\begin{definicion}[Estimador de Horvitz-Thompson]
+    Estimando $e$ por $\hat e$ y sustituyendo esperanzas por medias, obtenemos
+    \[
+        \hat \psi_{HT} = \frac{1}{n} \sum_{i = 1}^n
+        \left(
+        \frac{A_i Y_i}{\hat e(X_i)} - \frac{(1 - A_i) Y_i}{1- \hat e(X_i)}
+        \right)
+    \]
+\end{definicion}
 
 \subsection{AIPW}
 Este método utiliza la estandarización y el método IPW simultáneamente para obtener
