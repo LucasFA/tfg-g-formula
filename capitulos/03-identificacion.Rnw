@@ -98,7 +98,7 @@
     \]
     Por lo cual,
     \begin{align*}
-        \E[Y(1) - Y(0)] & = \sum_x \E[Y | A = 1, X = x]P[X = x] - \sum_x \E[Y | A = 0, X = x]P[X = x]       \\
+        \E[Y(1) - Y(0)] & = \sum_x \E[Y | A = 1, X = x]P[X = x] - \sum_x \E[Y | A = 0, X = x]P[X = x] \\
                         & = \sum_x P(X = x) \left(\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x]\right)
     \end{align*}
     Aplicando la ignorabilidad y la consistencia: % por la cual dentro de cada estrato $x$ de $X$ los predictores están

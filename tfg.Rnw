@@ -137,6 +137,7 @@ for (f in list.files("code", pattern = "\\.R$", full.names = TRUE)) knitr::read_
 \pdfbookmark[-1]{Apéndices}{appendix} % Alternativamente podemos agrupar los apéndices con un nuevo \part{Apéndices}
 
 %\input{apendices/apendice-ejemplo}
+\input{apendices/hipotesis-regresion}
 \input{apendices/herramientas}
 % Añadir tantos apéndices como sea necesario
 

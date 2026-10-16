@@ -11,9 +11,7 @@ al efecto de unas covariantes $X = (X_1, \ldots, X_n)$ es midiendo el efecto con
     Y \sim A + \sum_{i=1}^{n} X_i
 \]
 
-Esta técnica está sujeta a las suposiciones habituales de la regresión lineal, en particular
-que los errores tengan una distribución normal multivariante y sean homocedásticos
-(tengan varianza constante).
+Las hipótesis que requiere esta técnica se detallan en el \autoref{ap:hipotesis-regresion}.
 
 En RCTs, el coeficiente de $A$ en un modelo sin interacciones es un estimador asintóticamente
 insesgado del ATE, haya o no modificación del efecto.
@@ -66,7 +64,7 @@ por $e(1 - e)$, donde $e = P(A = 1 | X)$ es la propensidad.
     Para obtener valores de los parámetros, se puede maximizar la verosimilitud. Por simplicidad,
     en el caso unidimensional:
     \[
-        L_{x_1, \ldots, x_k} (a,b) = \prod_{i=1}^{k} P(Y = 1 | X = x_i) P (X = x_i)
+        L_{x_1, \ldots, x_n} (a,b) = \prod_{i=1}^{n} P(Y = 1 | X = x_i) P (X = x_i)
     \]
 
     Dependiendo de la

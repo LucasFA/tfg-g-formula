@@ -1,0 +1,31 @@
+% !TeX root = ../tfg.tex
+% !TeX encoding = utf8
+
+\chapter{Hipótesis de la regresión lineal}\label{ap:hipotesis-regresion}
+Consideramos el modelo $Y = \beta_0 + \beta_A A + \beta_X^T X + \epsilon$, estimado por mínimos cuadrados
+ordinarios, y el coeficiente estimado $\hat\beta_A$ \cite[3.1]{raoLinearModels2008}.
+
+\begin{itemize}
+    \item Consistencia: muestreo IID y momentos de segundo orden finitos \cite[3.7]{raoLinearModels2008}.
+    \item Insesgadez: media condicional bien especificada, $\E[\epsilon | A, X] = 0$,
+          y que la matriz de diseño tenga rango completo (sin colinealidad perfecta) \cite[3.4]{raoLinearModels2008}.
+    \item Interpretación causal ($\beta_A = ATE$): se requieren además intercambiabilidad condicional,
+          positividad y consistencia (\autoref{def:intercambiabilidad}, \autoref{def:positivity},
+          \autoref{def:consistency}), y que no haya modificación del efecto o que se incluyan
+          términos de interacción y se estandarice, de forma que el modelo esté bien especificado.
+\end{itemize}
+
+Tenemos dos condiciones adicionales:
+
+\begin{itemize}
+    \item Homocedasticidad, $Var[\epsilon | A, X] = \sigma^2$: no es necesaria para lo anterior.
+          Bajo ella, el estimador de mínimos cuadrados es el de menor varianza entre los lineales insesgados
+          (teorema de Gauss-Markov \cite[3.4]{raoLinearModels2008}) y los errores estándar clásicos son válidos. Sin ella, se usan errores
+          estándar robustos (sándwich) \cite[4.3]{raoLinearModels2008}.
+    \item Normalidad de los errores: tampoco es necesaria. Da las distribuciones exactas $t$ y $F$
+          en muestras finitas; asintóticamente basta el teorema central del límite \cite[3.6]{raoLinearModels2008}.
+\end{itemize}
+
+% TODO: cite
+En un RCT, al ser $A$ independiente de $X$, el coeficiente estima el ATE aun con el modelo
+mal especificado.

@@ -16,7 +16,7 @@
     $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad si
     \begin{enumerate}
         \item $\Omega$ es un conjunto no vacío.
-        \item $\mathcal{A} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$-álgebra.
+        \item $\mathcal{F} \subseteq 2^\Omega = \{U | U \subseteq \Omega \}$ es una $\sigma$-álgebra.
         \item $P: \mathcal{F} \mapsto [0, 1]$ es una medida de probabilidad (medida tal que $P(\Omega) = 1$).
     \end{enumerate}
 \end{definicion}
@@ -24,7 +24,7 @@
 \begin{definicion}[Variable aleatoria]
     Se dice que $X:\Omega \mapsto E$ es una variable aleatoria si:
     \begin{enumerate}
-        \item $(\Omega, \mathcal{A}, P)$ es un espacio de probabilidad.
+        \item $(\Omega, \mathcal{F}, P)$ es un espacio de probabilidad.
         \item $E$ es un espacio medible (típicamente $\R^n$).
         \item $X$ es una función medible.
     \end{enumerate}
@@ -34,16 +34,14 @@
 \begin{definicion}[Muestra Aleatoria Simple, con reemplazamiento]\label{def:muestra}
     Una muestra de una variable aleatoria $X$ es una $n$-tupla $(X_1,...,X_n)$
     donde $X_i$ tiene la distribución de $X$ para cada $i \in \{1, ..., n\}$, y son
-    independientes dos a dos.
+    mutuamente independientes.
 
     \begin{displaymath}
         \begin{cases}
-            X_i \perp X_j \;\forall j \neq i \\
+            P(X_1 \in B_1, ..., X_n \in B_n) = \prod_{i=1}^n P(X_i \in B_i) \;\forall B_1, ..., B_n \text{ medibles} \\
             X_i \sim X \;\forall i = 1, ..., n
         \end{cases}
     \end{displaymath}
-
-    donde el símbolo $\perp$ significa independencia.
 
     Esto equivale a un vector de $n$ elementos de $P$ elegidos al azar
     con distribución uniforme sucesivamente y con reemplazamiento,
@@ -136,11 +134,20 @@
 \end{observacion}
 
 
-\begin{definicion}[Estimador consistente o asintóticamente insesgado]\label{def:insesgadez-asintotica}
-    Dada una variable aleatoria $X$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
-    se dice que un estimador $\hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ es consistente o asintóticamente insesgado si
+\begin{definicion}[Estimador asintóticamente insesgado]\label{def:insesgadez-asintotica}
+    Dada una variable aleatoria $X$ con distribución $P$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
+    se dice que un estimador $\hat\psi_n = \hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ de $X$ es
+    asintóticamente insesgado si
     \[
-        lim_{n\to\infty}\E[\hat\psi (X_1, ..., X_n)] = \E[\psi]
+        \lim_{n\to\infty}\E[\hat\psi_n] = \psi(P)
+    \]
+\end{definicion}
+
+\begin{definicion}[Estimador consistente]\label{def:estimador-consistente}
+    En las condiciones anteriores, se dice que $\hat\psi_n$ es consistente si converge en probabilidad a $\psi(P)$,
+    es decir, si para todo $\varepsilon > 0$
+    \[
+        \lim_{n\to\infty} P(|\hat\psi_n - \psi(P)| > \varepsilon) = 0
     \]
 \end{definicion}
 
@@ -208,5 +215,5 @@
     para cierto $\theta \in \Theta$ y $\epsilon$ una variable aleatoria con distribución conocida.
 
 
-    Comúnmente se asume homocedasticidad, es decir, $\E[\epsilon | X, A] = 0$ y $Var[\epsilon | X, A] = \sigma^2$.
+    Comúnmente se asume $\E[\epsilon | X, A] = 0$ y homocedasticidad, es decir, $Var[\epsilon | X, A] = \sigma^2$ (ver \autoref{ap:hipotesis-regresion}).
 \end{definicion}
