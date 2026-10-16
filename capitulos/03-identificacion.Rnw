@@ -98,8 +98,8 @@
     \]
     Por lo cual,
     \begin{align*}
-        \E[Y(1) - Y(0)] & = \sum_x \E[Y | A = 1, X = x]P[X = x] - \sum_x \E[Y | A = 0 X = x]P[X = x]        \\
-                        & = \sum_x P(X = x) \left(\E[Y | A = 1, X = x] - \sum_x \E[Y | A = 0, X = x]\right)
+        \E[Y(1) - Y(0)] & = \sum_x \E[Y | A = 1, X = x]P[X = x] - \sum_x \E[Y | A = 0, X = x]P[X = x]       \\
+                        & = \sum_x P(X = x) \left(\E[Y | A = 1, X = x] - \E[Y | A = 0, X = x]\right)
     \end{align*}
     Aplicando la ignorabilidad y la consistencia: % por la cual dentro de cada estrato $x$ de $X$ los predictores están
     % equitativamente distribuidos entre el grupo tratado ($A = 1$)y no tratado ($A = 0$):
@@ -338,7 +338,12 @@ condiciones del sujeto de estudio ($X$).
 \end{proposicion}
 
 \begin{proof}
-    El paso es inmediato aplicando intercambiabilidad (condicional a $A$), consistencia y positividad.
+    Por positividad de $P(A = a, X = x)$ podemos condicionar a estos eventos. Por
+    intercambiabilidad condicional y consistencia tenemos:
+    \[
+        P^*(Y(a) = y | X = x) = P^*(Y(a) = y | A = a, X = x) = P(Y = y | A = a, X = x)
+    \]
+    Sustituyendo estas cuatro probabilidades en la definición de $OR(X = x)$ se obtiene la expresión.
 \end{proof}
 
 \begin{definicion}[Modificación de efecto]
@@ -348,8 +353,8 @@ condiciones del sujeto de estudio ($X$).
 
 \begin{ejemplo}[Modificación de efecto]
     Consideramos un colisionador, como en \autoref{subfig:cd-colisionador}.
-    Obsérvese que en este ejemplo, considerando la interpolación de $A$ entre 0 y 1,
-    $\frac{\partial \E[Y | A, M = m]}{\partial A} = m$.
+    Obsérvese que en este ejemplo
+    $\E[Y | A = 1, M = m] - \E[Y | A = 0, M = m] = m$.
     Simulamos de manera similar al \autoref{ex:efectoConfusor}:
     <<ejemplo-modificacion-efecto, echo=TRUE, eval=TRUE>>=
     @

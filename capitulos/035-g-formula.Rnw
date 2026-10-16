@@ -35,7 +35,7 @@ número de muestras con el número de dimensiones.
 
     Este estimador no toma en cuenta los valores de las covariantes, sino que asigna el mismo
     valor a todos los individuos a cada grupo $S_1$ y $S_0$.
-    Es, un estimador válido para estudios randomizados pero no pasa observacionales, porque en RCTs
+    Es un estimador válido para estudios randomizados pero no para observacionales, porque en RCTs
     la expresión del ATE se reduce a esta por randomización de las covariantes en la asignación del tratamiento.
     Naturalmente, no se suele aplicar siquiera en estudios randomizados en presencia de mejores
     estimadores que al tener en cuenta

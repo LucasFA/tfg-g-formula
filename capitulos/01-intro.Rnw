@@ -96,7 +96,7 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 
 \begin{definicion}[Grafo]
     Un grafo es un par $G = (V, E)$ donde $V$ es una colección de elementos llamados vértices
-    y $E$ es una $2$-tupla de elementos de $V$ llamadas aristas.
+    y $E$ es un conjunto de $2$-tuplas de elementos de $V$ llamadas aristas.
     Si consideramos las $2$-tuplas de $E$ ordenadas, se le llama un grafo dirigido y las aristas son dirigidas.
     Si no las consideramos ordenadas, los elementos de $E$ son conjuntos y el grafo es no dirigido.
 \end{definicion}
@@ -107,7 +107,7 @@ problema fundamental de la inferencia causal \cite[sección 2.1]{mci}.
 \end{definicion}
 
 \begin{definicion}[Ciclo]
-    Un ciclo en un grafo es un camino $(c_i)_{i = 2, ..., n}$ tal que $c_1 = c_n$.
+    Un ciclo en un grafo es un camino $(c_i)_{i = 1, ..., n}$ con $n \geq 2$ tal que $c_1 = c_n$.
 \end{definicion}
 
 % TODO:
@@ -338,7 +338,7 @@ Tenemos que
 
 \begin{definicion}[Variable confusora, versión clásica] % TODO: cite
     Una definición clásica del concepto de variable confusora es la siguiente. Nos limitaremos
-    a utilizar la definición anterior pero esta es incluida por complitud.
+    a utilizar la definición anterior pero esta es incluida por completitud.
 
     Se dice que una variable es confusora cuando se dan las siguientes condiciones:
     \begin{itemize}
