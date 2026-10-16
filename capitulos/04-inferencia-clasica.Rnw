@@ -153,7 +153,7 @@ en vez de estimar un modelo del resultado
 \end{definicion}
 
 \begin{definicion}[Estimador de Hájek] \cite[Technical Point 12.1]{whatif}
-    Dividiendo cada lado por
+    Dividiendo cada término de $\hat \psi_{HT}$ por la suma de sus pesos, obtenemos
     \[
         \hat \psi_{Hajek} =
         \frac{
