@@ -133,21 +133,23 @@
     que su imagen esté contenida en el espacio paramétrico.
 \end{observacion}
 
+En las próximas definiciones consideramos una variable aleatoria $X$ con distribución
+$P$, una sucesión $\{X_i\}_{i \in \N}$ tal que $(X_1, \ldots, X_n)$ es una muestra
+aleatoria simple de $X$ para todo $n \in \N$, y un estimador
+$\hat\psi_n = \hat\psi(X_1, \ldots, X_n)$ de un estimando $\psi$.
 
-\begin{definicion}[Estimador asintóticamente insesgado]\label{def:insesgadez-asintotica}
-    Dada una variable aleatoria $X$ con distribución $P$ y una sucesión de muestras IID suyas $\{X_i\}_{i \in \N}$,
-    se dice que un estimador $\hat\psi_n = \hat\psi(X_1, ..., X_n)$ de un estimando $\psi$ de $X$ es
-    asintóticamente insesgado si
+\begin{definicion}[Estimador consistente]\label{def:estimador-consistente}
+    En las condiciones anteriores, se dice que $\hat\psi_n$ es consistente
+    si converge en probabilidad a $\psi(P)$. Eso es, lo es si para todo $\varepsilon > 0$
     \[
-        \lim_{n\to\infty}\E[\hat\psi_n] = \psi(P)
+        \lim_{n\to\infty} P(|\hat\psi_n - \psi(P)| > \varepsilon) = 0
     \]
 \end{definicion}
 
-\begin{definicion}[Estimador consistente]\label{def:estimador-consistente}
-    En las condiciones anteriores, se dice que $\hat\psi_n$ es consistente si converge en probabilidad a $\psi(P)$,
-    es decir, si para todo $\varepsilon > 0$
+\begin{definicion}[Estimador asintóticamente insesgado]\label{def:insesgadez-asintotica}
+    En las condiciones anteriores, se dice que $\hat\psi_n$ es asintóticamente insesgado si
     \[
-        \lim_{n\to\infty} P(|\hat\psi_n - \psi(P)| > \varepsilon) = 0
+        \lim_{n\to\infty}\E[\hat\psi_n] = \psi(P)
     \]
 \end{definicion}
 
