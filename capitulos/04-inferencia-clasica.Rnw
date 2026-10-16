@@ -122,7 +122,7 @@ en vez de estimar un modelo del resultado
     (\autoref{def:intercambiabilidad}, \autoref{def:consistency}),
     $\E\left[\frac{A Y}{e(X)}\right]$ está identificada con $E[Y(1)]$
     y
-    $\frac{(1-A)Y}{1- e(X)}$ con $E[Y(0)]$.
+    $\E\left[\frac{(1-A)Y}{1- e(X)}\right]$ con $E[Y(0)]$.
 \end{corolario}
 
 \begin{corolario}[Estimación del ATE por IPTW] \label{cor:ate-ipwt}

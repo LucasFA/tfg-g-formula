@@ -48,11 +48,11 @@
     Identificamos $\E[Y(a)], \; a \in \{0, 1\}$:
     \begin{align*}
         \E[Y(a)] & = \E_X[\E[Y(a) | X]]     &                                      \\
-                 & = \E_X[\E[Y(a) | A, X]]  & \text{(ignorabilidad y positividad)} \\
+                 & = \E_X[\E[Y(a) | A = a, X]]  & \text{(ignorabilidad y positividad)} \\
                  & = \E_X[\E[Y | A = a, X]] & \text{(consistencia)}                \\
     \end{align*}
     donde la positividad ha sido necesaria para no condicionar a un evento de probabilidad nula
-    y por tanto garantizar la existencia de $\E[Y(a) | A, X]$.
+    y por tanto garantizar la existencia de $\E[Y(a) | A = a, X]$.
 
     Con esto,
     \begin{align*}
